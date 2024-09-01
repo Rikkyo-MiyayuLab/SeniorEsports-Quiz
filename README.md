@@ -1,7 +1,5 @@
 # 【立教大学 三宅/内山研 × 港区,アイザック社共同】高齢者esportsプロジェクト脳トレゲーム用リポジトリ
 
-## 
-
 ## 環境構築方法
 ### 1. 当リポジトリをクローン
 まずは、当リポジトリをクローンしてください。Gitコマンドでは以下のコマンドでクローンすることができます。
@@ -84,11 +82,12 @@ git push
 ※ `PullRequest`の作成方法については、後述します。
 
 
-## `PullRequest`の確認方法
+## `PullRequest`を`develop`にマージする。
 ### 1. 当該のPullRequestの内容を確認する。
 GitHubのページにアクセスし、`PullRequest`の内容を確認してください。
 - `PullRequest`が作成されると、Slack上で通知が届きます。
 - また、GitHubの通知でも確認することができます。
+  
 
 ### 2. 動作確認を行う。
 `PullRequest`の内容の動作確認を行います。以下のコマンドで、`PullRequest`の内容をローカルに反映させることができます。
@@ -107,6 +106,49 @@ git checkout <1.で指定したブランチ名>
 
 ### 3. 動作確認が完了したら、`PullRequest`をマージする。
 この時、動作に問題がある等の場合は、`PullRequest`のページにコメントを残すか、担当者にSlackで連絡をとってください。
+
+問題が無ければ、`PullRequest`承認し、`develop`へのマージを行います。
+この時、`develop`へのマージはGitHub側で自動的に行うので問題ありません。
+※下図赤枠を選択します。
+    ![alt text](READMEImages/PR-7.png)
+
+
+
+## `PullRequest`の作成方法
+作業が完了し、作業内容を作業用ブランチにコミット & プッシュしたら、以下の手順で`PullRequest`を作成できます。
+
+### 1. GitHubのページにアクセス
+[Pull requests](https://github.com/Rikkyo-MiyayuLab/SeniorEsports-Quiz/pulls)のページに飛び、右側上部にある`New pull request`をクリックします。
+※下図赤枠部
+
+    ![alt text](READMEImages/PR-1.png)
+
+### 2. `base`と`compare`を設定
+- `base`には、マージ先のブランチを選択します。`develop`を選択します。
+- `compare`には、マージ元のブランチを選択します。該当する作業用ブランチを選択します。
+
+- 例：作業用ブランチ名「`feature/README-Update`」の場合
+  
+    <p align="left">
+        <img src="READMEImages/PR-2.png" width="22.8%">
+        <img src="READMEImages/PR-3.png" width="30%">
+    </p>
+
+### 3. `PullRequest`を投稿する。
+1. コミット内容が表示されるので、問題なければ`Create pull request`をクリックします。
+※下図赤枠部
+
+![alt text](READMEImages/PR-4.png)
+
+2. `Open a pull request`という画面が表示されるので、フォームに`PullRequest`の内容を記載していきます。
+   
+   ![alt text](READMEImages/PR-5.png)
+
+最後に、`Create pull request`をクリックして投稿します。
+
+### 4. 投稿完了
+投稿が完了すると、以下の様に`PullRequest`が作成されます。
+![alt text](READMEImages/PR-6.png)
 
 
 以上で一連の作業手順は完了です。
