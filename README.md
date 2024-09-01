@@ -23,12 +23,15 @@ git clone https://github.com/Rikkyo-MiyayuLab/SeniorEsports-Quiz.git
 ![alt text](READMEImages/UnityInstall-2.png)
 
 ### 3. Unityプロジェクトを開く
-クローンしたリポジトリにある`TODO:フォルダ名`をUnityHubから開きます。
+クローンしたリポジトリにある`./QuizGame`をUnityHubから開いてください。
+![alt text](READMEImages/Env-1.png)
+
+以上で環境構築は完了です。開発を始める準備が整いました。
 
 
 ## ブランチ運用について
-ブランチ運用については、`develop`を筆頭に作業用ブランチ`featureブランチ`を各々が作成して、マージする形式とします。
-`develop`へのマージの際には、GitHub上で[`PullRequest`](https://backlog.com/ja/git-tutorial/pull-request/01/)を作成し、双方向で確認をとれるようにします。
+ブランチ運用については、『`develop`を筆頭に作業用ブランチ`featureブランチ`を各々が作成して、マージする形式』とします。
+`develop`へのマージの際には、GitHub上で[`PullRequest`](https://backlog.com/ja/git-tutorial/pull-request/01/)を作成し、`双方向で確認`をとれるようにします。
 
 実際の作業手順とブランチ運用については後述します。
 
