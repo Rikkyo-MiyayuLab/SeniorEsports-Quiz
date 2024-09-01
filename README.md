@@ -8,6 +8,18 @@ git clone https://github.com/Rikkyo-MiyayuLab/SeniorEsports-Quiz.git
 ```
 上記で必要なアセット,ソースのダウンロードを行います。
 
+クローン後は、以下のようなディレクトリ構成になります。
+```bash
+./
+├── README.md (本ファイル)
+├── READMEImages (READMEで使用する画像ファイル)
+└── QuizGame ← 本プロジェクトで使用するUnityプロジェクト本体
+    ├── Assets←
+    ├── Packages
+    ├── ProjectSettings
+    ├── .gitignore
+```
+
 ### 2. Unityのインストール
 本プロジェクトでは、以下のバージョンのUnityを使用します。
 - Unity 2022.3.44f1
