@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// 大問情報が格納されたJSONの型式定義
+/// </summary>
 namespace QuestionDataInterface {
     [Serializable]
     public class QuestionData {
