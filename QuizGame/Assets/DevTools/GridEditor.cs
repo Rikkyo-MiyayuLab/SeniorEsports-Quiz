@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using Newtonsoft.Json;
 using PlayType1Interface;
+using QuestionDataInterface;
 
 /// <summary>
 /// グリッド式の問題を生成するエディタ
@@ -73,7 +74,7 @@ public class GridEditor : MonoBehaviour {
 
     public void SaveGridAsJSON() {
         var uuid = Guid.NewGuid().ToString();
-        string folderPath = $"Assets/QuestionData/{templateType}";
+        string folderPath = $"Assets/QuestionData/{templateType}/quiz";
         string filePath = Path.Combine(folderPath, $"{uuid}.json");
 
         // Question データを作成
@@ -112,7 +113,17 @@ public class GridEditor : MonoBehaviour {
         streamWriter.Flush();
         streamWriter.Close();
         Debug.Log($"JSONデータが保存されました: {filePath}");
-
+        // 親問題データの小問題配列にこのJSONファイルのパスを追加
+        var ParentDataPath = PlayerPrefs.GetString(DevConstants.QuestionDataFileKey);
+        string parentJson = File.ReadAllText(ParentDataPath);
+        QuestionData parentData = JsonConvert.DeserializeObject<QuestionData>(parentJson);
+        parentData.quiz.questions.Add(filePath);
+        File.WriteAllText(ParentDataPath, JsonConvert.SerializeObject(parentData));
+        Debug.Log($"大問データに小問追加: {filePath}");
+        streamWriter = new StreamWriter(ParentDataPath);
+        streamWriter.Write(JsonConvert.SerializeObject(parentData));
+        streamWriter.Flush();
+        streamWriter.Close();
         // Unityにアセットの変更を認識させる
         AssetDatabase.Refresh();
     }
@@ -152,10 +163,11 @@ public class GridEditorManager : Editor {
 
         GridEditor editor = (GridEditor)target;
 
+        GUILayout.Space(20);
         if (GUILayout.Button("JSONで保存する")) {
             editor.SaveGridAsJSON();   
         }
-
+        GUILayout.Space(20);
         if(GUILayout.Button("グリッド再生成")) {
             editor.Initialize();
         }

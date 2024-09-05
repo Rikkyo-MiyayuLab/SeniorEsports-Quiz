@@ -59,8 +59,11 @@ public class QuestionDataEditor : EditorWindow{
         GUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("この条件で問題を作成する。\n ※小問作成へ遷移します。",  GUILayout.Width(200), GUILayout.Height(50))) {
-            SaveJSON();
-            //EditorSceneManager.OpenScene("Assets/Scenes/QuestionDataCreator.unity");
+            var savePath = SaveJSON();
+            EditorSceneManager.OpenScene($"Assets/DevTools/Scenes/T-{type}Editor.unity");
+            // 生成した大問JSONの情報を次のシーンに引き継ぐ
+            PlayerPrefs.SetString(DevConstants.QuestionDataFileKey, savePath); 
+            PlayerPrefs.Save();
         }
         GUILayout.FlexibleSpace();           
         GUILayout.EndHorizontal();
@@ -80,7 +83,7 @@ public class QuestionDataEditor : EditorWindow{
     }
 
 
-    private void SaveJSON() {
+    private string SaveJSON() {
         // 大問データを構築
         QuestionData data = new QuestionData {
             title = title,
@@ -94,7 +97,7 @@ public class QuestionDataEditor : EditorWindow{
         string jsonData = JsonUtility.ToJson(data, true);
         // 大問毎固有のUUIDを生成
         string uuid = Guid.NewGuid().ToString();
-        string folderPath = $"Assets/QuestionData/{type}";
+        string folderPath = $"{DevConstants.QuestionDataFolder}/{type}";
         string filePath = Path.Combine(folderPath, $"{uuid}.json");
 
         // フォルダが存在しない場合は作成
@@ -106,9 +109,11 @@ public class QuestionDataEditor : EditorWindow{
         // ファイルにJSONデータを書き込む
         File.WriteAllText(filePath, jsonData);
         Debug.Log($"JSONデータが保存されました: {filePath}");
-
         // Unityにアセットの変更を認識させる
         AssetDatabase.Refresh();
+
+        return filePath;
+
     }
 }
 

@@ -17,13 +17,7 @@ namespace QuestionDataInterface {
 
     [Serializable]
     public class Quiz {
-        public List<Question> questions; // 小問データ
-    }
-
-    // 小問データのクラス定義（今回はファイル名だけを扱うので必要に応じて変更可）
-    [Serializable]
-    public class Question {
-        public string fileName;        // 小問データのファイル名
+        public List<string> questions; // 小問データのパス
     }
 }
 
