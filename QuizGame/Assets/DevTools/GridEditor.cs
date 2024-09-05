@@ -53,7 +53,11 @@ public class GridEditor : MonoBehaviour {
                     prefabName = cellPrefab.name,
                     prefabGUID = GetPrefabGUID(cellPrefab)
                 };
-                cell.GetComponent<GridCell>().Initialize(cellData);
+                var CellComp = cell.GetComponent<GridCell>();
+                CellComp.Initialize(cellData);
+                // cellのoptionObjectsを割り当てる
+                GameObject[] optionCells = GameObject.FindGameObjectsWithTag("OptionCell");
+                CellComp.optionObjects = optionCells;
                 row.Add(cell);
                 gridRow.Add(cellData);
             }
@@ -69,6 +73,12 @@ public class GridEditor : MonoBehaviour {
             }
         }
         cells.Clear();
+        // シーンをリロードすると消えないことがあるので、オブジェクト検索で明示的に削除する
+        var gridParent = GameObject.Find("Grids");
+        // 子オブジェクトを全て削除
+        foreach (Transform n in gridParent.transform) {
+            DestroyImmediate(n.gameObject);
+        }
     }
 
 
@@ -164,7 +174,7 @@ public class GridEditorManager : Editor {
         GridEditor editor = (GridEditor)target;
 
         GUILayout.Space(20);
-        if (GUILayout.Button("JSONで保存する")) {
+        if (GUILayout.Button("小問を作成する。")) {
             editor.SaveGridAsJSON();   
         }
         GUILayout.Space(20);

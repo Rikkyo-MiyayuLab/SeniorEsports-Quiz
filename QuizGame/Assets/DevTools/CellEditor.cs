@@ -12,7 +12,7 @@ public class GridCell : MonoBehaviour {
     public Cell gridData;
     private TextMeshPro textMesh;
 
-    public List<GameObject> optionObjects; 
+    public GameObject[] optionObjects; 
 
     public int fontSize = 24; // フォントサイズを指定
 
@@ -47,7 +47,7 @@ public class GridCell : MonoBehaviour {
     }
 
     private void UpdateOptionsInScene() {
-        if (gridData.options != null && optionObjects != null && optionObjects.Count == gridData.options.Count) {
+        if (gridData.options != null && optionObjects != null && optionObjects.Length == gridData.options.Count) {
             for (int i = 0; i < gridData.options.Count; i++) {
                 // 特定のオブジェクトにオプションのテキストを反映
                 var optionText = optionObjects[i].GetComponentInChildren<TextMeshPro>(); // TextMeshProがアタッチされている前提
@@ -55,7 +55,7 @@ public class GridCell : MonoBehaviour {
                     optionText.text = gridData.options[i].text;
                 }
             }
-        } else if (gridData.options.Count != optionObjects.Count) {
+        } else if (gridData.options.Count != optionObjects.Length) {
             Debug.LogWarning("オプションの数と対象オブジェクトの数が一致していません");
         }
     }
