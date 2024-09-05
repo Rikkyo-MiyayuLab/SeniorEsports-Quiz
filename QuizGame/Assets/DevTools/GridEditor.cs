@@ -14,23 +14,39 @@ using QuestionDataInterface;
 /// </summary>
 public class GridEditor : MonoBehaviour {
     [Header("JSON情報")]
+    /** 背景画像 */
+    [Tooltip("背景画像を指定してください。")]
+    public Sprite backgroundImage;
     /** セルのプレハブ */
+    [Tooltip("セルのプレハブ（素材）を指定してください。")]
     public GameObject cellPrefab;  
     /**行数*/
+    [Tooltip("行数を指定してください。")]
     public int rows = 3;
     /** 列数*/
+    [Tooltip("列数を指定してください。")]
     public int columns = 3;
     /** セル間のマージン*/
+    [Tooltip("セル間のマージンを指定してください。")]
     public float margin = 3.0f;
     /** プレイ画面のテンプレート情報*/
     public int templateType = 1;
     [Header("Editor Settings")]
     [SerializeField]
     private GameObject GridParent;
+    [SerializeField]
+    private Image backgroundImageObject;
 
     private List<List<Cell>> gridCells = new List<List<Cell>>();
     private List<List<GameObject>> cells = new List<List<GameObject>>();
 
+
+    private void OnValidate() {
+        // 背景画像が設定されている場合、背景画像を表示
+        if (backgroundImage != null) {
+            backgroundImageObject.sprite = backgroundImage;
+        }
+    }
 
     public void Initialize() {
         ClearGrid();
@@ -104,7 +120,8 @@ public class GridEditor : MonoBehaviour {
         }
         var data = new Question{
             grids = questionData.grids,
-            questionId = uuid
+            questionId = uuid,
+            backgroundImage = GetSpritePath(backgroundImage)
         };
         // JSONにシリアライズ
         Debug.Log("QuestionData: " + questionData.grids[0][0].text);
@@ -159,8 +176,22 @@ public class GridEditor : MonoBehaviour {
         return null;
     }
 
-
+    public string GetSpritePath(Sprite sprite) {
+    #if UNITY_EDITOR
+            if (sprite != null) {
+                // Spriteのテクスチャアセットのパスを取得
+                string assetPath = AssetDatabase.GetAssetPath(sprite.texture);
+                return assetPath;
+            } else {
+                Debug.LogError("Spriteが設定されていません。");
+            }
+    #else
+            Debug.LogError("この機能はエディタのみで使用可能です。");
+    #endif
+        return null;
+    }
 }
+
 
 /// <summary>
 /// インスペクタのカスタム
