@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,6 +12,8 @@ public class GridCell : MonoBehaviour {
     public Cell gridData;
     private TextMeshPro textMesh;
 
+    public List<GameObject> optionObjects; 
+
     public int fontSize = 24; // フォントサイズを指定
 
     // インスペクタで値を変更したときに反映させる
@@ -17,6 +21,7 @@ public class GridCell : MonoBehaviour {
         if (gridData != null) {
             //CreateText();
             UpdateVisuals();
+            UpdateOptionsInScene();
         }
     }
 
@@ -38,6 +43,20 @@ public class GridCell : MonoBehaviour {
             textMesh.fontSize = fontSize; // フォントサイズを指定
             textMesh.sortingOrder = 2; // Order in Layer を 2 に設定
             textMesh.color = Color.black; // VertexColorを黒色に指定
+        }
+    }
+
+    private void UpdateOptionsInScene() {
+        if (gridData.options != null && optionObjects != null && optionObjects.Count == gridData.options.Count) {
+            for (int i = 0; i < gridData.options.Count; i++) {
+                // 特定のオブジェクトにオプションのテキストを反映
+                var optionText = optionObjects[i].GetComponentInChildren<TextMeshPro>(); // TextMeshProがアタッチされている前提
+                if (optionText != null) {
+                    optionText.text = gridData.options[i].text;
+                }
+            }
+        } else if (gridData.options.Count != optionObjects.Count) {
+            Debug.LogWarning("オプションの数と対象オブジェクトの数が一致していません");
         }
     }
 

@@ -51,7 +51,17 @@ MonoBehaviour:
     options: []
     useRandomOption: 0
     randomOptionType: 
-    position: {x: 0, y: 0, z: 0}
+    position:
+    - 0
+    - 0
+    - 0
+    prefabName: 
+    prefabGUID: 
+  optionObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   fontSize: 24
 --- !u!212 &1822889687480892789
 SpriteRenderer:

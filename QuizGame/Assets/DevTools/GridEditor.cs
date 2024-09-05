@@ -74,7 +74,7 @@ public class GridEditor : MonoBehaviour {
 
     public void SaveGridAsJSON() {
         var uuid = Guid.NewGuid().ToString();
-        string folderPath = $"Assets/QuestionData/{templateType}/quiz";
+        string folderPath = $"{DevConstants.QuestionDataFolder}/{templateType}/quiz";
         string filePath = Path.Combine(folderPath, $"{uuid}.json");
 
         // Question データを作成
