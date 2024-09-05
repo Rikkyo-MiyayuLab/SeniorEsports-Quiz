@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using Newtonsoft.Json;
 using PlayType1Interface;
 
 /// <summary>
@@ -28,15 +29,10 @@ public class GridEditor : MonoBehaviour {
 
     private List<List<Cell>> gridCells = new List<List<Cell>>();
     private List<List<GameObject>> cells = new List<List<GameObject>>();
-    private Question questionData;
 
 
     public void Initialize() {
         ClearGrid();
-
-        questionData = new Question {
-            grids = new List<List<Cell>>()
-        };
 
         for (int i = 0; i < rows; i++) {
             List<GameObject> row = new List<GameObject>();
@@ -52,14 +48,15 @@ public class GridEditor : MonoBehaviour {
                     options = new List<Option>(),
                     useRandomOption = false,
                     randomOptionType = "",
-                    position = cell.transform.position
+                    position = new float[] {cell.transform.position.x, cell.transform.position.y, cell.transform.position.z},
+                    prefabName = cellPrefab.name,
+                    prefabGUID = GetPrefabGUID(cellPrefab)
                 };
                 cell.GetComponent<GridCell>().Initialize(cellData);
                 row.Add(cell);
                 gridRow.Add(cellData);
             }
             cells.Add(row);
-            questionData.grids.Add(gridRow);
         }
     }
     
@@ -75,18 +72,34 @@ public class GridEditor : MonoBehaviour {
 
 
     public void SaveGridAsJSON() {
-         var uuid = Guid.NewGuid().ToString();
+        var uuid = Guid.NewGuid().ToString();
         string folderPath = $"Assets/QuestionData/{templateType}";
         string filePath = Path.Combine(folderPath, $"{uuid}.json");
-        //questionDataを更新
+
+        // Question データを作成
+        Question questionData = new Question {
+            grids = new List<List<Cell>>() // 各行を保持するリストを初期化
+        };
+
+        // 各行のデータを作成して questionData に追加
         for (int i = 0; i < rows; i++) {
+            List<Cell> rowCells = new List<Cell>(); // 行ごとにリストを作成
             for (int j = 0; j < columns; j++) {
                 var cell = cells[i][j].GetComponent<GridCell>().gridData;
                 Debug.Log("GridData: " + cell.text);
-                questionData.grids[i][j] = cell;
+                rowCells.Add(cell); // 行のリストにセルを追加
             }
+            questionData.grids.Add(rowCells); // 行データを questionData に追加
         }
-        string json = JsonUtility.ToJson(questionData);
+        var data = new Question{
+            grids = questionData.grids,
+            questionId = uuid
+        };
+        // JSONにシリアライズ
+        Debug.Log("QuestionData: " + questionData.grids[0][0].text);
+        var json = JsonConvert.SerializeObject(data);
+        Debug.Log("GridData: " + json); // JSONデータが正しく生成されたか確認
+
         // フォルダが存在しない場合は作成
         if (!Directory.Exists(folderPath)) {
             Directory.CreateDirectory(folderPath);
@@ -94,11 +107,35 @@ public class GridEditor : MonoBehaviour {
         }
 
         // ファイルにJSONデータを書き込む
-        File.WriteAllText(filePath, json);
+        StreamWriter streamWriter = new StreamWriter(filePath);
+        streamWriter.Write(json);
+        streamWriter.Flush();
+        streamWriter.Close();
         Debug.Log($"JSONデータが保存されました: {filePath}");
 
         // Unityにアセットの変更を認識させる
         AssetDatabase.Refresh();
+    }
+
+
+    // エディタ限定の関数でPrefabのGUIDを取得
+    public string GetPrefabGUID(GameObject prefab) {
+    #if UNITY_EDITOR
+        // Prefabのパスを取得
+        string prefabPath = AssetDatabase.GetAssetPath(prefab);
+
+        if (!string.IsNullOrEmpty(prefabPath)) {
+            // パスからGUIDを取得
+            string prefabGUID = AssetDatabase.AssetPathToGUID(prefabPath);
+            Debug.Log("Prefab GUID: " + prefabGUID);
+            return prefabGUID;
+        } else {
+            Debug.LogError("Prefab is not assigned or the path is invalid.");
+        }
+    #else
+        Debug.LogError("This function can only be used in the Unity Editor.");
+    #endif
+        return null;
     }
 
 

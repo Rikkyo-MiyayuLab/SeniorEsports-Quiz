@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* グリッド式問題データの型定義
+*/
 namespace PlayType1Interface {
     [Serializable]
     public class Question
     {
         public List<List<Cell>> grids; // 2次元リストでグリッド構造を保持
+        public string questionId;
     }
 
     [Serializable]
@@ -23,7 +27,10 @@ namespace PlayType1Interface {
         [Tooltip("ランダムオプションを使用する場合、ランダムオプションの種類を指定します。")]
         public string randomOptionType;
         [Tooltip("マスの位置情報。自動で入力されます。")]
-        public Vector3 position;
+        public float[] position;
+        [Tooltip("マスのPrefab情報。自動で入力されます。")]
+        public string prefabName;
+        public string prefabGUID;
     }
 
     [Serializable]

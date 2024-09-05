@@ -64,8 +64,7 @@ public class GridCell : MonoBehaviour {
     }
 
     private void OnDrawGizmos() {
-        if (!string.IsNullOrEmpty(gridData.text))
-        {
+        if (!string.IsNullOrEmpty(gridData.text)) {
             UnityEditor.Handles.Label(transform.position + Vector3.up * 0.5f, gridData.text);
         }
     }
