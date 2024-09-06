@@ -17,6 +17,8 @@ public class GridEditor : MonoBehaviour {
     /** 背景画像 */
     [Tooltip("背景画像を指定してください。")]
     public Sprite backgroundImage;
+    [Tooltip("問題表示エリアに表示したい画像やイラストを指定できます。")]
+    public Sprite questionImage;
     /** セルのプレハブ */
     [Tooltip("セルのプレハブ（素材）を指定してください。")]
     public GameObject cellPrefab;  
@@ -36,7 +38,8 @@ public class GridEditor : MonoBehaviour {
     private GameObject GridParent;
     [SerializeField]
     private Image backgroundImageObject;
-
+    [SerializeField]
+    private SpriteRenderer questionImageObject;
     private List<List<Cell>> gridCells = new List<List<Cell>>();
     private List<List<GameObject>> cells = new List<List<GameObject>>();
 
@@ -45,6 +48,9 @@ public class GridEditor : MonoBehaviour {
         // 背景画像が設定されている場合、背景画像を表示
         if (backgroundImage != null) {
             backgroundImageObject.sprite = backgroundImage;
+        }
+        if(questionImage != null) {
+            questionImageObject.sprite = questionImage;
         }
     }
 
@@ -121,7 +127,8 @@ public class GridEditor : MonoBehaviour {
         var data = new Question{
             grids = questionData.grids,
             questionId = uuid,
-            backgroundImage = GetSpritePath(backgroundImage)
+            backgroundImage = GetSpritePath(backgroundImage),
+            questionImage = GetSpritePath(questionImage)
         };
         // JSONにシリアライズ
         Debug.Log("QuestionData: " + questionData.grids[0][0].text);
