@@ -12,6 +12,7 @@ namespace PlayType1Interface {
         public List<List<Cell>> grids; // 2次元リストでグリッド構造を保持
         public string questionId;
         public string backgroundImage; //TODO:各タイプの共通問題部分の定義をつくり継承する
+        public string questionImage; // タイプ３用　問題画像
     }
 
     [Serializable]
