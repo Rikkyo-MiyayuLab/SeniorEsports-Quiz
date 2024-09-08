@@ -8,15 +8,13 @@ using UnityEditor;
 using Newtonsoft.Json;
 using PlayType1Interface;
 using QuestionDataInterface;
+using QuestionDevTool;
 
 /// <summary>
 /// グリッド式の問題を生成するエディタ
 /// </summary>
-public class GridEditor : MonoBehaviour {
+public class GridEditor : QuestionEditor {
     [Header("JSON情報")]
-    /** 背景画像 */
-    [Tooltip("背景画像を指定してください。")]
-    public Sprite backgroundImage;
     [Tooltip("問題表示エリアに表示したい画像やイラストを指定できます。")]
     public Sprite questionImage;
     /** セルのプレハブ */
@@ -31,13 +29,9 @@ public class GridEditor : MonoBehaviour {
     /** セル間のマージン*/
     [Tooltip("セル間のマージンを指定してください。")]
     public float margin = 3.0f;
-    /** プレイ画面のテンプレート情報*/
-    public int templateType = 1;
     [Header("Editor Settings")]
     [SerializeField]
     private GameObject GridParent;
-    [SerializeField]
-    private Image backgroundImageObject;
     [SerializeField]
     private SpriteRenderer questionImageObject;
     private List<List<Cell>> gridCells = new List<List<Cell>>();
@@ -54,9 +48,12 @@ public class GridEditor : MonoBehaviour {
         }
     }
 
-    public void Initialize() {
-        ClearGrid();
-
+    public override void Initialize() {
+        Clear();
+        Generate();
+    }
+    
+    public override void Generate() {
         for (int i = 0; i < rows; i++) {
             List<GameObject> row = new List<GameObject>();
             List<Cell> gridRow = new List<Cell>();
@@ -86,9 +83,8 @@ public class GridEditor : MonoBehaviour {
             cells.Add(row);
         }
     }
-    
 
-    public void ClearGrid() {
+    public override void Clear() {
         foreach (var row in cells) {
             foreach (var cell in row) {
                 DestroyImmediate(cell);
@@ -104,10 +100,10 @@ public class GridEditor : MonoBehaviour {
     }
 
 
-    public void SaveGridAsJSON() {
+    public override void CreateQuestionData() {
         var uuid = Guid.NewGuid().ToString();
         string folderPath = $"{DevConstants.QuestionDataFolder}/{templateType}/quiz";
-        string filePath = Path.Combine(folderPath, $"{uuid}.json");
+        string fileName = $"{uuid}.json";
 
         // Question データを作成
         Question questionData = new Question {
@@ -124,78 +120,16 @@ public class GridEditor : MonoBehaviour {
             }
             questionData.grids.Add(rowCells); // 行データを questionData に追加
         }
-        var data = new Question{
+        var data = new Question {
             grids = questionData.grids,
             questionId = uuid,
-            backgroundImage = GetSpritePath(backgroundImage),
-            questionImage = GetSpritePath(questionImage)
+            backgroundImage = base.GetSpritePath(backgroundImage),
+            questionImage = base.GetSpritePath(questionImage)
         };
         // JSONにシリアライズ
         Debug.Log("QuestionData: " + questionData.grids[0][0].text);
-        var json = JsonConvert.SerializeObject(data);
-        Debug.Log("GridData: " + json); // JSONデータが正しく生成されたか確認
-
-        // フォルダが存在しない場合は作成
-        if (!Directory.Exists(folderPath)) {
-            Directory.CreateDirectory(folderPath);
-            Debug.Log($"フォルダ作成: {folderPath}");
-        }
-
-        // ファイルにJSONデータを書き込む
-        StreamWriter streamWriter = new StreamWriter(filePath);
-        streamWriter.Write(json);
-        streamWriter.Flush();
-        streamWriter.Close();
-        Debug.Log($"JSONデータが保存されました: {filePath}");
-        // 親問題データの小問題配列にこのJSONファイルのパスを追加
-        var ParentDataPath = PlayerPrefs.GetString(DevConstants.QuestionDataFileKey);
-        string parentJson = File.ReadAllText(ParentDataPath);
-        QuestionData parentData = JsonConvert.DeserializeObject<QuestionData>(parentJson);
-        parentData.quiz.questions.Add(filePath);
-        File.WriteAllText(ParentDataPath, JsonConvert.SerializeObject(parentData));
-        Debug.Log($"大問データに小問追加: {filePath}");
-        streamWriter = new StreamWriter(ParentDataPath);
-        streamWriter.Write(JsonConvert.SerializeObject(parentData));
-        streamWriter.Flush();
-        streamWriter.Close();
-        // Unityにアセットの変更を認識させる
-        AssetDatabase.Refresh();
-    }
-
-
-    // エディタ限定の関数でPrefabのGUIDを取得
-    public string GetPrefabGUID(GameObject prefab) {
-    #if UNITY_EDITOR
-        // Prefabのパスを取得
-        string prefabPath = AssetDatabase.GetAssetPath(prefab);
-
-        if (!string.IsNullOrEmpty(prefabPath)) {
-            // パスからGUIDを取得
-            string prefabGUID = AssetDatabase.AssetPathToGUID(prefabPath);
-            Debug.Log("Prefab GUID: " + prefabGUID);
-            return prefabGUID;
-        } else {
-            Debug.LogError("Prefab is not assigned or the path is invalid.");
-        }
-    #else
-        Debug.LogError("This function can only be used in the Unity Editor.");
-    #endif
-        return null;
-    }
-
-    public string GetSpritePath(Sprite sprite) {
-    #if UNITY_EDITOR
-            if (sprite != null) {
-                // Spriteのテクスチャアセットのパスを取得
-                string assetPath = AssetDatabase.GetAssetPath(sprite.texture);
-                return assetPath;
-            } else {
-                Debug.LogError("Spriteが設定されていません。");
-            }
-    #else
-            Debug.LogError("この機能はエディタのみで使用可能です。");
-    #endif
-        return null;
+        
+        base.SaveAsJSON(folderPath, fileName, data);
     }
 }
 
@@ -204,25 +138,16 @@ public class GridEditor : MonoBehaviour {
 /// インスペクタのカスタム
 /// </summary>
 [CustomEditor(typeof(GridEditor))]
-public class GridEditorManager : Editor {
+public class GridEditorGUI : EditorGUI<GridEditor> {
 
-    public override void OnInspectorGUI() {
-        DrawDefaultInspector();
-
-        GridEditor editor = (GridEditor)target;
-
-        GUILayout.Space(20);
-        if (GUILayout.Button("小問を作成する。")) {
-            editor.SaveGridAsJSON();   
-        }
+    public override void CustomInspectorGUI() {
         GUILayout.Space(20);
         if(GUILayout.Button("グリッド再生成")) {
             editor.Initialize();
         }
-
         // グリッド一括クリアボタン
         if (GUILayout.Button("グリッドを一括クリア")) {
-            editor.ClearGrid();
+            base.editor.Clear();
             Debug.Log("グリッドを一括クリアしました");
         }
     }
