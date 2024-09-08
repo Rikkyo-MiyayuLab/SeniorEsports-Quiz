@@ -48,7 +48,7 @@ public class ClickEditor : QuestionEditor {
     }
 
     // シーンビューでポイントを描画するためのメソッド
-    private void OnDrawGizmos(){
+    private void OnDrawGizmos() {
         if (points == null || points.Count == 0)
             return;
 
@@ -86,13 +86,32 @@ public class ClickEditor : QuestionEditor {
                 height = point.height
             });
         }
+
+        // 問題画像のRect情報を記録
+        var correctImgRect = correctImageObject.bounds;
+        var incorrectImgRect = incorrectImageObject.bounds;
         Question quizData = new Question {
             correct = new CorrectImage {
-                src = correctImage != null ? base.GetSpritePath(correctImage) : ""
+                src = correctImage != null ? base.GetSpritePath(correctImage) : "",
+                rect = new ImgRect {
+                    x = correctImgRect.center.x,
+                    y = correctImgRect.center.y,
+                    z = correctImgRect.center.z,
+                    width = correctImgRect.size.x,
+                    height = correctImgRect.size.y,
+                }
+                
             },
             incorrect = new IncorrectImage {
                 src = incorrectImage != null ? base.GetSpritePath(incorrectImage) : "",
-                points = pointsData
+                points = pointsData,
+                rect = new ImgRect {
+                    x = incorrectImgRect.center.x,
+                    y = incorrectImgRect.center.y,
+                    z = incorrectImgRect.center.z,
+                    width = incorrectImgRect.size.x,
+                    height = incorrectImgRect.size.y,
+                }
             }
         };
 

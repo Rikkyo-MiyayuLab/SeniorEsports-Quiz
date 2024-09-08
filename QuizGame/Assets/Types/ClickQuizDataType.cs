@@ -13,13 +13,25 @@ namespace PlayType5Interface
     public class CorrectImage
     {
         public string src;  // 正解の画像パス
+        public ImgRect rect; // 画像の位置とサイズ
     }
 
     [System.Serializable]
     public class IncorrectImage
     {
         public string src;  // 不正解の画像パス
+        public ImgRect rect;  // 画像の位置とサイズ
         public List<ClickPoint> points;  // 画像上のポイント（正解ポイントの位置とサイズ）
+    }
+
+    [System.Serializable]
+    public class ImgRect
+    {
+        public float x;  // 画像のx座標
+        public float y;  // 画像のy座標
+        public float z;  // 画像のz座標
+        public float width;  // 画像の幅
+        public float height;  // 画像の高さ
     }
 
     [System.Serializable]
