@@ -21,7 +21,7 @@ namespace PlayType4Interface
         public string backImgSrc;  // クリックで表示する裏面ソース（オプション）
         public string audioSrc;  // クリック時に鳴らす音（オプション）
         public bool? isCorrect;  // singleモードで正解のカードかどうか（オプション）
-        public int? displayCount;  // このカードを何枚表示させるか（オプション）
+        public int? displayCount;  // このカードを何枚表示させるか（オプション)
     }
 
     [System.Serializable]

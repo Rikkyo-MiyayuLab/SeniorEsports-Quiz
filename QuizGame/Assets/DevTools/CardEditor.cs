@@ -23,7 +23,7 @@ public class CardEditor : MonoBehaviour {
         public Sprite backImg;  // クリックで表示する裏面ソース（オプション）
         public AudioClip audioSrc;  // クリック時に鳴らす音（オプション）
         public bool isCorrect;  // singleモードで正解のカードかどうか（オプション）
-        public int displayCount;  // このカードを何枚表示させるか（オプション）
+        public int displayCount;  // このカードを何枚表示させるか（オプション
 
     }
     [Header("JSON情報の追加")]
@@ -47,6 +47,7 @@ public class CardEditor : MonoBehaviour {
 
     [SerializeField]
     private GameObject CardArea;
+    private List<GameObject> cardObjs;
     
     public void Initialize() {
         ClearGird();
@@ -78,6 +79,17 @@ public class CardEditor : MonoBehaviour {
 
         int positionIndex = 0;
 
+        // カード全体の表示枚数の合計が、グリッドサイズを超えないようにする
+        int totalCards = 0;
+        foreach (CardObject card in cards) {
+            totalCards += card.displayCount;
+        }
+
+        if (totalCards > availablePositions.Count) {
+            Debug.LogWarning("グリッドのサイズが不足しています。カードが配置できるスペースがありません。");
+            return;
+        }
+
         // 各カードの種類ごとに、指定された枚数分だけ配置する
         foreach (CardObject cardData in cards) {
             for (int count = 0; count < cardData.displayCount; count++) {
@@ -87,7 +99,8 @@ public class CardEditor : MonoBehaviour {
                 }
 
                 // カードを生成
-                GameObject card = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
+                GameObject card = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
+                cardObjs.Add(card);
                 card.transform.position = availablePositions[positionIndex];  // ランダムな位置に配置
                 card.transform.SetParent(CardArea.transform, false);
 
@@ -111,10 +124,22 @@ public class CardEditor : MonoBehaviour {
     }
 
 
+
     public void ClearGird() {
         foreach (Transform child in CardArea.transform) {
             DestroyImmediate(child.gameObject);
         }
+        foreach (var card in cardObjs) {
+            DestroyImmediate(card);
+        }
+
+        // シーンをリロードすると消えないことがあるので、オブジェクト検索で明示的に削除する
+        var gridParent = GameObject.Find("CardArea");
+        // 子オブジェクトを全て削除
+        foreach (Transform n in gridParent.transform) {
+            DestroyImmediate(n.gameObject);
+        }
+        cardObjs.Clear();
     }
 
     public void SaveGridAsJSON() {
@@ -136,14 +161,24 @@ public class CardEditor : MonoBehaviour {
                 backImgSrc = GetSpritePath(cardData.backImg),
                 //audioSrc = cardData.audioSrc != null ? : null, TODO: 音声アセットのパスを取得する
                 isCorrect = cardData.isCorrect,
-                displayCount = cardData.displayCount
+                displayCount = cardData.displayCount,
             };
             quizData.cards.Add(card);
         }
 
         string json = JsonConvert.SerializeObject(quizData, Formatting.Indented);
-        string path = Application.dataPath + "/Resources/QuizData/CardQuizData.json";
-        File.WriteAllText(path, json);
+        // フォルダが存在しない場合は作成
+        if (!Directory.Exists(folderPath)) {
+            Directory.CreateDirectory(folderPath);
+            Debug.Log($"フォルダ作成: {folderPath}");
+        }
+
+        // ファイルにJSONデータを書き込む
+        StreamWriter streamWriter = new StreamWriter(filePath);
+        streamWriter.Write(json);
+        streamWriter.Flush();
+        streamWriter.Close();
+        Debug.Log($"JSONデータが保存されました: {filePath}");
         Debug.Log("格子問題データを保存しました。");
         // 大問データに小問を追加
         var ParentDataPath = PlayerPrefs.GetString(DevConstants.QuestionDataFileKey);
@@ -152,7 +187,7 @@ public class CardEditor : MonoBehaviour {
         parentData.quiz.questions.Add(filePath);
         File.WriteAllText(ParentDataPath, JsonConvert.SerializeObject(parentData));
         Debug.Log($"大問データに小問追加: {filePath}");
-        StreamWriter streamWriter = new StreamWriter(ParentDataPath);
+        streamWriter = new StreamWriter(ParentDataPath);
         streamWriter.Write(JsonConvert.SerializeObject(parentData));
         streamWriter.Flush();
         streamWriter.Close();
@@ -214,7 +249,7 @@ public class CardEditorManager : Editor {
 
         GUILayout.Space(20);
         if (GUILayout.Button("小問を作成する。")) {
-            //editor.SaveGridAsJSON();   
+            editor.SaveGridAsJSON();   
         }
         GUILayout.Space(20);
         if(GUILayout.Button("カード再生成")) {
