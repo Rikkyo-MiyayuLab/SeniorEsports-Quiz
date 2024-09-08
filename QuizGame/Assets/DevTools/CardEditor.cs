@@ -10,13 +10,12 @@ using UnityEngine.UI;
 using UnityEditor;
 using Newtonsoft.Json;
 using PlayType4Interface;
-using QuestionDataInterface;
+using QuestionDevTool;
 
 /// <summary>
 /// 格子状の問題データを生成するエディタ
-/// TODO:将来的に、１つの親クラスに統合して、派生させる。
 /// </summary>
-public class CardEditor : MonoBehaviour {
+public class CardEditor : QuestionEditor {
     [System.Serializable]
     public class CardObject {
         public Sprite frontImg;
@@ -27,7 +26,6 @@ public class CardEditor : MonoBehaviour {
 
     }
     [Header("JSON情報の追加")]
-    public int templateType = 1;
     /** セルのプレハブ */
     [Tooltip("カードのプレハブ（素材）を指定してください。")]
     public GameObject prefab;
@@ -49,15 +47,15 @@ public class CardEditor : MonoBehaviour {
     private GameObject CardArea;
     private List<GameObject> cardObjs;
     
-    public void Initialize() {
-        ClearGird();
-        GenerateGrid();
+    public override void Initialize() {
+        Clear();
+        Generate();
     }
 
     /// <summary>
     /// カードを格子状にランダム配置する。
     /// </summary>
-    public void GenerateGrid() {
+    public override void Generate() {
         // グリッドのすべての座標をリストとして保持
         List<Vector2> availablePositions = new List<Vector2>();
 
@@ -125,7 +123,7 @@ public class CardEditor : MonoBehaviour {
 
 
 
-    public void ClearGird() {
+    public override void Clear() {
         foreach (Transform child in CardArea.transform) {
             DestroyImmediate(child.gameObject);
         }
@@ -142,10 +140,10 @@ public class CardEditor : MonoBehaviour {
         cardObjs.Clear();
     }
 
-    public void SaveGridAsJSON() {
+    public override void CreateQuestionData() {
         var uuid = Guid.NewGuid().ToString();
         string folderPath = $"{DevConstants.QuestionDataFolder}/{templateType}/quiz";
-        string filePath = Path.Combine(folderPath, $"{uuid}.json");
+        string fileName = $"{uuid}.json";
 
         // グリッドの情報をJSONに変換して保存
         Question quizData = new Question {
@@ -157,8 +155,8 @@ public class CardEditor : MonoBehaviour {
 
         foreach (CardObject cardData in cards) {
             Card card = new Card {
-                imgSrc = GetSpritePath(cardData.frontImg),
-                backImgSrc = GetSpritePath(cardData.backImg),
+                imgSrc = base.GetSpritePath(cardData.frontImg),
+                backImgSrc = base.GetSpritePath(cardData.backImg),
                 //audioSrc = cardData.audioSrc != null ? : null, TODO: 音声アセットのパスを取得する
                 isCorrect = cardData.isCorrect,
                 displayCount = cardData.displayCount,
@@ -166,73 +164,9 @@ public class CardEditor : MonoBehaviour {
             quizData.cards.Add(card);
         }
 
-        string json = JsonConvert.SerializeObject(quizData, Formatting.Indented);
-        // フォルダが存在しない場合は作成
-        if (!Directory.Exists(folderPath)) {
-            Directory.CreateDirectory(folderPath);
-            Debug.Log($"フォルダ作成: {folderPath}");
-        }
-
-        // ファイルにJSONデータを書き込む
-        StreamWriter streamWriter = new StreamWriter(filePath);
-        streamWriter.Write(json);
-        streamWriter.Flush();
-        streamWriter.Close();
-        Debug.Log($"JSONデータが保存されました: {filePath}");
-        Debug.Log("格子問題データを保存しました。");
-        // 大問データに小問を追加
-        var ParentDataPath = PlayerPrefs.GetString(DevConstants.QuestionDataFileKey);
-        string parentJson = File.ReadAllText(ParentDataPath);
-        QuestionData parentData = JsonConvert.DeserializeObject<QuestionData>(parentJson);
-        parentData.quiz.questions.Add(filePath);
-        File.WriteAllText(ParentDataPath, JsonConvert.SerializeObject(parentData));
-        Debug.Log($"大問データに小問追加: {filePath}");
-        streamWriter = new StreamWriter(ParentDataPath);
-        streamWriter.Write(JsonConvert.SerializeObject(parentData));
-        streamWriter.Flush();
-        streamWriter.Close();
-        // Unityにアセットの変更を認識させる
-        AssetDatabase.Refresh();
+        base.SaveAsJSON(folderPath, fileName, quizData);
+        
     }
-
-
-    // エディタ限定の関数でPrefabのGUIDを取得
-    public string GetPrefabGUID(GameObject prefab) {
-    #if UNITY_EDITOR
-        // Prefabのパスを取得
-        string prefabPath = AssetDatabase.GetAssetPath(prefab);
-
-        if (!string.IsNullOrEmpty(prefabPath)) {
-            // パスからGUIDを取得
-            string prefabGUID = AssetDatabase.AssetPathToGUID(prefabPath);
-            Debug.Log("Prefab GUID: " + prefabGUID);
-            return prefabGUID;
-        } else {
-            Debug.LogError("Prefab is not assigned or the path is invalid.");
-        }
-    #else
-        Debug.LogError("This function can only be used in the Unity Editor.");
-    #endif
-        return null;
-    }
-
-    public string GetSpritePath(Sprite sprite) {
-    #if UNITY_EDITOR
-            if (sprite != null) {
-                // Spriteのテクスチャアセットのパスを取得
-                string assetPath = AssetDatabase.GetAssetPath(sprite.texture);
-                return assetPath;
-            } else {
-                Debug.LogError("Spriteが設定されていません。");
-            }
-    #else
-            Debug.LogError("この機能はエディタのみで使用可能です。");
-    #endif
-        return null;
-    }
-
-
-
 }
 
 
@@ -240,25 +174,17 @@ public class CardEditor : MonoBehaviour {
 /// インスペクタのカスタム
 /// </summary>
 [CustomEditor(typeof(CardEditor))]
-public class CardEditorManager : Editor {
+public class CardEditorGUI : EditorGUI<CardEditor> {
 
-    public override void OnInspectorGUI() {
-        DrawDefaultInspector();
-
-        CardEditor editor = (CardEditor)target;
-
-        GUILayout.Space(20);
-        if (GUILayout.Button("小問を作成する。")) {
-            editor.SaveGridAsJSON();   
-        }
+    public override void CustomInspectorGUI() {
         GUILayout.Space(20);
         if(GUILayout.Button("カード再生成")) {
-            editor.Initialize();
+            base.editor.Initialize();
         }
 
         // グリッド一括クリアボタン
         if (GUILayout.Button("カードを一括クリア")) {
-            editor.ClearGird();
+            base.editor.Clear();
             Debug.Log("グリッドを一括クリアしました");
         }
     }

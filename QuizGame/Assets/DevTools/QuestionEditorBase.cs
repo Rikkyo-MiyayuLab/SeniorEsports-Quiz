@@ -31,8 +31,8 @@ namespace QuestionDevTool
         /// <summary>
         /// エディタの初期化処理
         /// </summary> 
-        public abstract void Initialize();
-        public abstract void Generate();
+        public virtual void Initialize() {}
+        public virtual void Generate() {}
         public abstract void Clear();
         public abstract void CreateQuestionData();
         

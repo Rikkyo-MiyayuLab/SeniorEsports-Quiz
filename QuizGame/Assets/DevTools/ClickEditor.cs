@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using Newtonsoft.Json;
 using PlayType5Interface;
-using QuestionDataInterface;
+using QuestionDevTool;
 
 [System.Serializable]
 public class Point {
@@ -19,9 +19,8 @@ public class Point {
     public float height;      // 四角形の高さ
 }
 
-public class ClickEditor : MonoBehaviour {
+public class ClickEditor : QuestionEditor {
     [Header("JSON情報の追加")]
-    public int templateType = 5;
     [Tooltip("正解の画像を指定してください。")]
     public Sprite correctImage;
     [Tooltip("不正解の画像を指定してください。")]
@@ -62,16 +61,19 @@ public class ClickEditor : MonoBehaviour {
     }
 
 
-    public void ClearAll() {
+    public override void Clear() {
         correctImage = null;
         incorrectImage = null;
         points.Clear();
+        // 画像表示オブジェクトのソースをクリア
+        correctImageObject.sprite = null;
+        incorrectImageObject.sprite = null;
     }
 
-    public void SaveGridAsJSON() {
+    public override void CreateQuestionData() {
         var uuid = Guid.NewGuid().ToString();
         string folderPath = $"{DevConstants.QuestionDataFolder}/{templateType}/quiz";
-        string filePath = Path.Combine(folderPath, $"{uuid}.json"); 
+        string fileName = $"{uuid}.json"; 
 
         // エディタ上で設定した情報を元に、JSONデータを構築
         // 間違いポイントのシリアライズ
@@ -86,99 +88,33 @@ public class ClickEditor : MonoBehaviour {
         }
         Question quizData = new Question {
             correct = new CorrectImage {
-                src = correctImage != null ? GetSpritePath(correctImage) : ""
+                src = correctImage != null ? base.GetSpritePath(correctImage) : ""
             },
             incorrect = new IncorrectImage {
-                src = incorrectImage != null ? GetSpritePath(incorrectImage) : "",
+                src = incorrectImage != null ? base.GetSpritePath(incorrectImage) : "",
                 points = pointsData
             }
         };
 
-
-        string json = JsonConvert.SerializeObject(quizData, Formatting.Indented);
-        // フォルダが存在しない場合は作成
-        if (!Directory.Exists(folderPath)) {
-            Directory.CreateDirectory(folderPath);
-            Debug.Log($"フォルダ作成: {folderPath}");
-        }
-
-        // ファイルにJSONデータを書き込む
-        StreamWriter streamWriter = new StreamWriter(filePath);
-        streamWriter.Write(json);
-        streamWriter.Flush();
-        streamWriter.Close();
-        Debug.Log($"JSONデータが保存されました: {filePath}");
-        Debug.Log("格子問題データを保存しました。");
-        // 大問データに小問を追加
-        var ParentDataPath = PlayerPrefs.GetString(DevConstants.QuestionDataFileKey);
-        string parentJson = File.ReadAllText(ParentDataPath);
-        QuestionData parentData = JsonConvert.DeserializeObject<QuestionData>(parentJson);
-        parentData.quiz.questions.Add(filePath);
-        File.WriteAllText(ParentDataPath, JsonConvert.SerializeObject(parentData));
-        Debug.Log($"大問データに小問追加: {filePath}");
-        streamWriter = new StreamWriter(ParentDataPath);
-        streamWriter.Write(JsonConvert.SerializeObject(parentData));
-        streamWriter.Flush();
-        streamWriter.Close();
-        // Unityにアセットの変更を認識させる
-        AssetDatabase.Refresh();
-    }
-
-
-     // エディタ限定の関数でPrefabのGUIDを取得
-    public string GetPrefabGUID(GameObject prefab) {
-    #if UNITY_EDITOR
-        // Prefabのパスを取得
-        string prefabPath = AssetDatabase.GetAssetPath(prefab);
-
-        if (!string.IsNullOrEmpty(prefabPath)) {
-            // パスからGUIDを取得
-            string prefabGUID = AssetDatabase.AssetPathToGUID(prefabPath);
-            Debug.Log("Prefab GUID: " + prefabGUID);
-            return prefabGUID;
-        } else {
-            Debug.LogError("Prefab is not assigned or the path is invalid.");
-        }
-    #else
-        Debug.LogError("This function can only be used in the Unity Editor.");
-    #endif
-        return null;
-    }
-
-    public string GetSpritePath(Sprite sprite) {
-    #if UNITY_EDITOR
-            if (sprite != null) {
-                // Spriteのテクスチャアセットのパスを取得
-                string assetPath = AssetDatabase.GetAssetPath(sprite.texture);
-                return assetPath;
-            } else {
-                Debug.LogError("Spriteが設定されていません。");
-            }
-    #else
-            Debug.LogError("この機能はエディタのみで使用可能です。");
-    #endif
-        return null;
+        // JSONにシリアライズ
+        base.SaveAsJSON(folderPath, fileName, quizData);
+        
     }
 }
 
 
 [CustomEditor(typeof(ClickEditor))]
-public class ClickEditorManager : Editor {
-    private ClickEditor clickEditor;
-
-    private void OnEnable() {
-        clickEditor = (ClickEditor)target;
-    }
+public class ClickEditorGUI : EditorGUI<ClickEditor> { 
 
     private void OnSceneGUI() {
         // シーンビューで各ポイントを視覚的に調整
-        for (int i = 0; i < clickEditor.points.Count; i++) {
-            var point = clickEditor.points[i];
+        for (int i = 0; i < base.editor.points.Count; i++) {
+            var point = base.editor.points[i];
 
             // 四角形の位置をドラッグで動かせるようにする
             Vector2 newPosition = Handles.PositionHandle(point.position, Quaternion.identity);
             if (newPosition != point.position) {
-                Undo.RecordObject(clickEditor, "Move Point Position");
+                Undo.RecordObject(base.editor, "Move Point Position");
                 point.position = newPosition;
             }
 
@@ -187,7 +123,7 @@ public class ClickEditorManager : Editor {
             var fmh_100_72_638614213584702255 = Quaternion.identity; Vector2 newSizeHandle = Handles.FreeMoveHandle(sizeHandle, 0.1f, Vector3.zero, Handles.RectangleHandleCap);
 
             if (newSizeHandle != sizeHandle) {
-                Undo.RecordObject(clickEditor, "Resize Point");
+                Undo.RecordObject(base.editor, "Resize Point");
                 point.width = Mathf.Abs(newSizeHandle.x - point.position.x);
                 point.height = Mathf.Abs(newSizeHandle.y - point.position.y);
             }
@@ -198,27 +134,22 @@ public class ClickEditorManager : Editor {
         }
     }
 
-    public override void OnInspectorGUI() {
-        DrawDefaultInspector();
+    public override void CustomInspectorGUI() {
 
         if (GUILayout.Button("ポイントを追加")) {
-            Undo.RecordObject(clickEditor, "Add Point");
-            clickEditor.points.Add(new Point { position = Vector2.zero, width = 10, height = 10 });
+            Undo.RecordObject(base.editor, "Add Point");
+            base.editor.points.Add(new Point { position = Vector2.zero, width = 10, height = 10 });
         }
 
         if (GUILayout.Button("ポイントを削除")) {
-            if (clickEditor.points.Count > 0){
-                Undo.RecordObject(clickEditor, "Remove Point");
-                clickEditor.points.RemoveAt(clickEditor.points.Count - 1);
+            if (base.editor.points.Count > 0){
+                Undo.RecordObject(base.editor, "Remove Point");
+                base.editor.points.RemoveAt(base.editor.points.Count - 1);
             }
         }
         GUILayout.Space(20);
-        if (GUILayout.Button("小問を作成する")) {
-            clickEditor.SaveGridAsJSON();
-        }
-        GUILayout.Space(20);
         if (GUILayout.Button("全てクリア")) {
-            clickEditor.ClearAll();
+            base.editor.Clear();
         }
     }
 }
