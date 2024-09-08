@@ -1,0 +1,33 @@
+using System.Collections.Generic;
+
+namespace PlayType5Interface
+{
+    [System.Serializable]
+    public class Question
+    {
+        public CorrectImage correct;  // 正しい画像情報
+        public IncorrectImage incorrect;  // 不正解の画像情報
+    }
+
+    [System.Serializable]
+    public class CorrectImage
+    {
+        public string src;  // 正解の画像パス
+    }
+
+    [System.Serializable]
+    public class IncorrectImage
+    {
+        public string src;  // 不正解の画像パス
+        public List<ClickPoint> points;  // 画像上のポイント（正解ポイントの位置とサイズ）
+    }
+
+    [System.Serializable]
+    public class ClickPoint
+    {
+        public float x;  // ポイントのx座標
+        public float y;  // ポイントのy座標
+        public float width;  // ポイントの幅
+        public float height;  // ポイントの高さ
+    }
+}
