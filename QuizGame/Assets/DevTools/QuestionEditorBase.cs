@@ -108,8 +108,6 @@ namespace QuestionDevTool
                     // Spriteのテクスチャアセットのパスを取得
                     string assetPath = AssetDatabase.GetAssetPath(sprite.texture);
                     return assetPath;
-                } else {
-                    Debug.LogError("Spriteが設定されていません。");
                 }
         #else
                 Debug.LogError("この機能はエディタのみで使用可能です。");

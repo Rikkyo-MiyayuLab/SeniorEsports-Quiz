@@ -48,9 +48,9 @@ public class CardEditor : QuestionEditor {
     private List<GameObject> cardObjs;
     
     public override void Initialize() {
+        cardObjs = new List<GameObject>();
         Clear();
         Generate();
-        cardObjs = new List<GameObject>();
     }
 
     /// <summary>
