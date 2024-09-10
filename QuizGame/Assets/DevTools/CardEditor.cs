@@ -50,6 +50,7 @@ public class CardEditor : QuestionEditor {
     public override void Initialize() {
         Clear();
         Generate();
+        cardObjs = new List<GameObject>();
     }
 
     /// <summary>
