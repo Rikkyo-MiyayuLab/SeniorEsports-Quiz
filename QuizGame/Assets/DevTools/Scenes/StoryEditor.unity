@@ -171,7 +171,11 @@ MonoBehaviour:
   storyID: 72586619-630f-4a98-a87e-df928d10a78f
   background: {fileID: 21300000, guid: f523223ded086b54aacda827eec8d3e7, type: 3}
   audio: {fileID: 0}
-  characterDefs: []
+  characterDefs:
+  - Name: 
+    Image: {fileID: 0}
+    Dialogue: 
+    position: 0
   textDisplayMode: 0
   narration: 
   narrationDisplayMode: 0
