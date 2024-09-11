@@ -15,6 +15,9 @@ namespace StoryDataInterface
         /// ストーリーの各シーンのリスト
         /// </summary>
         public List<Scene> Scenes;
+
+        /// <summary>
+        /// ストーリー全般 
     }
 
     /// <summary>
@@ -100,6 +103,7 @@ namespace StoryDataInterface
     public enum NarrationDisplayMode
     {
         Modal,
-        Inline
+        Inline,
+        None
     }
 }
