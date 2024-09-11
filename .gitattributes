@@ -1,0 +1,2 @@
+QuizGame/Assets/Scenes/** filter=lfs diff=lfs merge=lfs -text
+QuizGame/Assets/Fonts/** filter=lfs diff=lfs merge=lfs -text
