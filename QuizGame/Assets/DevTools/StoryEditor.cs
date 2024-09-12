@@ -44,6 +44,8 @@ public class StoryEditor : MonoBehaviour {
     [SerializeField]
     private Image backgroundImageObject;
     [SerializeField]
+    private GameObject storyTextArea;
+    [SerializeField]
     private TextMeshPro characterNameField;
     [SerializeField]
     private TextMeshPro characterTextField;
@@ -125,6 +127,9 @@ public class StoryEditor : MonoBehaviour {
 
         characterNameField.text = "";
         characterTextField.text = "";
+
+        narrationField.text = "";
+
     }
 
 
@@ -143,6 +148,21 @@ public class StoryEditor : MonoBehaviour {
             characterNameField.text = character.Name;
             characterTextField.text = character.Dialogue != null ? character.Dialogue : "";
             
+        }
+
+        // ナレーションの設定
+        // ナレーションはNarrationDisplayModeがNone以外の場合に表示
+        if (narrationDisplayMode != NarrationDisplayMode.None) {
+            if(narrationDisplayMode == NarrationDisplayMode.Modal) {
+                narrationArea.SetActive(true);
+                storyTextArea.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                narrationField.text = narration;
+            } else if(narrationDisplayMode == NarrationDisplayMode.Inline) { // インライン表示の場合はキャラクターのセリフの下に表示
+                characterTextField.text = narration;
+            }
+        } else {
+            narrationArea.SetActive(false);
+            storyTextArea.GetComponent<SpriteRenderer>().sortingOrder = 3;
         }
     }
     
@@ -247,9 +267,6 @@ public class StoryEditorGUI : Editor {
 
         if(GUILayout.Button("シーンを保存する")) {
             _storyEditor.SaveScene();
-        }
-        if(GUILayout.Button("新たにシーンを追加する")) {
-            _storyEditor.scenes.Add(new Scene());
         }
         GUILayout.Space(20);
         if(GUILayout.Button("ストーリーデータを保存する")) {
