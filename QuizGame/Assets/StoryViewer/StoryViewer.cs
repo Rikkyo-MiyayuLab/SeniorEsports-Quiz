@@ -77,8 +77,10 @@ public class StoryViewer : MonoBehaviour {
         LoadScene(currentScene);
 
         onSceneEnd = () => {
+            Debug.Log("Scene End");
             if (currentSceneIndex < scenes.Count) {
                 currentScene = scenes[currentSceneIndex];
+                Debug.Log("Scene Index: " + currentSceneIndex);
                 LoadScene(currentScene);
             }
         };
@@ -108,6 +110,14 @@ public class StoryViewer : MonoBehaviour {
         var dialogName = "";
         var dialogText = "";
         foreach (var character in characters) {
+            // json情報からキャラクター定義を作成
+            characterDefs.Add(new CharacterDef {
+                Name = character.Name,
+                Image = Resources.Load<Sprite>(character.ImageSrc),
+                Dialogue = character.Dialogue,
+                position = character.Position
+            });
+                
             var characterDef = characterDefs.Find(c => c.Name == character.Name);
             if (characterDef != null) {
                 var characterArea = CharacterAreas[characterDef.position];
@@ -126,6 +136,8 @@ public class StoryViewer : MonoBehaviour {
             ProgressTextOneByOne(dialogText, () => {
                 // テキスト表示が終わったら次のシーンへ
                 currentSceneIndex++;
+                Debug.Log("Scene Index: " + currentSceneIndex);
+                onSceneEnd?.Invoke();
             });
         } else if(textDisplayMode == TextDisplayMode.Instant) {
             characterTextField.text = dialogText;
