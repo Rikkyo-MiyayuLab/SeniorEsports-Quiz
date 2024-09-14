@@ -29,14 +29,18 @@ public class StoryViewer : MonoBehaviour {
 
     [Tooltip("セリフの表示方法")]
     public TextDisplayMode textDisplayMode;
-    [Tooltip("テキストの表示速度")]
-    public float textSpeed;
+    [Tooltip("テキストの表示速度。0に近いほど速い")]
+    public float textSpeed = 0.1f;
+    [Tooltip("シーンの切り替え間隔")]
+    public float sceneInterval = 1.0f;
     [Tooltip("ナレーション情報")]
     public string narration;
     [Tooltip("ナレーションの表示方法")]
     public NarrationDisplayMode narrationDisplayMode;
     [Tooltip("このストーリのシーン一覧")]
     public List<Scene> scenes;
+    public Action onTextComplete;
+    public Action onSceneEnd;
 
     [Header("Editor Settings")]
     [SerializeField]
@@ -58,8 +62,6 @@ public class StoryViewer : MonoBehaviour {
     private int currentSceneIndex = 0;
     private Scene currentScene;
     private AudioSource audioAPI;
-    public Action onTextComplete;
-    public Action onSceneEnd;
 
     
     
@@ -74,14 +76,17 @@ public class StoryViewer : MonoBehaviour {
         Debug.Log("Loading Story Data: " + data);
         scenes = data.Scenes;
         currentScene = scenes[currentSceneIndex];
+        // 背景と音源の初期設定
+        background = Resources.Load<Sprite>(currentScene.Background);
+        backgroundImageObject.sprite = background;
+        audioAPI.clip = Resources.Load<AudioClip>(currentScene.audio);
         LoadScene(currentScene);
 
         onSceneEnd = () => {
             Debug.Log("Scene End");
             if (currentSceneIndex < scenes.Count) {
-                currentScene = scenes[currentSceneIndex];
-                Debug.Log("Scene Index: " + currentSceneIndex);
-                LoadScene(currentScene);
+                currentSceneIndex++;
+                StartCoroutine(ChangeScene(currentSceneIndex));
             }
         };
 
@@ -111,23 +116,21 @@ public class StoryViewer : MonoBehaviour {
         var dialogText = "";
         foreach (var character in characters) {
             // json情報からキャラクター定義を作成
-            characterDefs.Add(new CharacterDef {
+            var characterDef = new CharacterDef {
                 Name = character.Name,
                 Image = Resources.Load<Sprite>(character.ImageSrc),
                 Dialogue = character.Dialogue,
                 position = character.Position
-            });
+            };
+            characterDefs.Add(characterDef);
                 
-            var characterDef = characterDefs.Find(c => c.Name == character.Name);
-            if (characterDef != null) {
-                var characterArea = CharacterAreas[characterDef.position];
-                characterArea.SetActive(true);
-                characterArea.GetComponent<SpriteRenderer>().sprite = characterDef.Image;
-                // 表示するセリフを持っている場合
-                if (!string.IsNullOrEmpty(characterDef.Dialogue)) {
-                    dialogName = characterDef.Name;
-                    dialogText = characterDef.Dialogue;
-                }
+            var characterArea = CharacterAreas[characterDef.position];
+            characterArea.SetActive(true);
+            characterArea.GetComponent<SpriteRenderer>().sprite = characterDef.Image;
+            // 表示するセリフを持っている場合
+            if (!string.IsNullOrEmpty(characterDef.Dialogue)) {
+                dialogName = characterDef.Name;
+                dialogText = characterDef.Dialogue;
             }
         }
         // セリフの設定
@@ -148,6 +151,15 @@ public class StoryViewer : MonoBehaviour {
         textDisplayMode = scene.TextDisplayMode.HasValue ? scene.TextDisplayMode.Value : TextDisplayMode.OneByOne;
 
         narrationDisplayMode = scene.NarrationDisplayMode.HasValue ? scene.NarrationDisplayMode.Value : NarrationDisplayMode.None;
+    }
+
+    /// <summary>
+    /// 指定の秒数後シーンを切り替える.
+    /// <summary>
+    private IEnumerator ChangeScene(int sceneIndex) {
+        yield return new WaitForSeconds(sceneInterval);
+        currentScene = scenes[sceneIndex];
+        LoadScene(currentScene);
     }
 
 
