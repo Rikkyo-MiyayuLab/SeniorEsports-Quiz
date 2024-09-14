@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
 using Newtonsoft.Json;
 using StoryDataInterface;
+using EasyTransition;
+using CameraFading;
+
 
 public class StoryViewer : MonoBehaviour {
 
      [Tooltip("ストーリーの識別子 UUID")]
-    public string storyID = "AreaName-Story001";
+    public string storyFile;
     [Tooltip("このシーンの背景画像")]
     public Sprite background;
     [Tooltip("このシーンの音声ファイル")]
-    public AudioClip audio;
+    public AudioClip BGM;
+    public AudioClip TypingSE;
     [Serializable]
     public class CharacterDef {
         public string Name;
@@ -32,15 +37,16 @@ public class StoryViewer : MonoBehaviour {
     [Tooltip("テキストの表示速度。0に近いほど速い")]
     public float textSpeed = 0.1f;
     [Tooltip("シーンの切り替え間隔")]
-    public float sceneInterval = 1.0f;
-    [Tooltip("ナレーション情報")]
-    public string narration;
+    public float sceneInterval = 1.5f;
     [Tooltip("ナレーションの表示方法")]
     public NarrationDisplayMode narrationDisplayMode;
     [Tooltip("このストーリのシーン一覧")]
-    public List<Scene> scenes;
+    public List<StoryDataInterface.Scene> scenes;
     public Action onTextComplete;
     public Action onSceneEnd;
+    [Tooltip("トランジション設定")]
+    public TransitionSettings transition;
+    public float transitionDuration = 1.0f;
 
     [Header("Editor Settings")]
     [SerializeField]
@@ -60,36 +66,47 @@ public class StoryViewer : MonoBehaviour {
     private List<Character> characters;
     private StoryData data;
     private int currentSceneIndex = 0;
-    private Scene currentScene;
-    private AudioSource audioAPI;
+    private StoryDataInterface.Scene currentScene;
+    private AudioSource BGMPlayer;
+    private AudioSource TypingSEPlayer;
+    private TransitionManager transitionManager;
 
     
     
     void Start() {
-
-        audioAPI = GetComponent<AudioSource>();
+        transitionManager = TransitionManager.Instance();
+        BGMPlayer = GetComponent<AudioSource>();
+        TypingSEPlayer = gameObject.AddComponent<AudioSource>();
+        TypingSEPlayer.volume = 0.4f;
 
         //TODO: 遷移前のシーンでパスを引き継ぐ(現在はダミー)
-        var path = "Assets/StreamingAssets/StoryData/72586619-630f-4a98-a87e-df928d10a78f.json";
-
-        data = LoadJSON(path);
-        Debug.Log("Loading Story Data: " + data);
+        storyFile = "Assets/StreamingAssets/StoryData/StoryViewerDev.json";
+        data = LoadJSON(storyFile);
         scenes = data.Scenes;
         currentScene = scenes[currentSceneIndex];
-        // 背景と音源の初期設定
+        narrationArea.SetActive(false);
         background = Resources.Load<Sprite>(currentScene.Background);
         backgroundImageObject.sprite = background;
-        audioAPI.clip = Resources.Load<AudioClip>(currentScene.audio);
-        LoadScene(currentScene);
+        BGM = (AudioClip)Resources.Load(currentScene.audio);
+        BGMPlayer.clip = BGM;
+        BGMPlayer.Play();
+        CameraFade.In(() => {
+            LoadScene(currentScene);
+        }, 1.5f, true);
 
         onSceneEnd = () => {
-            Debug.Log("Scene End");
-            if (currentSceneIndex < scenes.Count) {
-                currentSceneIndex++;
+            currentSceneIndex++;
+            if (currentSceneIndex < scenes.Count) { //次のシーンがある場合
                 StartCoroutine(ChangeScene(currentSceneIndex));
+            } else {// ストーリーが終わった場合
+                 // ストーリーが終わった後、数秒待ってからトランジションを開始する
+                StartCoroutine(WaitAndTransition(()=>{
+                    Debug.Log("Story End");
+                    BGMPlayer.Stop();
+                    // TODO ; 任意のシーン読み込み
+                }));
             }
         };
-
     }
 
 
@@ -97,7 +114,8 @@ public class StoryViewer : MonoBehaviour {
     /// シーンを読み込み各変数にセットする
     /// </summary>
     /// <param name="scene"></param>
-    private void LoadScene(Scene scene) {
+    private void LoadScene(StoryDataInterface.Scene scene) {
+        narrationArea.SetActive(false);
         // 背景画像と音源の設定
         // 前のソースと変化がない場合は、そのまま使う
         if (scene.Background != currentScene.Background) {
@@ -106,14 +124,17 @@ public class StoryViewer : MonoBehaviour {
             backgroundImageObject.sprite = background;
         }
         if (scene.audio != null && scene.audio != currentScene.audio) {
-            audioAPI.clip = Resources.Load<AudioClip>(scene.audio);
-            audioAPI.Play();
+            AudioClip loadedAudio = (AudioClip)Resources.Load(scene.audio);
+            BGM = loadedAudio;
+            BGMPlayer.clip = BGM;
+            BGMPlayer.Play();
         }
         
         // キャラクターの設定
         characters = scene.Characters;
         var dialogName = "";
         var dialogText = "";
+        characterDefs.Clear();
         foreach (var character in characters) {
             // json情報からキャラクター定義を作成
             var characterDef = new CharacterDef {
@@ -134,23 +155,38 @@ public class StoryViewer : MonoBehaviour {
             }
         }
         // セリフの設定
+        textDisplayMode = scene.TextDisplayMode.HasValue ? scene.TextDisplayMode.Value : TextDisplayMode.OneByOne;
         characterNameField.text = dialogName;
         if(textDisplayMode == TextDisplayMode.OneByOne) {
             ProgressTextOneByOne(dialogText, () => {
                 // テキスト表示が終わったら次のシーンへ
-                currentSceneIndex++;
-                Debug.Log("Scene Index: " + currentSceneIndex);
                 onSceneEnd?.Invoke();
             });
         } else if(textDisplayMode == TextDisplayMode.Instant) {
             characterTextField.text = dialogText;
         }
-        // ナレーションの設定
-        narrationField.text = scene.Narration;
-        // テキストの表示方法
-        textDisplayMode = scene.TextDisplayMode.HasValue ? scene.TextDisplayMode.Value : TextDisplayMode.OneByOne;
 
+        // ナレーション設定  
         narrationDisplayMode = scene.NarrationDisplayMode.HasValue ? scene.NarrationDisplayMode.Value : NarrationDisplayMode.None;
+        if(narrationDisplayMode == NarrationDisplayMode.None) {
+            narrationArea.SetActive(false);
+        } else if(narrationDisplayMode == NarrationDisplayMode.Modal) {
+            narrationArea.SetActive(true);
+            narrationField.text = scene.Narration;
+            onSceneEnd?.Invoke();
+        } else if(narrationDisplayMode == NarrationDisplayMode.Inline) {
+            narrationArea.SetActive(false);
+            if(textDisplayMode == TextDisplayMode.OneByOne) {
+                ProgressTextOneByOne(scene.Narration, () => {
+                    // テキスト表示が終わったら次のシーンへ
+                    onSceneEnd?.Invoke();
+                });
+            } else if(textDisplayMode == TextDisplayMode.Instant) {
+                characterTextField.text = scene.Narration;
+                onSceneEnd?.Invoke();
+            }
+        }
+
     }
 
     /// <summary>
@@ -160,6 +196,19 @@ public class StoryViewer : MonoBehaviour {
         yield return new WaitForSeconds(sceneInterval);
         currentScene = scenes[sceneIndex];
         LoadScene(currentScene);
+    }
+
+
+    // ストーリー終了後、数秒待ってトランジションを開始するコルーチン
+    private IEnumerator WaitAndTransition(Action callBack = null) {
+
+        yield return new WaitForSeconds(2.0f);  // ここで待機時間を設定（3秒）
+
+        // トランジション開始
+        transitionManager.Transition(transition, transitionDuration);
+        transitionManager.onTransitionEnd = () => {
+            callBack?.Invoke();
+        };
     }
 
 
@@ -182,6 +231,7 @@ public class StoryViewer : MonoBehaviour {
         characterTextField.text = "";
         foreach (var c in text) {
             characterTextField.text += c;
+            TypingSEPlayer.PlayOneShot(TypingSE);
             // 1文字表示した後の待ち時間
             yield return new WaitForSeconds(textSpeed);
         }
