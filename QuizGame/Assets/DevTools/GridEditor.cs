@@ -41,7 +41,7 @@ public class GridEditor : QuestionEditor {
     private void OnValidate() {
         // 背景画像が設定されている場合、背景画像を表示
         if (backgroundImage != null) {
-            backgroundImageObject.sprite = backgroundImage;
+            base.backgroundImageObject.sprite = base.backgroundImage;
         }
         if(questionImage != null) {
             questionImageObject.sprite = questionImage;
