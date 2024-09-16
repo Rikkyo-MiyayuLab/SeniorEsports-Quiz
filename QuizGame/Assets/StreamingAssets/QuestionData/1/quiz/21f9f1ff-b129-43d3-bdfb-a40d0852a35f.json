@@ -65,7 +65,10 @@
       }
     ]
   ],
+  "cellMargin" : 0.7,
+  "gridsPos" : [-2.53999996,4.69000006,0],
+  "gridsScale": 1,
   "questionId": "21f9f1ff-b129-43d3-bdfb-a40d0852a35f",
-  "backgroundImage": "Assets/DevTools/Objects/EVta98BU0AAdpL-.jpg",
-  "questionImage": "Assets/DevTools/Objects/182642.png"
+  "backgroundImage": "Backgrounds/SampleBGs/EVta98BU0AAdpL-",
+  "questionImage": "QuestionImages/182642"
 }
