@@ -1,0 +1,71 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "",
+        "options": [
+          {
+            "text": "3",
+            "correct": true
+          },
+          {
+            "text": "2",
+            "correct": false
+          },
+          {
+            "text": "1",
+            "correct": false
+          },
+          {
+            "text": "4",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -6.10351563E-05,
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      },
+      {
+        "answerGrid": true,
+        "text": "",
+        "options": [
+          {
+            "text": "1",
+            "correct": false
+          },
+          {
+            "text": "0",
+            "correct": true
+          },
+          {
+            "text": "3",
+            "correct": false
+          },
+          {
+            "text": "5",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      }
+    ]
+  ],
+  "questionId": "21f9f1ff-b129-43d3-bdfb-a40d0852a35f",
+  "backgroundImage": "Assets/DevTools/Objects/EVta98BU0AAdpL-.jpg",
+  "questionImage": "Assets/DevTools/Objects/182642.png"
+}
