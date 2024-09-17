@@ -12,6 +12,8 @@ namespace PlayType4Interface
         public int row;  // 格子の縦サイズ
         public int column;  // 格子の横サイズ
         public QuizType quizType;  // 問題のタイプ
+        public string backgroundImage;  // 背景画像
+        public float margin; // カード間のマージン
     }
 
     [System.Serializable]
@@ -20,8 +22,8 @@ namespace PlayType4Interface
         public string imgSrc;  // 表示する絵柄のソース
         public string backImgSrc;  // クリックで表示する裏面ソース（オプション）
         public string audioSrc;  // クリック時に鳴らす音（オプション）
-        public bool? isCorrect;  // singleモードで正解のカードかどうか（オプション）
-        public int? displayCount;  // このカードを何枚表示させるか（オプション)
+        public bool isCorrect;  // singleモードで正解のカードかどうか（オプション）
+        public int displayCount;  // このカードを何枚表示させるか（オプション)
     }
 
     [System.Serializable]
