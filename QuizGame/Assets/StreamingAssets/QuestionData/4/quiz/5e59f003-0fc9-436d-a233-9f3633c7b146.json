@@ -1,0 +1,23 @@
+{
+  "cards": [
+    {
+      "imgSrc": "QuestionImages/card_club_11",
+      "backImgSrc": "QuestionImages/card_club_11",
+      "audioSrc": null,
+      "isCorrect": true,
+      "displayCount": 2
+    },
+    {
+      "imgSrc": "QuestionImages/card_diamond_11",
+      "backImgSrc": "QuestionImages/card_diamond_11",
+      "audioSrc": null,
+      "isCorrect": false,
+      "displayCount": 7
+    }
+  ],
+  "row": 3,
+  "column": 3,
+  "quizType": 0,
+  "margin": 0.2,
+  "backgroundImage": "Backgrounds/SampleBGs/EVta98BU0AAdpL-"
+}

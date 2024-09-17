@@ -1,0 +1,21 @@
+{
+  "cards": [
+    {
+      "imgSrc": "Assets/Dark_Brown_GUI_kit/icon/full_simple/numbers/1.png",
+      "backImgSrc": "Assets/Modern GDR - Free icons pack/00_Atlas/BrightBackground.png",
+      "audioSrc": null,
+      "isCorrect": true,
+      "displayCount": 2
+    },
+    {
+      "imgSrc": "Assets/Dark_Brown_GUI_kit/icon/full_simple/numbers/2.png",
+      "backImgSrc": "Assets/Modern GDR - Free icons pack/01_Demo/Resources/BG.png",
+      "audioSrc": null,
+      "isCorrect": false,
+      "displayCount": 7
+    }
+  ],
+  "row": 3,
+  "column": 3,
+  "quizType": 0
+}
