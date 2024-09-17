@@ -24,6 +24,7 @@ public class CardClickViewer : MonoBehaviour {
     public int rowSize = 0;
     public int columnSize = 0;
     public float margin = 0.2f;
+    public int PairSize = 1;
     [System.Serializable]
     public class CardObjectData {
         public Sprite frontImg;
@@ -36,6 +37,19 @@ public class CardClickViewer : MonoBehaviour {
     public List<CardObjectData> cards = new List<CardObjectData>();
     public TransitionSettings transition;
     public float transitionDuration = 0.5f;
+    public AudioSource SEAudioSource;
+    [SerializeField]
+    private AudioClip bgm;
+    [SerializeField]
+    private AudioClip defaultClickSE;
+    [SerializeField]
+    private AudioClip correctSE;
+    [SerializeField]
+    private AudioClip incorrectSE;
+    [SerializeField]
+    private AudioClip clearSE;
+    [SerializeField]
+    private AudioClip gameoverSE;
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
@@ -57,9 +71,30 @@ public class CardClickViewer : MonoBehaviour {
 
     void Start() {
         transitionManager = TransitionManager.Instance();
+        SEAudioSource = gameObject.GetComponent<AudioSource>();
         ResultModal.gameObject.SetActive(false);
-        GetData();
-        GenerateCards();
+
+        RetryButton.onClick.AddListener(() => {
+            ResultModal.gameObject.SetActive(false);
+            //TODO : 現在の小問をリトライする処理
+        });
+
+        NextButton.onClick.AddListener(() => {
+            ResultModal.gameObject.SetActive(false);
+            if(currentQuestionIndex < allQuestionData.quiz.questions.Count - 1) { // 次問遷移
+                NextQuestion();
+            } else { // 大問終了
+                transitionManager.Transition(transition, transitionDuration);
+                transitionManager.onTransitionEnd = () => {
+                    //TODO : 全ての小問を終えた後、解説用ストーリー画面へ遷移する処理
+                    // ここで、ストーリーIDを指定して、ストーリー用シーンへ遷移する
+                    // Ex). SceneManager.LoadScene("StoryScene");
+                    Debug.Log("大問終了遷移");
+                };
+            }
+        });
+
+        Init();
     }
 
 
@@ -72,17 +107,34 @@ public class CardClickViewer : MonoBehaviour {
         columnSize = questionData.column;
         backgroundImageObj.sprite = Resources.Load<Sprite>(questionData.backgroundImage);
         margin = questionData.margin;
+        PairSize = questionData.pairSize;
         // カードの情報を設定
         foreach (var card in questionData.cards) {
             CardObjectData cardObj = new CardObjectData {
                 frontImg = Resources.Load<Sprite>(card.imgSrc),
                 backImg = card.backImgSrc == null? null : Resources.Load<Sprite>(card.backImgSrc),
-                audioSrc = card.audioSrc == null? null : Resources.Load<AudioClip>(card.audioSrc),
+                audioSrc = card.audioSrc == null? defaultClickSE : Resources.Load<AudioClip>(card.audioSrc), //ない場合はデフォルトのSEを設定
                 isCorrect = card.isCorrect,
                 displayCount = card.displayCount
             };
             cards.Add(cardObj);
         }
+    }
+
+
+    public void Init() {
+        Dispose();
+        ResultModal.gameObject.SetActive(false);
+
+        // 新しいデータを取得する
+        GetData();
+
+        // 背景画像を設定する
+        BackgroundImg = Resources.Load<Sprite>(questionData.backgroundImage);
+        backgroundImageObj.sprite = BackgroundImg;
+
+        // カードを生成する
+        GenerateCards();
     }
 
     /// <summary>
@@ -147,33 +199,53 @@ public class CardClickViewer : MonoBehaviour {
     /// </summary>
     public void CardClickListener(GameObject card) {
         var cardObj = card.GetComponent<CardObject>();
+        SEAudioSource.PlayOneShot(cardObj.audioSrc);
         
         if (cardObj.isCorrect) {
             Debug.Log("正解");
+            card.GetComponent<SpriteRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            SEAudioSource.PlayOneShot(correctSE);
             correctness.Add(true);
         } else {
             Debug.Log("不正解");
+            SEAudioSource.PlayOneShot(incorrectSE);
             correctness.Add(false);
         }
         card.GetComponent<EventTrigger>().enabled = false;
 
         // correctnessに含まれるtrueの数がcards.isCorrectの数と一致したら結果画面を表示（小問終了）
-        if(correctness.Count(b => b == true) == cards.Count(c => c.isCorrect == true)) {
+        if(correctness.Count(b => b == true) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == true)) {
+            SEAudioSource.PlayOneShot(clearSE);
             ResultModal.gameObject.SetActive(true);
             // TODO : 正解用イメージの挿入
             //ResultModalImage.sprite = Resources.Load<Sprite>("Images/Correct");
             NextButton.gameObject.SetActive(true);
             RetryButton.gameObject.SetActive(false);
-
-        } 
-        // すべての不正解カードをクリックした場合
-        else if( cards.Count(c => c.isCorrect == true
+        } else if(correctness.Count(b => b == false) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == false)) { // すべての不正解カードをクリックした場合は小問不正解として結果画面を表示
+            SEAudioSource.PlayOneShot(gameoverSE);
             ResultModal.gameObject.SetActive(true);
             // TODO : 不正解用イメージの挿入
             //ResultModalImage.sprite = Resources.Load<Sprite>("Images/Incorrect");
             NextButton.gameObject.SetActive(true);
             RetryButton.gameObject.SetActive(true);
         }
+    }
+
+    public void NextQuestion() {
+        currentQuestionIndex++;
+        Init();
+    }
+
+
+    public void Dispose() {
+        foreach (var card in CardObjs) {
+            Destroy(card);
+        }
+        CardObjs.Clear();
+        cards.Clear();
+        correctness.Clear();
+        BackgroundImg = null;
+        backgroundImageObj.sprite = null;
     }
 
 

@@ -1,21 +1,24 @@
 {
   "cards": [
     {
-      "imgSrc": "Assets/Dark_Brown_GUI_kit/icon/full_simple/numbers/1.png",
-      "backImgSrc": "Assets/Modern GDR - Free icons pack/00_Atlas/BrightBackground.png",
+      "imgSrc": "QuestionImages/card_club_11",
+      "backImgSrc": "QuestionImages/card_club_11",
       "audioSrc": null,
       "isCorrect": true,
-      "displayCount": 2
+      "displayCount": 4
     },
     {
-      "imgSrc": "Assets/Dark_Brown_GUI_kit/icon/full_simple/numbers/2.png",
-      "backImgSrc": "Assets/Modern GDR - Free icons pack/01_Demo/Resources/BG.png",
+      "imgSrc": "QuestionImages/card_diamond_11",
+      "backImgSrc": "QuestionImages/card_diamond_11",
       "audioSrc": null,
       "isCorrect": false,
-      "displayCount": 7
+      "displayCount": 12
     }
   ],
-  "row": 3,
-  "column": 3,
-  "quizType": 0
+  "row": 4,
+  "column": 4,
+  "quizType": 0,
+  "margin": 0.2,
+  "pairSize": 4,
+  "backgroundImage": "Backgrounds/SampleBGs/EVta98BU0AAdpL-"
 }

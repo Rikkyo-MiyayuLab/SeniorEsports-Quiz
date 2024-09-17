@@ -14,6 +14,7 @@ namespace PlayType4Interface
         public QuizType quizType;  // 問題のタイプ
         public string backgroundImage;  // 背景画像
         public float margin; // カード間のマージン
+        public int pairSize; // ペアの数（pairモードのみ）
     }
 
     [System.Serializable]
