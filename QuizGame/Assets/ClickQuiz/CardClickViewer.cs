@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using Newtonsoft.Json;
 using PlayType4Interface;
 using TMPro;
@@ -23,7 +25,7 @@ public class CardClickViewer : MonoBehaviour {
     public int columnSize = 0;
     public float margin = 0.2f;
     [System.Serializable]
-    public class CardObject {
+    public class CardObjectData {
         public Sprite frontImg;
         public Sprite backImg;  // クリックで表示する裏面ソース（オプション）
         public AudioClip audioSrc;  // クリック時に鳴らす音（オプション）
@@ -31,7 +33,7 @@ public class CardClickViewer : MonoBehaviour {
         public int displayCount;  // このカードを何枚表示させるか（オプション
 
     }
-    public List<CardObject> cards = new List<CardObject>();
+    public List<CardObjectData> cards = new List<CardObjectData>();
     public TransitionSettings transition;
     public float transitionDuration = 0.5f;
     [SerializeField]
@@ -72,7 +74,7 @@ public class CardClickViewer : MonoBehaviour {
         margin = questionData.margin;
         // カードの情報を設定
         foreach (var card in questionData.cards) {
-            CardObject cardObj = new CardObject {
+            CardObjectData cardObj = new CardObjectData {
                 frontImg = Resources.Load<Sprite>(card.imgSrc),
                 backImg = card.backImgSrc == null? null : Resources.Load<Sprite>(card.backImgSrc),
                 audioSrc = card.audioSrc == null? null : Resources.Load<AudioClip>(card.audioSrc),
@@ -94,19 +96,19 @@ public class CardClickViewer : MonoBehaviour {
         grid.spacing = new Vector2(margin, margin);
 
         // 実際に生成するカード情報を生成。この時リストに追加する順番はランダムとし、displayCountの枚数分生成する
-        List<CardObject> generateCards = new List<CardObject>();
-        foreach (CardObject cardData in cards) {
+        List<CardObjectData> generateCards = new List<CardObjectData>();
+        foreach (CardObjectData cardData in cards) {
             for (int count = 0; count < cardData.displayCount; count++) {
                 generateCards.Add(cardData);
             }
         }
         // 生成したカード情報をシャッフルしてランダムな位置にカードを配置できるようにする
-        List<CardObject> shuffledCards = new List<CardObject>(generateCards);
+        List<CardObjectData> shuffledCards = new List<CardObjectData>(generateCards);
         System.Random rand = new System.Random();
         shuffledCards.Sort((a, b) => rand.Next(-1, 2));
 
 
-        foreach (CardObject cardData in shuffledCards) {
+        foreach (CardObjectData cardData in shuffledCards) {
             // カードを生成
             GameObject card = Instantiate(prefab, Vector3.zero, Quaternion.identity, CardArea.transform);
             card.GetComponent<SpriteRenderer>().sortingOrder = 1;
@@ -115,7 +117,62 @@ public class CardClickViewer : MonoBehaviour {
             if (spriteRenderer != null) {
                 spriteRenderer.sprite = cardData.frontImg;  // 表面画像を設定
             }
+            // TODO;裏面画像設定
+            card.AddComponent<CardObject>();
+            card.GetComponent<CardObject>().isCorrect = cardData.isCorrect;
+            card.GetComponent<CardObject>().audioSrc = cardData.audioSrc;
+
+            // SetCardClickListener(card);
+               // イベントトリガーを取得または追加
+            EventTrigger trigger = card.GetComponent<EventTrigger>();
+            if (trigger == null) {
+                trigger = card.AddComponent<EventTrigger>();
+            }
+
+            // クリックイベントエントリーを作成
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerClick;  // クリック時のイベント
+
+            // リスナーにクリック処理を追加（ラムダ式で特定のカードを参照）
+            entry.callback.AddListener((eventData) => { CardClickListener(card); });
+
+            // EventTriggerにエントリーを追加
+            trigger.triggers.Add(entry);
             CardObjs.Add(card);
+        }
+    }
+
+    /// <summary>
+    /// TODO : カードクリック時の効果音、エフェクトの実装
+    /// </summary>
+    public void CardClickListener(GameObject card) {
+        var cardObj = card.GetComponent<CardObject>();
+        
+        if (cardObj.isCorrect) {
+            Debug.Log("正解");
+            correctness.Add(true);
+        } else {
+            Debug.Log("不正解");
+            correctness.Add(false);
+        }
+        card.GetComponent<EventTrigger>().enabled = false;
+
+        // correctnessに含まれるtrueの数がcards.isCorrectの数と一致したら結果画面を表示（小問終了）
+        if(correctness.Count(b => b == true) == cards.Count(c => c.isCorrect == true)) {
+            ResultModal.gameObject.SetActive(true);
+            // TODO : 正解用イメージの挿入
+            //ResultModalImage.sprite = Resources.Load<Sprite>("Images/Correct");
+            NextButton.gameObject.SetActive(true);
+            RetryButton.gameObject.SetActive(false);
+
+        } 
+        // すべての不正解カードをクリックした場合
+        else if( cards.Count(c => c.isCorrect == true
+            ResultModal.gameObject.SetActive(true);
+            // TODO : 不正解用イメージの挿入
+            //ResultModalImage.sprite = Resources.Load<Sprite>("Images/Incorrect");
+            NextButton.gameObject.SetActive(true);
+            RetryButton.gameObject.SetActive(true);
         }
     }
 
