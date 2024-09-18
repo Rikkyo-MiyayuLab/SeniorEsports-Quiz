@@ -1,0 +1,159 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": false,
+        "text": "",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          -6.10351563E-05,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      },
+      {
+        "answerGrid": false,
+        "text": "試",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          1.999939,
+          -6.10351563E-05,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      },
+      {
+        "answerGrid": false,
+        "text": "",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          4.0,
+          -6.10351563E-05,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      }
+    ],
+    [
+      {
+        "answerGrid": false,
+        "text": "試",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          -2.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      },
+      {
+        "answerGrid": true,
+        "text": "",
+        "options": [
+          {
+            "text": "答1",
+            "correct": false
+          },
+          {
+            "text": "答2",
+            "correct": true
+          },
+          {
+            "text": "答3",
+            "correct": false
+          },
+          {
+            "text": "答4",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          1.999939,
+          -2.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      },
+      {
+        "answerGrid": false,
+        "text": "試",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          4.0,
+          -2.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      }
+    ],
+    [
+      {
+        "answerGrid": false,
+        "text": "",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          -4.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      },
+      {
+        "answerGrid": false,
+        "text": "試",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          1.999939,
+          -4.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      },
+      {
+        "answerGrid": false,
+        "text": "",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          4.0,
+          -4.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "3848e545e3bfada4bbbb4e416e98fe62"
+      }
+    ]
+  ],
+  "cellMargin" : 0.7,
+  "gridsPos" : [-2.53999996,4.69000006,0],
+  "gridsScale": 1,
+  "questionId": "8ea676cd-713f-417d-b549-471ab6ab7de9",
+  "backgroundImage": "Backgrounds/SampleBGs/EVta98BU0AAdpL-",
+  "questionImage": null
+}
