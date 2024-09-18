@@ -1,0 +1,13 @@
+{
+    "title": "タイプ5テスト問題",
+    "description": "これはタイプ５用テスト問題データです。",
+    "limits": 60,
+    "difficulty": 5,
+    "type": 5,
+    "quiz": {
+        "questions": [
+            "Assets/StreamingAssets/QuestionData/5/quiz\\23c361b7-32fd-4ec0-8d5d-5c2e2b5501ad.json",
+            "Assets/StreamingAssets/QuestionData/5/quiz\\b5d4e748-4c24-4771-8ccc-1d8fa0a73c90.json"
+        ]
+    }
+}
