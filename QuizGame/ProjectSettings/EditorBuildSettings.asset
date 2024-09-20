@@ -6,14 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 8b3c47e8330c2124daf2f1bc115f96d2
   - enabled: 1
     path: Assets/Scenes/WorldMap.unity
     guid: 2fa6eecdffa466e479dded0eccc46010
+  - enabled: 1
+    path: Assets/Scenes/StoryViewer.unity
+    guid: 0fd6f58477c58b94d95c14c834eb7619
+  - enabled: 1
+    path: Assets/Scenes/Areas/Asia.unity
+    guid: 165713acd2a82234eac31f2597565e6a
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/TeamSelect.unity
     guid: 3fdf08485a8cbb24ca5e953240628df8
@@ -26,7 +32,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PhotoHuntViewer.unity
     guid: 5a4fc07fc8f19244b9c1b2bd37bdc63b
-  - enabled: 1
-    path: Assets/Scenes/StoryViewer.unity
-    guid: 0fd6f58477c58b94d95c14c834eb7619
   m_configObjects: {}

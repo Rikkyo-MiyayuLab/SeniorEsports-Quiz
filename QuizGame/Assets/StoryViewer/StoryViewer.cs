@@ -78,9 +78,13 @@ public class StoryViewer : MonoBehaviour {
         BGMPlayer = GetComponent<AudioSource>();
         TypingSEPlayer = gameObject.AddComponent<AudioSource>();
         TypingSEPlayer.volume = 0.4f;
+        // BGMを廃棄
+        GameObject TitleManager = GameObject.Find("TitleManager");
+        Destroy(TitleManager);
 
-        //TODO: 遷移前のシーンでパスを引き継ぐ(現在はダミー)
-        storyFile = "Assets/StreamingAssets/StoryData/StoryViewerDev.json";
+        
+        string storyID = PlayerPrefs.GetString("StoryId");
+        storyFile = $"Assets/StreamingAssets/StoryData/{storyID}.json";
         data = LoadJSON(storyFile);
         scenes = data.Scenes;
         currentScene = scenes[currentSceneIndex];
