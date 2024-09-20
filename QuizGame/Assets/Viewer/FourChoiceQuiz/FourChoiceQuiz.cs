@@ -48,9 +48,14 @@ public class FourChoiceQuiz : MonoBehaviour {
     private Button NextButton;
     [SerializeField]
     private Image ResultModalImage;
+    [SerializeField]
+    private AudioClip clearSE;
+    [SerializeField]
+    private AudioClip gameoverSE;
     private TransitionManager transitionManager;
     private Question questionData;
     private QuestionData allQuestionData;
+    private AudioSource SEAudioSource;
     private List<bool> correctness = new List<bool>();
     
 
@@ -59,6 +64,8 @@ public class FourChoiceQuiz : MonoBehaviour {
         GridObjects = new List<List<GameObject>>();
         AnswerOptions = new List<List<Option>>();
         transitionManager = TransitionManager.Instance();
+        SEAudioSource = gameObject.AddComponent<AudioSource>();
+
         GetData();
         Init();
         // 解答用ボタンにイベントリスナーを設定
@@ -196,11 +203,18 @@ public class FourChoiceQuiz : MonoBehaviour {
             ResultModal.gameObject.SetActive(true);
             if(correctness.TrueForAll(x => x)) {
                 Debug.Log("正解");
-                //TODO : 正解用のイメージ画像を表示
+                SEAudioSource.PlayOneShot(clearSE);
+                ResultModal.gameObject.SetActive(true);
+                ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
+                NextButton.gameObject.SetActive(true);
+                RetryButton.gameObject.SetActive(false);
             } else {
                 Debug.Log("不正解");
+                SEAudioSource.PlayOneShot(gameoverSE);
+                ResultModal.gameObject.SetActive(true);
+                ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
+                NextButton.gameObject.SetActive(true);
                 RetryButton.gameObject.SetActive(true);
-                //TODO : 不正解用のイメージ画像を表示
             }
         }
 

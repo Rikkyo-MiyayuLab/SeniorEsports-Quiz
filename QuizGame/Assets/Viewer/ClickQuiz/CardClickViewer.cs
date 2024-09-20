@@ -217,15 +217,13 @@ public class CardClickViewer : MonoBehaviour {
         if(correctness.Count(b => b == true) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == true)) {
             SEAudioSource.PlayOneShot(clearSE);
             ResultModal.gameObject.SetActive(true);
-            // TODO : 正解用イメージの挿入
-            //ResultModalImage.sprite = Resources.Load<Sprite>("Images/Correct");
+            ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
             NextButton.gameObject.SetActive(true);
             RetryButton.gameObject.SetActive(false);
         } else if(correctness.Count(b => b == false) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == false)) { // すべての不正解カードをクリックした場合は小問不正解として結果画面を表示
             SEAudioSource.PlayOneShot(gameoverSE);
             ResultModal.gameObject.SetActive(true);
-            // TODO : 不正解用イメージの挿入
-            //ResultModalImage.sprite = Resources.Load<Sprite>("Images/Incorrect");
+            ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
             NextButton.gameObject.SetActive(true);
             RetryButton.gameObject.SetActive(true);
         }

@@ -169,8 +169,10 @@ public class PhotoHuntViewer : MonoBehaviour {
                 // クリックイベントを無効化
                 pointObj.GetComponent<Button>().interactable = false;
 
-                if(correctness.Count == inCorrectImgData.points.Count) {
+                if(correctness.Count == inCorrectImgData.points.Count) { //正解ポイントをすべて発見
                     ResultModal.gameObject.SetActive(true);
+                    RetryButton.gameObject.SetActive(false);
+                    ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
                 }
             });
 
