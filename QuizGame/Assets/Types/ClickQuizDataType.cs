@@ -7,6 +7,8 @@ namespace PlayType5Interface
     {
         public CorrectImage correct;  // 正しい画像情報
         public IncorrectImage incorrect;  // 不正解の画像情報
+        public string backgroundImage;
+        public string bgm;
     }
 
     [System.Serializable]

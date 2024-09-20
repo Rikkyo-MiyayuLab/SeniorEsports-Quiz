@@ -1,0 +1,14 @@
+{
+    "title": "タイプ1テスト問題",
+    "description": "これはタイプ１の開発用試験問題データです。",
+    "limits": 60,
+    "difficulty": 5,
+    "type": 1,
+    "quiz": {
+        "questions": [
+            "Assets/StreamingAssets/QuestionData/1/quiz\\8ea676cd-713f-417d-b549-471ab6ab7de9.json",
+            "Assets/StreamingAssets/QuestionData/1/quiz\\a25b41c0-3e02-4b53-b30f-15cd81848117.json",
+            "Assets/StreamingAssets/QuestionData/1/quiz\\21f9f1ff-b129-43d3-bdfb-a40d0852a35f.json"
+        ]
+    }
+}
