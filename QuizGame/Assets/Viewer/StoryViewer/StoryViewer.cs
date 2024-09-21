@@ -14,14 +14,9 @@ using EasyTransition;
 using CameraFading;
 
 
-public class StoryViewer : MonoBehaviour {
-
-     [Tooltip("ストーリーの識別子 UUID")]
+public class StoryViewer : Viewer {
+    [Tooltip("ストーリーの識別子 UUID")]
     public string storyFile;
-    [Tooltip("このシーンの背景画像")]
-    public Sprite background;
-    [Tooltip("このシーンの音声ファイル")]
-    public AudioClip BGM;
     public AudioClip TypingSE;
     [Serializable]
     public class CharacterDef {
@@ -45,23 +40,10 @@ public class StoryViewer : MonoBehaviour {
     public List<StoryDataInterface.Scene> scenes;
     public Action onTextComplete;
     public Action onSceneEnd;
-    [Tooltip("トランジション設定")]
-    public TransitionSettings transition;
-    public float transitionDuration = 1.0f;
-    public Canvas QuizModalCanvas;
-    public Button NextBtn;
-    public TextMeshProUGUI QuizTitle;
-    public TextMeshProUGUI QuizDescription;
-    public RectTransform DifficultyCounter;
-    public AudioClip ModalDisplaySE;
 
     [Header("Editor Settings")]
     [SerializeField]
     private GameObject[] CharacterAreas;
-    [SerializeField]
-    private Image backgroundImageObject;
-    [SerializeField]
-    private GameObject storyTextArea;
     [SerializeField]
     private TextMeshPro characterNameField;
     [SerializeField]
@@ -72,21 +54,16 @@ public class StoryViewer : MonoBehaviour {
     private TextMeshPro narrationField;
     private List<Character> characters;
     private StoryData data;
-    private QuestionData quizData;
     private int currentSceneIndex = 0;
     private StoryDataInterface.Scene currentScene;
-    private AudioSource BGMPlayer;
     private AudioSource TypingSEPlayer;
-    private TransitionManager transitionManager;
 
     
     
     void Start() {
-        QuizModalCanvas.gameObject.SetActive(false);
-        transitionManager = TransitionManager.Instance();
-        BGMPlayer = GetComponent<AudioSource>();
+        base.Start();
         TypingSEPlayer = gameObject.AddComponent<AudioSource>();
-        TypingSEPlayer.volume = 0.4f;
+        TypingSEPlayer.volume = 0.6f;
         // BGMを廃棄
         GameObject TitleManager = GameObject.Find("TitleManager");
         Destroy(TitleManager);
@@ -95,16 +72,17 @@ public class StoryViewer : MonoBehaviour {
         string storyID = PlayerPrefs.GetString("StoryId");
         storyFile = $"Assets/StreamingAssets/StoryData/{storyID}.json";
         data = LoadJSON<StoryData>(storyFile);
-        quizData = LoadJSON<QuestionData>(data.quiz);
-        SetQuizInfo();
+        base.QuizData = LoadJSON<QuestionData>(data.quiz);
+        base.SetQuizInfo();
+
         scenes = data.Scenes;
         currentScene = scenes[currentSceneIndex];
         narrationArea.SetActive(false);
-        background = Resources.Load<Sprite>(currentScene.Background);
-        backgroundImageObject.sprite = background;
-        BGM = (AudioClip)Resources.Load(currentScene.audio);
-        BGMPlayer.clip = BGM;
-        BGMPlayer.Play();
+        base.CurrentBackground = Resources.Load<Sprite>(currentScene.Background);
+        base.BackgroundImageObj.sprite = base.CurrentBackground;
+        base.CurrentBGM = (AudioClip)Resources.Load(currentScene.audio);
+        base.AudioPlayer.clip = base.CurrentBGM;
+        base.AudioPlayer.Play();
         CameraFade.In(() => {
             LoadScene(currentScene);
         }, 1.5f, true);
@@ -115,10 +93,10 @@ public class StoryViewer : MonoBehaviour {
                 StartCoroutine(ChangeScene(currentSceneIndex));
             } else {// ストーリーが終わった場合
                 // 問題モーダルを表示
-                QuizModalCanvas.gameObject.SetActive(true);
-                BGMPlayer.PlayOneShot(ModalDisplaySE);
-                NextBtn.onClick.AddListener(() => {
-                    MoveQuizViewer(quizData.type);
+                base.QuizModalCanvas.gameObject.SetActive(true);
+                base.AudioPlayer.PlayOneShot(base.ModalDisplaySE);
+                base.NextButton.onClick.AddListener(() => {
+                    MoveQuizViewer(base.QuizData.type);
                 });
                 
             }
@@ -133,31 +111,21 @@ public class StoryViewer : MonoBehaviour {
             case 1:
             case 2:
             case 3:
-                transitionManager.Transition("FourChoiceQuiz", transition, transitionDuration);
+                base.TransitionManager.Transition("FourChoiceQuiz", base.Transition, base.TransitionDuration);
                 //SceneManager.LoadScene("FourChoiceQuiz");
                 break;
             case 4:
-                transitionManager.Transition("CardClickViewer", transition, transitionDuration);
+                base.TransitionManager.Transition("CardClickViewer", base.Transition, base.TransitionDuration);
                 //SceneManager.LoadScene("CardClickViewer");
                 break;
             case 5:
-                transitionManager.Transition("PhotoHuntViewer", transition, transitionDuration);
+                base.TransitionManager.Transition("PhotoHuntViewer", base.Transition, base.TransitionDuration);
                 //SceneManager.LoadScene("PhotoHuntViewer");
                 break;
             default:
                 break;
         }
-        BGMPlayer.Stop();
-    }
-
-
-    private void SetQuizInfo() {
-        QuizTitle.text = quizData.title;
-        QuizDescription.text = quizData.description;
-        // 難易度表示パネルの星を設定
-        for (int i = 0; i < quizData.difficulty; i++) {
-            DifficultyCounter.GetChild(i).gameObject.SetActive(true);
-        }
+        base.AudioPlayer.Stop();
     }
 
 
@@ -171,14 +139,14 @@ public class StoryViewer : MonoBehaviour {
         // 前のソースと変化がない場合は、そのまま使う
         if (scene.Background != currentScene.Background) {
             Sprite loadedSprite = Resources.Load<Sprite>(scene.Background);
-            background = loadedSprite;
-            backgroundImageObject.sprite = background;
+            base.CurrentBackground = loadedSprite;
+            base.BackgroundImageObj.sprite = base.CurrentBackground;
         }
         if (scene.audio != null && scene.audio != currentScene.audio) {
             AudioClip loadedAudio = (AudioClip)Resources.Load(scene.audio);
-            BGM = loadedAudio;
-            BGMPlayer.clip = BGM;
-            BGMPlayer.Play();
+            base.CurrentBGM = loadedAudio;
+            base.AudioPlayer.clip = base.CurrentBGM;
+            base.AudioPlayer.Play();
         }
         
         // キャラクターの設定
@@ -250,19 +218,6 @@ public class StoryViewer : MonoBehaviour {
     }
 
 
-    // ストーリー終了後、数秒待ってトランジションを開始するコルーチン
-    private IEnumerator WaitAndTransition(Action callBack = null) {
-
-        yield return new WaitForSeconds(2.0f);  // ここで待機時間を設定（3秒）
-
-        // トランジション開始
-        transitionManager.onTransitionEnd = () => {
-            callBack?.Invoke();
-        };
-    }
-
-
-
     /// <summary>
     /// テキストを1文字ずつ表示するコルーチン
     /// </summary>
@@ -286,18 +241,5 @@ public class StoryViewer : MonoBehaviour {
             yield return new WaitForSeconds(textSpeed);
         }
         onTextComplete?.Invoke();
-    }
-
-    /// <summary>
-    /// JSONデータを任意のクラスにデシリアライズして返す
-    /// </summary>
-    /// <typeparam name="T">デシリアライズしたいクラスの型</typeparam>
-    /// <param name="path">jsonまでのパス</param>
-    /// <returns>指定された型のオブジェクト</returns>
-    private static T LoadJSON<T>(string path) {
-        using (StreamReader r = new StreamReader(path)) {
-            string json = r.ReadToEnd();
-            return JsonConvert.DeserializeObject<T>(json);
-        }
     }
 }
