@@ -12,6 +12,11 @@ namespace StoryDataInterface
         public string StoryId;
 
         /// <summary>
+        /// ストーリーに紐づく大問
+        /// </summary>
+        public string quiz;
+
+        /// <summary>
         /// ストーリーの各シーンのリスト
         /// </summary>
         public List<Scene> Scenes;

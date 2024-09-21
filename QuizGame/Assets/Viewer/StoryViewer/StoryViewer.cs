@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using TMPro;
 using Newtonsoft.Json;
 using StoryDataInterface;
+using QuestionDataInterface;
 using EasyTransition;
 using CameraFading;
 
@@ -47,6 +48,12 @@ public class StoryViewer : MonoBehaviour {
     [Tooltip("トランジション設定")]
     public TransitionSettings transition;
     public float transitionDuration = 1.0f;
+    public Canvas QuizModalCanvas;
+    public Button NextBtn;
+    public TextMeshProUGUI QuizTitle;
+    public TextMeshProUGUI QuizDescription;
+    public RectTransform DifficultyCounter;
+    public AudioClip ModalDisplaySE;
 
     [Header("Editor Settings")]
     [SerializeField]
@@ -65,6 +72,7 @@ public class StoryViewer : MonoBehaviour {
     private TextMeshPro narrationField;
     private List<Character> characters;
     private StoryData data;
+    private QuestionData quizData;
     private int currentSceneIndex = 0;
     private StoryDataInterface.Scene currentScene;
     private AudioSource BGMPlayer;
@@ -74,6 +82,7 @@ public class StoryViewer : MonoBehaviour {
     
     
     void Start() {
+        QuizModalCanvas.gameObject.SetActive(false);
         transitionManager = TransitionManager.Instance();
         BGMPlayer = GetComponent<AudioSource>();
         TypingSEPlayer = gameObject.AddComponent<AudioSource>();
@@ -85,7 +94,9 @@ public class StoryViewer : MonoBehaviour {
         
         string storyID = PlayerPrefs.GetString("StoryId");
         storyFile = $"Assets/StreamingAssets/StoryData/{storyID}.json";
-        data = LoadJSON(storyFile);
+        data = LoadJSON<StoryData>(storyFile);
+        quizData = LoadJSON<QuestionData>(data.quiz);
+        SetQuizInfo();
         scenes = data.Scenes;
         currentScene = scenes[currentSceneIndex];
         narrationArea.SetActive(false);
@@ -103,14 +114,50 @@ public class StoryViewer : MonoBehaviour {
             if (currentSceneIndex < scenes.Count) { //次のシーンがある場合
                 StartCoroutine(ChangeScene(currentSceneIndex));
             } else {// ストーリーが終わった場合
-                 // ストーリーが終わった後、数秒待ってからトランジションを開始する
-                StartCoroutine(WaitAndTransition(()=>{
-                    Debug.Log("Story End");
-                    BGMPlayer.Stop();
-                    // TODO ; 任意のシーン読み込み
-                }));
+                // 問題モーダルを表示
+                QuizModalCanvas.gameObject.SetActive(true);
+                BGMPlayer.PlayOneShot(ModalDisplaySE);
+                NextBtn.onClick.AddListener(() => {
+                    MoveQuizViewer(quizData.type);
+                });
+                
             }
         };
+    }
+
+
+    private void MoveQuizViewer(int ViewerType) {
+        // 大問パスを保存
+        PlayerPrefs.SetString("QuizPath", data.quiz);
+        switch (ViewerType) {
+            case 1:
+            case 2:
+            case 3:
+                transitionManager.Transition("FourChoiceQuiz", transition, transitionDuration);
+                //SceneManager.LoadScene("FourChoiceQuiz");
+                break;
+            case 4:
+                transitionManager.Transition("CardClickViewer", transition, transitionDuration);
+                //SceneManager.LoadScene("CardClickViewer");
+                break;
+            case 5:
+                transitionManager.Transition("PhotoHuntViewer", transition, transitionDuration);
+                //SceneManager.LoadScene("PhotoHuntViewer");
+                break;
+            default:
+                break;
+        }
+        BGMPlayer.Stop();
+    }
+
+
+    private void SetQuizInfo() {
+        QuizTitle.text = quizData.title;
+        QuizDescription.text = quizData.description;
+        // 難易度表示パネルの星を設定
+        for (int i = 0; i < quizData.difficulty; i++) {
+            DifficultyCounter.GetChild(i).gameObject.SetActive(true);
+        }
     }
 
 
@@ -209,7 +256,6 @@ public class StoryViewer : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);  // ここで待機時間を設定（3秒）
 
         // トランジション開始
-        transitionManager.Transition(transition, transitionDuration);
         transitionManager.onTransitionEnd = () => {
             callBack?.Invoke();
         };
@@ -243,14 +289,15 @@ public class StoryViewer : MonoBehaviour {
     }
 
     /// <summary>
-    /// JSONデータをStoryDataクラスにデシリアライズして返す
+    /// JSONデータを任意のクラスにデシリアライズして返す
     /// </summary>
+    /// <typeparam name="T">デシリアライズしたいクラスの型</typeparam>
     /// <param name="path">jsonまでのパス</param>
-    /// <returns>StoryDataクラス</returns>
-    private static StoryData LoadJSON(string path) {
+    /// <returns>指定された型のオブジェクト</returns>
+    private static T LoadJSON<T>(string path) {
         using (StreamReader r = new StreamReader(path)) {
             string json = r.ReadToEnd();
-            return JsonConvert.DeserializeObject<StoryData>(json);
+            return JsonConvert.DeserializeObject<T>(json);
         }
     }
 }
