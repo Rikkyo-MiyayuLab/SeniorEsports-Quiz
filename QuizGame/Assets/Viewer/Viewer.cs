@@ -34,7 +34,7 @@ public abstract class Viewer : MonoBehaviour {
     public AudioClip BtnClickSE;
     public AudioClip CurrentBGM;
     protected TransitionManager TransitionManager;
-    protected QuestionData QuizData;
+    protected QuestionData QuizData; //大問データ
 
 
     protected virtual void Start() {
