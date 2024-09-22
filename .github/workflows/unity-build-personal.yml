@@ -64,7 +64,7 @@ jobs:
 
       - name: Activate The License
         id: activateLicense
-        run: unity-activate -u "${{ syukunt@gmail.com }}" -p "${{ 7LYYW:/M!)mHqn& }}" -k "${{ QXFX EFPX WPSO BWF3 }}" -o ${{ matrix.root-project-path }}/ "${{ steps.getManualLicenseFile.outputs.filePath }}"
+        run: unity-activate -u "${{ secrets.UNITY_EMAIL }}" -p "${{ secrets.UNITY_PASSWORD }}" -k "${{ secrets.UNITY_AUTHENTICATOR_KEY }}" -o ${{ matrix.root-project-path }}/ "${{ steps.getManualLicenseFile.outputs.filePath }}"
 
       - name: Read ulf
         id: ulfRead
