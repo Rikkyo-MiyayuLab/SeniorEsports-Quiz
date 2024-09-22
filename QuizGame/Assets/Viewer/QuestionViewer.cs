@@ -22,7 +22,9 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
     public Canvas ResultModal;
     public Button RetryButton;
     public Image ResultModalImage;
+    public Button NextQuestionButton;
     public GameObject Timer;
+    public Button PoseButton;
     protected QuestionType CurrentQuestionData; //カレントの小問データ
     protected List<bool> correctness = new List<bool>();
     protected double remainingSeconds;
@@ -45,6 +47,16 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
     protected virtual void Start() {
         base.Start();
         timer = Timer.GetComponent<Timer>();
+        PoseButton.onClick.AddListener(() => {
+            timer.PauseTimer();
+            QuizModalCanvas.gameObject.SetActive(true);
+        });
+
+        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "閉じる";
+        NextButton.onClick.AddListener(() => {
+            timer.ResumeTimer();
+            QuizModalCanvas.gameObject.SetActive(false);
+        });
     }
 
     protected void NextQuestion() {

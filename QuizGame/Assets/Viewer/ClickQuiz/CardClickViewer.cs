@@ -58,7 +58,7 @@ public class CardClickViewer : QuestionViewer<Question> {
             //TODO : 現在の小問をリトライする処理
         });
 
-        NextButton.onClick.AddListener(() => {
+        NextQuestionButton.onClick.AddListener(() => {
             ResultModal.gameObject.SetActive(false);
             if(CurrentQuestionIndex < QuizData.quiz.questions.Count - 1) { // 次問遷移
                 NextQuestion();

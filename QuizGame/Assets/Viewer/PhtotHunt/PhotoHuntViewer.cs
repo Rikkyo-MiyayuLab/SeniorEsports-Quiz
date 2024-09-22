@@ -39,7 +39,7 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
             //TODO : 現在の小問をリトライする処理
         });
 
-        base.NextButton.onClick.AddListener(() => {
+        base.NextQuestionButton.onClick.AddListener(() => {
             base.ResultModal.gameObject.SetActive(false);
             if(base.CurrentQuestionIndex < base.QuizData.quiz.questions.Count - 1) { // 次問遷移
                 NextQuestion();
