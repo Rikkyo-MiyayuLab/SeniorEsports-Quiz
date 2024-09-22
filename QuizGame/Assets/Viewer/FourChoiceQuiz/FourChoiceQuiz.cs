@@ -65,26 +65,6 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
             });
         }
         OnAnswered += AnswerQuestionHandler;
-
-        RetryButton.onClick.AddListener(() => {
-            ResultModal.gameObject.SetActive(false);
-            //TODO : 現在の小問をリトライする処理
-        });
-        
-        NextQuestionButton.onClick.AddListener(() => {
-            ResultModal.gameObject.SetActive(false);
-            if(CurrentQuestionIndex < QuizData.quiz.questions.Count - 1) { // 次問遷移
-                NextQuestion();
-            } else { // 大問終了
-                TransitionManager.Transition(Transition, TransitionDuration);
-                TransitionManager.onTransitionEnd = () => {
-                    //TODO : 全ての小問を終えた後、解説用ストーリー画面へ遷移する処理
-                    // ここで、ストーリーIDを指定して、ストーリー用シーンへ遷移する
-                    // Ex). SceneManager.LoadScene("StoryScene");
-                    Debug.Log("大問終了遷移");
-                };
-            }
-        });
     }
 
     public override void GetData() {

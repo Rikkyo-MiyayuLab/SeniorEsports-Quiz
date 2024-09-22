@@ -57,6 +57,22 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
             timer.ResumeTimer();
             QuizModalCanvas.gameObject.SetActive(false);
         });
+
+
+        RetryButton.onClick.AddListener(() => {
+            ResultModal.gameObject.SetActive(false);
+            //TODO : 現在の小問をリトライする処理
+        });
+
+        NextQuestionButton.onClick.AddListener(() => {
+            ResultModal.gameObject.SetActive(false);
+            if(CurrentQuestionIndex < QuizData.quiz.questions.Count - 1) { // 次問遷移
+                NextQuestion();
+            } else { // 大問終了
+                PlayerPrefs.SetString("StoryID", QuizData.endStory);
+                TransitionManager.Transition("StoryViewer", Transition, TransitionDuration);
+            }
+        });
     }
 
     protected void NextQuestion() {

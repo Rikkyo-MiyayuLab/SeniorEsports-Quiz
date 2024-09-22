@@ -68,7 +68,7 @@ public class StoryViewer : Viewer {
         GameObject TitleManager = GameObject.Find("TitleManager");
         Destroy(TitleManager);
 
-        
+        // ストーリーデータの読み込み
         string storyID = PlayerPrefs.GetString("StoryId");
         storyFile = $"Assets/StreamingAssets/StoryData/{storyID}.json";
         data = LoadJSON<StoryData>(storyFile);
@@ -92,6 +92,7 @@ public class StoryViewer : Viewer {
             if (currentSceneIndex < scenes.Count) { //次のシーンがある場合
                 StartCoroutine(ChangeScene(currentSceneIndex));
             } else {// ストーリーが終わった場合
+            // TODO: 問題用ストーリー or 解説用ストーリーの判別
                 // 問題モーダルを表示
                 base.QuizModalCanvas.gameObject.SetActive(true);
                 base.AudioPlayer.PlayOneShot(base.ModalDisplaySE);
