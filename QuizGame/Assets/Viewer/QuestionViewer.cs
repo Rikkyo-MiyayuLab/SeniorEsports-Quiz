@@ -22,13 +22,20 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
     public Canvas ResultModal;
     public Button RetryButton;
     public Image ResultModalImage;
+    public GameObject Timer;
     protected QuestionType CurrentQuestionData; //カレントの小問データ
     protected List<bool> correctness = new List<bool>();
+    protected double remainingSeconds;
+    protected Timer timer;
+    
 
     public void Init() {
         Dispose();
         GetData();
         Render();
+        //timer.StopTimer();
+        timer.seconds = QuizData.limits;
+        timer.StartTimer();
     }
     public abstract void Dispose();
     public abstract void GetData();
@@ -37,6 +44,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
     
     protected virtual void Start() {
         base.Start();
+        timer = Timer.GetComponent<Timer>();
     }
 
     protected void NextQuestion() {
