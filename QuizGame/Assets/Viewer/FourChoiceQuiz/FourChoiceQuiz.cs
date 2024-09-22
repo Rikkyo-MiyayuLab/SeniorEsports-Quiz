@@ -20,11 +20,9 @@ using EasyTransition;
 /// TODO: リザルト時の効果音、エフェクト
 /// TODO: 統合用親クラスの設置 
 /// </summary>
-public class FourChoiceQuiz : MonoBehaviour {
+public class FourChoiceQuiz : QuestionViewer<Question> {
 
-    public int currentQuestionIndex = 0; // 現在の小問のインデックス
     public int currentAnswerCellIdx = 0; //現在の解答マスのインデックス
-    public Sprite BackgroundImg;
     public Sprite QuestionImg;
     public List<List<Cell>> Grids;
     public List<List<GameObject>> GridObjects;
@@ -32,38 +30,22 @@ public class FourChoiceQuiz : MonoBehaviour {
     [SerializeField]
     public List<List<Option>> AnswerOptions;
     public List<Button> AnswerButtonObjects;
-    public TransitionSettings transition;
-    public float transitionDuration = 0.5f;
     [SerializeField]
     private GameObject GridsArea;
     [SerializeField]
-    private Image backgroundImageObj;
-    [SerializeField]
     private GameObject QuestionImageObj;
-    [SerializeField]
-    private Canvas ResultModal;
-    [SerializeField]
-    private Button RetryButton;
-    [SerializeField]
-    private Button NextButton;
-    [SerializeField]
-    private Image ResultModalImage;
     [SerializeField]
     private AudioClip clearSE;
     [SerializeField]
     private AudioClip gameoverSE;
-    private TransitionManager transitionManager;
-    private Question questionData;
-    private QuestionData allQuestionData;
     private AudioSource SEAudioSource;
-    private List<bool> correctness = new List<bool>();
     
 
 
     void Start() {
+        base.Start();
         GridObjects = new List<List<GameObject>>();
         AnswerOptions = new List<List<Option>>();
-        transitionManager = TransitionManager.Instance();
         SEAudioSource = gameObject.AddComponent<AudioSource>();
 
         GetData();
@@ -83,49 +65,28 @@ public class FourChoiceQuiz : MonoBehaviour {
             });
         }
         OnAnswered += AnswerQuestionHandler;
-
-        RetryButton.onClick.AddListener(() => {
-            ResultModal.gameObject.SetActive(false);
-            //TODO : 現在の小問をリトライする処理
-        });
-        
-        NextButton.onClick.AddListener(() => {
-            ResultModal.gameObject.SetActive(false);
-            if(currentQuestionIndex < allQuestionData.quiz.questions.Count - 1) { // 次問遷移
-                NextQuestion();
-            } else { // 大問終了
-                transitionManager.Transition(transition, transitionDuration);
-                transitionManager.onTransitionEnd = () => {
-                    //TODO : 全ての小問を終えた後、解説用ストーリー画面へ遷移する処理
-                    // ここで、ストーリーIDを指定して、ストーリー用シーンへ遷移する
-                    // Ex). SceneManager.LoadScene("StoryScene");
-                    Debug.Log("大問終了遷移");
-                };
-            }
-        });
     }
 
-    public void GetData() {
+    public override void GetData() {
         //TODO :現在はダミーパス。結合時に遷移前のシーンから、問題データのパスを受け取るように変更する。
         var path = "Assets/StreamingAssets/QuestionData/1/711bf95d-0374-4078-80ee-ad8503000fde.json"; // 大問定義情報が来る想定。
-        allQuestionData = LoadJSON<QuestionData>(path);
-        questionData = LoadJSON<Question>(allQuestionData.quiz.questions[currentQuestionIndex]);
+        QuizData = LoadJSON<QuestionData>(path);
+        base.CurrentQuestionData = LoadJSON<Question>(QuizData.quiz.questions[CurrentQuestionIndex]);
     }
 
-    public void Init() {
-        Dispose();
-        BackgroundImg = Resources.Load<Sprite>(questionData.backgroundImage);
-        backgroundImageObj.sprite = BackgroundImg;
+    public override void Render() {
+        base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
+        base.BackgroundImageObj.sprite = base.CurrentBackground;
 
-        if(questionData.questionImage != null) {
+        if(base.CurrentQuestionData.questionImage != null) {
             QuestionImageObj.SetActive(true);
-            QuestionImg = Resources.Load<Sprite>(questionData.questionImage);
+            QuestionImg = Resources.Load<Sprite>(base.CurrentQuestionData.questionImage);
             QuestionImageObj.GetComponent<SpriteRenderer>().sprite = QuestionImg;
         } else {
             QuestionImageObj.SetActive(false);
         }
 
-        GenerateGrids(questionData);
+        GenerateGrids(base.CurrentQuestionData);
         // 解答用ボタンに選択肢を設定
         List<Option> options = AnswerOptions[currentAnswerCellIdx]; // currentAnswerCellIdx に該当するオプションのリストを取得
         for (int i = 0; i < AnswerButtonObjects.Count; i++) {
@@ -140,7 +101,7 @@ public class FourChoiceQuiz : MonoBehaviour {
     /// 
     /// </summary>
     /// <param name="questionData"></param>
-    public void GenerateGrids(Question questionData) {
+    private void GenerateGrids(Question questionData) {
         /** 問題用のグリッドを生成 */
         Grids = questionData.grids; 
         GridsArea.transform.localScale = new Vector3(1, 1, 1);
@@ -168,7 +129,7 @@ public class FourChoiceQuiz : MonoBehaviour {
     }
 
 
-    private void Dispose() {
+    public override void Dispose() {
         ResultModal.gameObject.SetActive(false);
         foreach (var gridObjects in GridObjects) {
             foreach (var gridObject in gridObjects) {
@@ -219,32 +180,10 @@ public class FourChoiceQuiz : MonoBehaviour {
         }
 
         // 全問解き終えたか？
-        if(currentQuestionIndex < allQuestionData.quiz.questions.Count - 1) {
+        if(CurrentQuestionIndex < QuizData.quiz.questions.Count - 1) {
             ResultModal.gameObject.SetActive(true);
             // 戻るボタンを表示
             RetryButton.gameObject.SetActive(false);
         }
     }
-
-    private void NextQuestion() {
-        currentQuestionIndex++;
-        questionData = LoadJSON<Question>(allQuestionData.quiz.questions[currentQuestionIndex]);
-        Init();
-    }
-
-    /// <summary>
-    /// JSONデータを任意のクラスにデシリアライズして返す
-    /// </summary>
-    /// <typeparam name="T">デシリアライズしたいクラスの型</typeparam>
-    /// <param name="path">jsonまでのパス</param>
-    /// <returns>指定された型のオブジェクト</returns>
-    private static T LoadJSON<T>(string path) {
-        using (StreamReader r = new StreamReader(path)) {
-            string json = r.ReadToEnd();
-            return JsonConvert.DeserializeObject<T>(json);
-        }
-    }
-   
-
-
 }

@@ -17,9 +17,7 @@ using EasyTransition;
 /// <summary>
 /// カードクリック式解答画面のビューアを表すクラス
 /// </summary>
-public class CardClickViewer : MonoBehaviour {
-    public int currentQuestionIndex = 0;
-    public Sprite BackgroundImg;
+public class CardClickViewer : QuestionViewer<Question> {
     public List<GameObject> CardObjs = new List<GameObject>();
     public int rowSize = 0;
     public int columnSize = 0;
@@ -35,11 +33,7 @@ public class CardClickViewer : MonoBehaviour {
 
     }
     public List<CardObjectData> cards = new List<CardObjectData>();
-    public TransitionSettings transition;
-    public float transitionDuration = 0.5f;
     public AudioSource SEAudioSource;
-    [SerializeField]
-    private AudioClip bgm;
     [SerializeField]
     private AudioClip defaultClickSE;
     [SerializeField]
@@ -53,63 +47,28 @@ public class CardClickViewer : MonoBehaviour {
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
-    private Image backgroundImageObj;
-    [SerializeField]
-    private Canvas ResultModal;
-    [SerializeField]
-    private Button RetryButton;
-    [SerializeField]
-    private Button NextButton;
-    [SerializeField]
-    private Image ResultModalImage;
-    [SerializeField]
     private GameObject CardArea;
-    private TransitionManager transitionManager;
-    private Question questionData;
-    private QuestionData allQuestionData;
-    private List<bool> correctness = new List<bool>();
 
     void Start() {
-        transitionManager = TransitionManager.Instance();
+        base.Start();
         SEAudioSource = gameObject.GetComponent<AudioSource>();
-        ResultModal.gameObject.SetActive(false);
-
-        RetryButton.onClick.AddListener(() => {
-            ResultModal.gameObject.SetActive(false);
-            //TODO : 現在の小問をリトライする処理
-        });
-
-        NextButton.onClick.AddListener(() => {
-            ResultModal.gameObject.SetActive(false);
-            if(currentQuestionIndex < allQuestionData.quiz.questions.Count - 1) { // 次問遷移
-                NextQuestion();
-            } else { // 大問終了
-                transitionManager.Transition(transition, transitionDuration);
-                transitionManager.onTransitionEnd = () => {
-                    //TODO : 全ての小問を終えた後、解説用ストーリー画面へ遷移する処理
-                    // ここで、ストーリーIDを指定して、ストーリー用シーンへ遷移する
-                    // Ex). SceneManager.LoadScene("StoryScene");
-                    Debug.Log("大問終了遷移");
-                };
-            }
-        });
 
         Init();
     }
 
 
-    public void GetData() {
+    public override void GetData() {
         //TODO :現在はダミーパス。結合時に遷移前のシーンから、問題データのパスを受け取るように変更する。
         var path = "Assets/StreamingAssets/QuestionData/4/bd73210a-ee5e-4bcf-9512-2f95d9e5eded.json"; // 大問定義情報が来る想定。
-        allQuestionData = LoadJSON<QuestionData>(path);
-        questionData = LoadJSON<Question>(allQuestionData.quiz.questions[currentQuestionIndex]);
-        rowSize = questionData.row;
-        columnSize = questionData.column;
-        backgroundImageObj.sprite = Resources.Load<Sprite>(questionData.backgroundImage);
-        margin = questionData.margin;
-        PairSize = questionData.pairSize;
+        QuizData = LoadJSON<QuestionData>(path);
+        base.CurrentQuestionData = LoadJSON<Question>(QuizData.quiz.questions[CurrentQuestionIndex]);
+        rowSize = base.CurrentQuestionData.row;
+        columnSize = base.CurrentQuestionData.column;
+        BackgroundImageObj.sprite = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
+        margin = base.CurrentQuestionData.margin;
+        PairSize = base.CurrentQuestionData.pairSize;
         // カードの情報を設定
-        foreach (var card in questionData.cards) {
+        foreach (var card in base.CurrentQuestionData.cards) {
             CardObjectData cardObj = new CardObjectData {
                 frontImg = Resources.Load<Sprite>(card.imgSrc),
                 backImg = card.backImgSrc == null? null : Resources.Load<Sprite>(card.backImgSrc),
@@ -121,26 +80,13 @@ public class CardClickViewer : MonoBehaviour {
         }
     }
 
-
-    public void Init() {
-        Dispose();
-        ResultModal.gameObject.SetActive(false);
-
-        // 新しいデータを取得する
-        GetData();
-
-        // 背景画像を設定する
-        BackgroundImg = Resources.Load<Sprite>(questionData.backgroundImage);
-        backgroundImageObj.sprite = BackgroundImg;
-
-        // カードを生成する
-        GenerateCards();
-    }
-
     /// <summary>
     /// 指定の行数、列数でカードを生成する
     /// </summary>
-    public void GenerateCards() {
+    public override void Render() {
+        // 背景画像を設定する
+        base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
+        BackgroundImageObj.sprite = base.CurrentBackground;
 
         // Grid Layoutコンポーネントに設定された行数、列数、マージンを渡す
         var grid = CardArea.GetComponent<GridLayoutGroup>();
@@ -229,35 +175,16 @@ public class CardClickViewer : MonoBehaviour {
         }
     }
 
-    public void NextQuestion() {
-        currentQuestionIndex++;
-        Init();
-    }
 
-
-    public void Dispose() {
+    public override void Dispose() {
+        ResultModal.gameObject.SetActive(false);
         foreach (var card in CardObjs) {
             Destroy(card);
         }
         CardObjs.Clear();
         cards.Clear();
         correctness.Clear();
-        BackgroundImg = null;
-        backgroundImageObj.sprite = null;
+        base.CurrentBackground = null;
+        BackgroundImageObj.sprite = null;
     }
-
-
-    /// <summary>
-    /// JSONデータを任意のクラスにデシリアライズして返す
-    /// </summary>
-    /// <typeparam name="T">デシリアライズしたいクラスの型</typeparam>
-    /// <param name="path">jsonまでのパス</param>
-    /// <returns>指定された型のオブジェクト</returns>
-    private static T LoadJSON<T>(string path) {
-        using (StreamReader r = new StreamReader(path)) {
-            string json = r.ReadToEnd();
-            return JsonConvert.DeserializeObject<T>(json);
-        }
-    }
-
 }

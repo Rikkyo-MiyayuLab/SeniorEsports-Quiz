@@ -13,6 +13,7 @@ namespace QuestionDataInterface {
         public int difficulty;         // 難易度（1～5）
         public int type;               // テンプレートタイプ
         public Quiz quiz;              // 問題データ部
+        public string endStory; // 大問終了後に遷移するストーリーパス
     }
 
     [Serializable]
