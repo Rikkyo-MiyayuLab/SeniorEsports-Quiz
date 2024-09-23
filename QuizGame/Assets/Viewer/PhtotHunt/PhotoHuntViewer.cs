@@ -24,7 +24,9 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
     public List<GameObject> ClickPoints;
 
     [SerializeField]
-    private AudioClip defaultClickSE;
+    private AudioClip correctSE;
+    [SerializeField]
+    private AudioClip incorrectSE;
     [SerializeField]
     private CorrectImage correctImgData;
     [SerializeField]
@@ -38,9 +40,7 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
     }
 
     public override void GetData() {
-        //TODO :現在はダミーパス。結合時に遷移前のシーンから、問題データのパスを受け取るように変更する。
-        var path = "Assets/StreamingAssets/QuestionData/5/34842a64-9b24-40e9-a27c-81ee6372f397.json"; // 大問定義情報が来る想定。
-        base.QuizData = Viewer.LoadJSON<QuestionData>(path);
+
         base.CurrentQuestionData = Viewer.LoadJSON<Question>(base.QuizData.quiz.questions[base.CurrentQuestionIndex]);
 
         correctImgData = base.CurrentQuestionData.correct;
@@ -107,7 +107,7 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
 
             Button button = pointObj.AddComponent<Button>();
             button.onClick.AddListener(() => {
-                base.AudioPlayer.PlayOneShot(defaultClickSE);
+                base.AudioPlayer.PlayOneShot(correctSE);
             
                 Outline outline = pointObj.AddComponent<Outline>();
                 outline.effectColor = Color.red;
@@ -122,10 +122,36 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
                     base.ResultModal.gameObject.SetActive(true);
                     base.RetryButton.gameObject.SetActive(false);
                     base.ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
+                    base.timer.PauseTimer();
                 }
             });
 
             ClickPoints.Add(pointObj);
         }
+    }
+
+    void Update() {
+        if (Input.GetMouseButtonDown(0)) {
+            Vector2 mousePos = Input.mousePosition;
+            bool clickedOnPoint = false;
+
+            foreach (var point in ClickPoints) {
+                RectTransform rectTransform = point.GetComponent<RectTransform>();
+                if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, mousePos, Camera.main)) {
+                    clickedOnPoint = true;
+                    break;
+                }
+            }
+
+            if (!clickedOnPoint) {
+                OnClickOutsidePoints();
+            }
+        }
+    }
+
+    private void OnClickOutsidePoints() {
+        Debug.Log("指定のポイント以外がクリックされました。");
+        base.TotalIncorrectCount++;
+        base.AudioPlayer.PlayOneShot(incorrectSE);
     }
 }

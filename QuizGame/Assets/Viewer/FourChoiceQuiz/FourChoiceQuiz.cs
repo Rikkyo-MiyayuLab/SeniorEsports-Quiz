@@ -15,10 +15,7 @@ using EasyTransition;
 /// <summary>
 /// 4択式の解答画面を表示するクラス 
 /// UI構成は１問ずつとし、小問データを切替えることで問題を切り替える。
-/// TODO: 解答ボタン選択時の効果音、エフェクト
-/// TODO: BGMの設定
-/// TODO: リザルト時の効果音、エフェクト
-/// TODO: 統合用親クラスの設置 
+/// TODO: 親クラスのSEと統合する。
 /// </summary>
 public class FourChoiceQuiz : QuestionViewer<Question> {
 
@@ -60,6 +57,7 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
                 if (isCorrect) {
                     OnAnswered?.Invoke(true);
                 } else {
+                    base.TotalIncorrectCount++;
                     OnAnswered?.Invoke(false);
                 }
             });
@@ -68,9 +66,6 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
     }
 
     public override void GetData() {
-        //TODO :現在はダミーパス。結合時に遷移前のシーンから、問題データのパスを受け取るように変更する。
-        var path = "Assets/StreamingAssets/QuestionData/1/711bf95d-0374-4078-80ee-ad8503000fde.json"; // 大問定義情報が来る想定。
-        QuizData = LoadJSON<QuestionData>(path);
         base.CurrentQuestionData = LoadJSON<Question>(QuizData.quiz.questions[CurrentQuestionIndex]);
     }
 
@@ -147,10 +142,11 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
             QuestionImageObj.SetActive(false);
         }
 
+        base.correctness.Clear();
+
     }
 
     private void AnswerQuestionHandler(bool isCorrectedQuestion) {
-        
         if(currentAnswerCellIdx < AnswerOptions.Count - 1) { //まだ解答マスがある場合は次の解答マスへフォーカスを移動
             currentAnswerCellIdx++;
             correctness.Add(isCorrectedQuestion);
@@ -161,20 +157,20 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
             }
         } else { // 小問解答を終えた場合
             //TODO : 小問リザルト画面を表示
+            base.timer.PauseTimer();
+
             ResultModal.gameObject.SetActive(true);
             if(correctness.TrueForAll(x => x)) {
                 Debug.Log("正解");
                 SEAudioSource.PlayOneShot(clearSE);
-                ResultModal.gameObject.SetActive(true);
                 ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
-                NextButton.gameObject.SetActive(true);
+                NextQuestionButton.gameObject.SetActive(true);
                 RetryButton.gameObject.SetActive(false);
             } else {
                 Debug.Log("不正解");
                 SEAudioSource.PlayOneShot(gameoverSE);
-                ResultModal.gameObject.SetActive(true);
                 ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
-                NextButton.gameObject.SetActive(true);
+                NextQuestionButton.gameObject.SetActive(false);
                 RetryButton.gameObject.SetActive(true);
             }
         }
