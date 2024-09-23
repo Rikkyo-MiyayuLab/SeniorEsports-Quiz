@@ -1,116 +1,68 @@
-name: execute-unity-builds
+# 名前を付ける。これがGithubActions上に表示される
+name: Run the Windows build
 
+# タグ作成後に実行されるようにする
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "*"
 
 jobs:
   build:
-    name: ${{ matrix.targetPlatform }}
+    name: Run the Windows build
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        unity-editor-version: [2022.3.44f1]
-        unity-license-version: [2022.x]
-        node-version: [14.x]
-        root-project-path: [Unity]
-        targetPlatform:
-          - StandaloneOSX
-          - StandaloneWindows64
-
     steps:
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+      # リポジトリのチェックアウト
+      - name: Check out my unity project.
+        uses: actions/checkout@v4
 
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
-      # Cache Unity Library
+      # LFSファイルのキャッシュを取得する
+      - name: Restore LFS cache
+        uses: actions/cache@v3
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      # LFSファイルをPullする
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # タグ名を取得して$GITHUB_OUTPUTに保存しておく
+      - name: Set outputs
+        id: vars
+        run: echo "tag_name=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+
+      # Cache
       - uses: actions/cache@v3
-        id: cache-unity-library
         with:
-          key: ${{ runner.os }}-Unity-Library-${{ matrix.targetPlatform }}
-          path: |
-            ${{ matrix.root-project-path }}/Library
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            ${{ runner.os }}-Unity-Library-
+            Library-
 
-      # Cache Unity License
-      - uses: actions/cache@v3
-        id: cache-unity-license
-        with:
-          key: ${{ runner.os }}-Unity-License-${{ matrix.unity-license-version }}
-          path: |
-            ${{ matrix.root-project-path }}/Unity_v${{ matrix.unity-license-version }}.ulf
-            ${{ matrix.root-project-path }}/Unity_v${{ matrix.unity-editor-version }}.alf
-
-      # Request Unity Activation File
-      - name: Request manual activation file
-        id: getManualLicenseFile
-        uses: game-ci/unity-request-activation-file@v2
-        with:
-          unityVersion: ${{ matrix.unity-editor-version }}
-
-      # Activate Unity License
-      - name: Install node package, `unity-activate`
-        run: npm install -g unity-activate
-
-      - name: Activate The License
-        id: activateLicense
-        run: unity-activate -u "${{ secrets.UNITY_EMAIL }}" -p "${{ secrets.UNITY_PASSWORD }}" -k "${{ secrets.UNITY_AUTHENTICATOR_KEY }}" -o ${{ matrix.root-project-path }}/ "${{ steps.getManualLicenseFile.outputs.filePath }}"
-
-      - name: Read ulf
-        id: ulfRead
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ${{ matrix.root-project-path }}/Unity_v${{ matrix.unity-license-version }}.ulf
-
-      # Build
-      - name: Build
-        uses: game-ci/unity-builder@v2
+      # Unityプロジェクトのビルド
+      # 設定しない場合、buildフォルダに出力される
+      - name: Run the Windows build
+        uses: game-ci/unity-builder@v4
         env:
-          UNITY_LICENSE: ${{ steps.ulfRead.outputs.content }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          targetPlatform: ${{ matrix.targetPlatform }}
-          projectPath: ${{ matrix.root-project-path }}
-          buildName: "QuizGame"
-          buildPath: ${{ matrix.root-project-path }}/Builds
-          allowDirtyBuild: true
+          targetPlatform: StandaloneWindows64
+          unityVersion: 2022.3.44f1  # ここに使うUnityのバージョンを入れる
 
-      # Upload Build
-      - name: Upload Build
+      # 成果物をZIPにしてアップロードする
+      # タグ名をZIPファイル名に含める
+      - name: Upload the Windows Build
         uses: actions/upload-artifact@v3
         with:
-          name: Build-Results
-          path: ${{ matrix.root-project-path }}/Builds/
-
-      # Create Release
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.sha }} # Use commit hash as the tag name
-          release_name: "QuizGame Build - ${{ matrix.targetPlatform }}"
-          body: "Build for platform: ${{ matrix.targetPlatform }}."
-          draft: false
-          prerelease: false
-
-      # Upload Assets to Release
-      - name: Upload Build to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ matrix.root-project-path }}/Builds/
-          asset_name: "QuizGame_${{ matrix.targetPlatform }}.zip"
-          asset_content_type: application/zip
+          name: Build-${{ steps.vars.outputs.tag_name }}
+          path: build
