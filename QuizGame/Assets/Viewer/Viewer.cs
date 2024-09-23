@@ -59,11 +59,20 @@ public abstract class Viewer : MonoBehaviour {
     }
 
     protected void SetQuizInfo() {
+        DeleteQuizInfo();
         QuizTitle.text = QuizData.title;
         QuizDescription.text = QuizData.description;
         // 難易度表示パネルの星を設定
         for (int i = 0; i < QuizData.difficulty; i++) {
             DifficultyCounter.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
+    private void DeleteQuizInfo() {
+        QuizTitle.text = "";
+        QuizDescription.text = "";
+        foreach (Transform child in DifficultyCounter) {
+            child.gameObject.SetActive(false);
         }
     }
 

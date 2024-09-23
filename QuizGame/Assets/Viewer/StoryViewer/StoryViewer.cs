@@ -57,6 +57,7 @@ public class StoryViewer : Viewer {
     private int currentSceneIndex = 0;
     private StoryDataInterface.Scene currentScene;
     private AudioSource TypingSEPlayer;
+    private StoryType storyType;
 
     
     
@@ -72,8 +73,12 @@ public class StoryViewer : Viewer {
         string storyID = PlayerPrefs.GetString("StoryId");
         storyFile = $"Assets/StreamingAssets/StoryData/{storyID}.json";
         data = LoadJSON<StoryData>(storyFile);
-        base.QuizData = LoadJSON<QuestionData>(data.quiz);
-        base.SetQuizInfo();
+        storyType = data.StoryType;
+        
+        if(storyType == StoryType.Quiz) {
+            base.QuizData = LoadJSON<QuestionData>(data.quiz);
+            base.SetQuizInfo();
+        }
 
         scenes = data.Scenes;
         currentScene = scenes[currentSceneIndex];
@@ -92,14 +97,18 @@ public class StoryViewer : Viewer {
             if (currentSceneIndex < scenes.Count) { //次のシーンがある場合
                 StartCoroutine(ChangeScene(currentSceneIndex));
             } else {// ストーリーが終わった場合
-            // TODO: 問題用ストーリー or 解説用ストーリーの判別
-                // 問題モーダルを表示
-                base.QuizModalCanvas.gameObject.SetActive(true);
-                base.AudioPlayer.PlayOneShot(base.ModalDisplaySE);
-                base.NextButton.onClick.AddListener(() => {
-                    MoveQuizViewer(base.QuizData.type);
-                });
-                
+                if(storyType == StoryType.Quiz) {
+                    // 問題モーダルを表示
+                    base.QuizModalCanvas.gameObject.SetActive(true);
+                    base.AudioPlayer.PlayOneShot(base.ModalDisplaySE);
+                    base.NextButton.onClick.AddListener(() => {
+                        MoveQuizViewer(base.QuizData.type);
+                    });
+                } else if(storyType == StoryType.Explanation) {
+                    // エリア画面へ戻る
+                    string area = PlayerPrefs.GetString("CurrentArea");
+                    base.TransitionManager.Transition(area, Transition, TransitionDuration);
+                }
             }
         };
     }

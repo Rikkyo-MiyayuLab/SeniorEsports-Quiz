@@ -16,6 +16,8 @@ namespace StoryDataInterface
         /// </summary>
         public string quiz;
 
+        public StoryType StoryType;
+
         /// <summary>
         /// ストーリーの各シーンのリスト
         /// </summary>
@@ -110,5 +112,11 @@ namespace StoryDataInterface
         Modal,
         Inline,
         None
+    }
+
+    public enum StoryType
+    {
+        Quiz,
+        Explanation
     }
 }

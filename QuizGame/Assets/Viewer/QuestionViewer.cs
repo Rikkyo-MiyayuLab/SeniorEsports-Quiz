@@ -110,7 +110,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
         });
 
         MoveEndStoryButton.onClick.AddListener(() => {
-            PlayerPrefs.SetString("StoryID", QuizData.endStory);
+            PlayerPrefs.SetString("StoryId", QuizData.endStory);
             TransitionManager.Transition("StoryViewer", Transition, TransitionDuration);
         });
     }

@@ -10,7 +10,7 @@
           "ImageSrc": "20191124_elder-male",
           "ImageGUID": "a787f84bb104c314d958817ec73797ac",
           "Position": 0,
-          "Dialogue": "やぁ"
+          "Dialogue": "やぁ。これはDev-2です。"
         }
       ],
       "TextDisplayMode": 0,
@@ -105,5 +105,5 @@
     }
   ],
   "quiz": "Assets/StreamingAssets/QuestionData/4/bd73210a-ee5e-4bcf-9512-2f95d9e5eded.json",
-  "StoryType": 0
+  "StoryType": 1
 }
