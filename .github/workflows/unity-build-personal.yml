@@ -58,6 +58,7 @@ jobs:
         with:
           targetPlatform: StandaloneWindows64
           unityVersion: 2022.3.44f1  # ここに使うUnityのバージョンを入れる
+          projectPath: BuildTest  # ここでUnityプロジェクトがあるパスを指定
 
       # 成果物をZIPにしてアップロードする
       # タグ名をZIPファイル名に含める
