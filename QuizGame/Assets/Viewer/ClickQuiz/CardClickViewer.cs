@@ -58,9 +58,6 @@ public class CardClickViewer : QuestionViewer<Question> {
 
 
     public override void GetData() {
-        //TODO :現在はダミーパス。結合時に遷移前のシーンから、問題データのパスを受け取るように変更する。
-        var path = "Assets/StreamingAssets/QuestionData/4/bd73210a-ee5e-4bcf-9512-2f95d9e5eded.json"; // 大問定義情報が来る想定。
-        QuizData = LoadJSON<QuestionData>(path);
         base.CurrentQuestionData = LoadJSON<Question>(QuizData.quiz.questions[CurrentQuestionIndex]);
         rowSize = base.CurrentQuestionData.row;
         columnSize = base.CurrentQuestionData.column;
@@ -164,14 +161,19 @@ public class CardClickViewer : QuestionViewer<Question> {
             SEAudioSource.PlayOneShot(clearSE);
             ResultModal.gameObject.SetActive(true);
             ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
-            NextButton.gameObject.SetActive(true);
+            NextQuestionButton.gameObject.SetActive(true);
             RetryButton.gameObject.SetActive(false);
+
+            base.timer.PauseTimer();
         } else if(correctness.Count(b => b == false) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == false)) { // すべての不正解カードをクリックした場合は小問不正解として結果画面を表示
             SEAudioSource.PlayOneShot(gameoverSE);
             ResultModal.gameObject.SetActive(true);
             ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
-            NextButton.gameObject.SetActive(true);
+            NextQuestionButton.gameObject.SetActive(false);
             RetryButton.gameObject.SetActive(true);
+
+            base.TotalIncorrectCount++;
+            base.timer.PauseTimer();
         }
     }
 

@@ -25,10 +25,22 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
     public Button NextQuestionButton;
     public GameObject Timer;
     public Button PoseButton;
+    public Canvas QuizStaticsModal;
+    public TextMeshProUGUI TotalCorrectCounter;
+    public TextMeshProUGUI TotalTime;
+    public TextMeshProUGUI ScoreText;
+    public Button MoveEndStoryButton;
+    [Header("ゲーム用SE設定")]
+    public AudioClip ClearSE;
+    public AudioClip GameOverSE;
+    protected int TotalIncorrectCount = 0;
+    protected int TotalCorrectCount = 0;
+    protected double TotalElapsedSec = 0.0;
     protected QuestionType CurrentQuestionData; //カレントの小問データ
     protected List<bool> correctness = new List<bool>();
     protected double remainingSeconds;
     protected Timer timer;
+    protected Action OnTimeOut;
     
 
     public void Init() {
@@ -37,6 +49,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
         Render();
         //timer.StopTimer();
         timer.seconds = QuizData.limits;
+        timer.ResumeTimer();
         timer.StartTimer();
     }
     public abstract void Dispose();
@@ -46,7 +59,20 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
     
     protected virtual void Start() {
         base.Start();
+        string quizPath = PlayerPrefs.GetString("QuizPath");
+        QuizData = LoadJSON<QuestionData>(quizPath);
+        QuizStaticsModal.gameObject.SetActive(false);
+
         timer = Timer.GetComponent<Timer>();
+
+        OnTimeOut += () => {
+            base.AudioPlayer.PlayOneShot(GameOverSE);
+            ResultModal.gameObject.SetActive(true);
+            ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
+            NextQuestionButton.gameObject.SetActive(false);
+            RetryButton.gameObject.SetActive(true);
+        };
+
         PoseButton.onClick.AddListener(() => {
             timer.PauseTimer();
             QuizModalCanvas.gameObject.SetActive(true);
@@ -61,18 +87,39 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
 
         RetryButton.onClick.AddListener(() => {
             ResultModal.gameObject.SetActive(false);
-            //TODO : 現在の小問をリトライする処理
+            Init();
         });
 
         NextQuestionButton.onClick.AddListener(() => {
             ResultModal.gameObject.SetActive(false);
+            // 経過時間を加算
+            TotalElapsedSec += QuizData.limits - timer.GetRemainingSeconds();
+            TotalCorrectCount++;
+            Debug.Log("CurrentTotalElapsedSec: " + TotalElapsedSec);
+
             if(CurrentQuestionIndex < QuizData.quiz.questions.Count - 1) { // 次問遷移
                 NextQuestion();
             } else { // 大問終了
-                PlayerPrefs.SetString("StoryID", QuizData.endStory);
-                TransitionManager.Transition("StoryViewer", Transition, TransitionDuration);
-            }
+                //結果統計モーダル表示
+                QuizStaticsModal.gameObject.SetActive(true);
+                // IncorrectCounter.text = TotalIncorrectCount.ToString();
+                TotalCorrectCounter.text = TotalCorrectCount.ToString();
+                TotalTime.text = timer.DisplayFormattedTime(TotalElapsedSec);
+                // TODO:スコア計算
+            }   
         });
+
+        MoveEndStoryButton.onClick.AddListener(() => {
+            PlayerPrefs.SetString("StoryID", QuizData.endStory);
+            TransitionManager.Transition("StoryViewer", Transition, TransitionDuration);
+        });
+    }
+
+    protected void Update() {
+        if(timer.GetRemainingSeconds() <= 0) {
+            timer.StopTimer();
+            OnTimeOut?.Invoke();
+        }
     }
 
     protected void NextQuestion() {
