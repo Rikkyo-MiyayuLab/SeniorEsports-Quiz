@@ -47,6 +47,7 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
 
         GetData();
         Init();
+
         // 解答用ボタンにイベントリスナーを設定
         List<Option> options = AnswerOptions[currentAnswerCellIdx]; // currentAnswerCellIdx に該当するオプションのリストを取得
         for (int i = 0; i < AnswerButtonObjects.Count; i++) {
@@ -67,16 +68,28 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
 
     public override void GetData() {
         base.CurrentQuestionData = LoadJSON<Question>(QuizData.quiz.questions[CurrentQuestionIndex]);
+        
+        base.CurrentBGM = Resources.Load<AudioClip>(base.CurrentQuestionData.bgm);
+        base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
+
     }
 
     public override void Render() {
-        base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
         base.BackgroundImageObj.sprite = base.CurrentBackground;
+        // BGMの設定（前と同じ場合はそのまま）
+        if(base.AudioPlayer.clip != base.CurrentBGM) {
+            base.AudioPlayer.clip = base.CurrentBGM;
+            base.AudioPlayer.Play();
+        }
 
         if(base.CurrentQuestionData.questionImage != null) {
             QuestionImageObj.SetActive(true);
-            QuestionImg = Resources.Load<Sprite>(base.CurrentQuestionData.questionImage);
+            QuestionImg = Resources.Load<Sprite>(base.CurrentQuestionData.questionImage.src);
             QuestionImageObj.GetComponent<SpriteRenderer>().sprite = QuestionImg;
+            QuestionImageObj.transform.position = new Vector3(base.CurrentQuestionData.questionImage.pos[0], base.CurrentQuestionData.questionImage.pos[1], 0);
+            QuestionImageObj.transform.localScale = new Vector3(base.CurrentQuestionData.questionImage.scale[0], base.CurrentQuestionData.questionImage.scale[1], base.CurrentQuestionData.questionImage.scale[2]);
+            QuestionImageObj.GetComponent<SpriteRenderer>().sortingOrder = 1; // 画面上部に表示する
+
         } else {
             QuestionImageObj.SetActive(false);
         }
@@ -101,7 +114,7 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
         Grids = questionData.grids; 
         GridsArea.transform.localScale = new Vector3(1, 1, 1);
         GridsArea.transform.localPosition = new Vector3(questionData.gridsPos[0], questionData.gridsPos[1], 0);
-        GridsArea.transform.localScale = new Vector3(questionData.gridsScale, questionData.gridsScale, 1);
+        GridsArea.transform.localScale = new Vector3(questionData.gridsScale[0], questionData.gridsScale[1], questionData.gridsScale[2]);
         for (int i = 0; i < Grids.Count; i++) {
             List<GameObject> gridObjects = new List<GameObject>();
             for (int j = 0; j < Grids[i].Count; j++) {

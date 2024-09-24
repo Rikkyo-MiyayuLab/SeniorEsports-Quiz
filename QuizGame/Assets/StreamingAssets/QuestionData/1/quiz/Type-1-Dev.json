@@ -1,0 +1,64 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "",
+        "options": [
+          {
+            "text": "25",
+            "correct": false
+          },
+          {
+            "text": "37",
+            "correct": false
+          },
+          {
+            "text": "30",
+            "correct": true
+          },
+          {
+            "text": "13",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -2.38418579E-07,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 0.0,
+  "gridsPos": [
+    -7.717618,
+    24.2532558,
+    0.0
+  ],
+  "gridsScale": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "questionId": "Type-1-Dev",
+  "bgm": "実験",
+  "backgroundImage": "TitleMode/modebuttonback",
+  "questionImage": {
+    "src": "QuestionImages/182642",
+    "pos": [
+      -0.0276185274,
+      2.49325562,
+      0.0
+    ],
+    "scale": [
+      3.221047,
+      2.92510939,
+      1.0
+    ]
+  }
+}

@@ -21,21 +21,30 @@ public class Point {
 
 public class ClickEditor : QuestionEditor {
     [Header("JSON情報の追加")]
+    [Tooltip("問題IDを指定してください。他の問題IDと同じものを指定すると上書きされます。")]
+    public string questionId;
     [Tooltip("正解の画像を指定してください。")]
     public Sprite correctImage;
     [Tooltip("不正解の画像を指定してください。")]
     public Sprite incorrectImage;
     [Tooltip("不正解の画像上のポイントを指定してください。")]
     public List<Point> points = new List<Point>();
+    [Tooltip("BGMを指定してください。")]
+    public AudioClip BGM;
 
     [Header("Editor Settings")]
     [SerializeField]
-    private SpriteRenderer correctImageObject;   // 正解画像を表示するオブジェクト
+    private Image correctImageObject;   // 正解画像を表示するオブジェクト
     [SerializeField]
-    private SpriteRenderer incorrectImageObject; // 不正解画像を表示するオブジェクト
+    private Image incorrectImageObject; // 不正解画像を表示するオブジェクト
 
     // インスペクタで画像が変更されたときに自動的にシーンビューに反映
     private void OnValidate() {
+        // 背景画像が設定されている場合、背景画像を表示
+        if (base.backgroundImage != null && base.backgroundImageObject != null) {
+            base.backgroundImageObject.sprite = base.backgroundImage;
+        }
+
         // 正解画像が変更された場合
         if (correctImageObject != null && correctImage != null) {
             correctImageObject.sprite = correctImage;
@@ -73,7 +82,7 @@ public class ClickEditor : QuestionEditor {
     public override void CreateQuestionData() {
         var uuid = Guid.NewGuid().ToString();
         string folderPath = $"{DevConstants.QuestionDataFolder}/{templateType}/quiz";
-        string fileName = $"{uuid}.json"; 
+        string fileName = $"{questionId}.json"; 
 
         // エディタ上で設定した情報を元に、JSONデータを構築
         // 間違いポイントのシリアライズ
@@ -88,31 +97,35 @@ public class ClickEditor : QuestionEditor {
         }
 
         // 問題画像のRect情報を記録
-        var correctImgRect = correctImageObject.bounds;
-        var incorrectImgRect = incorrectImageObject.bounds;
-        Question quizData = new Question {
+        var correctImgRect = correctImageObject.GetComponent<RectTransform>();
+        var incorrectImgRect = incorrectImageObject.GetComponent<RectTransform>();
+
+        // 問題画像のRect情報を記録
+        var quizData = new Question {
             correct = new CorrectImage {
-                src = correctImage != null ? base.GetSpritePath(correctImage) : "",
+                src = correctImage!= null? base.GetSpritePath(correctImage) : "",
                 rect = new ImgRect {
-                    x = correctImgRect.center.x,
-                    y = correctImgRect.center.y,
-                    z = correctImgRect.center.z,
-                    width = correctImgRect.size.x,
-                    height = correctImgRect.size.y,
+                    x = correctImgRect.anchoredPosition.x,
+                    y = correctImgRect.anchoredPosition.y,
+                    z = 0.0f,
+                    width = correctImgRect.rect.width,
+                    height = correctImgRect.rect.height
                 }
                 
             },
             incorrect = new IncorrectImage {
-                src = incorrectImage != null ? base.GetSpritePath(incorrectImage) : "",
+                src = incorrectImage!= null? base.GetSpritePath(incorrectImage) : "",
                 points = pointsData,
                 rect = new ImgRect {
-                    x = incorrectImgRect.center.x,
-                    y = incorrectImgRect.center.y,
-                    z = incorrectImgRect.center.z,
-                    width = incorrectImgRect.size.x,
-                    height = incorrectImgRect.size.y,
+                    x = incorrectImgRect.anchoredPosition.x,
+                    y = incorrectImgRect.anchoredPosition.y,
+                    z = 0.0f,
+                    width = incorrectImgRect.rect.width,
+                    height = incorrectImgRect.rect.height
                 }
-            }
+            },
+            backgroundImage = base.GetResourcePath(base.backgroundImage),
+            bgm = base.GetResourcePath(BGM)
         };
 
         // JSONにシリアライズ

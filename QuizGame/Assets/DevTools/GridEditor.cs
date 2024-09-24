@@ -15,6 +15,8 @@ using QuestionDevTool;
 /// </summary>
 public class GridEditor : QuestionEditor {
     [Header("JSON情報")]
+    [Tooltip("問題IDを入力してください。他の問題と同じIDは使用できません。")]
+    public string questionId;
     [Tooltip("問題表示エリアに表示したい画像やイラストを指定できます。")]
     public Sprite questionImage;
     /** セルのプレハブ */
@@ -29,23 +31,31 @@ public class GridEditor : QuestionEditor {
     /** セル間のマージン*/
     [Tooltip("セル間のマージンを指定してください。")]
     public float margin = 3.0f;
+    [Tooltip("BGMを指定してください。")]
+    public AudioClip BGM;
+    [Tooltip("マスの全体位置(自動で算出されます)")]
+    public Vector3 gridPosition;
     [Header("Editor Settings")]
-    [SerializeField]
-    private GameObject GridParent;
+    public GameObject GridParent;
     [SerializeField]
     private SpriteRenderer questionImageObject;
     private List<List<Cell>> gridCells = new List<List<Cell>>();
     private List<List<GameObject>> cells = new List<List<GameObject>>();
 
-
     private void OnValidate() {
         // 背景画像が設定されている場合、背景画像を表示
-        if (backgroundImage != null) {
+        if (base.backgroundImage != null && base.backgroundImageObject != null) {
             base.backgroundImageObject.sprite = base.backgroundImage;
         }
         if(questionImage != null) {
             questionImageObject.sprite = questionImage;
+            questionImageObject.gameObject.SetActive(true);
+        } else {
+            questionImageObject.gameObject.SetActive(false);
         }
+        
+        GridParent.transform.position = gridPosition;
+
     }
 
     public override void Initialize() {
@@ -82,6 +92,7 @@ public class GridEditor : QuestionEditor {
             }
             cells.Add(row);
         }
+        gridPosition = GridParent.transform.position;
     }
 
     public override void Clear() {
@@ -101,9 +112,15 @@ public class GridEditor : QuestionEditor {
 
 
     public override void CreateQuestionData() {
-        var uuid = Guid.NewGuid().ToString();
+        // Ensure that the grid has been generated
+        if (cells == null || cells.Count == 0) {
+            Debug.LogError("セルが初期化されていないため、データを作成できません。まずグリッドを生成してください。");
+            return;
+        }
+
+        //var uuid = Guid.NewGuid().ToString();
         string folderPath = $"{DevConstants.QuestionDataFolder}/{templateType}/quiz";
-        string fileName = $"{uuid}.json";
+        string fileName = $"{questionId}.json";
 
         // Question データを作成
         Question questionData = new Question {
@@ -112,25 +129,48 @@ public class GridEditor : QuestionEditor {
 
         // 各行のデータを作成して questionData に追加
         for (int i = 0; i < rows; i++) {
+            // Ensure the row exists
+            if (i >= cells.Count) {
+                Debug.LogError($"セルの行数が {i} に達しましたが、想定される行数よりも少ないです。グリッドを再生成してください。");
+                continue;
+            }
+
             List<Cell> rowCells = new List<Cell>(); // 行ごとにリストを作成
             for (int j = 0; j < columns; j++) {
+                // Ensure the column exists
+                if (j >= cells[i].Count) {
+                    Debug.LogError($"セルの列数が {j} に達しましたが、想定される列数よりも少ないです。グリッドを再生成してください。");
+                    continue;
+                }
+
                 var cell = cells[i][j].GetComponent<GridCell>().gridData;
                 Debug.Log("GridData: " + cell.text);
                 rowCells.Add(cell); // 行のリストにセルを追加
             }
             questionData.grids.Add(rowCells); // 行データを questionData に追加
         }
+
         var data = new Question {
             grids = questionData.grids,
-            questionId = uuid,
-            backgroundImage = base.GetSpritePath(backgroundImage),
-            questionImage = base.GetSpritePath(questionImage)
+            gridsPos = new float[] { gridPosition.x, gridPosition.y, gridPosition.z },
+            cellMargin = margin,
+            gridsScale = new float[] { GridParent.transform.localScale.x, GridParent.transform.localScale.y, GridParent.transform.localScale.z },
+            bgm = base.GetResourcePath(BGM),
+            questionId = questionId,
+            backgroundImage = base.GetResourcePath(backgroundImage),
+            questionImage = new QuestionImage {
+                src = base.GetResourcePath(questionImage),
+                pos = new float[] { questionImageObject.transform.position.x, questionImageObject.transform.position.y, questionImageObject.transform.position.z },
+                scale = new float[] { questionImageObject.transform.localScale.x, questionImageObject.transform.localScale.y, questionImageObject.transform.localScale.z }
+            }
         };
+
         // JSONにシリアライズ
         Debug.Log("QuestionData: " + questionData.grids[0][0].text);
         
         base.SaveAsJSON(folderPath, fileName, data);
     }
+
 }
 
 
@@ -143,12 +183,18 @@ public class GridEditorGUI : EditorGUI<GridEditor> {
     public override void CustomInspectorGUI() {
         GUILayout.Space(20);
         if(GUILayout.Button("グリッド再生成")) {
-            editor.Initialize();
+            base.editor.Initialize();
         }
         // グリッド一括クリアボタン
         if (GUILayout.Button("グリッドを一括クリア")) {
             base.editor.Clear();
             Debug.Log("グリッドを一括クリアしました");
         }
+    }
+
+
+
+    protected override void EditorUpdate() {
+        base.editor.gridPosition = base.editor.GridParent.transform.position;
     }
 }

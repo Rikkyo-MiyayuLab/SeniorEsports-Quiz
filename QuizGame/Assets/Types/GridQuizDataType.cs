@@ -12,10 +12,11 @@ namespace PlayType1Interface {
         public List<List<Cell>> grids; // 2次元リストでグリッド構造を保持
         public float cellMargin; // セル間のマージン
         public float[] gridsPos; // グリッド全体の位置
-        public float gridsScale; // グリッド全体のスケール
+        public float[] gridsScale; // グリッド全体のスケール [x, y, z]
         public string questionId;
+        public string bgm; // BGM
         public string backgroundImage; //TODO:各タイプの共通問題部分の定義をつくり継承する
-        public string questionImage; // タイプ３用　問題画像
+        public QuestionImage questionImage; // タイプ３用　問題画像
     }
 
     [Serializable]
@@ -45,5 +46,13 @@ namespace PlayType1Interface {
         public string text;
         [Tooltip("選択肢の正誤情報。✅を入れると正解の選択肢になります。これは１つだけ設定してください。")]
         public bool correct;
+    }
+
+    [Serializable]
+    public class QuestionImage
+    {
+        public string src;
+        public float[] pos;
+        public float[] scale;
     }
 }

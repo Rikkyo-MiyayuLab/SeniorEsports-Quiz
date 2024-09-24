@@ -9,12 +9,13 @@ namespace PlayType4Interface
     public class Question
     {
         public List<Card> cards;  // カードのリスト
+        public string questionId; // 問題ID
+        public string bgm; // BGM
         public int row;  // 格子の縦サイズ
         public int column;  // 格子の横サイズ
-        public QuizType quizType;  // 問題のタイプ
         public string backgroundImage;  // 背景画像
         public float margin; // カード間のマージン
-        public int pairSize; // ペアの数（pairモードのみ）
+        public int pairSize; // 必要なペアの枚数（単一のカードをクリックしてクリアの場合は１）
     }
 
     [System.Serializable]
@@ -25,12 +26,5 @@ namespace PlayType4Interface
         public string audioSrc;  // クリック時に鳴らす音（オプション）
         public bool isCorrect;  // singleモードで正解のカードかどうか（オプション）
         public int displayCount;  // このカードを何枚表示させるか（オプション)
-    }
-
-    [System.Serializable]
-    public enum QuizType
-    {
-        pair,  // 2つのペアを見つける問題
-        single  // ある1つのカードを見つける問題
     }
 }

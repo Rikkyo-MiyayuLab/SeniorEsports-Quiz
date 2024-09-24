@@ -26,6 +26,8 @@ public class CardEditor : QuestionEditor {
 
     }
     [Header("JSON情報の追加")]
+    [Tooltip("問題IDを指定してください。他の問題と同じIDを指定すると上書きされます。")]
+    public string questionId;
     /** セルのプレハブ */
     [Tooltip("カードのプレハブ（素材）を指定してください。")]
     public GameObject prefab;
@@ -38,14 +40,21 @@ public class CardEditor : QuestionEditor {
     public int columnSize;
     [Tooltip("カード間のマージンを指定してください。")]
     public float margin;
-    [Tooltip("問題のタイプを指定してください。")]
-    public QuizType quizType;
     [Tooltip("問題のタイプがpairの場合、ペアの数を指定してください。")]
     public int pairCount;
+    [Tooltip("ゲーム内BGMを設定できます。")]
+    public AudioClip BGM;
 
     [SerializeField]
     private GameObject CardArea;
     private List<GameObject> cardObjs;
+
+    private void OnValidate() {
+        // 背景画像が設定されている場合、背景画像を表示
+        if (base.backgroundImage != null && base.backgroundImageObject != null) {
+            base.backgroundImageObject.sprite = base.backgroundImage;
+        }
+    }
     
     public override void Initialize() {
         cardObjs = new List<GameObject>();
@@ -142,16 +151,19 @@ public class CardEditor : QuestionEditor {
     }
 
     public override void CreateQuestionData() {
-        var uuid = Guid.NewGuid().ToString();
         string folderPath = $"{DevConstants.QuestionDataFolder}/{templateType}/quiz";
-        string fileName = $"{uuid}.json";
+        string fileName = $"{questionId}.json";
 
         // グリッドの情報をJSONに変換して保存
         Question quizData = new Question {
             cards = new List<Card>(),
             row = rowSize,
             column = columnSize,
-            quizType = quizType
+            questionId = questionId,
+            backgroundImage = base.GetResourcePath(base.backgroundImage),
+            margin = margin,
+            pairSize = pairCount,
+            bgm = base.GetResourcePath(BGM),
         };
 
         foreach (CardObject cardData in cards) {
