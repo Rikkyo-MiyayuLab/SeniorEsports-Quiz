@@ -70,6 +70,8 @@ namespace QuestionDevTool
             streamWriter.Close();
             // Unityにアセットの変更を認識させる
             AssetDatabase.Refresh();
+
+            Application.OpenURL("file:///" + folderPath);
         }
 
         /// <summary>
@@ -107,12 +109,41 @@ namespace QuestionDevTool
                 if (sprite != null) {
                     // Spriteのテクスチャアセットのパスを取得
                     string assetPath = AssetDatabase.GetAssetPath(sprite.texture);
+                    // 拡張子を除いたパスを取得
+                    assetPath = Path.GetDirectoryName(assetPath) + "/" + Path.GetFileNameWithoutExtension(assetPath);
                     return assetPath;
                 }
         #else
                 Debug.LogError("この機能はエディタのみで使用可能です。");
         #endif
             return null;
+        }
+
+        /// <summary>
+        /// Resources内からの相対パスを取得する.
+        /// </summary>
+        protected string GetResourcePath(UnityEngine.Object obj) {
+            if (obj == null) {
+                Debug.LogError("オブジェクトがnullです。");
+                return null;
+            }
+
+            // アセットのパスを取得
+            string assetPath = AssetDatabase.GetAssetPath(obj);
+            
+            // Resourcesフォルダがパスに含まれているか確認
+            int resourcesIndex = assetPath.IndexOf("Resources/");
+            if (resourcesIndex == -1 ) {
+                Debug.LogError("指定されたオブジェクトはResourcesフォルダ内にありません: " + assetPath);
+                return null;
+            }
+
+            // Resourcesフォルダ以降のパスを取得し、拡張子を削除
+            string relativePath = assetPath.Substring(resourcesIndex + "Resources/".Length);
+            relativePath = Path.ChangeExtension(relativePath, null); // 拡張子を除去
+            
+            return relativePath;
+
         }
     }
 
@@ -125,6 +156,8 @@ namespace QuestionDevTool
         
         private void OnEnable() {
             editor = (T)target;
+
+            EditorApplication.update += EditorUpdate;
         }
 
         public override void OnInspectorGUI() {
@@ -143,6 +176,7 @@ namespace QuestionDevTool
         /// </summary>
         public abstract void CustomInspectorGUI();
 
+        protected virtual void EditorUpdate() {}
 
     }
 }

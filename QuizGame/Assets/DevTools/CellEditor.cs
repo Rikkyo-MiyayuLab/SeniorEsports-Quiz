@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 #endif
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using PlayType1Interface;
 
@@ -14,7 +15,7 @@ public class GridCell : MonoBehaviour {
 
     public GameObject[] optionObjects; 
 
-    public int fontSize = 24; // フォントサイズを指定
+    public int fontSize = 8; // フォントサイズを指定
 
     // インスペクタで値を変更したときに反映させる
     private void OnValidate() {
@@ -47,16 +48,15 @@ public class GridCell : MonoBehaviour {
     }
 
     private void UpdateOptionsInScene() {
-        if (gridData.options != null && optionObjects != null && optionObjects.Length == gridData.options.Count) {
+        if (gridData.options != null && optionObjects != null) {
             for (int i = 0; i < gridData.options.Count; i++) {
                 // 特定のオブジェクトにオプションのテキストを反映
-                var optionText = optionObjects[i].GetComponentInChildren<TextMeshPro>(); // TextMeshProがアタッチされている前提
+                var optionText = optionObjects[i].GetComponentInChildren<TextMeshProUGUI>(); // TextMeshProがアタッチされている前提
                 if (optionText != null) {
                     optionText.text = gridData.options[i].text;
+                    Debug.Log("optionText.text: " + optionText.text);
                 }
             }
-        } else if (gridData.options.Count != optionObjects.Length) {
-            Debug.LogWarning("オプションの数と対象オブジェクトの数が一致していません");
         }
     }
 
