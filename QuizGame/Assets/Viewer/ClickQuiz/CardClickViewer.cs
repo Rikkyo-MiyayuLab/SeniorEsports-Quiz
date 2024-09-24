@@ -62,6 +62,7 @@ public class CardClickViewer : QuestionViewer<Question> {
         rowSize = base.CurrentQuestionData.row;
         columnSize = base.CurrentQuestionData.column;
         BackgroundImageObj.sprite = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
+        base.CurrentBGM = Resources.Load<AudioClip>(base.CurrentQuestionData.bgm);
         margin = base.CurrentQuestionData.margin;
         PairSize = base.CurrentQuestionData.pairSize;
         // カードの情報を設定
@@ -84,6 +85,12 @@ public class CardClickViewer : QuestionViewer<Question> {
         // 背景画像を設定する
         base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
         BackgroundImageObj.sprite = base.CurrentBackground;
+
+        // BGMの設定（前と同じ場合はそのまま）
+        if(base.AudioPlayer.clip != base.CurrentBGM) {
+            base.AudioPlayer.clip = base.CurrentBGM;
+            base.AudioPlayer.Play();
+        }
 
         // Grid Layoutコンポーネントに設定された行数、列数、マージンを渡す
         var grid = CardArea.GetComponent<GridLayoutGroup>();
