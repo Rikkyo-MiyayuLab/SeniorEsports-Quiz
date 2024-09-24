@@ -2,23 +2,81 @@
   "grids": [
     [
       {
+        "answerGrid": false,
+        "text": "問",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -2.38418579E-07,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      },
+      {
+        "answerGrid": false,
+        "text": "問",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -2.38418579E-07,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      },
+      {
+        "answerGrid": false,
+        "text": "問",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -2.38418579E-07,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ],
+    [
+      {
+        "answerGrid": false,
+        "text": "問",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -2.38418579E-07,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      },
+      {
         "answerGrid": true,
         "text": "",
         "options": [
           {
-            "text": "25",
-            "correct": false
-          },
-          {
-            "text": "37",
-            "correct": false
-          },
-          {
-            "text": "30",
+            "text": "正解",
             "correct": true
           },
           {
-            "text": "13",
+            "text": "不正解",
+            "correct": false
+          },
+          {
+            "text": "不正解",
+            "correct": false
+          },
+          {
+            "text": "不正解",
             "correct": false
           }
         ],
@@ -31,14 +89,72 @@
         ],
         "prefabName": "SampleCell",
         "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      },
+      {
+        "answerGrid": false,
+        "text": "問",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -2.38418579E-07,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ],
+    [
+      {
+        "answerGrid": false,
+        "text": "問",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -2.38418579E-07,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      },
+      {
+        "answerGrid": false,
+        "text": "問",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -2.38418579E-07,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      },
+      {
+        "answerGrid": false,
+        "text": "問",
+        "options": [],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          -2.38418579E-07,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
       }
     ]
   ],
-  "cellMargin": 0.0,
+  "cellMargin": 1.5,
   "gridsPos": [
-    -7.717618,
-    24.2532558,
-    0.0
+    -12.8976183,
+    27.343256,
+    -0.0458166562
   ],
   "gridsScale": [
     1.0,
@@ -46,17 +162,17 @@
     1.0
   ],
   "questionId": "Type-1-Dev",
-  "bgm": "実験",
-  "backgroundImage": "TitleMode/modebuttonback",
+  "bgm": "terial_Mystery_Detective",
+  "backgroundImage": null,
   "questionImage": {
-    "src": "QuestionImages/182642",
+    "src": null,
     "pos": [
       -0.0276185274,
-      2.49325562,
+      2.43205571,
       0.0
     ],
     "scale": [
-      3.221047,
+      5.752897,
       2.92510939,
       1.0
     ]

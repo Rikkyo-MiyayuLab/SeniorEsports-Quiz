@@ -71,12 +71,11 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
 
     public override void Render() {
         // 背景画像の設定
-        // 背景画像を設定する
         base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
         base.BackgroundImageObj.sprite = base.CurrentBackground;
         
         // BGMの設定（前と同じ場合はそのまま）
-        if(base.CurrentBGM != null && base.AudioPlayer.clip != base.CurrentBGM) {
+        if (base.CurrentBGM != null && base.AudioPlayer.clip != base.CurrentBGM) {
             base.AudioPlayer.clip = base.CurrentBGM;
             base.AudioPlayer.Play();
         }
@@ -94,12 +93,22 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
         incorrectImageObj.GetComponent<RectTransform>().sizeDelta = new Vector2(inCorrectImgData.rect.width, inCorrectImgData.rect.height);
         
         // 解答用画像上のポイントの設定
+        RectTransform incorrectImgRect = incorrectImageObj.GetComponent<RectTransform>();
+        Vector2 incorrectImgSize = incorrectImgRect.sizeDelta;
+
         foreach(var point in inCorrectImgData.points) {
             GameObject pointObj = new GameObject("ClickPoint");
             RectTransform rect = pointObj.AddComponent<RectTransform>();
             rect.SetParent(inCorrectImgArea.transform, false);
-            rect.anchoredPosition = new Vector2(point.x, point.y);
-            rect.sizeDelta = new Vector2(point.width, point.height);
+
+            // 画像のスケールに合わせてポイントの位置とサイズを補正
+            float relativeX = point.x / inCorrectImgData.rect.width * incorrectImgSize.x;
+            float relativeY = point.y / inCorrectImgData.rect.height * incorrectImgSize.y;
+            float relativeWidth = point.width / inCorrectImgData.rect.width * incorrectImgSize.x;
+            float relativeHeight = point.height / inCorrectImgData.rect.height * incorrectImgSize.y;
+
+            rect.anchoredPosition = new Vector2(relativeX, relativeY);
+            rect.sizeDelta = new Vector2(relativeWidth, relativeHeight);
 
             Image pointImage = pointObj.AddComponent<Image>();
             pointImage.color = Color.white;
@@ -108,7 +117,7 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
             Button button = pointObj.AddComponent<Button>();
             button.onClick.AddListener(() => {
                 base.AudioPlayer.PlayOneShot(correctSE);
-            
+
                 Outline outline = pointObj.AddComponent<Outline>();
                 outline.effectColor = Color.red;
                 outline.effectDistance = new Vector2(1, 1);
@@ -129,6 +138,7 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
             ClickPoints.Add(pointObj);
         }
     }
+
 
     void Update() {
         if (Input.GetMouseButtonDown(0)) {

@@ -1,0 +1,64 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "options": [
+          {
+            "text": "29",
+            "correct": false
+          },
+          {
+            "text": "30",
+            "correct": true
+          },
+          {
+            "text": "20",
+            "correct": false
+          },
+          {
+            "text": "25",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          4.172325E-07,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "gridsPos": [
+    1.16238141,
+    31.1732559,
+    -0.0458166562
+  ],
+  "gridsScale": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "questionId": "Type-1-Dev-2",
+  "bgm": "実験",
+  "backgroundImage": "10660754i",
+  "questionImage": {
+    "src": "QuestionImages/182642",
+    "pos": [
+      -0.0176185369,
+      2.57325554,
+      0.0
+    ],
+    "scale": [
+      3.8924098,
+      2.92510939,
+      1.0
+    ]
+  }
+}

@@ -1,14 +1,14 @@
 {
   "cards": [
     {
-      "imgSrc": "Assets/Resources/QuestionImages/card_diamond_11",
+      "imgSrc": "QuestionImages/card_diamond_11",
       "backImgSrc": null,
       "audioSrc": null,
       "isCorrect": false,
       "displayCount": 7
     },
     {
-      "imgSrc": "Assets/Resources/QuestionImages/card_club_11",
+      "imgSrc": "QuestionImages/card_club_11",
       "backImgSrc": null,
       "audioSrc": null,
       "isCorrect": true,

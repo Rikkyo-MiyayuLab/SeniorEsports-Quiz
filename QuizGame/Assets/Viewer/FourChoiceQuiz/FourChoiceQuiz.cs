@@ -113,7 +113,7 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
         /** 問題用のグリッドを生成 */
         Grids = questionData.grids; 
         GridsArea.transform.localScale = new Vector3(1, 1, 1);
-        GridsArea.transform.localPosition = new Vector3(questionData.gridsPos[0], questionData.gridsPos[1], 0);
+        GridsArea.transform.position = new Vector3(questionData.gridsPos[0], questionData.gridsPos[1], 0);
         GridsArea.transform.localScale = new Vector3(questionData.gridsScale[0], questionData.gridsScale[1], questionData.gridsScale[2]);
         for (int i = 0; i < Grids.Count; i++) {
             List<GameObject> gridObjects = new List<GameObject>();
@@ -123,7 +123,7 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
                 GameObject gridObject = Instantiate(Resources.Load<GameObject>(dummyPrefab));
                 gridObject.transform.SetParent(GridsArea.transform);
                 // セル間のマージンを考慮して、位置を調整
-                gridObject.transform.localPosition = new Vector3(Grids[i][j].position[0] * questionData.cellMargin, Grids[i][j].position[1] * questionData.cellMargin, 0);
+                gridObject.transform.position = new Vector3(Grids[i][j].position[0] * questionData.cellMargin, Grids[i][j].position[1] * questionData.cellMargin, 0);
                 gridObject.GetComponentInChildren<TextMeshPro>().text = Grids[i][j].text;
                 gridObjects.Add(gridObject);
 

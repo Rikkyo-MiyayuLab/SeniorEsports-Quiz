@@ -1,1 +1,13 @@
-{"title":"タイプ4試験問題","description":"これはタイプ４の開発用試験問題です。実際には使用しないでください。","limits":20,"difficulty":3,"type":4,"quiz":{"questions":["Assets/StreamingAssets/QuestionData/4/quiz/Type-4-Dev.json"]},"endStory":""}
+{
+    "title": "タイプ4試験問題",
+    "description": "これはタイプ４の開発用試験問題です。実際には使用しないでください。",
+    "limits": 20,
+    "difficulty": 3,
+    "type": 4,
+    "quiz": {
+        "questions": [
+            "Assets/StreamingAssets/QuestionData/4/quiz/Type-4-Dev.json"
+        ]
+    },
+    "endStory": "StoryViewerDev-2"
+}

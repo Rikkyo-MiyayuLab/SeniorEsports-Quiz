@@ -132,18 +132,16 @@ namespace QuestionDevTool
             string assetPath = AssetDatabase.GetAssetPath(obj);
             
             // Resourcesフォルダがパスに含まれているか確認
-            int resourcesIndex = assetPath.IndexOf("Resources/");
-            if (resourcesIndex == -1 ) {
+            string resourcesPath = "Assets/Resources/";
+            if (assetPath.StartsWith(resourcesPath)) {
+                // "Assets/Resources/" より後の部分を取得し、拡張子を削除
+                string relativePath = assetPath.Substring(resourcesPath.Length);
+                relativePath = Path.ChangeExtension(relativePath, null); // 拡張子を除去
+                return relativePath;
+            } else {
                 Debug.LogError("指定されたオブジェクトはResourcesフォルダ内にありません: " + assetPath);
                 return null;
             }
-
-            // Resourcesフォルダ以降のパスを取得し、拡張子を削除
-            string relativePath = assetPath.Substring(resourcesIndex + "Resources/".Length);
-            relativePath = Path.ChangeExtension(relativePath, null); // 拡張子を除去
-            
-            return relativePath;
-
         }
     }
 

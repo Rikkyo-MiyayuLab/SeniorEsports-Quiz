@@ -63,9 +63,11 @@ public class ClickEditor : QuestionEditor {
 
         Gizmos.color = Color.red;
 
-        // 各ポイントの範囲をシーンビューに描画
+        // 各ポイントの範囲をシーンビューに描画し、pointを更新
         foreach (var point in points) {
+            // 四角形の枠をシーン上に描画
             Gizmos.DrawWireCube(point.position + new Vector2(point.width / 2, -point.height / 2), new Vector3(point.width, point.height, 0));
+            
         }
     }
 

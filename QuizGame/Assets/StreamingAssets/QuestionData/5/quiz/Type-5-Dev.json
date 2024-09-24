@@ -1,6 +1,6 @@
 {
   "correct": {
-    "src": "Assets/Resources/QuestionImages/dev5-correct",
+    "src": "QuestionImages/dev5-correct",
     "rect": {
       "x": -558.549438,
       "y": 165.0,
@@ -10,7 +10,7 @@
     }
   },
   "incorrect": {
-    "src": "Assets/Resources/QuestionImages/dev5-incorrect",
+    "src": "QuestionImages/dev5-incorrect",
     "rect": {
       "x": 150.0,
       "y": 35.82,
@@ -20,22 +20,29 @@
     },
     "points": [
       {
-        "x": 2.277962,
-        "y": 0.6596732,
-        "width": 1.61353278,
-        "height": 1.28369868
+        "x": 330.679993,
+        "y": 9.64999962,
+        "z": 0.0,
+        "width": 171.95,
+        "height": 138.21
       },
       {
-        "x": -1.84499335,
-        "y": 3.765633,
-        "width": 1.50358713,
-        "height": 1.83342624
+        "x": -113,
+        "y": 303.54,
+        "width": 175.48,
+        "height": 198.15
       },
       {
-        "x": -1.597616,
-        "y": -0.7146454,
-        "width": 1.17375088,
-        "height": 1.53107548
+        "x": -110,
+        "y": -166.56,
+        "width": 93.21,
+        "height": 147.9
+      },
+      {
+        "x": 227.4,
+        "y": -146.52,
+        "width": 104.01,
+        "height": 174.13
       }
     ]
   },
