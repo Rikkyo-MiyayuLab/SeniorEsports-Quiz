@@ -11,6 +11,7 @@ namespace PlayType1Interface {
     {
         public List<List<Cell>> grids; // 2次元リストでグリッド構造を保持
         public float cellMargin; // セル間のマージン
+        public int rows;
         public float[] gridsPos; // グリッド全体の位置
         public float[] gridsScale; // グリッド全体のスケール [x, y, z]
         public string questionId;
@@ -26,6 +27,7 @@ namespace PlayType1Interface {
         public bool answerGrid;
         [Tooltip("マスに表示するテキスト")]
         public string text; 
+        public float fontSize;
         [Tooltip("解答マスの場合、表示する選択肢の情報を定義します。")]
         public List<Option> options;
         [Tooltip("ランダムオプションを使用するか否か。")]

@@ -4,12 +4,12 @@
       {
         "answerGrid": false,
         "text": "問",
+        "fontSize": 7.0,
         "options": [],
         "useRandomOption": false,
         "randomOptionType": "",
         "position": [
-          -2.38418579E-07,
-          4.172325E-07,
+          0.0,
           0.0
         ],
         "prefabName": "SampleCell",
@@ -18,12 +18,12 @@
       {
         "answerGrid": false,
         "text": "問",
+        "fontSize": 7.0,
         "options": [],
         "useRandomOption": false,
         "randomOptionType": "",
         "position": [
-          -2.38418579E-07,
-          4.172325E-07,
+          0.0,
           0.0
         ],
         "prefabName": "SampleCell",
@@ -32,12 +32,12 @@
       {
         "answerGrid": false,
         "text": "問",
+        "fontSize": 7.0,
         "options": [],
         "useRandomOption": false,
         "randomOptionType": "",
         "position": [
-          -2.38418579E-07,
-          4.172325E-07,
+          0.0,
           0.0
         ],
         "prefabName": "SampleCell",
@@ -48,12 +48,12 @@
       {
         "answerGrid": false,
         "text": "問",
+        "fontSize": 7.0,
         "options": [],
         "useRandomOption": false,
         "randomOptionType": "",
         "position": [
-          -2.38418579E-07,
-          4.172325E-07,
+          0.0,
           0.0
         ],
         "prefabName": "SampleCell",
@@ -62,14 +62,15 @@
       {
         "answerGrid": true,
         "text": "",
+        "fontSize": 7.0,
         "options": [
-          {
-            "text": "正解",
-            "correct": true
-          },
           {
             "text": "不正解",
             "correct": false
+          },
+          {
+            "text": "正解",
+            "correct": true
           },
           {
             "text": "不正解",
@@ -83,8 +84,7 @@
         "useRandomOption": false,
         "randomOptionType": "",
         "position": [
-          -2.38418579E-07,
-          4.172325E-07,
+          0.0,
           0.0
         ],
         "prefabName": "SampleCell",
@@ -93,12 +93,12 @@
       {
         "answerGrid": false,
         "text": "問",
+        "fontSize": 7.0,
         "options": [],
         "useRandomOption": false,
         "randomOptionType": "",
         "position": [
-          -2.38418579E-07,
-          4.172325E-07,
+          0.0,
           0.0
         ],
         "prefabName": "SampleCell",
@@ -109,12 +109,12 @@
       {
         "answerGrid": false,
         "text": "問",
+        "fontSize": 7.0,
         "options": [],
         "useRandomOption": false,
         "randomOptionType": "",
         "position": [
-          -2.38418579E-07,
-          4.172325E-07,
+          0.0,
           0.0
         ],
         "prefabName": "SampleCell",
@@ -123,12 +123,12 @@
       {
         "answerGrid": false,
         "text": "問",
+        "fontSize": 7.0,
         "options": [],
         "useRandomOption": false,
         "randomOptionType": "",
         "position": [
-          -2.38418579E-07,
-          4.172325E-07,
+          0.0,
           0.0
         ],
         "prefabName": "SampleCell",
@@ -137,12 +137,12 @@
       {
         "answerGrid": false,
         "text": "問",
+        "fontSize": 7.0,
         "options": [],
         "useRandomOption": false,
         "randomOptionType": "",
         "position": [
-          -2.38418579E-07,
-          4.172325E-07,
+          0.0,
           0.0
         ],
         "prefabName": "SampleCell",
@@ -151,19 +151,18 @@
     ]
   ],
   "cellMargin": 1.5,
+  "rows": 3,
   "gridsPos": [
-    -12.8976183,
-    27.343256,
-    -0.0458166562
+    -1.1,
+    3.27
   ],
   "gridsScale": [
-    1.0,
-    1.0,
-    1.0
+    14.312,
+    4.2102
   ],
   "questionId": "Type-1-Dev",
-  "bgm": "terial_Mystery_Detective",
-  "backgroundImage": null,
+  "bgm": "Audios/PerituneMaterial_Mystery_Detective",
+  "backgroundImage": "Backgrounds/SampleBGs/EVta98BU0AAdpL-",
   "questionImage": {
     "src": null,
     "pos": [

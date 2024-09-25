@@ -15,8 +15,6 @@ public class GridCell : MonoBehaviour {
 
     public GameObject[] optionObjects; 
 
-    public int fontSize = 8; // フォントサイズを指定
-
     // インスペクタで値を変更したときに反映させる
     private void OnValidate() {
         if (gridData != null) {
@@ -41,7 +39,7 @@ public class GridCell : MonoBehaviour {
 
             textMesh = textObject.AddComponent<TextMeshPro>();
             textMesh.alignment = TextAlignmentOptions.Center; // テキストを中央揃え
-            textMesh.fontSize = fontSize; // フォントサイズを指定
+            textMesh.fontSize = this.gridData.fontSize; // フォントサイズを反映
             textMesh.sortingOrder = 2; // Order in Layer を 2 に設定
             textMesh.color = Color.black; // VertexColorを黒色に指定
         }
@@ -73,7 +71,7 @@ public class GridCell : MonoBehaviour {
         // テキストの更新
         if (textMesh != null) {
             textMesh.text = gridData.text;
-            textMesh.fontSize = fontSize; // フォントサイズを反映
+            textMesh.fontSize = gridData.fontSize;
         }
     }
 

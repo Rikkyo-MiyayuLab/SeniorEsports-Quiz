@@ -64,7 +64,7 @@ public class StoryViewer : Viewer {
     void Start() {
         base.Start();
         TypingSEPlayer = gameObject.AddComponent<AudioSource>();
-        TypingSEPlayer.volume = 0.6f;
+        TypingSEPlayer.volume = 0.4f;
         // BGMを廃棄
         GameObject TitleManager = GameObject.Find("TitleManager");
         Destroy(TitleManager);

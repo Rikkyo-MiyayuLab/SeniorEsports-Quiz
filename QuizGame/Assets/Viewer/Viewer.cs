@@ -40,6 +40,7 @@ public abstract class Viewer : MonoBehaviour {
     protected virtual void Start() {
         TransitionManager = TransitionManager.Instance();
         AudioPlayer = GetComponent<AudioSource>();
+        AudioPlayer.volume = 0.5f;
         QuizModalCanvas.gameObject.SetActive(false);
     }
 

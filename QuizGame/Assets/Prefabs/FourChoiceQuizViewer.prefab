@@ -1941,6 +1941,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2287883168626537844}
     m_Modifications:
+    - target: {fileID: 1563677629651410607, guid: aa10b8f5929e05a44b2834b776cb556d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3101304101215350492, guid: aa10b8f5929e05a44b2834b776cb556d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
