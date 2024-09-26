@@ -1,0 +1,101 @@
+{
+  "StoryId": "Demo-002-End",
+  "quiz": null,
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": "よし！。全問正解だ！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 0,
+          "Dialogue": "ほほう。計算力も申し分ないようだね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": "ありがとうございます！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 1,
+          "Dialogue": "ではこれからは、本当のナゾを解いていくとしようか。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": "はい。よろしくお願いします。"
+        },
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 1,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ]
+}

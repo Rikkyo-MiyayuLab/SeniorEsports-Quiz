@@ -1,0 +1,13 @@
+{
+    "title": "タイプ5テスト問題",
+    "description": "これはタイプ５用テスト問題データです。",
+    "limits": 60,
+    "difficulty": 5,
+    "type": 5,
+    "quiz": {
+        "questions": [
+            "Assets/StreamingAssets/QuestionData/5/quiz/Type-5-Dev.json"
+        ]
+    },
+    "endStory": "StoryViewerDev-2"
+}

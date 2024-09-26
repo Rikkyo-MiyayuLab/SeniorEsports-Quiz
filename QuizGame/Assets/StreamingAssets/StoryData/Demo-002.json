@@ -1,0 +1,87 @@
+{
+  "StoryId": "Demo-002",
+  "quiz": "Assets/StreamingAssets/QuestionData/1/baca75de-dcdf-4a14-94d4-a0802e3f984d.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 0,
+          "Dialogue": "よくやった。これくらいは余裕そうだね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": "ええ。良い準備運動になりましたよ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 0,
+          "Dialogue": "では、つぎは計算力を見させてもらおう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 0,
+          "Dialogue": "画像中の数字を足した答えを求めてみてくれ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": "お安い御用です！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ]
+}
