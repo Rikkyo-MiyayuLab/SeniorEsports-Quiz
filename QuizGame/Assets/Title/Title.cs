@@ -70,7 +70,8 @@ public class Title : MonoBehaviour {
             seAudioListener.PlayOneShot(ClickSE);
             CameraFade.Out(() => {
                 Debug.Log("fade out finished");
-                //BGMを破棄しないようにする。
+                //BGMを破棄しないようにする。]
+                gameObject.tag = "DontDestroyOnSceneChange";
                 DontDestroyOnLoad(audioAPI);
                 SceneManager.LoadScene(WorldMapSceneName);
             }, 0.5f);

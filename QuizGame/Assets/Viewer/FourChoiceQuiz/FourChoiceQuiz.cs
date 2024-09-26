@@ -112,19 +112,21 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
     private void GenerateGrids(Question questionData) {
         /** 問題用のグリッドを生成 */
         Grids = questionData.grids; 
-        GridsArea.transform.localScale = new Vector3(1, 1, 1);
-        GridsArea.transform.localPosition = new Vector3(questionData.gridsPos[0], questionData.gridsPos[1], 0);
-        GridsArea.transform.localScale = new Vector3(questionData.gridsScale[0], questionData.gridsScale[1], questionData.gridsScale[2]);
+        GridsArea.GetComponent<GridLayoutGroup>().constraintCount = questionData.rows;
+        GridsArea.GetComponent<GridLayoutGroup>().cellSize = new Vector2(questionData.cellMargin, questionData.cellMargin);
+        GridsArea.GetComponent<RectTransform>().anchoredPosition = new Vector2(questionData.gridsPos[0], questionData.gridsPos[1]);
+        GridsArea.GetComponent<RectTransform>().sizeDelta = new Vector2(questionData.gridsScale[0], questionData.gridsScale[1]);
+
         for (int i = 0; i < Grids.Count; i++) {
             List<GameObject> gridObjects = new List<GameObject>();
             for (int j = 0; j < Grids[i].Count; j++) {
                 //TODO : プレハブをパスで読み込むように変更する
                 var dummyPrefab = $"Prefabs/{Grids[i][j].prefabName}";
                 GameObject gridObject = Instantiate(Resources.Load<GameObject>(dummyPrefab));
+                gridObject.AddComponent<RectTransform>();
                 gridObject.transform.SetParent(GridsArea.transform);
-                // セル間のマージンを考慮して、位置を調整
-                gridObject.transform.localPosition = new Vector3(Grids[i][j].position[0] * questionData.cellMargin, Grids[i][j].position[1] * questionData.cellMargin, 0);
                 gridObject.GetComponentInChildren<TextMeshPro>().text = Grids[i][j].text;
+                gridObject.GetComponentInChildren<TextMeshPro>().fontSize = Grids[i][j].fontSize;
                 gridObjects.Add(gridObject);
 
                 // 解答用のマスの場合、解答用マスリストにその情報を追加

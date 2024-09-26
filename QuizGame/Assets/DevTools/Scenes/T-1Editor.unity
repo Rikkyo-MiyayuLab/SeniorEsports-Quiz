@@ -338,6 +338,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 827282717}
+    - target: {fileID: 3024187973445368105, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
+      propertyPath: m_CellSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024187973445368105, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
+      propertyPath: m_CellSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024187973445368105, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
+      propertyPath: m_Constraint
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3074897586030406397, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -359,6 +371,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3871659881062968431, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 14.312
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871659881062968431, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 4.2102
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871659881062968431, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
@@ -368,11 +388,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3871659881062968431, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3871659881062968431, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.89
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871659881062968431, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871659881062968431, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871659881062968431, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.27
       objectReference: {fileID: 0}
     - target: {fileID: 4013648394256550110, guid: 5b0ffe1069bc240f08cea8c261a25e23, type: 3}
       propertyPath: m_text
@@ -491,14 +523,13 @@ MonoBehaviour:
   templateType: 1
   backgroundImage: {fileID: 0}
   backgroundImageObject: {fileID: 1262977979}
-  questionId: 
+  questionId: Type-1-Dev
   questionImage: {fileID: 0}
-  cellPrefab: {fileID: 0}
+  cellPrefab: {fileID: 3381208964011481447, guid: b2f807463c00d4058b3da405b805d331, type: 3}
   rows: 3
-  columns: 3
+  columns: 2
   margin: 1.5
   BGM: {fileID: 0}
-  gridPosition: {x: -9.9476185, y: 19.113255, z: 0}
   GridParent: {fileID: 1262977978}
   questionImageObject: {fileID: 1262977977}
 --- !u!1 &1411263995

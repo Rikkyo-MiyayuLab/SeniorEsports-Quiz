@@ -1,0 +1,63 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "34",
+            "correct": true
+          },
+          {
+            "text": "30",
+            "correct": true
+          },
+          {
+            "text": "39",
+            "correct": false
+          },
+          {
+            "text": "46",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    3.35,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "demo-002-2",
+  "bgm": "Audios/maou_bgm_cyber07",
+  "backgroundImage": "Backgrounds/detective-agency8",
+  "questionImage": {
+    "src": "QuestionImages/demo-002-question2",
+    "pos": [
+      -0.00761854649,
+      2.56325555,
+      0.0
+    ],
+    "scale": [
+      2.67916346,
+      2.47581267,
+      1.0
+    ]
+  }
+}

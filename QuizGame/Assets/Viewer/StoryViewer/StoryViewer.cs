@@ -54,6 +54,7 @@ public class StoryViewer : Viewer {
     private TextMeshPro narrationField;
     private List<Character> characters;
     private StoryData data;
+    [SerializeField]
     private int currentSceneIndex = 0;
     private StoryDataInterface.Scene currentScene;
     private AudioSource TypingSEPlayer;
@@ -64,7 +65,7 @@ public class StoryViewer : Viewer {
     void Start() {
         base.Start();
         TypingSEPlayer = gameObject.AddComponent<AudioSource>();
-        TypingSEPlayer.volume = 0.6f;
+        TypingSEPlayer.volume = 0.4f;
         // BGMを廃棄
         GameObject TitleManager = GameObject.Find("TitleManager");
         Destroy(TitleManager);
@@ -193,6 +194,7 @@ public class StoryViewer : Viewer {
             });
         } else if(textDisplayMode == TextDisplayMode.Instant) {
             characterTextField.text = dialogText;
+            onSceneEnd?.Invoke();
         }
 
         // ナレーション設定  

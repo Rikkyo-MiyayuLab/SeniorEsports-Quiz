@@ -86,6 +86,7 @@ MonoBehaviour:
   correctImageObj: {fileID: 8873517853987082524}
   incorrectImageObj: {fileID: 7304400421413681464}
   ClickPoints: []
+  pointPrefab: {fileID: 592892780849093397, guid: 82b4fc963081b4cecb5332ddad73d7ba, type: 3}
   correctSE: {fileID: 8300000, guid: d9f3b0c7574f721448a8b302adbe5f67, type: 3}
   incorrectSE: {fileID: 8300000, guid: 4605fb404ecb9014fa8a8c6abf7d3fd2, type: 3}
   correctImgData:

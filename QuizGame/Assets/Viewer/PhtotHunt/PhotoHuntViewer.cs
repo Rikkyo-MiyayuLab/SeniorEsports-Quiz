@@ -22,6 +22,9 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
     public Image correctImageObj;
     public Image incorrectImageObj;
     public List<GameObject> ClickPoints;
+    public GameObject pointPrefab;
+    public int RemainCount;
+    public TextMeshProUGUI RemainCountText;
 
     [SerializeField]
     private AudioClip correctSE;
@@ -66,17 +69,20 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
         base.correctness.Clear();
 
         base.ResultModal.gameObject.SetActive(false);
+        RemainCount = 0;
+        RemainCountText.text = RemainCount.ToString();
     }
 
 
     public override void Render() {
+        RemainCount = inCorrectImgData.points.Count;
+        RemainCountText.text = RemainCount.ToString();
         // 背景画像の設定
-        // 背景画像を設定する
         base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
         base.BackgroundImageObj.sprite = base.CurrentBackground;
         
         // BGMの設定（前と同じ場合はそのまま）
-        if(base.CurrentBGM != null && base.AudioPlayer.clip != base.CurrentBGM) {
+        if (base.CurrentBGM != null && base.AudioPlayer.clip != base.CurrentBGM) {
             base.AudioPlayer.clip = base.CurrentBGM;
             base.AudioPlayer.Play();
         }
@@ -94,33 +100,33 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
         incorrectImageObj.GetComponent<RectTransform>().sizeDelta = new Vector2(inCorrectImgData.rect.width, inCorrectImgData.rect.height);
         
         // 解答用画像上のポイントの設定
+        RectTransform incorrectImgRect = incorrectImageObj.GetComponent<RectTransform>();
+        Vector2 incorrectImgSize = incorrectImgRect.sizeDelta;
+
         foreach(var point in inCorrectImgData.points) {
-            GameObject pointObj = new GameObject("ClickPoint");
-            RectTransform rect = pointObj.AddComponent<RectTransform>();
-            rect.SetParent(inCorrectImgArea.transform, false);
-            rect.anchoredPosition = new Vector2(point.x, point.y);
-            rect.sizeDelta = new Vector2(point.width, point.height);
+            GameObject pointObj = Instantiate(pointPrefab, incorrectImageObj.transform);
+            pointObj.transform.localPosition = new Vector2(point.x, point.y);
+            pointObj.transform.localScale = new Vector3(point.width, point.height, 1);
 
-            Image pointImage = pointObj.AddComponent<Image>();
-            pointImage.color = Color.white;
-            pointImage.color = new Color(pointImage.color.r, pointImage.color.g, pointImage.color.b, 0.5f);
-
-            Button button = pointObj.AddComponent<Button>();
-            button.onClick.AddListener(() => {
+            pointObj.AddComponent<AreaClickHandler>().Setup(() => {
                 base.AudioPlayer.PlayOneShot(correctSE);
-            
+
                 Outline outline = pointObj.AddComponent<Outline>();
                 outline.effectColor = Color.red;
                 outline.effectDistance = new Vector2(1, 1);
 
                 base.correctness.Add(true);
+                RemainCount--;
+                RemainCountText.text = RemainCount.ToString();
 
-                // クリックイベントを無効化
-                pointObj.GetComponent<Button>().interactable = false;
+                // コライダーを無効化
+                pointObj.GetComponent<Collider2D>().enabled = false;
 
-                if(base.correctness.Count == inCorrectImgData.points.Count) { //正解ポイントをすべて発見
+
+                if(RemainCount == 0) {
                     base.ResultModal.gameObject.SetActive(true);
                     base.RetryButton.gameObject.SetActive(false);
+                    base.NextQuestionButton.gameObject.SetActive(true);
                     base.ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
                     base.timer.PauseTimer();
                 }
@@ -130,24 +136,53 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
         }
     }
 
+
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        // マウスクリックが発生した場合
+        if (Input.GetMouseButtonDown(0) && RemainCount > 0) {
+            // マウスのスクリーン座標を取得
             Vector2 mousePos = Input.mousePosition;
-            bool clickedOnPoint = false;
 
-            foreach (var point in ClickPoints) {
-                RectTransform rectTransform = point.GetComponent<RectTransform>();
-                if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, mousePos, Camera.main)) {
-                    clickedOnPoint = true;
-                    break;
+            // incorrectImageObjの範囲内にマウスがあるか確認
+            RectTransform incorrectRectTransform = incorrectImageObj.GetComponent<RectTransform>();
+            if (RectTransformUtility.RectangleContainsScreenPoint(incorrectRectTransform, mousePos, Camera.main)) {
+                bool clickedOnPoint = false;
+
+                // ワールド座標でのマウス位置を取得
+                Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+                // クリックされたポイントが範囲内か確認
+                foreach (var point in ClickPoints) {
+                    // ポイントのTransformを取得
+                    Transform pointTransform = point.transform;
+
+                    // ポイントの中心座標
+                    Vector3 pointPosition = pointTransform.position;
+
+                    // ポイントのスケールで幅と高さを取得
+                    float pointWidth = pointTransform.localScale.x;
+                    float pointHeight = pointTransform.localScale.y;
+
+                    // ポイントの範囲を計算 (中心からのオフセット)
+                    Vector3 minBounds = pointPosition - new Vector3(pointWidth / 2, pointHeight / 2, 0);
+                    Vector3 maxBounds = pointPosition + new Vector3(pointWidth / 2, pointHeight / 2, 0);
+
+                    // マウス位置がポイントの範囲内にあるか判定
+                    if (worldMousePos.x >= minBounds.x && worldMousePos.x <= maxBounds.x &&
+                        worldMousePos.y >= minBounds.y && worldMousePos.y <= maxBounds.y) {
+                        clickedOnPoint = true;
+                        break;
+                    }
                 }
-            }
 
-            if (!clickedOnPoint) {
-                OnClickOutsidePoints();
+                // クリックされたポイントが範囲外の場合
+                if (!clickedOnPoint) {
+                    OnClickOutsidePoints();
+                }
             }
         }
     }
+
 
     private void OnClickOutsidePoints() {
         Debug.Log("指定のポイント以外がクリックされました。");

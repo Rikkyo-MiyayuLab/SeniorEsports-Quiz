@@ -1,44 +1,56 @@
 {
   "correct": {
-    "src": "Assets/Resources/QuestionImages/dev5-correct",
+    "src": "QuestionImages/demoQuestion1-correct",
     "rect": {
-      "x": -558.549438,
-      "y": 165.0,
+      "x": -618.0,
+      "y": 116.0,
       "z": 0.0,
-      "width": 528.86,
-      "height": 531.9
+      "width": 560.76,
+      "height": 494.84
     }
   },
   "incorrect": {
-    "src": "Assets/Resources/QuestionImages/dev5-incorrect",
+    "src": "QuestionImages/demoQuestion1incorrect",
     "rect": {
-      "x": 150.0,
-      "y": 35.82,
+      "x": 125.0,
+      "y": -26.0,
       "z": 0.0,
-      "width": 776.52,
-      "height": 787.13
+      "width": 847.9,
+      "height": 793.37
     },
     "points": [
       {
-        "x": 2.277962,
-        "y": 0.6596732,
-        "width": 1.61353278,
-        "height": 1.28369868
+        "x": 36.25,
+        "y": 316.07,
+        "width": 120.000008,
+        "height": 105.999992
       },
       {
-        "x": -1.84499335,
-        "y": 3.765633,
-        "width": 1.50358713,
-        "height": 1.83342624
+        "x": 225.0,
+        "y": 261.0,
+        "width": 100.0,
+        "height": 100.0
       },
       {
-        "x": -1.597616,
-        "y": -0.7146454,
-        "width": 1.17375088,
-        "height": 1.53107548
+        "x": 12.0,
+        "y": 1.04,
+        "width": 100.0,
+        "height": 56.0
+      },
+      {
+        "x": -97.0,
+        "y": -307.0,
+        "width": 100.0,
+        "height": 100.0
+      },
+      {
+        "x": -211.0,
+        "y": -26.0,
+        "width": 100.0,
+        "height": 100.0
       }
     ]
   },
   "backgroundImage": "Backgrounds/detective-agency8",
-  "bgm": "実験"
+  "bgm": "Audios/maou_bgm_cyber07"
 }

@@ -1,0 +1,55 @@
+{
+  "StoryId": "Demo-001-End",
+  "quiz": null,
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": "よし！。まずは問題なさそうだ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 0,
+          "Dialogue": "うむ。なかなかの観察力だね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 0,
+          "Dialogue": "それでは、つぎの試験に移るとしよう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ]
+}

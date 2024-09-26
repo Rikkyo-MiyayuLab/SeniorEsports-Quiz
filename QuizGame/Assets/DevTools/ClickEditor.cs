@@ -10,15 +10,18 @@ using UnityEngine.UI;
 using UnityEditor;
 using Newtonsoft.Json;
 using PlayType5Interface;
+#if UNITY_EDITOR
 using QuestionDevTool;
+#endif
 
 [System.Serializable]
 public class Point {
-    public Vector2 position;  // 四角形の左上座標
-    public float width;       // 四角形の幅
-    public float height;      // 四角形の高さ
+    public Vector2 position;  
+    public float width;       
+    public float height;      
 }
 
+#if UNITY_EDITOR
 public class ClickEditor : QuestionEditor {
     [Header("JSON情報の追加")]
     [Tooltip("問題IDを指定してください。他の問題IDと同じものを指定すると上書きされます。")]
@@ -27,8 +30,9 @@ public class ClickEditor : QuestionEditor {
     public Sprite correctImage;
     [Tooltip("不正解の画像を指定してください。")]
     public Sprite incorrectImage;
-    [Tooltip("不正解の画像上のポイントを指定してください。")]
-    public List<Point> points = new List<Point>();
+    [Tooltip("不正解画像上のクリックエリアを指定してください。")]
+    public List<GameObject> pointObjects = new List<GameObject>(); // 作成されたポイントUIオブジェクトのリスト
+
     [Tooltip("BGMを指定してください。")]
     public AudioClip BGM;
 
@@ -37,8 +41,8 @@ public class ClickEditor : QuestionEditor {
     private Image correctImageObject;   // 正解画像を表示するオブジェクト
     [SerializeField]
     private Image incorrectImageObject; // 不正解画像を表示するオブジェクト
-
-    // インスペクタで画像が変更されたときに自動的にシーンビューに反映
+    [SerializeField]
+    private GameObject pointPrefab;     // ポイント用のプレハブ
     private void OnValidate() {
         // 背景画像が設定されている場合、背景画像を表示
         if (base.backgroundImage != null && base.backgroundImageObject != null) {
@@ -56,24 +60,29 @@ public class ClickEditor : QuestionEditor {
         }
     }
 
-    // シーンビューでポイントを描画するためのメソッド
-    private void OnDrawGizmos() {
-        if (points == null || points.Count == 0)
-            return;
-
-        Gizmos.color = Color.red;
-
-        // 各ポイントの範囲をシーンビューに描画
-        foreach (var point in points) {
-            Gizmos.DrawWireCube(point.position + new Vector2(point.width / 2, -point.height / 2), new Vector3(point.width, point.height, 0));
-        }
+    // シーン上にポイントのUIオブジェクトを配置
+    private void Initialize() {
+        CreatePointObjects();
     }
 
+    public void CreatePointObjects() {
+        GameObject newPoint = Instantiate(pointPrefab, incorrectImageObject.transform); // 親をincorrectImageObjectに設定
+        newPoint.name = "ClickPoint";
+        // 位置とサイズの初期値を設定
+        newPoint.transform.localPosition = new Vector3(0,0,0);
+        newPoint.transform.localScale = new Vector3(100, 100, 1);
+        
+        // 作成したRectTransformをポイントに保存
+        pointObjects.Add(newPoint);
+    }
 
     public override void Clear() {
         correctImage = null;
         incorrectImage = null;
-        points.Clear();
+        foreach (var obj in pointObjects) {
+            DestroyImmediate(obj); // UIオブジェクトもクリア
+        }
+        pointObjects.Clear();
         // 画像表示オブジェクトのソースをクリア
         correctImageObject.sprite = null;
         incorrectImageObject.sprite = null;
@@ -84,26 +93,23 @@ public class ClickEditor : QuestionEditor {
         string folderPath = $"{DevConstants.QuestionDataFolder}/{templateType}/quiz";
         string fileName = $"{questionId}.json"; 
 
-        // エディタ上で設定した情報を元に、JSONデータを構築
-        // 間違いポイントのシリアライズ
+        // JSONデータを構築
         List<ClickPoint> pointsData = new List<ClickPoint>();
-        foreach (var point in points) {
+        foreach(var pointObj in pointObjects) {
             pointsData.Add(new ClickPoint {
-                x = (float)point.position.x,
-                y = (float)point.position.y,
-                width = point.width,
-                height = point.height
+                x = pointObj.transform.localPosition.x,
+                y = pointObj.transform.localPosition.y,
+                width = pointObj.transform.localScale.x,
+                height = pointObj.transform.localScale.y,
             });
         }
 
-        // 問題画像のRect情報を記録
         var correctImgRect = correctImageObject.GetComponent<RectTransform>();
         var incorrectImgRect = incorrectImageObject.GetComponent<RectTransform>();
 
-        // 問題画像のRect情報を記録
         var quizData = new Question {
             correct = new CorrectImage {
-                src = correctImage!= null? base.GetSpritePath(correctImage) : "",
+                src = correctImage != null ? base.GetResourcePath(correctImage) : "",
                 rect = new ImgRect {
                     x = correctImgRect.anchoredPosition.x,
                     y = correctImgRect.anchoredPosition.y,
@@ -111,10 +117,9 @@ public class ClickEditor : QuestionEditor {
                     width = correctImgRect.rect.width,
                     height = correctImgRect.rect.height
                 }
-                
             },
             incorrect = new IncorrectImage {
-                src = incorrectImage!= null? base.GetSpritePath(incorrectImage) : "",
+                src = incorrectImage != null ? base.GetResourcePath(incorrectImage) : "",
                 points = pointsData,
                 rect = new ImgRect {
                     x = incorrectImgRect.anchoredPosition.x,
@@ -130,59 +135,28 @@ public class ClickEditor : QuestionEditor {
 
         // JSONにシリアライズ
         base.SaveAsJSON(folderPath, fileName, quizData);
-        
     }
 }
+#endif
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(ClickEditor))]
-public class ClickEditorGUI : EditorGUI<ClickEditor> { 
-
-    private void OnSceneGUI() {
-        // シーンビューで各ポイントを視覚的に調整
-        for (int i = 0; i < base.editor.points.Count; i++) {
-            var point = base.editor.points[i];
-
-            // 四角形の位置をドラッグで動かせるようにする
-            Vector2 newPosition = Handles.PositionHandle(point.position, Quaternion.identity);
-            if (newPosition != point.position) {
-                Undo.RecordObject(base.editor, "Move Point Position");
-                point.position = newPosition;
-            }
-
-            // 四角形のサイズをドラッグで変更できるようにする
-            Vector2 sizeHandle = new Vector2(point.position.x + point.width, point.position.y - point.height);
-            var fmh_100_72_638614213584702255 = Quaternion.identity; Vector2 newSizeHandle = Handles.FreeMoveHandle(sizeHandle, 0.1f, Vector3.zero, Handles.RectangleHandleCap);
-
-            if (newSizeHandle != sizeHandle) {
-                Undo.RecordObject(base.editor, "Resize Point");
-                point.width = Mathf.Abs(newSizeHandle.x - point.position.x);
-                point.height = Mathf.Abs(newSizeHandle.y - point.position.y);
-            }
-
-            // 四角形の枠をシーン上に描画
-            Handles.color = Color.red;
-            Handles.DrawWireCube(point.position + new Vector2(point.width / 2, -point.height / 2), new Vector3(point.width, point.height, 0));
-        }
-    }
-
+public class ClickEditorGUI : EditorGUI<ClickEditor> {
     public override void CustomInspectorGUI() {
+        ClickEditor clickEditor = (ClickEditor)target;
 
         if (GUILayout.Button("ポイントを追加")) {
-            Undo.RecordObject(base.editor, "Add Point");
-            base.editor.points.Add(new Point { position = Vector2.zero, width = 10, height = 10 });
+            Undo.RecordObject(clickEditor, "Add Point");
+            clickEditor.CreatePointObjects();
         }
 
-        if (GUILayout.Button("ポイントを削除")) {
-            if (base.editor.points.Count > 0){
-                Undo.RecordObject(base.editor, "Remove Point");
-                base.editor.points.RemoveAt(base.editor.points.Count - 1);
-            }
-        }
+
         GUILayout.Space(20);
+
         if (GUILayout.Button("全てクリア")) {
-            base.editor.Clear();
+            Undo.RecordObject(clickEditor, "Clear All Points");
+            clickEditor.Clear();
         }
     }
 }
-
+#endif

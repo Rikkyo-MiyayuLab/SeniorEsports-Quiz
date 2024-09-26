@@ -7,8 +7,8 @@
     "quiz": {
         "questions": [
             "Assets/StreamingAssets/QuestionData/1/quiz/Type-1-Dev.json",
-            "Assets/StreamingAssets/QuestionData/1/quiz/Type-1-Dev2.json"
+            "Assets/StreamingAssets/QuestionData/3/quiz/Type-1-Dev-2.json"
         ]
     },
-    "endStory": ""
+    "endStory": "StoryViewerDev-2"
 }

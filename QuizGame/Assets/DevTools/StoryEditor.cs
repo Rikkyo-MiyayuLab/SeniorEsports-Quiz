@@ -9,6 +9,7 @@ using TMPro;
 using Newtonsoft.Json;
 using StoryDataInterface;
 
+#if UNITY_EDITOR
 public class StoryEditor : MonoBehaviour {
     
     [Header("JSON情報")]
@@ -66,14 +67,14 @@ public class StoryEditor : MonoBehaviour {
     public void SaveScene() {
         // シーンデータを作成        
         Scene scene = new Scene();
-        scene.Background = GetSpritePath(background);
-        scene.audio = audio != null ? AssetDatabase.GetAssetPath(audio) : null;
+        scene.Background = GetResourcePath(background);
+        scene.audio = audio != null ? GetResourcePath(audio) : null;
         scene.Characters = new List<Character>();
         foreach(CharacterDef characterDef in characterDefs) {
             Character character = new Character();
             character.Name = characterDef.Name;
-            character.ImageSrc = GetSpritePath(characterDef.Image);
-            character.ImageGUID = AssetDatabase.AssetPathToGUID(GetSpritePath(characterDef.Image));
+            character.ImageSrc = GetResourcePath(characterDef.Image);
+            //character.ImageGUID = AssetDatabase.AssetPathToGUID(GetSpritePath(characterDef.Image));
             character.Dialogue = characterDef.Dialogue;
             character.Position = characterDef.position;
             scene.Characters.Add(character);
@@ -237,6 +238,33 @@ public class StoryEditor : MonoBehaviour {
         return null;
     }
 
+    #if UNITY_EDITOR
+    /// <summary>
+    /// Resources内からの相対パスを取得する.
+    /// </summary>
+    protected string GetResourcePath(UnityEngine.Object obj) {
+        if (obj == null) {
+            Debug.LogError("オブジェクトがnullです。");
+            return null;
+        }
+
+        // アセットのパスを取得
+        string assetPath = AssetDatabase.GetAssetPath(obj);
+        
+        // Resourcesフォルダがパスに含まれているか確認
+        string resourcesPath = "Assets/Resources/";
+        if (assetPath.StartsWith(resourcesPath)) {
+            // "Assets/Resources/" より後の部分を取得し、拡張子を削除
+            string relativePath = assetPath.Substring(resourcesPath.Length);
+            relativePath = Path.ChangeExtension(relativePath, null); // 拡張子を除去
+            return relativePath;
+        } else {
+            Debug.LogError("指定されたオブジェクトはResourcesフォルダ内にありません: " + assetPath);
+            return null;
+        }
+    }
+    #endif
+
     private Sprite GetSprite(string path) {
     #if UNITY_EDITOR
         // パスからテクスチャを取得
@@ -274,3 +302,4 @@ public class StoryEditorGUI : Editor {
         }
     }
 }
+#endif

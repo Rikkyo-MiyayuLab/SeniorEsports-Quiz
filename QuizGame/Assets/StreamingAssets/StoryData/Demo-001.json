@@ -1,0 +1,138 @@
+{
+  "StoryId": "Demo-001",
+  "quiz": "Assets/StreamingAssets/QuestionData/5/475f3507-29a4-46b2-aee0-869e01e3ac13.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": "初めまして。本日からこの探偵事務所の助手を勤めます。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 1,
+          "Dialogue": "よろしくお願いいたします。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 1,
+          "Dialogue": "探偵という仕事は、とにかく頭をつかうものでね..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 1,
+          "Dialogue": "早速だが、君の実力をテストさせてもらおう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": "はい、よろしくお願いします。"
+        },
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 1,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/detective-agency8",
+      "audio": "Audios/maou_bgm_cyber07",
+      "Characters": [
+        {
+          "Name": "あなた",
+          "ImageSrc": "Charactors/20181216_man",
+          "ImageGUID": "1bd4574a4d0aebe43a299decad5a772b",
+          "Position": 0,
+          "Dialogue": "（まずは小手調べだ！。頑張るぞ...）"
+        },
+        {
+          "Name": "探偵",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "1c853e470ebedc44ebb96781ec2bcaed",
+          "Position": 1,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ]
+}

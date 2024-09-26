@@ -22,6 +22,7 @@ public class QuestionDataEditor : EditorWindow{
     private int difficulty = 5;
     /** 画面タイプ*/
     private int type = 1;
+    private string endStory = "";
     
     private Texture2D[] TemplateImages;
     private int templateTypeCount = 5;
@@ -53,6 +54,7 @@ public class QuestionDataEditor : EditorWindow{
         limits = EditorGUILayout.IntField("制限時間（秒）", limits);
         difficulty = EditorGUILayout.IntSlider("難易度", difficulty, 1, 5);
         type = EditorGUILayout.IntField("テンプレートタイプ", type);
+        endStory = EditorGUILayout.TextField("大問終了後のストーリー", endStory);
 
         GUILayout.Space(10);
 
@@ -90,7 +92,8 @@ public class QuestionDataEditor : EditorWindow{
             description = description,
             limits = limits,
             difficulty = difficulty,
-            type = type
+            type = type,
+            endStory = endStory
         };
 
         // JSON形式に変換
