@@ -146,10 +146,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 459818162151380483, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1107705822365450003, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 841859716}
+    - target: {fileID: 1148131417308435692, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.6201172
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148131417308435692, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 107.359985
+      objectReference: {fileID: 0}
     - target: {fileID: 1427192611123657692, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -254,6 +266,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 841859716}
+    - target: {fileID: 6618305697111936056, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.6201172
+      objectReference: {fileID: 0}
     - target: {fileID: 7069326501000701188, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}
       propertyPath: m_Camera
       value: 
@@ -294,6 +310,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 841859716}
+    - target: {fileID: 8284127147241399331, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0009765625
+      objectReference: {fileID: 0}
     - target: {fileID: 8429646608774366925, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}
       propertyPath: m_Camera
       value: 
@@ -344,16 +364,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   templateType: 5
-  backgroundImage: {fileID: 21300000, guid: c567009c4cf40664a81c3b152de1eca1, type: 3}
+  backgroundImage: {fileID: 0}
   backgroundImageObject: {fileID: 599084290}
   questionId: Type-5-Dev
-  correctImage: {fileID: 21300000, guid: 0602a3a07f8268a4baebe4b3c50d3439, type: 3}
-  incorrectImage: {fileID: 21300000, guid: 16d1ae3f55b38a54fa60d1476330ef61, type: 3}
-  points: []
+  correctImage: {fileID: 0}
+  incorrectImage: {fileID: 0}
+  pointObjects: []
   BGM: {fileID: 8300000, guid: 74135d6f81f347c4f8dea48b76c5413b, type: 3}
   correctImageObject: {fileID: 599084289}
   incorrectImageObject: {fileID: 599084288}
-  pointPrefab: {fileID: 6123844644149467195, guid: 67a6cfcdb2317ff4390a25d090792228, type: 3}
+  pointPrefab: {fileID: 592892780849093397, guid: 82b4fc963081b4cecb5332ddad73d7ba, type: 3}
 --- !u!114 &599084288 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7304400421413681464, guid: 938f06047a7c44d8d87cf530114f2a6a, type: 3}

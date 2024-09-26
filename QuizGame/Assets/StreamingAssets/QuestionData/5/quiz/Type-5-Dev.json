@@ -1,51 +1,56 @@
 {
   "correct": {
-    "src": "QuestionImages/dev5-correct",
+    "src": "QuestionImages/dev5-incorrect",
     "rect": {
-      "x": -558.549438,
-      "y": 165.0,
+      "x": -579.0,
+      "y": 140.94,
       "z": 0.0,
-      "width": 528.86,
-      "height": 531.9
+      "width": 496.35,
+      "height": 486.05
     }
   },
   "incorrect": {
-    "src": "QuestionImages/dev5-incorrect",
+    "src": "QuestionImages/dev5-correct",
     "rect": {
-      "x": 150.0,
-      "y": 35.82,
+      "x": 204.0,
+      "y": 15.0,
       "z": 0.0,
-      "width": 776.52,
-      "height": 787.13
+      "width": 812.77,
+      "height": 758.24
     },
     "points": [
       {
-        "x": 330.679993,
-        "y": 9.64999962,
-        "z": 0.0,
-        "width": 171.95,
-        "height": 138.21
+        "x": 187.69,
+        "y": -29.18,
+        "width": 188.923,
+        "height": 146.575
       },
       {
-        "x": -113,
-        "y": 303.54,
-        "width": 175.48,
-        "height": 198.15
+        "x": -272.48,
+        "y": 260.82,
+        "width": 163.0,
+        "height": 158.400009
       },
       {
-        "x": -110,
-        "y": -166.56,
-        "width": 93.21,
-        "height": 147.9
+        "x": -268.99,
+        "y": -195.17,
+        "width": 142.0,
+        "height": 116.28
       },
       {
-        "x": 227.4,
-        "y": -146.52,
-        "width": 104.01,
-        "height": 174.13
+        "x": -6.58,
+        "y": -40.42,
+        "width": 85.0,
+        "height": 85.0
+      },
+      {
+        "x": 75.0,
+        "y": -169.0,
+        "width": 85.0,
+        "height": 81.0
       }
     ]
   },
-  "backgroundImage": "Backgrounds/detective-agency8",
+  "backgroundImage": "Backgrounds/SampleBGs/EVta98BU0AAdpL-",
   "bgm": "実験"
 }

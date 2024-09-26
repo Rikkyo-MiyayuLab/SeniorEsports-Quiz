@@ -22,6 +22,9 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
     public Image correctImageObj;
     public Image incorrectImageObj;
     public List<GameObject> ClickPoints;
+    public GameObject pointPrefab;
+    public int RemainCount;
+    public TextMeshProUGUI RemainCountText;
 
     [SerializeField]
     private AudioClip correctSE;
@@ -66,10 +69,14 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
         base.correctness.Clear();
 
         base.ResultModal.gameObject.SetActive(false);
+        RemainCount = 0;
+        RemainCountText.text = RemainCount.ToString();
     }
 
 
     public override void Render() {
+        RemainCount = inCorrectImgData.points.Count;
+        RemainCountText.text = RemainCount.ToString();
         // 背景画像の設定
         base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
         base.BackgroundImageObj.sprite = base.CurrentBackground;
@@ -97,25 +104,11 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
         Vector2 incorrectImgSize = incorrectImgRect.sizeDelta;
 
         foreach(var point in inCorrectImgData.points) {
-            GameObject pointObj = new GameObject("ClickPoint");
-            RectTransform rect = pointObj.AddComponent<RectTransform>();
-            rect.SetParent(inCorrectImgArea.transform, false);
+            GameObject pointObj = Instantiate(pointPrefab, incorrectImageObj.transform);
+            pointObj.transform.localPosition = new Vector2(point.x, point.y);
+            pointObj.transform.localScale = new Vector3(point.width, point.height, 1);
 
-            // 画像のスケールに合わせてポイントの位置とサイズを補正
-            float relativeX = point.x / inCorrectImgData.rect.width * incorrectImgSize.x;
-            float relativeY = point.y / inCorrectImgData.rect.height * incorrectImgSize.y;
-            float relativeWidth = point.width / inCorrectImgData.rect.width * incorrectImgSize.x;
-            float relativeHeight = point.height / inCorrectImgData.rect.height * incorrectImgSize.y;
-
-            rect.anchoredPosition = new Vector2(relativeX, relativeY);
-            rect.sizeDelta = new Vector2(relativeWidth, relativeHeight);
-
-            Image pointImage = pointObj.AddComponent<Image>();
-            pointImage.color = Color.white;
-            pointImage.color = new Color(pointImage.color.r, pointImage.color.g, pointImage.color.b, 0.5f);
-
-            Button button = pointObj.AddComponent<Button>();
-            button.onClick.AddListener(() => {
+            pointObj.AddComponent<AreaClickHandler>().Setup(() => {
                 base.AudioPlayer.PlayOneShot(correctSE);
 
                 Outline outline = pointObj.AddComponent<Outline>();
@@ -123,11 +116,14 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
                 outline.effectDistance = new Vector2(1, 1);
 
                 base.correctness.Add(true);
+                RemainCount--;
+                RemainCountText.text = RemainCount.ToString();
 
-                // クリックイベントを無効化
-                pointObj.GetComponent<Button>().interactable = false;
+                // コライダーを無効化
+                pointObj.GetComponent<Collider2D>().enabled = false;
 
-                if(base.correctness.Count == inCorrectImgData.points.Count) { //正解ポイントをすべて発見
+
+                if(RemainCount == 0) {
                     base.ResultModal.gameObject.SetActive(true);
                     base.RetryButton.gameObject.SetActive(false);
                     base.ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
