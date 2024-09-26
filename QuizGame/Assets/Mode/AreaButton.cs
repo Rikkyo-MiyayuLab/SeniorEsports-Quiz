@@ -10,6 +10,7 @@ using EasyTransition;
 public class AreaButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     [Tooltip("読み込むストーリーID")]
     public string storyId;
+    public int NextAreaIdx;
     public string storyDescription;
     public Sprite Thumbnail;
     [Header("トランジション設定")]
@@ -35,6 +36,7 @@ public class AreaButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             PlayerPrefs.SetString("StoryId", storyId);
             PlayerPrefs.SetString("CurrentArea", SceneManager.GetActiveScene().name);
             transitionManager.Transition("StoryViewer", transition, transitionDuration);
+            PlayerPrefs.SetInt("CurrentAreaIdx", NextAreaIdx);
         });
     }
 

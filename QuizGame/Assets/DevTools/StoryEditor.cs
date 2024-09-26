@@ -66,13 +66,13 @@ public class StoryEditor : MonoBehaviour {
     public void SaveScene() {
         // シーンデータを作成        
         Scene scene = new Scene();
-        scene.Background = GetSpritePath(background);
-        scene.audio = audio != null ? AssetDatabase.GetAssetPath(audio) : null;
+        scene.Background = GetResourcePath(background);
+        scene.audio = audio != null ? GetResourcePath(audio) : null;
         scene.Characters = new List<Character>();
         foreach(CharacterDef characterDef in characterDefs) {
             Character character = new Character();
             character.Name = characterDef.Name;
-            character.ImageSrc = GetSpritePath(characterDef.Image);
+            character.ImageSrc = GetResourcePath(characterDef.Image);
             character.ImageGUID = AssetDatabase.AssetPathToGUID(GetSpritePath(characterDef.Image));
             character.Dialogue = characterDef.Dialogue;
             character.Position = characterDef.position;
@@ -235,6 +235,31 @@ public class StoryEditor : MonoBehaviour {
             Debug.LogError("この機能はエディタのみで使用可能です。");
     #endif
         return null;
+    }
+
+    /// <summary>
+    /// Resources内からの相対パスを取得する.
+    /// </summary>
+    protected string GetResourcePath(UnityEngine.Object obj) {
+        if (obj == null) {
+            Debug.LogError("オブジェクトがnullです。");
+            return null;
+        }
+
+        // アセットのパスを取得
+        string assetPath = AssetDatabase.GetAssetPath(obj);
+        
+        // Resourcesフォルダがパスに含まれているか確認
+        string resourcesPath = "Assets/Resources/";
+        if (assetPath.StartsWith(resourcesPath)) {
+            // "Assets/Resources/" より後の部分を取得し、拡張子を削除
+            string relativePath = assetPath.Substring(resourcesPath.Length);
+            relativePath = Path.ChangeExtension(relativePath, null); // 拡張子を除去
+            return relativePath;
+        } else {
+            Debug.LogError("指定されたオブジェクトはResourcesフォルダ内にありません: " + assetPath);
+            return null;
+        }
     }
 
     private Sprite GetSprite(string path) {
