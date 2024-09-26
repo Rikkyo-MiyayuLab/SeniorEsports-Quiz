@@ -138,23 +138,51 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
 
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        // マウスクリックが発生した場合
+        if (Input.GetMouseButtonDown(0) && RemainCount > 0) {
+            // マウスのスクリーン座標を取得
             Vector2 mousePos = Input.mousePosition;
-            bool clickedOnPoint = false;
 
-            foreach (var point in ClickPoints) {
-                RectTransform rectTransform = point.GetComponent<RectTransform>();
-                if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, mousePos, Camera.main)) {
-                    clickedOnPoint = true;
-                    break;
+            // incorrectImageObjの範囲内にマウスがあるか確認
+            RectTransform incorrectRectTransform = incorrectImageObj.GetComponent<RectTransform>();
+            if (RectTransformUtility.RectangleContainsScreenPoint(incorrectRectTransform, mousePos, Camera.main)) {
+                bool clickedOnPoint = false;
+
+                // ワールド座標でのマウス位置を取得
+                Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+                // クリックされたポイントが範囲内か確認
+                foreach (var point in ClickPoints) {
+                    // ポイントのTransformを取得
+                    Transform pointTransform = point.transform;
+
+                    // ポイントの中心座標
+                    Vector3 pointPosition = pointTransform.position;
+
+                    // ポイントのスケールで幅と高さを取得
+                    float pointWidth = pointTransform.localScale.x;
+                    float pointHeight = pointTransform.localScale.y;
+
+                    // ポイントの範囲を計算 (中心からのオフセット)
+                    Vector3 minBounds = pointPosition - new Vector3(pointWidth / 2, pointHeight / 2, 0);
+                    Vector3 maxBounds = pointPosition + new Vector3(pointWidth / 2, pointHeight / 2, 0);
+
+                    // マウス位置がポイントの範囲内にあるか判定
+                    if (worldMousePos.x >= minBounds.x && worldMousePos.x <= maxBounds.x &&
+                        worldMousePos.y >= minBounds.y && worldMousePos.y <= maxBounds.y) {
+                        clickedOnPoint = true;
+                        break;
+                    }
                 }
-            }
 
-            if (!clickedOnPoint) {
-                OnClickOutsidePoints();
+                // クリックされたポイントが範囲外の場合
+                if (!clickedOnPoint) {
+                    OnClickOutsidePoints();
+                }
             }
         }
     }
+
 
     private void OnClickOutsidePoints() {
         Debug.Log("指定のポイント以外がクリックされました。");
