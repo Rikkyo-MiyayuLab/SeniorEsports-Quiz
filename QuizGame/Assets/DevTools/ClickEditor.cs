@@ -10,7 +10,9 @@ using UnityEngine.UI;
 using UnityEditor;
 using Newtonsoft.Json;
 using PlayType5Interface;
+#if UNITY_EDITOR
 using QuestionDevTool;
+#endif
 
 [System.Serializable]
 public class Point {
@@ -19,6 +21,7 @@ public class Point {
     public float height;      
 }
 
+#if UNITY_EDITOR
 public class ClickEditor : QuestionEditor {
     [Header("JSON情報の追加")]
     [Tooltip("問題IDを指定してください。他の問題IDと同じものを指定すると上書きされます。")]
@@ -134,7 +137,9 @@ public class ClickEditor : QuestionEditor {
         base.SaveAsJSON(folderPath, fileName, quizData);
     }
 }
+#endif
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(ClickEditor))]
 public class ClickEditorGUI : EditorGUI<ClickEditor> {
     public override void CustomInspectorGUI() {
@@ -154,3 +159,4 @@ public class ClickEditorGUI : EditorGUI<ClickEditor> {
         }
     }
 }
+#endif

@@ -9,6 +9,7 @@ using TMPro;
 using Newtonsoft.Json;
 using StoryDataInterface;
 
+#if UNITY_EDITOR
 public class StoryEditor : MonoBehaviour {
     
     [Header("JSON情報")]
@@ -73,7 +74,7 @@ public class StoryEditor : MonoBehaviour {
             Character character = new Character();
             character.Name = characterDef.Name;
             character.ImageSrc = GetResourcePath(characterDef.Image);
-            character.ImageGUID = AssetDatabase.AssetPathToGUID(GetSpritePath(characterDef.Image));
+            //character.ImageGUID = AssetDatabase.AssetPathToGUID(GetSpritePath(characterDef.Image));
             character.Dialogue = characterDef.Dialogue;
             character.Position = characterDef.position;
             scene.Characters.Add(character);
@@ -237,6 +238,7 @@ public class StoryEditor : MonoBehaviour {
         return null;
     }
 
+    #if UNITY_EDITOR
     /// <summary>
     /// Resources内からの相対パスを取得する.
     /// </summary>
@@ -261,6 +263,7 @@ public class StoryEditor : MonoBehaviour {
             return null;
         }
     }
+    #endif
 
     private Sprite GetSprite(string path) {
     #if UNITY_EDITOR
@@ -299,3 +302,4 @@ public class StoryEditorGUI : Editor {
         }
     }
 }
+#endif

@@ -10,8 +10,11 @@ using UnityEngine.UI;
 using UnityEditor;
 using Newtonsoft.Json;
 using PlayType4Interface;
+#if UNITY_EDITOR
 using QuestionDevTool;
+#endif
 
+#if UNITY_EDITOR
 /// <summary>
 /// 格子状の問題データを生成するエディタ
 /// </summary>
@@ -182,7 +185,6 @@ public class CardEditor : QuestionEditor {
     }
 }
 
-
 /// <summary>
 /// インスペクタのカスタム
 /// </summary>
@@ -202,3 +204,4 @@ public class CardEditorGUI : EditorGUI<CardEditor> {
         }
     }
 }
+#endif

@@ -11,6 +11,7 @@ using UnityEditor;
 using Newtonsoft.Json;
 using QuestionDataInterface;
 
+#if UNITY_EDITOR
 namespace QuestionDevTool
 {
     /// <summary>
@@ -145,6 +146,7 @@ namespace QuestionDevTool
         }
     }
 
+    #if UNITY_EDITOR
     /// <summary>
     /// 各エディタのインスペクタを構成するクラス。
     /// </summary>
@@ -177,4 +179,7 @@ namespace QuestionDevTool
         protected virtual void EditorUpdate() {}
 
     }
+    #endif
 }
+#endif
+

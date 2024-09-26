@@ -8,8 +8,11 @@ using UnityEditor;
 using Newtonsoft.Json;
 using PlayType1Interface;
 using QuestionDataInterface;
+#if UNITY_EDITOR
 using QuestionDevTool;
+#endif
 
+#if UNITY_EDITOR
 /// <summary>
 /// グリッド式の問題を生成するエディタ
 /// </summary>
@@ -200,3 +203,4 @@ public class GridEditorGUI : EditorGUI<GridEditor> {
     protected override void EditorUpdate() {
     }
 }
+#endif
