@@ -126,6 +126,7 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
                 if(RemainCount == 0) {
                     base.ResultModal.gameObject.SetActive(true);
                     base.RetryButton.gameObject.SetActive(false);
+                    base.NextQuestionButton.gameObject.SetActive(true);
                     base.ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
                     base.timer.PauseTimer();
                 }

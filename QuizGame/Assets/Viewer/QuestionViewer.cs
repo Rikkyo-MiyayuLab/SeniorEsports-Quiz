@@ -65,13 +65,13 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
 
         timer = Timer.GetComponent<Timer>();
 
-        OnTimeOut += () => {
+        timer.onTimerEnd.AddListener(() => {
             base.AudioPlayer.PlayOneShot(GameOverSE);
             ResultModal.gameObject.SetActive(true);
             ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
             NextQuestionButton.gameObject.SetActive(false);
             RetryButton.gameObject.SetActive(true);
-        };
+        });
 
         PoseButton.onClick.AddListener(() => {
             timer.PauseTimer();
