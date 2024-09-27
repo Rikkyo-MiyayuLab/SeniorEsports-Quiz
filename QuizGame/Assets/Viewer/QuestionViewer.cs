@@ -60,7 +60,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
     protected virtual void Start() {
         base.Start();
         string quizPath = PlayerPrefs.GetString("QuizPath");
-        QuizData = LoadJSON<QuestionData>(quizPath);
+        QuizData = LoadJSON<QuestionData>($"{Application.streamingAssetsPath}/{quizPath}");
         QuizStaticsModal.gameObject.SetActive(false);
 
         timer = Timer.GetComponent<Timer>();
@@ -106,6 +106,9 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
                 TotalCorrectCounter.text = TotalCorrectCount.ToString();
                 TotalTime.text = timer.DisplayFormattedTime(TotalElapsedSec);
                 // TODO:スコア計算
+                // カレントエリアを１進める。
+                var currentAreaIdx = PlayerPrefs.GetInt("CurrentAreaIdx", 0);
+                PlayerPrefs.SetInt("CurrentAreaIdx", currentAreaIdx + 1);
             }   
         });
 

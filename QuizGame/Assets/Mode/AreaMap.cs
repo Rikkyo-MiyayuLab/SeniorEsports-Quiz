@@ -27,10 +27,14 @@ public class AreaMap : MonoBehaviour
             // 子要素から StatusIcon を取得
             Image statusIcon = charactorImg.transform.GetChild(0).gameObject.GetComponent<Image>();
 
-            if (i == CurrentAreaIdx) {
+            if (i <= CurrentAreaIdx) {
                 // 現在地のボタンは点滅し、ステータスアイコンを変更
                 AreaButtons[i].GetComponent<ButtonBlink>().StartBlinking();
                 statusIcon.sprite = statusIconCurrent;  // 現在地のアイコンに変更
+                // 既にクリア済みのエリアはクリック可能にして、点滅を停止
+                if(i < CurrentAreaIdx) {
+                    AreaButtons[i].GetComponent<ButtonBlink>().StopBlinking();
+                }
             } else {
                 // 他のボタンは点滅を停止し、ステータスアイコンをロック状態に設定
                 AreaButtons[i].GetComponent<ButtonBlink>().StopBlinking();

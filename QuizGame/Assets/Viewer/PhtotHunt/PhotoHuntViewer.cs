@@ -44,7 +44,7 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
 
     public override void GetData() {
 
-        base.CurrentQuestionData = Viewer.LoadJSON<Question>(base.QuizData.quiz.questions[base.CurrentQuestionIndex]);
+        base.CurrentQuestionData = Viewer.LoadJSON<Question>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
 
         correctImgData = base.CurrentQuestionData.correct;
         inCorrectImgData = base.CurrentQuestionData.incorrect;
