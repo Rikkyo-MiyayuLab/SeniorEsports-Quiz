@@ -67,7 +67,7 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
     }
 
     public override void GetData() {
-        base.CurrentQuestionData = LoadJSON<Question>(QuizData.quiz.questions[CurrentQuestionIndex]);
+        base.CurrentQuestionData = LoadJSON<Question>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
         
         base.CurrentBGM = Resources.Load<AudioClip>(base.CurrentQuestionData.bgm);
         base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);

@@ -58,7 +58,7 @@ public class CardClickViewer : QuestionViewer<Question> {
 
 
     public override void GetData() {
-        base.CurrentQuestionData = LoadJSON<Question>(QuizData.quiz.questions[CurrentQuestionIndex]);
+        base.CurrentQuestionData = LoadJSON<Question>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
         rowSize = base.CurrentQuestionData.row;
         columnSize = base.CurrentQuestionData.column;
         BackgroundImageObj.sprite = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
