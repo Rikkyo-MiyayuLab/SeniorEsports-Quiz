@@ -11,8 +11,6 @@ using Newtonsoft.Json;
 using StoryDataInterface;
 using QuestionDataInterface;
 using EasyTransition;
-using CameraFading;
-
 
 public class StoryViewer : Viewer {
     [Tooltip("ストーリーの識別子 UUID")]
@@ -72,12 +70,12 @@ public class StoryViewer : Viewer {
 
         // ストーリーデータの読み込み
         string storyID = PlayerPrefs.GetString("StoryId");
-        storyFile = $"Assets/StreamingAssets/StoryData/{storyID}.json";
+        storyFile = $"{Application.streamingAssetsPath}/StoryData/{storyID}.json";
         data = LoadJSON<StoryData>(storyFile);
         storyType = data.StoryType;
         
         if(storyType == StoryType.Quiz) {
-            base.QuizData = LoadJSON<QuestionData>(data.quiz);
+            base.QuizData = LoadJSON<QuestionData>($"{Application.streamingAssetsPath}/{data.quiz}");
             base.SetQuizInfo();
         }
 
@@ -89,9 +87,8 @@ public class StoryViewer : Viewer {
         base.CurrentBGM = (AudioClip)Resources.Load(currentScene.audio);
         base.AudioPlayer.clip = base.CurrentBGM;
         base.AudioPlayer.Play();
-        CameraFade.In(() => {
-            LoadScene(currentScene);
-        }, 1.5f, true);
+        
+        LoadScene(currentScene);
 
         onSceneEnd = () => {
             currentSceneIndex++;

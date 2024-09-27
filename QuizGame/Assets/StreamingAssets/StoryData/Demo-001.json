@@ -1,6 +1,6 @@
 {
   "StoryId": "Demo-001",
-  "quiz": "Assets/StreamingAssets/QuestionData/5/475f3507-29a4-46b2-aee0-869e01e3ac13.json",
+  "quiz": "QuestionData/5/475f3507-29a4-46b2-aee0-869e01e3ac13.json",
   "StoryType": 0,
   "Scenes": [
     {

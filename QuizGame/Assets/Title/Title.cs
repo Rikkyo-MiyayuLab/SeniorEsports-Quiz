@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using CameraFading;
+using EasyTransition;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,6 +18,10 @@ public class Title : MonoBehaviour {
     public Button ContinueFromSave;
     public Button StartFromBegin;
     public AudioClip ClickSE;
+    public TransitionSettings transition;
+    public float transitionDuration = 1.0f;
+    private TransitionManager transitionManager;
+
 
     [SerializeField]
     private string MultiPlayerSceneName;
@@ -40,6 +44,7 @@ public class Title : MonoBehaviour {
         audioAPI = GetComponent<AudioSource>();
         seAudioListener = gameObject.AddComponent<AudioSource>();
         seAudioListener.volume = 1.0f;
+        transitionManager = TransitionManager.Instance();
 
         OnePlayerBtn.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);
@@ -60,21 +65,14 @@ public class Title : MonoBehaviour {
             seAudioListener.PlayOneShot(ClickSE);
             // TODO:セーブデータからゲームを再開する。
             Debug.Log("Continue From Save");
-            CameraFade.Out(() => {
-                Debug.Log("fade out finished");
-                // SceneManager.LoadScene(WorldMapSceneName);
-            },2f);
         });
 
         StartFromBegin.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);
-            CameraFade.Out(() => {
-                Debug.Log("fade out finished");
-                //BGMを破棄しないようにする。]
-                gameObject.tag = "DontDestroyOnSceneChange";
-                DontDestroyOnLoad(audioAPI);
-                SceneManager.LoadScene(WorldMapSceneName);
-            }, 0.5f);
+            //BGMを破棄しないようにする。
+            gameObject.tag = "DontDestroyOnSceneChange";
+            DontDestroyOnLoad(audioAPI);
+            transitionManager.Transition("WorldMap", transition, transitionDuration);
         });
 
     }
