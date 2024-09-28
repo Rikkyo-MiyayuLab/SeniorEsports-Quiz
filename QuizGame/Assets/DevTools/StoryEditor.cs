@@ -15,6 +15,10 @@ public class StoryEditor : MonoBehaviour {
     [Header("JSON情報")]
     [Tooltip("ストーリーの識別子 UUID")]
     public string storyID = "AreaName-Story001";
+    [Tooltip("このストーリーに紐づく大問へのパス（QuizData以下）")]
+    public string quizPath = "QuizData/quiz.json";
+    [Tooltip("ストーリーのタイプ")]
+    public StoryType storyType;
     [Tooltip("このシーンの背景画像")]
     public Sprite background;
     [Tooltip("このシーンの音声ファイル")]
@@ -88,6 +92,8 @@ public class StoryEditor : MonoBehaviour {
     public void SaveStoryDataAsJSON() {
         StoryData data = new StoryData {
             StoryId = storyID,
+            quiz = quizPath,
+            StoryType = storyType,
             Scenes = scenes
         };
 
@@ -156,9 +162,10 @@ public class StoryEditor : MonoBehaviour {
         if (narrationDisplayMode != NarrationDisplayMode.None) {
             if(narrationDisplayMode == NarrationDisplayMode.Modal) {
                 narrationArea.SetActive(true);
-                storyTextArea.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                storyTextArea.GetComponent<SpriteRenderer>().sortingOrder = 1;
                 narrationField.text = narration;
             } else if(narrationDisplayMode == NarrationDisplayMode.Inline) { // インライン表示の場合はキャラクターのセリフの下に表示
+                storyTextArea.GetComponent<SpriteRenderer>().sortingOrder = 2;
                 characterTextField.text = narration;
             }
         } else {
