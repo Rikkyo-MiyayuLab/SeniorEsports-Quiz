@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3858664488850149634, guid: 090b1d7d47e56e645aa46ff9e2d70028, type: 3}
       propertyPath: m_Name
-      value: StoryViewer
+      value: StoryEditor
       objectReference: {fileID: 0}
     - target: {fileID: 3953920216706057669, guid: 090b1d7d47e56e645aa46ff9e2d70028, type: 3}
       propertyPath: m_Camera
@@ -393,9 +393,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 7711868477201378121, guid: 090b1d7d47e56e645aa46ff9e2d70028, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4639423413478344555, guid: 090b1d7d47e56e645aa46ff9e2d70028, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 090b1d7d47e56e645aa46ff9e2d70028, type: 3}
