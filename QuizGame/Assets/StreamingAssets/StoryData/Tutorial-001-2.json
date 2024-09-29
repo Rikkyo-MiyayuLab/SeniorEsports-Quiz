@@ -1,0 +1,231 @@
+{
+  "StoryId": "Tutorial-001-2",
+  "quiz": "QuestionData/4/Tutorial-001-2.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-18.44.17-An-anime-style-illustration-of-a-detective-office-storage-room",
+      "audio": "",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "よし。扉があいたぞ！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-18.44.17-An-anime-style-illustration-of-a-detective-office-storage-room",
+      "audio": "",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "中に入って、過去の記録からジェラルド・ホワイトという人物の手がかりがないか探してみよう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "System/ドアを開ける3",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "...."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ここにジェラルド・ホワイトに関する何かが残っているはず…。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/教室の机の椅子を引く",
+      "Characters": [
+        {
+          "Name": "",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "（倉庫内を探索するエリザ。古いファイルや書類を確認するが、すぐには見つからない。）",
+      "NarrationDisplayMode": 1
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "うーん、思ったよりたくさんの書類があるなぁ....."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "…あれ？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "",
+      "Characters": [
+        {
+          "Name": "",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "( 棚の奥にある、やや奇妙な小箱を発見する。)",
+      "NarrationDisplayMode": 1
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "これは…何か特別なものみたい。古い手紙が入ってる…でも、鍵がかかってるみたいね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "（小箱には暗号が記されたメモが添えられている。）",
+      "NarrationDisplayMode": 1
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "このメモ、どうやら暗号みたい。解読しないと、この箱を開けられない..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "えーと... 右と同じ絵柄のカードをすべて選べ、って書いてあるな...."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ほんと先生って謎解きが大好きだよなぁ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "とりあえず、開けてみよう！。きっと、なにかあるはずだ！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ]
+}

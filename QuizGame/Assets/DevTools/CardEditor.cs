@@ -57,6 +57,8 @@ public class CardEditor : QuestionEditor {
         if (base.backgroundImage != null && base.backgroundImageObject != null) {
             base.backgroundImageObject.sprite = base.backgroundImage;
         }
+        // グリッドレイアウトの設定を反映
+        CardArea.GetComponent<GridLayoutGroup>().constraintCount = rowSize;
     }
     
     public override void Initialize() {
@@ -69,6 +71,8 @@ public class CardEditor : QuestionEditor {
     /// カードを格子状にランダム配置する。
     /// </summary>
     public override void Generate() {
+        // グリッドレイアウトの設定を反映
+        CardArea.GetComponent<GridLayoutGroup>().constraintCount = rowSize;
         // グリッドのすべての座標をリストとして保持
         List<Vector2> availablePositions = new List<Vector2>();
 
@@ -171,9 +175,9 @@ public class CardEditor : QuestionEditor {
 
         foreach (CardObject cardData in cards) {
             Card card = new Card {
-                imgSrc = base.GetSpritePath(cardData.frontImg),
-                backImgSrc = base.GetSpritePath(cardData.backImg),
-                //audioSrc = cardData.audioSrc != null ? : null, TODO: 音声アセットのパスを取得する
+                imgSrc = base.GetResourcePath(cardData.frontImg),
+                backImgSrc = base.GetResourcePath(cardData.backImg),
+                audioSrc = cardData.audioSrc != null ? base.GetResourcePath(cardData.audioSrc) : null, 
                 isCorrect = cardData.isCorrect,
                 displayCount = cardData.displayCount,
             };

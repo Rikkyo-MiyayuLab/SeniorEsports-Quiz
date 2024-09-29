@@ -1,0 +1,13 @@
+{
+    "title": "箱の暗号を解け！",
+    "description": "手がかりになりそうな箱を見つけたエリザ。だが、箱を開けるには、暗号文に描かれている見本と同じ絵柄のカードを見つける必要があるらしい。",
+    "limits": 40,
+    "difficulty": 1,
+    "type": 4,
+    "quiz": {
+        "questions": [
+            "QuestionData/4/quiz\\Tutorial-001-2.json"
+        ]
+    },
+    "endStory": "Tutorial-001-End"
+}

@@ -413,8 +413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fadb79f744fa334fb5f553e69a1ae79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storyID: Tutorial-001
-  quizPath: Assets/StreamingAssets/QuizData/quiz.json
+  storyID: Tutorial-001-2
+  quizPath: QuizData/quiz.json
   storyType: 0
   background: {fileID: 0}
   audio: {fileID: 0}

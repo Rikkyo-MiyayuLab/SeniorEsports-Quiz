@@ -1,0 +1,60 @@
+{
+  "cards": [
+    {
+      "imgSrc": "QuestionImages/Tutorial-001-2-card",
+      "backImgSrc": null,
+      "audioSrc": null,
+      "isCorrect": false,
+      "displayCount": 2
+    },
+    {
+      "imgSrc": "QuestionImages/Tutorial-001-2-card",
+      "backImgSrc": null,
+      "audioSrc": null,
+      "isCorrect": false,
+      "displayCount": 1
+    },
+    {
+      "imgSrc": "QuestionImages/Tutorial-001-2-card",
+      "backImgSrc": null,
+      "audioSrc": null,
+      "isCorrect": false,
+      "displayCount": 1
+    },
+    {
+      "imgSrc": "QuestionImages/Tutorial-001-2-card",
+      "backImgSrc": null,
+      "audioSrc": null,
+      "isCorrect": false,
+      "displayCount": 1
+    },
+    {
+      "imgSrc": "QuestionImages/Tutorial-001-2-card",
+      "backImgSrc": null,
+      "audioSrc": null,
+      "isCorrect": false,
+      "displayCount": 1
+    },
+    {
+      "imgSrc": "QuestionImages/Tutorial-001-2-card",
+      "backImgSrc": null,
+      "audioSrc": null,
+      "isCorrect": false,
+      "displayCount": 1
+    },
+    {
+      "imgSrc": "QuestionImages/Tutorial-001-2-card",
+      "backImgSrc": null,
+      "audioSrc": null,
+      "isCorrect": false,
+      "displayCount": 1
+    }
+  ],
+  "questionId": "Tutorial-001-2",
+  "bgm": "Audios/zanzou no hiyu",
+  "row": 2,
+  "column": 4,
+  "backgroundImage": "Backgrounds/DALL·E-2024-09-29-20.20",
+  "margin": 1.5,
+  "pairSize": 2
+}
