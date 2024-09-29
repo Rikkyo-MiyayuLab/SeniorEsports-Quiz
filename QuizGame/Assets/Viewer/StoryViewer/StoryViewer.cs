@@ -16,6 +16,7 @@ public class StoryViewer : Viewer {
     [Tooltip("ストーリーの識別子 UUID")]
     public string storyFile;
     public AudioClip TypingSE;
+    
     [Serializable]
     public class CharacterDef {
         public string Name;
@@ -23,6 +24,7 @@ public class StoryViewer : Viewer {
         public string Dialogue;
         public int position;
     }
+
     [Tooltip("このシーンに表示するキャラクター（最大4体まで）")]
     public List<CharacterDef> characterDefs;
 
@@ -38,6 +40,7 @@ public class StoryViewer : Viewer {
     public List<StoryDataInterface.Scene> scenes;
     public Action onTextComplete;
     public Action onSceneEnd;
+    public GameObject EnterTextIcon;
 
     [Header("Editor Settings")]
     [SerializeField]
@@ -50,16 +53,15 @@ public class StoryViewer : Viewer {
     private GameObject narrationArea;
     [SerializeField]
     private TextMeshPro narrationField;
+
     private List<Character> characters;
     private StoryData data;
     [SerializeField]
     private int currentSceneIndex = 0;
     private StoryDataInterface.Scene currentScene;
     private AudioSource TypingSEPlayer;
+    private bool isWaitingForClick = false;
     private StoryType storyType;
-
-    
-    
     void Start() {
         base.Start();
         TypingSEPlayer = gameObject.AddComponent<AudioSource>();
@@ -67,7 +69,7 @@ public class StoryViewer : Viewer {
         // BGMを廃棄
         GameObject TitleManager = GameObject.Find("TitleManager");
         Destroy(TitleManager);
-
+        EnterTextIcon.SetActive(false);
         // ストーリーデータの読み込み
         string storyID = PlayerPrefs.GetString("StoryId");
         storyFile = $"{Application.streamingAssetsPath}/StoryData/{storyID}.json";
@@ -87,28 +89,17 @@ public class StoryViewer : Viewer {
         base.CurrentBGM = (AudioClip)Resources.Load(currentScene.audio);
         base.AudioPlayer.clip = base.CurrentBGM;
         base.AudioPlayer.Play();
-        
-        LoadScene(currentScene);
 
-        onSceneEnd = () => {
-            currentSceneIndex++;
-            if (currentSceneIndex < scenes.Count) { //次のシーンがある場合
-                StartCoroutine(ChangeScene(currentSceneIndex));
-            } else {// ストーリーが終わった場合
-                if(storyType == StoryType.Quiz) {
-                    // 問題モーダルを表示
-                    base.QuizModalCanvas.gameObject.SetActive(true);
-                    base.AudioPlayer.PlayOneShot(base.ModalDisplaySE);
-                    base.NextButton.onClick.AddListener(() => {
-                        MoveQuizViewer(base.QuizData.type);
-                    });
-                } else if(storyType == StoryType.Explanation) {
-                    // エリア画面へ戻る
-                    string area = PlayerPrefs.GetString("CurrentArea");
-                    base.TransitionManager.Transition(area, Transition, TransitionDuration);
-                }
-            }
-        };
+        LoadScene(currentScene);
+    }
+
+    private void Update() {
+        // マウスクリック待ち状態でクリックされた場合、次のシーンへ遷移
+        if (isWaitingForClick && Input.GetMouseButtonDown(0)) {
+            isWaitingForClick = false;
+            EnterTextIcon.SetActive(false); // 次のシーンへ進む際にアイコンを非表示
+            GoToNextScene();
+        }
     }
 
 
@@ -136,6 +127,27 @@ public class StoryViewer : Viewer {
         base.AudioPlayer.Stop();
     }
 
+    private void GoToNextScene() {
+        currentSceneIndex++;
+        narrationArea.SetActive(false);
+        if (currentSceneIndex < scenes.Count) { // 次のシーンがある場合
+            LoadScene(scenes[currentSceneIndex]);
+            currentScene = scenes[currentSceneIndex];
+        } else { // ストーリーが終わった場合
+            if (storyType == StoryType.Quiz) {
+                // 問題モーダルを表示
+                base.QuizModalCanvas.gameObject.SetActive(true);
+                base.AudioPlayer.PlayOneShot(base.ModalDisplaySE);
+                base.NextButton.onClick.AddListener(() => {
+                    MoveQuizViewer(base.QuizData.type);
+                });
+            } else if (storyType == StoryType.Explanation) {
+                // エリア画面へ戻る
+                string area = PlayerPrefs.GetString("CurrentArea");
+                base.TransitionManager.Transition(area, Transition, TransitionDuration);
+            }
+        }
+    }
 
     /// <summary>
     /// シーンを読み込み各変数にセットする
@@ -144,7 +156,6 @@ public class StoryViewer : Viewer {
     private void LoadScene(StoryDataInterface.Scene scene) {
         narrationArea.SetActive(false);
         // 背景画像と音源の設定
-        // 前のソースと変化がない場合は、そのまま使う
         if (scene.Background != currentScene.Background) {
             Sprite loadedSprite = Resources.Load<Sprite>(scene.Background);
             base.CurrentBackground = loadedSprite;
@@ -163,7 +174,6 @@ public class StoryViewer : Viewer {
         var dialogText = "";
         characterDefs.Clear();
         foreach (var character in characters) {
-            // json情報からキャラクター定義を作成
             var characterDef = new CharacterDef {
                 Name = character.Name,
                 Image = Resources.Load<Sprite>(character.ImageSrc),
@@ -175,57 +185,52 @@ public class StoryViewer : Viewer {
             var characterArea = CharacterAreas[characterDef.position];
             characterArea.SetActive(true);
             characterArea.GetComponent<SpriteRenderer>().sprite = characterDef.Image;
-            // 表示するセリフを持っている場合
+            
             if (!string.IsNullOrEmpty(characterDef.Dialogue)) {
                 dialogName = characterDef.Name;
                 dialogText = characterDef.Dialogue;
             }
         }
-        // セリフの設定
-        textDisplayMode = scene.TextDisplayMode.HasValue ? scene.TextDisplayMode.Value : TextDisplayMode.OneByOne;
-        characterNameField.text = dialogName;
-        if(textDisplayMode == TextDisplayMode.OneByOne) {
-            ProgressTextOneByOne(dialogText, () => {
-                // テキスト表示が終わったら次のシーンへ
-                onSceneEnd?.Invoke();
-            });
-        } else if(textDisplayMode == TextDisplayMode.Instant) {
-            characterTextField.text = dialogText;
-            onSceneEnd?.Invoke();
-        }
-
-        // ナレーション設定  
         narrationDisplayMode = scene.NarrationDisplayMode.HasValue ? scene.NarrationDisplayMode.Value : NarrationDisplayMode.None;
+
         if(narrationDisplayMode == NarrationDisplayMode.None) {
-            narrationArea.SetActive(false);
-        } else if(narrationDisplayMode == NarrationDisplayMode.Modal) {
-            narrationArea.SetActive(true);
-            narrationField.text = scene.Narration;
-            onSceneEnd?.Invoke();
-        } else if(narrationDisplayMode == NarrationDisplayMode.Inline) {
-            narrationArea.SetActive(false);
+            // セリフの設定
+            characterNameField.text = dialogName;
             if(textDisplayMode == TextDisplayMode.OneByOne) {
-                ProgressTextOneByOne(scene.Narration, () => {
+                ProgressTextOneByOne(dialogText, () => {
                     // テキスト表示が終わったら次のシーンへ
                     onSceneEnd?.Invoke();
                 });
             } else if(textDisplayMode == TextDisplayMode.Instant) {
-                characterTextField.text = scene.Narration;
+                characterTextField.text = dialogText;
                 onSceneEnd?.Invoke();
             }
+        } else {
+            // ナレーション設定  
+            if(narrationDisplayMode == NarrationDisplayMode.None) {
+                narrationArea.SetActive(false);
+            } else if(narrationDisplayMode == NarrationDisplayMode.Modal) {
+                narrationArea.SetActive(true);
+                narrationField.text = scene.Narration;
+                onSceneEnd?.Invoke();
+                isWaitingForClick = true;
+            } else if(narrationDisplayMode == NarrationDisplayMode.Inline) {
+                narrationArea.SetActive(false);
+                if(textDisplayMode == TextDisplayMode.OneByOne) {
+                    ProgressTextOneByOne(scene.Narration, () => {
+                        // テキスト表示が終わったら次のシーンへ
+                        onSceneEnd?.Invoke();
+                    });
+                } else if(textDisplayMode == TextDisplayMode.Instant) {
+                    characterTextField.text = scene.Narration;
+                    onSceneEnd?.Invoke();
+                    isWaitingForClick = true;
+                }
+            }
         }
-
     }
 
-    /// <summary>
-    /// 指定の秒数後シーンを切り替える.
-    /// <summary>
-    private IEnumerator ChangeScene(int sceneIndex) {
-        yield return new WaitForSeconds(sceneInterval);
-        currentScene = scenes[sceneIndex];
-        LoadScene(currentScene);
-    }
-
+    
 
     /// <summary>
     /// テキストを1文字ずつ表示するコルーチン
@@ -243,12 +248,14 @@ public class StoryViewer : Viewer {
     /// <returns>コルーチン</returns>
     private IEnumerator ProgressTextCoroutine(string text) {
         characterTextField.text = "";
+        EnterTextIcon.SetActive(false); // テキストが進行中の間はEnterTextIconを非表示
         foreach (var c in text) {
             characterTextField.text += c;
             TypingSEPlayer.PlayOneShot(TypingSE);
-            // 1文字表示した後の待ち時間
             yield return new WaitForSeconds(textSpeed);
         }
-        onTextComplete?.Invoke();
+        // すべてのテキストが表示されたら、クリック待ち状態にしてEnterTextIconを表示
+        isWaitingForClick = true;
+        EnterTextIcon.SetActive(true); // テキストの完了後にアイコンを表示
     }
 }
