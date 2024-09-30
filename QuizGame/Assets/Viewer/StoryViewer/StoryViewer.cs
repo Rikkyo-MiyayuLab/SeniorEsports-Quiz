@@ -62,6 +62,9 @@ public class StoryViewer : Viewer {
     private AudioSource TypingSEPlayer;
     private bool isWaitingForClick = false;
     private StoryType storyType;
+    private bool isTextRendering = false; // テキストがレンダリング中かどうかを管理
+    private string fullText = ""; // レンダリングするテキスト全体を保持
+    private Coroutine textCoroutine;
     void Start() {
         base.Start();
         TypingSEPlayer = gameObject.AddComponent<AudioSource>();
@@ -94,11 +97,17 @@ public class StoryViewer : Viewer {
     }
 
     private void Update() {
-        // マウスクリック待ち状態でクリックされた場合、次のシーンへ遷移
-        if (isWaitingForClick && Input.GetMouseButtonDown(0)) {
-            isWaitingForClick = false;
-            EnterTextIcon.SetActive(false); // 次のシーンへ進む際にアイコンを非表示
-            GoToNextScene();
+        if (Input.GetMouseButtonDown(0)) {
+            if (isTextRendering) {
+                // テキストを一括表示して、レンダリングを終了
+                StopCoroutine(textCoroutine); // コルーチンを停止
+                characterTextField.text = fullText; // 残りのテキストを一括表示
+                EndTextRendering(); // レンダリング終了処理
+            } else if (isWaitingForClick) {
+                isWaitingForClick = false;
+                EnterTextIcon.SetActive(false);
+                GoToNextScene();
+            }
         }
     }
 
@@ -238,7 +247,8 @@ public class StoryViewer : Viewer {
     /// <param name="text"></param>
     private void ProgressTextOneByOne(string text, Action onComplete = null) {
         onTextComplete = onComplete;
-        StartCoroutine(ProgressTextCoroutine(text));
+        fullText = text; // テキスト全体を保持
+        textCoroutine = StartCoroutine(ProgressTextCoroutine(text));
     }
 
     /// <summary>
@@ -248,6 +258,7 @@ public class StoryViewer : Viewer {
     /// <returns>コルーチン</returns>
     private IEnumerator ProgressTextCoroutine(string text) {
         characterTextField.text = "";
+        isTextRendering = true; // テキストレンダリング中フラグをON
         EnterTextIcon.SetActive(false); // テキストが進行中の間はEnterTextIconを非表示
         foreach (var c in text) {
             characterTextField.text += c;
@@ -256,6 +267,15 @@ public class StoryViewer : Viewer {
         }
         // すべてのテキストが表示されたら、クリック待ち状態にしてEnterTextIconを表示
         isWaitingForClick = true;
-        EnterTextIcon.SetActive(true); // テキストの完了後にアイコンを表示
+        EndTextRendering();
+    }
+
+    /// <summary>
+    /// テキストレンダリング終了後の処理
+    /// </summary>
+    private void EndTextRendering() {
+        isTextRendering = false; // テキストレンダリング中フラグをOFF
+        isWaitingForClick = true; // クリック待ち状態にする
+        EnterTextIcon.SetActive(true); // 全テキスト表示後にクリック促進アイコンを表示
     }
 }
