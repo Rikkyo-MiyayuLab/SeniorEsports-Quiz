@@ -3,49 +3,49 @@
     {
       "imgSrc": "QuestionImages/Tutorial-001-2-card",
       "backImgSrc": null,
-      "audioSrc": null,
-      "isCorrect": false,
+      "audioSrc": "Audios/Questions/決定ボタンを押す53",
+      "isCorrect": true,
       "displayCount": 2
     },
     {
       "imgSrc": "QuestionImages/Tutorial-001-2-card",
       "backImgSrc": null,
-      "audioSrc": null,
+      "audioSrc": "Audios/Questions/決定ボタンを押す52",
       "isCorrect": false,
       "displayCount": 1
     },
     {
       "imgSrc": "QuestionImages/Tutorial-001-2-card",
       "backImgSrc": null,
-      "audioSrc": null,
+      "audioSrc": "Audios/Questions/決定ボタンを押す51",
       "isCorrect": false,
       "displayCount": 1
     },
     {
       "imgSrc": "QuestionImages/Tutorial-001-2-card",
       "backImgSrc": null,
-      "audioSrc": null,
+      "audioSrc": "Audios/Questions/決定ボタンを押す50",
       "isCorrect": false,
       "displayCount": 1
     },
     {
       "imgSrc": "QuestionImages/Tutorial-001-2-card",
       "backImgSrc": null,
-      "audioSrc": null,
+      "audioSrc": "Audios/Questions/決定ボタンを押す49",
       "isCorrect": false,
       "displayCount": 1
     },
     {
       "imgSrc": "QuestionImages/Tutorial-001-2-card",
       "backImgSrc": null,
-      "audioSrc": null,
+      "audioSrc": "Audios/Questions/決定ボタンを押す48",
       "isCorrect": false,
       "displayCount": 1
     },
     {
       "imgSrc": "QuestionImages/Tutorial-001-2-card",
       "backImgSrc": null,
-      "audioSrc": null,
+      "audioSrc": "Audios/Questions/決定ボタンを押す47",
       "isCorrect": false,
       "displayCount": 1
     }
@@ -55,6 +55,6 @@
   "row": 2,
   "column": 4,
   "backgroundImage": "Backgrounds/DALL·E-2024-09-29-20.20",
-  "margin": 1.5,
+  "margin": 2.0,
   "pairSize": 2
 }

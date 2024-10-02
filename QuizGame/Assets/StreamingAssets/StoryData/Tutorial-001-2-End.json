@@ -1,0 +1,103 @@
+{
+  "StoryId": "Tutorial-001-2-End",
+  "quiz": "",
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "よし！箱が開いたぞ。さて、中には何が…？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "エリザが箱を開けると、古い地図や日記の切れ端が入っていた。",
+      "NarrationDisplayMode": 1
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ジェラルド・ホワイトに関する直接の情報は無いみたい…"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "でも、これは彼が関わった事件の記録かも。日記には館についての手がかりが書かれている！"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "この地図、何か意味がありそう…。先に進むための手がかりになるかもしれない."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-29-20.20",
+      "audio": "Audios/zanzou no hiyu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": "先生にこの地図を見せてみよう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ]
+}
