@@ -62,7 +62,9 @@ namespace QuestionDevTool
             var ParentDataPath = PlayerPrefs.GetString(DevConstants.QuestionDataFileKey);
             string parentJson = File.ReadAllText(ParentDataPath);
             QuestionData parentData = JsonConvert.DeserializeObject<QuestionData>(parentJson);
-            parentData.quiz.questions.Add(filePath);
+            // parentData.quiz.questions.Add(filePath);
+            // filePathから "Assets/StreamingAssets/"を除外して保存する。
+            parentData.quiz.questions.Add(filePath.Replace("Assets/StreamingAssets/", ""));
             File.WriteAllText(ParentDataPath, JsonConvert.SerializeObject(parentData));
             Debug.Log($"大問データに小問追加: {filePath}");
             streamWriter = new StreamWriter(ParentDataPath);

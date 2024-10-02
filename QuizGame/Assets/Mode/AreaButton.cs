@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 using EasyTransition;
+using SaveDataInterface;
 
 public class AreaButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     [Tooltip("読み込むストーリーID")]
@@ -51,7 +52,6 @@ public class AreaButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             PlayerPrefs.SetString("StoryId", storyId);
             PlayerPrefs.SetString("CurrentArea", SceneManager.GetActiveScene().name);
             transitionManager.Transition("StoryViewer", transition, transitionDuration);
-            PlayerPrefs.SetInt("CurrentAreaIdx", NextAreaIdx);
         });
     }
 
