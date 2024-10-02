@@ -26,14 +26,17 @@ public class Title : MonoBehaviour {
     [SerializeField]
     private string MultiPlayerSceneName;
     [SerializeField]
-    private string WorldMapSceneName;
+    private string RegisterUserSceneName;
+    [SerializeField]
+    private string SaveSlotSceneName;
 
     private AudioSource audioAPI;
     private AudioSource seAudioListener;
 
     #if UNITY_EDITOR
     public SceneAsset MultiPlayerScene;
-    public SceneAsset WorldMapScene;
+    public SceneAsset RegisterUserScene;
+    public SceneAsset SaveSlotScene;
     #endif
 
 
@@ -63,8 +66,10 @@ public class Title : MonoBehaviour {
 
         ContinueFromSave.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);
-            // TODO:セーブデータからゲームを再開する。
-            Debug.Log("Continue From Save");
+            //BGMを破棄しないようにする。
+            gameObject.tag = "DontDestroyOnSceneChange";
+            DontDestroyOnLoad(audioAPI);
+            transitionManager.Transition(SaveSlotSceneName, transition, transitionDuration);
         });
 
         StartFromBegin.onClick.AddListener(() => {
@@ -72,7 +77,7 @@ public class Title : MonoBehaviour {
             //BGMを破棄しないようにする。
             gameObject.tag = "DontDestroyOnSceneChange";
             DontDestroyOnLoad(audioAPI);
-            transitionManager.Transition("WorldMap", transition, transitionDuration);
+            transitionManager.Transition(RegisterUserSceneName, transition, transitionDuration);
         });
 
     }
@@ -81,7 +86,8 @@ public class Title : MonoBehaviour {
     private void Awake() {
         #if UNITY_EDITOR
         MultiPlayerSceneName = MultiPlayerScene.name;
-        WorldMapSceneName = WorldMapScene.name;
+        RegisterUserSceneName = RegisterUserScene.name;
+        SaveSlotSceneName = SaveSlotScene.name;
         #endif
     }
 

@@ -49,7 +49,7 @@ public class UserRegister : MonoBehaviour {
         // ユーザー登録処理
         PlayerData playerData = new PlayerData();
         playerData.PlayerName = UserNameField.text;
-        playerData.UserAge = int.Parse(UserAgeField.text);
+        // playerData.UserAge = int.Parse(UserAgeField.text);
         playerData.PlayerUUID = Guid.NewGuid().ToString();
 
         // ユーザーデータを保存

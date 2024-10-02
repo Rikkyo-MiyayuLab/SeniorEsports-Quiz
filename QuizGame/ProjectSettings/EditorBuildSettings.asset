@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PhotoHuntViewer.unity
     guid: 5a4fc07fc8f19244b9c1b2bd37bdc63b
+  - enabled: 1
+    path: Assets/Scenes/SaveSlots.unity
+    guid: 932d948c62b626a42bf5b367015da57e
+  - enabled: 1
+    path: Assets/Scenes/CreateUserData.unity
+    guid: 7c78ab64a1fa1c846a20c46765f3e7fd
   m_configObjects: {}
