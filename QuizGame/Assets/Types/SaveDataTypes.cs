@@ -23,7 +23,7 @@ namespace SaveDataInterface {
         /// 現在のワールドマップの場所(最進捗) 
         /// </summary>
         public int CurrentWorld;
-        public string CurrentArea;
+        public int CurrentArea;
         /// <summary>
         /// 最後にプレイしたストーリーID
         /// </summary>
