@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System;
 
 namespace StoryDataInterface
@@ -36,32 +37,32 @@ namespace StoryDataInterface
         /// <summary>
         /// シーンの背景画像ファイル名
         /// </summary>
-        public string Background { get; set; }
+        public string Background;
 
         /// <summary>
         /// 音声トラック等
         /// </summary>
-        public string audio { get; set; }
+        public string audio;
 
         /// <summary>
         /// シーンに登場するキャラクターのリスト
         /// </summary>
-        public List<Character> Characters { get; set; }
+        public List<Character> Characters;
 
         /// <summary>
         /// セリフの表示方法 ("oneByOne" = 1文字ずつ, "instant" = 全て即時表示)
         /// </summary>
-        public TextDisplayMode? TextDisplayMode { get; set; }
+        public TextDisplayMode? TextDisplayMode;
 
         /// <summary>
         /// ナレーションがある場合のテキスト
         /// </summary>
-        public string Narration { get; set; }
+        public string Narration;
 
         /// <summary>
         /// ナレーションの表示方法 ("modal" = モーダル表示, "inline" = インライン表示)
         /// </summary>
-        public NarrationDisplayMode? NarrationDisplayMode { get; set; }
+        public NarrationDisplayMode? NarrationDisplayMode;
     }
 
     [Serializable]
@@ -91,7 +92,7 @@ namespace StoryDataInterface
         /// TODO:キャラクターのアニメーション状態 ("idle", "talk", "thinking" など)
         /// TODO:将来的にはアニメーションの制御も行いたい
         /// </summary>
-        // public string AnimationState { get; set; }
+        // public string AnimationState;
 
         /// <summary>
         /// キャラクターのセリフ

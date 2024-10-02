@@ -1,0 +1,63 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "38",
+            "correct": true
+          },
+          {
+            "text": "32",
+            "correct": false
+          },
+          {
+            "text": "11",
+            "correct": false
+          },
+          {
+            "text": "43",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    3.36,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-001-1",
+  "bgm": "Audios/mizu no doukutu",
+  "backgroundImage": "Backgrounds/DALL·E-2024-09-29-18.44.17-An-anime-style-illustration-of-a-detective-office-storage-room",
+  "questionImage": {
+    "src": "QuestionImages/Tutorial-001-1",
+    "pos": [
+      -0.0776186,
+      2.59325552,
+      0.0
+    ],
+    "scale": [
+      1.64040589,
+      1.52685738,
+      1.0
+    ]
+  }
+}

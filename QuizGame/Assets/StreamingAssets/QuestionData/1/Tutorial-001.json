@@ -1,0 +1,13 @@
+{
+    "title": "倉庫の扉を開けろ！！",
+    "description": "先生に言われて、過去の事件の内容を調べに来たエリザ。扉を開けるには、数字を足した合計の数を入力しないといけないようだ。イラストの中の数字を全て足した答えを選ぼう。",
+    "limits": 40,
+    "difficulty": 1,
+    "type": 1,
+    "quiz": {
+        "questions": [
+            "QuestionData/1/quiz\\Tutorial-001-1.json"
+        ]
+    },
+    "endStory": "Tutorial-001-2"
+}
