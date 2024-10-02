@@ -54,7 +54,9 @@ public class UserRegister : MonoBehaviour {
 
         // ユーザーデータを保存
         SaveDataManager.SavePlayerData(playerData.PlayerUUID, playerData);
-
+        // 初回はワールドマップ遷移時にUUIDを伝達させる。
+        PlayerPrefs.SetString("PlayerUUID", playerData.PlayerUUID);
+        PlayerPrefs.SetInt("FirstTime", 1);
         // ユーザー登録完了メッセージを表示
         Debug.Log("ユーザー登録が完了しました");
     }

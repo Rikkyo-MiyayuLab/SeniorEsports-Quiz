@@ -19,7 +19,7 @@ public class SaveDataManager : MonoBehaviour {
         playerData.PlayerName = PlayerPrefs.GetString(playerUUID + PlayerPrefKeys.PlayerName.ToString());
         playerData.TotalPlayTime = PlayerPrefs.GetFloat(playerUUID + PlayerPrefKeys.TotalPlayTime.ToString());
         playerData.TotalResolvedCount = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.TotalResolvedCount.ToString());
-        playerData.CurrentWorld = PlayerPrefs.GetString(playerUUID + PlayerPrefKeys.CurrentWorld.ToString());
+        playerData.CurrentWorld = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.CurrentWorld.ToString());
         playerData.CurrentArea = PlayerPrefs.GetString(playerUUID + PlayerPrefKeys.CurrentArea.ToString());
         playerData.LastStoryId = PlayerPrefs.GetString(playerUUID + PlayerPrefKeys.LastStoryId.ToString());
         playerData.UserAge = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.UserAge.ToString());
@@ -37,7 +37,7 @@ public class SaveDataManager : MonoBehaviour {
         PlayerPrefs.SetFloat(playerUUID + PlayerPrefKeys.TotalPlayTime.ToString(), playerData.TotalPlayTime);
         PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.TotalResolvedCount.ToString(), playerData.TotalResolvedCount);
         PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.CurrentArea.ToString(), playerData.CurrentArea);
-        PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.CurrentWorld.ToString(), playerData.CurrentWorld);
+        PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.CurrentWorld.ToString(), playerData.CurrentWorld);
         PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.LastStoryId.ToString(), playerData.LastStoryId);
         PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.UserAge.ToString(), playerData.UserAge);
         return true;

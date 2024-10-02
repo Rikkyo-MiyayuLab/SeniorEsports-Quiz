@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using SaveDataInterface;
 
-public class AreaData : MonoBehaviour {
+public class WorldMapButton : MonoBehaviour {
     public string SceneName;
     public string AreaName;
     public string AreaDescription;
     public TextMeshProUGUI AreaNameDisplayer;
     public TextMeshProUGUI AreaDescriptionDisplayer;
+    [SerializeField]
+    private PlayerData playerData;
 
     public float typingSpeed = 0.05f; // 1文字を表示する間隔時間（秒）
     private Coroutine typingCoroutine;
@@ -28,6 +31,7 @@ public class AreaData : MonoBehaviour {
         entry.eventID = EventTriggerType.PointerExit;
         entry.callback.AddListener((data) => { OnPointerExit((PointerEventData)data); });
         trigger.triggers.Add(entry);
+
     }
     public void OnPointerEnter(PointerEventData eventData) {
         AreaNameDisplayer.text = AreaName;
