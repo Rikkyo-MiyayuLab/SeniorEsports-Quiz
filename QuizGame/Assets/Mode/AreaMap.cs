@@ -30,34 +30,41 @@ public class AreaMap : MonoBehaviour
         CurrentAreaIdx = PlayerPrefs.GetInt("CurrentAreaIdx", 0);
 
         for (int i = 0; i < AreaButtons.Length; i++) {
+            var areaButton = AreaButtons[i];
             // ボタンの最初の子要素を取得 (charactorImg)
-            GameObject charactorImg = AreaButtons[i].transform.GetChild(0).gameObject;
+            GameObject charactorImg = areaButton.transform.GetChild(0).gameObject;
             // 子要素から StatusIcon を取得
             Image statusIcon = charactorImg.transform.GetChild(0).gameObject.GetComponent<Image>();
 
             if (i <= CurrentAreaIdx && WorldIdx <= CurrentWorldIdx) {
                 // 現在地のボタンは点滅し、ステータスアイコンを変更
-                AreaButtons[i].GetComponent<ButtonBlink>().StartBlinking();
+                areaButton.GetComponent<ButtonBlink>().StartBlinking();
                 statusIcon.sprite = statusIconCurrent;  // 現在地のアイコンに変更
-                // 既にクリア済みのエリアはクリック可能にして、点滅を停止
                 if(i < CurrentAreaIdx) {
-                    AreaButtons[i].GetComponent<ButtonBlink>().StopBlinking();
-                } else {
-                    AreaButtons[i].GetComponent<Button>().onClick.AddListener(() => {
-                        // 進捗を保存
-                        playerData.LastStoryId = AreaButtons[i].GetComponent<AreaButton>().storyId;
+                    areaButton.GetComponent<ButtonBlink>().StopBlinking();
+                }
+
+                areaButton.GetComponent<Button>().onClick.AddListener(() => {
+                    
+                    // 進捗を保存
+                    if(i == CurrentAreaIdx) {
+                        playerData.LastStoryId = areaButton.GetComponent<AreaButton>().storyId;
                         playerData.CurrentArea = i;
                         playerData.CurrentWorld = WorldIdx;
                         SaveDataManager.SavePlayerData(playerData.PlayerUUID, playerData);
-                    });
-                }
+                    }
+
+                    areaButton.GetComponent<AreaButton>().MoveScene();
+                    
+                });
+                // 既にクリア済みのエリアはクリック可能にして、点滅を停止
             } else {
                 // 他のボタンは点滅を停止し、ステータスアイコンをロック状態に設定
-                AreaButtons[i].GetComponent<ButtonBlink>().StopBlinking();
+                areaButton.GetComponent<ButtonBlink>().StopBlinking();
                 statusIcon.sprite = statusIconLocked;  // ロック状態のアイコンに変更
 
                 // ボタンをクリック不可にする
-                AreaButtons[i].interactable = false;
+                areaButton.interactable = false;
             }
         }
     }
