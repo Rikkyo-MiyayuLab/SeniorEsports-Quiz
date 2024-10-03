@@ -19,7 +19,7 @@ public class UserRegister : MonoBehaviour {
    public TransitionSettings Transition;
    public float TransitionDuration = 1.0f;
    private TransitionManager TransitionManager;
-   private string NextSceneName;
+   private string NextSceneName = "WorldMap";
 
    #if UNITY_EDITOR
     public SceneAsset NextScene;

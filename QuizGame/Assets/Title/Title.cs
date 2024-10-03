@@ -77,7 +77,7 @@ public class Title : MonoBehaviour {
             //BGMを破棄しないようにする。
             gameObject.tag = "DontDestroyOnSceneChange";
             DontDestroyOnLoad(audioAPI);
-            transitionManager.Transition(RegisterUserSceneName, transition, transitionDuration);
+            transitionManager.Transition("CreateUserData", transition, transitionDuration);
         });
 
     }
