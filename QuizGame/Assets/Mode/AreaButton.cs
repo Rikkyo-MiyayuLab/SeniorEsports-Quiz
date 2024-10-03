@@ -48,10 +48,7 @@ public class AreaButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         
         button.onClick.AddListener(() => {
-            // ストーリーIDをシーン遷移前に渡す
-            PlayerPrefs.SetString("StoryId", storyId);
-            PlayerPrefs.SetString("CurrentArea", SceneManager.GetActiveScene().name);
-            transitionManager.Transition("StoryViewer", transition, transitionDuration);
+            
         });
     }
 
@@ -76,6 +73,13 @@ public class AreaButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             descriptionText.text += letter;  // 1文字追加
             yield return new WaitForSeconds(typingSpeed);  // 指定した時間待つ
         }
+    }
+
+    public void MoveScene() {
+         // ストーリーIDをシーン遷移前に渡す
+        PlayerPrefs.SetString("StoryId", storyId);
+        PlayerPrefs.SetString("CurrentArea", SceneManager.GetActiveScene().name);
+        transitionManager.Transition("StoryViewer", transition, transitionDuration);
     }
 
 }
