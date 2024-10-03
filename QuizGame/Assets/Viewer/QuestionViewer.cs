@@ -13,10 +13,14 @@ using TMPro;
 using QuestionDataInterface;
 using EasyTransition;
 
+public interface IQuestion {
+    string explanation { get;}
+    string explanationImage { get;}
+}
 /// <summary>
 /// 問題解答用ビューアの基底クラス
 /// </summary>
-public abstract class QuestionViewer<QuestionType> : Viewer {
+public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType : IQuestion {
     [Header("解答画面共通設定")]
     public int CurrentQuestionIndex = 0;
     public Canvas ResultModal;
@@ -30,6 +34,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
     public TextMeshProUGUI TotalTime;
     public TextMeshProUGUI ScoreText;
     public Button MoveEndStoryButton;
+    public TransitionSettings AnswerEyeCatchTransition;
     [Header("ゲーム用SE設定")]
     public AudioClip ClearSE;
     public AudioClip GameOverSE;
@@ -116,6 +121,24 @@ public abstract class QuestionViewer<QuestionType> : Viewer {
             PlayerPrefs.SetString("StoryId", QuizData.endStory);
             TransitionManager.Transition("StoryViewer", Transition, TransitionDuration);
         });
+    }
+
+    /// <summary>
+    /// ユーザーが解答した際に呼ぶ処理。正解か不正解かによって、アニメーションを分岐する。
+    /// TODO : 不正解用アニメーションの作成
+    /// </summary>
+    /// <param name="isCorrect"></param>
+    protected void QuestionAnswered(bool isCorrect) {
+        // 正解用アイキャッチシーンを表示
+        if(isCorrect) {
+            PlayerPrefs.SetString("Explanation", CurrentQuestionData.explanation);
+            PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
+            PlayerPrefs.SetString("NextStoryId", QuizData.endStory);
+            // SceneManager.LoadScene("AnswerPreview-Correct");
+            TransitionManager.Transition("AnswerPreview-Correct", AnswerEyeCatchTransition, 0.01f);
+        } else {
+            Debug.Log("不正解");
+        }
     }
 
     protected void Update() {

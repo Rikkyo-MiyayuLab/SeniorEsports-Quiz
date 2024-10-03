@@ -174,27 +174,34 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
             //TODO : 小問リザルト画面を表示
             base.timer.PauseTimer();
 
-            ResultModal.gameObject.SetActive(true);
+            //ResultModal.gameObject.SetActive(true);
             if(correctness.TrueForAll(x => x)) {
                 Debug.Log("正解");
+                /*
                 SEAudioSource.PlayOneShot(clearSE);
                 ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
                 NextQuestionButton.gameObject.SetActive(true);
-                RetryButton.gameObject.SetActive(false);
+                RetryButton.gameObject.SetActive(false);*/
+                base.QuestionAnswered(true);
+
             } else {
                 Debug.Log("不正解");
+                /*
                 SEAudioSource.PlayOneShot(gameoverSE);
                 ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
                 NextQuestionButton.gameObject.SetActive(false);
                 RetryButton.gameObject.SetActive(true);
+                */
+                base.QuestionAnswered(false);
             }
         }
 
         // 全問解き終えたか？
+        /*
         if(CurrentQuestionIndex < QuizData.quiz.questions.Count - 1) {
             ResultModal.gameObject.SetActive(true);
             // 戻るボタンを表示
             RetryButton.gameObject.SetActive(false);
-        }
+        }*/
     }
 }

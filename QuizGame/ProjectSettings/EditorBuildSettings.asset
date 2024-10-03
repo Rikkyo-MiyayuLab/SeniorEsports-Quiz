@@ -38,4 +38,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreateUserData.unity
     guid: 7c78ab64a1fa1c846a20c46765f3e7fd
+  - enabled: 1
+    path: Assets/Scenes/AnswerPreview-Correct.unity
+    guid: 4bed47ba06adb854692217df60aa8307
+  - enabled: 1
+    path: Assets/Scenes/QuestionExplanation.unity
+    guid: 394596484fd9b574f9f9022ca778a210
   m_configObjects: {}
