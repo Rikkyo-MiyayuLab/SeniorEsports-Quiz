@@ -19,6 +19,7 @@ public interface IQuestion {
 }
 /// <summary>
 /// 問題解答用ビューアの基底クラス
+/// //TODO: TotalElapsedSecを制限タイプに関係なくカウントするようにする。現在は問題の制限時間と紐づいるため、制限タイプがクリック回数のときにバグる。
 /// </summary>
 public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType : IQuestion {
     [Header("解答画面共通設定")]
@@ -35,6 +36,8 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     public TextMeshProUGUI ScoreText;
     public Button MoveEndStoryButton;
     public TransitionSettings AnswerEyeCatchTransition;
+    public GameObject ClickRemainCounterPanel;
+    public TextMeshProUGUI ClickRemainCounter;
     [Header("ゲーム用SE設定")]
     public AudioClip ClearSE;
     public AudioClip GameOverSE;
@@ -46,6 +49,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     protected double remainingSeconds;
     protected Timer timer;
     protected Action OnTimeOut;
+    protected int ClickCount = 0;
     
 
     public void Init() {
@@ -67,16 +71,21 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         string quizPath = PlayerPrefs.GetString("QuizPath");
         QuizData = LoadJSON<QuestionData>($"{Application.streamingAssetsPath}/{quizPath}");
         QuizStaticsModal.gameObject.SetActive(false);
-
         timer = Timer.GetComponent<Timer>();
 
-        timer.onTimerEnd.AddListener(() => {
-            base.AudioPlayer.PlayOneShot(GameOverSE);
-            ResultModal.gameObject.SetActive(true);
-            ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
-            NextQuestionButton.gameObject.SetActive(false);
-            RetryButton.gameObject.SetActive(true);
-        });
+        if(base.QuizData.limitType == LimitType.time) {
+            ClickRemainCounterPanel.SetActive(false);
+            timer.onTimerEnd.AddListener(() => {
+                base.AudioPlayer.PlayOneShot(GameOverSE);
+                ResultModal.gameObject.SetActive(true);
+                ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
+                NextQuestionButton.gameObject.SetActive(false);
+                RetryButton.gameObject.SetActive(true);
+            });
+        } else {
+            ClickRemainCounterPanel.SetActive(true);
+            timer.gameObject.SetActive(false);
+        }
 
         PoseButton.onClick.AddListener(() => {
             timer.PauseTimer();
@@ -98,6 +107,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         NextQuestionButton.onClick.AddListener(() => {
             ResultModal.gameObject.SetActive(false);
             // 経過時間を加算
+            
             TotalElapsedSec += QuizData.limits - timer.GetRemainingSeconds();
             TotalCorrectCount++;
             Debug.Log("CurrentTotalElapsedSec: " + TotalElapsedSec);
@@ -142,7 +152,17 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     }
 
     protected void Update() {
-        if(timer.GetRemainingSeconds() <= 0) {
+
+        if(base.QuizData.limitType == LimitType.click) {
+            ClickRemainCounter.text = (base.QuizData.limits - ClickCount).ToString() + " 回";
+        }
+
+        // ゲーム終了条件の監視
+        if(base.QuizData.limitType == LimitType.click && ClickCount > base.QuizData.limits) {
+            timer.PauseTimer();
+            QuestionAnswered(false);
+            return;
+        } else if(base.QuizData.limitType == LimitType.time && timer.GetRemainingSeconds() <= 0) {
             timer.StopTimer();
             OnTimeOut?.Invoke();
         }

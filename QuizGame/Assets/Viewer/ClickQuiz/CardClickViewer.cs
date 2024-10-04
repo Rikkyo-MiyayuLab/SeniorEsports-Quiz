@@ -34,6 +34,7 @@ public class CardClickViewer : QuestionViewer<Question> {
     }
     public List<CardObjectData> cards = new List<CardObjectData>();
     public AudioSource SEAudioSource;
+    public Sprite DefaultCardSprite;
     [SerializeField]
     private AudioClip defaultClickSE;
     [SerializeField]
@@ -66,15 +67,15 @@ public class CardClickViewer : QuestionViewer<Question> {
         margin = base.CurrentQuestionData.margin;
         PairSize = base.CurrentQuestionData.pairSize;
         // カードの情報を設定
-        foreach (var card in base.CurrentQuestionData.cards) {
-            CardObjectData cardObj = new CardObjectData {
-                frontImg = Resources.Load<Sprite>(card.imgSrc),
-                backImg = card.backImgSrc == null? null : Resources.Load<Sprite>(card.backImgSrc),
-                audioSrc = card.audioSrc == null? defaultClickSE : Resources.Load<AudioClip>(card.audioSrc), //ない場合はデフォルトのSEを設定
-                isCorrect = card.isCorrect,
-                displayCount = card.displayCount
+        foreach (var cardObj in base.CurrentQuestionData.cards) {
+            CardObjectData cardData = new CardObjectData {
+                frontImg = Resources.Load<Sprite>(cardObj.imgSrc),
+                backImg = cardObj.backImgSrc == null? DefaultCardSprite : Resources.Load<Sprite>(cardObj.backImgSrc),
+                audioSrc = cardObj.audioSrc == null? defaultClickSE : Resources.Load<AudioClip>(cardObj.audioSrc), //ない場合はデフォルトのSEを設定
+                isCorrect = cardObj.isCorrect,
+                displayCount = cardObj.displayCount
             };
-            cards.Add(cardObj);
+            cards.Add(cardData);
         }
     }
 
@@ -112,23 +113,20 @@ public class CardClickViewer : QuestionViewer<Question> {
 
         foreach (CardObjectData cardData in shuffledCards) {
             // カードを生成
-            GameObject card = Instantiate(prefab, Vector3.zero, Quaternion.identity, CardArea.transform);
-            card.GetComponent<SpriteRenderer>().sortingOrder = 1;
-            // 生成したカードにfrontImgとbackImgを設定する
-            var spriteRenderer = card.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null) {
-                spriteRenderer.sprite = cardData.frontImg;  // 表面画像を設定
-            }
-            // TODO;裏面画像設定
-            card.AddComponent<CardObject>();
-            card.GetComponent<CardObject>().isCorrect = cardData.isCorrect;
-            card.GetComponent<CardObject>().audioSrc = cardData.audioSrc;
+            GameObject cardObj = Instantiate(prefab, Vector3.zero, Quaternion.identity, CardArea.transform);
+            cardObj.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
-            // SetCardClickListener(card);
+            var card = cardObj.AddComponent<CardObject>();
+            card.isCorrect = cardData.isCorrect;
+            card.audioSrc = cardData.audioSrc;
+            card.frontImg = cardData.frontImg;
+            card.backImg = cardData.backImg;
+
+            // SetCardClickListener(cardObj);
                // イベントトリガーを取得または追加
-            EventTrigger trigger = card.GetComponent<EventTrigger>();
+            EventTrigger trigger = cardObj.GetComponent<EventTrigger>();
             if (trigger == null) {
-                trigger = card.AddComponent<EventTrigger>();
+                trigger = cardObj.AddComponent<EventTrigger>();
             }
 
             // クリックイベントエントリーを作成
@@ -136,59 +134,50 @@ public class CardClickViewer : QuestionViewer<Question> {
             entry.eventID = EventTriggerType.PointerClick;  // クリック時のイベント
 
             // リスナーにクリック処理を追加（ラムダ式で特定のカードを参照）
-            entry.callback.AddListener((eventData) => { CardClickListener(card); });
+            entry.callback.AddListener((eventData) => { CardClickListener(cardObj); });
 
             // EventTriggerにエントリーを追加
             trigger.triggers.Add(entry);
-            CardObjs.Add(card);
+            CardObjs.Add(cardObj);
         }
     }
 
     /// <summary>
     /// TODO : カードクリック時の効果音、エフェクトの実装
     /// </summary>
-    public void CardClickListener(GameObject card) {
-        var cardObj = card.GetComponent<CardObject>();
-        SEAudioSource.PlayOneShot(cardObj.audioSrc);
-        
-        if (cardObj.isCorrect) {
+    public void CardClickListener(GameObject cardObj) {
+        var card = cardObj.GetComponent<CardObject>();
+        card.FlipCard();  // カードを裏返す
+        SEAudioSource.PlayOneShot(card.audioSrc);  // 効果音再生
+
+        base.ClickCount++;
+
+        if (card.isCorrect) {
             Debug.Log("正解");
-            card.GetComponent<SpriteRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-            SEAudioSource.PlayOneShot(correctSE);
+            cardObj.GetComponent<SpriteRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
             correctness.Add(true);
         } else {
             Debug.Log("不正解");
-            SEAudioSource.PlayOneShot(incorrectSE);
             correctness.Add(false);
         }
-        card.GetComponent<EventTrigger>().enabled = false;
+        cardObj.GetComponent<EventTrigger>().enabled = false;
 
-        // correctnessに含まれるtrueの数がcards.isCorrectの数と一致したら結果画面を表示（小問終了）
-        if(correctness.Count(b => b == true) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == true)) {
-            SEAudioSource.PlayOneShot(clearSE);
-            ResultModal.gameObject.SetActive(true);
-            ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
-            NextQuestionButton.gameObject.SetActive(true);
-            RetryButton.gameObject.SetActive(false);
-
+        //小問の正解、不正解の判定
+        if (correctness.Count(b => b == true) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == true)) {
+            base.QuestionAnswered(true);
             base.timer.PauseTimer();
-        } else if(correctness.Count(b => b == false) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == false)) { // すべての不正解カードをクリックした場合は小問不正解として結果画面を表示
-            SEAudioSource.PlayOneShot(gameoverSE);
-            ResultModal.gameObject.SetActive(true);
-            ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
-            NextQuestionButton.gameObject.SetActive(false);
-            RetryButton.gameObject.SetActive(true);
-
+        } else if (correctness.Count(b => b == false) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == false)) {
             base.TotalIncorrectCount++;
             base.timer.PauseTimer();
+            base.QuestionAnswered(false);
         }
     }
 
 
     public override void Dispose() {
         ResultModal.gameObject.SetActive(false);
-        foreach (var card in CardObjs) {
-            Destroy(card);
+        foreach (var cardObj in CardObjs) {
+            Destroy(cardObj);
         }
         CardObjs.Clear();
         cards.Clear();
