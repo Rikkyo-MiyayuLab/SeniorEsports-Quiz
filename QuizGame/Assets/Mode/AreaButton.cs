@@ -65,6 +65,10 @@ public class AreaButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData) {
         descriptionText.text = "";
         sectionTitleText.text = "";
+        // コールーチンを停止
+        if (typingCoroutine != null) {
+            StopCoroutine(typingCoroutine);
+        }
     }
 
     private IEnumerator TypeText() {
