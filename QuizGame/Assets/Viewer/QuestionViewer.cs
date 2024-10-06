@@ -16,6 +16,7 @@ using EasyTransition;
 public interface IQuestion {
     string explanation { get;}
     string explanationImage { get;}
+    string[] hints { get;}
 }
 /// <summary>
 /// 問題解答用ビューアの基底クラス
@@ -135,7 +136,6 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
 
     /// <summary>
     /// ユーザーが解答した際に呼ぶ処理。正解か不正解かによって、アニメーションを分岐する。
-    /// TODO : 不正解用アニメーションの作成
     /// </summary>
     /// <param name="isCorrect"></param>
     protected void QuestionAnswered(bool isCorrect) {
@@ -144,10 +144,12 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.explanation);
             PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
             PlayerPrefs.SetString("NextStoryId", QuizData.endStory);
-            // SceneManager.LoadScene("AnswerPreview-Correct");
-            TransitionManager.Transition("AnswerPreview-Correct", AnswerEyeCatchTransition, 0.01f);
+            SceneManager.LoadScene("AnswerPreview-Correct");
         } else {
-            Debug.Log("不正解");
+            PlayerPrefs.SetString("Explanation", CurrentQuestionData.hints[0]);
+            PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
+            PlayerPrefs.SetString("CurrentViewer", SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("AnswerPreview-Incorrect");
         }
     }
 

@@ -16,6 +16,7 @@ namespace PlayType5Interface
         // IQuestionインターフェースを実装
         string IQuestion.explanation => explanation;
         string IQuestion.explanationImage => explanationImage;
+        string[] IQuestion.hints => hints;
     }
 
     [System.Serializable]

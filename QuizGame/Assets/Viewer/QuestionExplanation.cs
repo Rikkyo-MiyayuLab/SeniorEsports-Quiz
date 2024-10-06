@@ -15,6 +15,7 @@ public class QuestionExplanation : MonoBehaviour {
     public AudioClip BtnSE;
     public TransitionSettings transition;
     public float transitionDuration = 1.0f;
+    public bool isCorrectExplanation = true;
     private TransitionManager transitionManager;
     private AudioSource audioSource;
 
@@ -24,19 +25,23 @@ public class QuestionExplanation : MonoBehaviour {
         var explanation = PlayerPrefs.GetString("Explanation");
         var imagePath = PlayerPrefs.GetString("ExplanationImage");
         var NextStoryId = PlayerPrefs.GetString("NextStoryId");
-        
+        var BeforeViewer = PlayerPrefs.GetString("CurrentViewer");
         audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(TypeText(explanation));
         ExplanationImage.sprite = Resources.Load<Sprite>(imagePath);
         // TODO : まだ小問がある場合は、次の小問を表示するように
-        NextSceneButton.onClick.AddListener(() => {
-            audioSource.PlayOneShot(BtnSE);
-            // SceneManager.LoadScene("StoryViewer");
-            PlayerPrefs.SetString("StoryId", NextStoryId);
-            transitionManager.Transition("StoryViewer", transition, transitionDuration);
+        if(isCorrectExplanation) {
+            NextSceneButton.onClick.AddListener(() => {
+                audioSource.PlayOneShot(BtnSE);
+                // SceneManager.LoadScene("StoryViewer");
+                PlayerPrefs.SetString("StoryId", NextStoryId);
+                transitionManager.Transition("StoryViewer", transition, transitionDuration);
 
-        });
+            });
+        } else {
+            NextSceneButton.GetComponent<BackSceneButton>().beforeSceneName = BeforeViewer;
+        }
     }
 
 

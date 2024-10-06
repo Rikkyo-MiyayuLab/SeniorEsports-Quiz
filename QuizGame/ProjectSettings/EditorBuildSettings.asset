@@ -44,4 +44,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/QuestionExplanation.unity
     guid: 394596484fd9b574f9f9022ca778a210
+  - enabled: 1
+    path: Assets/Scenes/GameOverScreen.unity
+    guid: 62fc20d926f9ef948bdbbf7da36bc1e8
+  - enabled: 1
+    path: Assets/Scenes/AnswerPreview-Incorrect.unity
+    guid: 39e0a6c3b74a33346b22e62d06e8d57a
   m_configObjects: {}

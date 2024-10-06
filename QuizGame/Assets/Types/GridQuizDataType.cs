@@ -25,6 +25,7 @@ namespace PlayType1Interface {
         // IQuestionインターフェースを実装
         string IQuestion.explanation => explanation;
         string IQuestion.explanationImage => explanationImage;
+        string[] IQuestion.hints => hints;
     }
 
     [Serializable]
