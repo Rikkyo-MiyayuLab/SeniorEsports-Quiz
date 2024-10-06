@@ -162,9 +162,9 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
     }
 
     private void AnswerQuestionHandler(bool isCorrectedQuestion) {
+        correctness.Add(isCorrectedQuestion);
         if(currentAnswerCellIdx < AnswerOptions.Count - 1) { //まだ解答マスがある場合は次の解答マスへフォーカスを移動
             currentAnswerCellIdx++;
-            correctness.Add(isCorrectedQuestion);
             // 選択肢のボタンテキストを更新
             List<Option> options = AnswerOptions[currentAnswerCellIdx]; // currentAnswerCellIdx に該当するオプションのリストを取得
             for (int i = 0; i < AnswerButtonObjects.Count; i++) {
