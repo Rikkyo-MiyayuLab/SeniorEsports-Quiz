@@ -1,7 +1,9 @@
 using UnityEngine;
+using System;
 
 namespace SaveDataInterface {
 
+    [Serializable]
     public class PlayerData {
         /// <summary>
         /// プレイヤーデータ識別用UUID
@@ -29,8 +31,13 @@ namespace SaveDataInterface {
         /// </summary>
         public string LastStoryId;
         public int UserAge;
+        /// <summary>
+        /// さいごにプレイした日時
+        /// </summary>
+        public string LastPlayDate;
     }
 
+    [Serializable]
     public enum PlayerPrefKeys {
         PlayerName,
         TotalPlayTime,

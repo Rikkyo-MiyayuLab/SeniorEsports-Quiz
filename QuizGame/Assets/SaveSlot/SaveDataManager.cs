@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using System.IO;
 using System;
 using UnityEngine;
 using SaveDataInterface;
@@ -9,6 +10,28 @@ using SaveDataInterface;
 /// セーブデータ関係のゲーム内API 
 /// </summary>
 public class SaveDataManager : MonoBehaviour {
+
+    public static readonly string filePath = Application.persistentDataPath + "/playerUUIDs.txt";
+
+    public static bool CreateUserSlot(string playerUUID) {
+        try {
+            if (!File.Exists(filePath)) {
+                // ファイルが存在しない場合は新規作成
+                using (FileStream fs = File.Create(filePath)) {
+                    fs.Close(); // ファイルを作成してすぐに閉じる
+                }
+            }
+            // UUIDをテキストファイルに追記（改行付きで追加）
+            File.AppendAllText(filePath, playerUUID + Environment.NewLine);
+
+            // 成功メッセージ
+            Debug.Log($"UUID: {playerUUID} を {filePath} に追記しました。");
+        } catch (Exception e) {
+            Debug.LogError(e.Message);
+        }
+
+        return true;
+    }
     
     /// <summary>
     /// PlayerPrefから指定のUUIDのプレイヤーデータを読み込む
