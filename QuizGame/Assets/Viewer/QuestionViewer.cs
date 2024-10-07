@@ -30,7 +30,6 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     public Image ResultModalImage;
     public Button NextQuestionButton;
     public GameObject Timer;
-    public Button PoseButton;
     public Canvas QuizStaticsModal;
     public TextMeshProUGUI TotalCorrectCounter;
     public TextMeshProUGUI TotalTime;
@@ -39,6 +38,11 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     public TransitionSettings AnswerEyeCatchTransition;
     public GameObject ClickRemainCounterPanel;
     public TextMeshProUGUI ClickRemainCounter;
+    public TextMeshProUGUI QuestionDescription;
+    public Action OnCompleteRenderDescription;
+    public GameObject StartUIPanel;
+    public Button HintModalOpenButton;
+    public GameObject HintUIModal;
     [Header("ゲーム用SE設定")]
     public AudioClip ClearSE;
     public AudioClip GameOverSE;
@@ -72,8 +76,24 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         string quizPath = PlayerPrefs.GetString("QuizPath");
         QuizData = LoadJSON<QuestionData>($"{Application.streamingAssetsPath}/{quizPath}");
         QuizStaticsModal.gameObject.SetActive(false);
+        ResultModal.gameObject.SetActive(false);
+        StartUIPanel.SetActive(false);
         timer = Timer.GetComponent<Timer>();
+        timer.PauseTimer();
 
+        OnCompleteRenderDescription += () => {
+            StartUIPanel.SetActive(true);
+            // 画面クリックでStartUIPanelを非表示にする
+            StartUIPanel.GetComponent<Button>().onClick.AddListener(() => {
+                StartUIPanel.SetActive(false);
+                 if(base.QuizData.limitType == LimitType.time) {
+                    timer.ResumeTimer();
+                 }
+            });
+        };
+        StartCoroutine(TypeText(QuizData.description));
+
+        
         if(base.QuizData.limitType == LimitType.time) {
             ClickRemainCounterPanel.SetActive(false);
             timer.onTimerEnd.AddListener(() => {
@@ -88,10 +108,6 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             timer.gameObject.SetActive(false);
         }
 
-        PoseButton.onClick.AddListener(() => {
-            timer.PauseTimer();
-            QuizModalCanvas.gameObject.SetActive(true);
-        });
 
         NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "閉じる";
         NextButton.onClick.AddListener(() => {
@@ -132,6 +148,15 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetString("StoryId", QuizData.endStory);
             TransitionManager.Transition("StoryViewer", Transition, TransitionDuration);
         });
+
+        // ヒントモーダルの初期化
+        HintUIModal.SetActive(false);
+        var HintViewer = HintUIModal.GetComponent<HintViewer>();
+        HintViewer.Init(CurrentQuestionData.hints);
+        HintModalOpenButton.onClick.AddListener(() => {
+            HintUIModal.gameObject.SetActive(true);
+        });
+
     }
 
     /// <summary>
@@ -173,6 +198,16 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     protected void NextQuestion() {
         CurrentQuestionIndex++;
         Init();
+    }
+
+
+    protected IEnumerator TypeText(string text) {
+        QuestionDescription.text = "";  // 表示をクリア
+        foreach (char letter in text) {
+            QuestionDescription.text += letter;  // 1文字追加
+            yield return new WaitForSeconds(0.01f);  // 指定した時間待つ
+        }
+        OnCompleteRenderDescription?.Invoke();
     }
 
 }
