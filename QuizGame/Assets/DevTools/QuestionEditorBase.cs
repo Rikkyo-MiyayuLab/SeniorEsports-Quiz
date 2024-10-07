@@ -25,6 +25,11 @@ namespace QuestionDevTool
         public int templateType;
         [Tooltip("背景画像を指定してください。")]
         public Sprite backgroundImage;
+        [Header("ヒント情報")]
+        public string[] Hints;
+        [Header("解説情報")]
+        public string Explanation;
+        public Sprite ExplanationSprite;
         [Header("Editor Settings")]
         [SerializeField]
         protected Image backgroundImageObject;
