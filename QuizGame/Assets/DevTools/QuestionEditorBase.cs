@@ -25,6 +25,11 @@ namespace QuestionDevTool
         public int templateType;
         [Tooltip("背景画像を指定してください。")]
         public Sprite backgroundImage;
+        [Header("ヒント情報")]
+        public string[] Hints;
+        [Header("解説情報")]
+        public string Explanation;
+        public Sprite ExplanationSprite;
         [Header("Editor Settings")]
         [SerializeField]
         protected Image backgroundImageObject;
@@ -57,7 +62,6 @@ namespace QuestionDevTool
             streamWriter.Flush();
             streamWriter.Close();
             Debug.Log($"JSONデータが保存されました: {filePath}");
-            Debug.Log("格子問題データを保存しました。");
             // 大問データに小問を追加
             var ParentDataPath = PlayerPrefs.GetString(DevConstants.QuestionDataFileKey);
             string parentJson = File.ReadAllText(ParentDataPath);
