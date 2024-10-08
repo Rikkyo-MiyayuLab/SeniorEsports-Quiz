@@ -16,6 +16,9 @@ public class UserRegister : MonoBehaviour {
 
    public TextMeshProUGUI UserNameField;
    public TextMeshProUGUI UserAgeField;
+   public TextMeshProUGUI AgeInputFieldWarnings;
+   public TextMeshProUGUI UserNameFieldWarnings;
+   [SerializeField]
    public TransitionSettings Transition;
    public float TransitionDuration = 1.0f;
    private TransitionManager TransitionManager;
@@ -27,9 +30,10 @@ public class UserRegister : MonoBehaviour {
 
     void Start() {
         TransitionManager = TransitionManager.Instance();
+        AgeInputFieldWarnings.gameObject.SetActive(false);
+        UserNameFieldWarnings.gameObject.SetActive(true);
         RegisterButton.onClick.AddListener(() => {
             RegisterUser();
-            TransitionManager.Transition(NextSceneName, Transition, TransitionDuration);
         });
     }
 
@@ -37,12 +41,15 @@ public class UserRegister : MonoBehaviour {
         // ユーザー名が入力されているかチェック
         if (string.IsNullOrEmpty(UserNameField.text)) {
             Debug.LogError("ユーザー名が入力されていません");
+            UserNameFieldWarnings.gameObject.SetActive(true);
             return;
         }
 
-        // 年齢が入力されているかチェック
-        if (string.IsNullOrEmpty(UserAgeField.text)) {
+        // 年齢が入力されているか、0以上の整数かチェック
+        if (string.IsNullOrEmpty(UserAgeField.text) || !int.TryParse(UserAgeField.text, out int age) || age < 0) {
             Debug.LogError("年齢が入力されていません");
+            // 警告テキストを表示
+            AgeInputFieldWarnings.gameObject.SetActive(true);
             return;
         }
 
@@ -60,6 +67,7 @@ public class UserRegister : MonoBehaviour {
         PlayerPrefs.SetInt("FirstTime", 1);
         // ユーザー登録完了メッセージを表示
         Debug.Log("ユーザー登録が完了しました");
+        TransitionManager.Transition(NextSceneName, Transition, TransitionDuration);
     }
 
     private void Awake() {
