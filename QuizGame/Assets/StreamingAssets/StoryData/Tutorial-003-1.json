@@ -1,0 +1,312 @@
+{
+  "StoryId": "Tutorial-003-1",
+  "quiz": "QuestionData/1/Tutorial-003-1.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "エリザとアルフレッドが近くの酒場に立ち寄る。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/鈴付きドア・閉める",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "おじゃましまーす..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "わぁ...ここが酒場って場所かぁ。なんだかお酒臭いなぁ..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "いらっしゃいませ。今日はどんなものをご所望ですか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "この古い地図について情報を探しています。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "昔、ジェラルド・ホワイトという人物がこの地図に興味を持っていたと聞きました。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "なんだい、飲みにきたわけじゃあないのかい。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "僕たちは探偵で、”記憶の館”と”ジェラルド・ホワイト”という人物について調査しているんです。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "なるほど。確かに彼は昔よくこの店に出入りしていたよ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "けど、注文もしない人間にタダで情報を教える気は無いねぇ...。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "あんたら探偵さんなんだろ？だったらちょっとこれを解いてみせてくれ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": "分かりました。謎を解いたら、ジェラルド・ホワイトについて教えていただきますよ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}
