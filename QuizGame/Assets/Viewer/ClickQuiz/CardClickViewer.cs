@@ -35,6 +35,7 @@ public class CardClickViewer : QuestionViewer<Question> {
     public List<CardObjectData> cards = new List<CardObjectData>();
     public AudioSource SEAudioSource;
     public Sprite DefaultCardSprite;
+    public TextMeshProUGUI WarningText;
     [SerializeField]
     private AudioClip defaultClickSE;
     [SerializeField]
@@ -57,6 +58,19 @@ public class CardClickViewer : QuestionViewer<Question> {
         SEAudioSource = gameObject.GetComponent<AudioSource>();
         SelectedCards = new List<GameObject>();
         Init();
+
+
+        base.AnswerButton.interactable = false;
+        WarningText.gameObject.SetActive(false);
+        base.AnswerButton.onClick.AddListener(() => {
+            // 問題のペアサイズと選択されたカードの数が一致しているか
+            if(SelectedCards.Count == PairSize) {
+                Judgement();
+            } else {
+                WarningText.text = $"カードを{PairSize}枚選んでいません。カードを選んでから押してください。";
+                WarningText.gameObject.SetActive(true);
+            }
+        });
     }
 
 
@@ -145,7 +159,7 @@ public class CardClickViewer : QuestionViewer<Question> {
     }
 
     /// <summary>
-    /// TODO : 正解となる同じカードを2回裏返すと正解になってしまうのでこれを修正する。
+    /// カード１枚分のクリック処理
     /// </summary>
     public void CardClickListener(GameObject cardObj) {
         var card = cardObj.GetComponent<CardObject>();
@@ -157,12 +171,23 @@ public class CardClickViewer : QuestionViewer<Question> {
                 correctness.Remove(card.isCorrect);
             }
             card.FlipCard();
+
+            if(SelectedCards.Count == PairSize) {
+                base.AnswerButton.interactable = true;
+            } else {
+                base.AnswerButton.interactable = false;
+            }
             return;
         }
         SEAudioSource.PlayOneShot(card.audioSrc);  // 効果音再生
         card.FlipCard();  // カードを裏返す
         base.ClickCount++;
         SelectedCards.Add(cardObj);
+        if(SelectedCards.Count == PairSize) {
+            base.AnswerButton.interactable = true;
+        } else {
+            base.AnswerButton.interactable = false;
+        }
 
         if (card.isCorrect) {
             Debug.Log("正解");
@@ -173,15 +198,18 @@ public class CardClickViewer : QuestionViewer<Question> {
             Debug.Log("不正解");
             correctness.Add(false);
         }
-        // cardObj.GetComponent<EventTrigger>().enabled = false;
+    }
 
-        //小問の正解、不正解の判定
+
+    public void Judgement() {
         if (correctness.Count(b => b == true) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == true)) {
+            PlayerPrefs.SetInt("UseThinkingScene", 1);
             base.QuestionAnswered(true);
             base.timer.PauseTimer();
         } else if (correctness.Count(b => b == false) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == false)) {
             base.TotalIncorrectCount++;
             base.timer.PauseTimer();
+            PlayerPrefs.SetInt("UseThinkingScene", 1);
             base.QuestionAnswered(false);
         }
     }

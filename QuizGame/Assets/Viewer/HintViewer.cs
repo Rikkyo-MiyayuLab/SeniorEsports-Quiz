@@ -17,7 +17,12 @@ public class HintViewer : MonoBehaviour {
     public TextMeshProUGUI Hint;
     public TextMeshProUGUI Title;
     public string[] HintDatas;
+    public AudioClip BtnClickSE;
+    private AudioSource audioSource;
 
+    void Start() {
+        audioSource = gameObject.AddComponent<AudioSource>();
+    }
 
     public void Init(string[] hints) {
         HintDatas = hints;
@@ -34,6 +39,7 @@ public class HintViewer : MonoBehaviour {
 
     private void ShowHint(int index) {
         Debug.Log("Show hint" + index);
+        audioSource.PlayOneShot(BtnClickSE);
         if(HintAvailable[index]) {
             Hint.text = HintDatas[index];
             Title.text = $"ヒント その{index + 1}";
@@ -42,6 +48,7 @@ public class HintViewer : MonoBehaviour {
 
     private void CloseHint() {
         this.gameObject.SetActive(false);
+        audioSource.PlayOneShot(BtnClickSE);
     }
 
 }

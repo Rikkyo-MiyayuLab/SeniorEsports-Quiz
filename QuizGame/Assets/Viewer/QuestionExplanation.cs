@@ -33,9 +33,15 @@ public class QuestionExplanation : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(TypeText(explanation));
-        ExplanationImage.sprite = Resources.Load<Sprite>(imagePath);
-        if(isCorrectExplanation) {
+        Sprite img = Resources.Load<Sprite>(imagePath);
+        if(img != null) {
+            ExplanationImage.sprite = img;
+        } else {
+            Debug.LogError("Image not found: " + imagePath);
+            ExplanationImage.gameObject.SetActive(false); // 画像が見つからなかった場合は表示しない
+        }
 
+        if(isCorrectExplanation) {
             if(RemainQuestionSize > 0) {
                 NextSceneButton.onClick.AddListener(() => {
                     audioSource.PlayOneShot(BtnSE);

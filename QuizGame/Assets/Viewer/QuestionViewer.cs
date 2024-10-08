@@ -25,10 +25,6 @@ public interface IQuestion {
 public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType : IQuestion {
     [Header("解答画面共通設定")]
     public int CurrentQuestionIndex = 0;
-    public Canvas ResultModal;
-    public Button RetryButton;
-    public Image ResultModalImage;
-    public Button NextQuestionButton;
     public GameObject Timer;
     public GameObject ClickRemainCounterPanel;
     public TextMeshProUGUI ClickRemainCounter;
@@ -37,7 +33,6 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     public GameObject StartUIPanel;
     public Button HintModalOpenButton;
     public GameObject HintUIModal;
-    [Header("ゲーム用SE設定")]
     public AudioClip ClearSE;
     public AudioClip GameOverSE;
     protected int TotalIncorrectCount = 0;
@@ -46,6 +41,8 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     protected QuestionType CurrentQuestionData; //カレントの小問データ
     protected List<bool> correctness = new List<bool>();
     protected double remainingSeconds;
+    [SerializeField]
+    protected Button AnswerButton;
     protected Timer timer;
     protected Action OnTimeOut;
     protected Action OnLimitClick;
@@ -185,7 +182,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             SceneManager.LoadScene("AnswerPreview-Correct");
         } else {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.hints[0]);
-            //PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
+            PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
             PlayerPrefs.SetString("CurrentViewer", SceneManager.GetActiveScene().name);
             PlayerPrefs.SetInt("RemainQuestionSize", QuizData.quiz.questions.Count - CurrentQuestionIndex+1);
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
