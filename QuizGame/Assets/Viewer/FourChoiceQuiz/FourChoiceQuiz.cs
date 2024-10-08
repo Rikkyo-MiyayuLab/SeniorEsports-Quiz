@@ -32,9 +32,8 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
     [SerializeField]
     private GameObject QuestionImageObj;
     [SerializeField]
-    private AudioClip clearSE;
-    [SerializeField]
-    private AudioClip gameoverSE;
+    private Button SelectedButton;
+    private int SelectedBtnIdx;
     private AudioSource SEAudioSource;
     
 
@@ -48,21 +47,57 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
         GetData();
         Init();
 
+        base.AnswerButton.interactable = false;
+
         // 解答用ボタンにイベントリスナーを設定
         List<Option> options = AnswerOptions[currentAnswerCellIdx]; // currentAnswerCellIdx に該当するオプションのリストを取得
         for (int i = 0; i < AnswerButtonObjects.Count; i++) {
             // ラムダ式の中で現在のインデックス i をキャプチャ
-            int btnIdx = i;  
+            int btnIdx = i;     
+            //ボタンクリック時の操作
             AnswerButtonObjects[i].onClick.AddListener(() => {
+                // 前回選択したボタンがある場合は選択状態を解除
+                if(SelectedButton != null) {
+                    SelectedButton.GetComponent<Outline>().enabled = false;
+                }
+                // 選択状態の赤枠を表示
+                var outline = AnswerButtonObjects[btnIdx].GetComponent<Outline>();
+                outline.enabled = true;
+                outline.effectColor = Color.red;
+                outline.effectDistance = new Vector2(15, 15);
+
+                SelectedButton = AnswerButtonObjects[btnIdx];
+                SelectedBtnIdx = btnIdx;
+                base.AnswerButton.interactable = true;
+
+                /*
                 var isCorrect = options[btnIdx].correct;  // optionsのインデックスを使って選択肢を取得
                 if (isCorrect) {
-                    OnAnswered?.Invoke(true);
+                    // OnAnswered?.Invoke(true);
                 } else {
                     base.TotalIncorrectCount++;
-                    OnAnswered?.Invoke(false);
+                    // OnAnswered?.Invoke(false);
                 }
+                */
             });
         }
+
+        base.AnswerButton.onClick.AddListener(() => {
+            
+            // 選択済みのボタンがない場合は処理を抜ける
+            if(SelectedButton == null) {
+                return;
+            }
+
+            var isCorrect = options[SelectedBtnIdx].correct;  // optionsのインデックスを使って選択肢を取得
+            if (isCorrect) {
+                OnAnswered?.Invoke(true);
+            } else {
+                base.TotalIncorrectCount++;
+                OnAnswered?.Invoke(false);
+            }
+        });
+
         OnAnswered += AnswerQuestionHandler;
     }
 
@@ -140,7 +175,7 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
 
 
     public override void Dispose() {
-        ResultModal.gameObject.SetActive(false);
+        // ResultModal.gameObject.SetActive(false);
         foreach (var gridObjects in GridObjects) {
             foreach (var gridObject in gridObjects) {
                 Destroy(gridObject);
@@ -162,9 +197,9 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
     }
 
     private void AnswerQuestionHandler(bool isCorrectedQuestion) {
+        correctness.Add(isCorrectedQuestion);
         if(currentAnswerCellIdx < AnswerOptions.Count - 1) { //まだ解答マスがある場合は次の解答マスへフォーカスを移動
             currentAnswerCellIdx++;
-            correctness.Add(isCorrectedQuestion);
             // 選択肢のボタンテキストを更新
             List<Option> options = AnswerOptions[currentAnswerCellIdx]; // currentAnswerCellIdx に該当するオプションのリストを取得
             for (int i = 0; i < AnswerButtonObjects.Count; i++) {
@@ -174,27 +209,36 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
             //TODO : 小問リザルト画面を表示
             base.timer.PauseTimer();
 
-            ResultModal.gameObject.SetActive(true);
+            //ResultModal.gameObject.SetActive(true);
             if(correctness.TrueForAll(x => x)) {
                 Debug.Log("正解");
+                /*
                 SEAudioSource.PlayOneShot(clearSE);
                 ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
                 NextQuestionButton.gameObject.SetActive(true);
-                RetryButton.gameObject.SetActive(false);
+                RetryButton.gameObject.SetActive(false);*/
+                PlayerPrefs.SetInt("UseThinkingScene", 1);
+                base.QuestionAnswered(true);
+
             } else {
                 Debug.Log("不正解");
+                /*
                 SEAudioSource.PlayOneShot(gameoverSE);
                 ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
                 NextQuestionButton.gameObject.SetActive(false);
                 RetryButton.gameObject.SetActive(true);
+                */
+                PlayerPrefs.SetInt("UseThinkingScene", 1);
+                base.QuestionAnswered(false);
             }
         }
 
         // 全問解き終えたか？
+        /*
         if(CurrentQuestionIndex < QuizData.quiz.questions.Count - 1) {
             ResultModal.gameObject.SetActive(true);
             // 戻るボタンを表示
             RetryButton.gameObject.SetActive(false);
-        }
+        }*/
     }
 }

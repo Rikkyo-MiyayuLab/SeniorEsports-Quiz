@@ -24,6 +24,10 @@ namespace StoryDataInterface
         /// </summary>
         public List<Scene> Scenes;
 
+        // ストーリが終わった後に開放するワールドとエリアのインデックス
+        public int NextWorldIdx;
+        public int NextAreaIdx;
+
         /// <summary>
         /// ストーリー全般 
     }

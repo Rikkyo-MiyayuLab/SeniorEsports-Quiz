@@ -1,1 +1,16 @@
-{"title":"箱の暗号を解け！","description":"手がかりになりそうな箱を見つけたエリザ。だが、箱を開けるには、暗号文に描かれている見本と同じ音のするカードを見つける必要があるらしい。","limits":30,"difficulty":2,"type":4,"quiz":{"questions":["QuestionData/4/quiz\\Tutorial-001-2.json"]},"endStory":"Tutorial-001-2-End"}
+{
+    "title": "箱の暗号を解け！",
+    "description": "手がかりになりそうな箱を見つけたエリザ。だが、箱には鍵かかかっている。鍵を開けるには、同じ音のするカードを2枚選ぶ必要があるようだ。",
+    "limits": 9,
+    "difficulty": 2,
+    "type": 4,
+    "quiz": {
+        "questions": [
+            "QuestionData/4/quiz\\Tutorial-001-2.json"
+        ]
+    },
+    "endStory": "Tutorial-001-2-End",
+    "explanation" : "これは、音の神経衰弱だね。カードをクリックして行って、同じ音のするカードを選択してみよう。同じ音のするカードのペアは見つけられたかな？",
+    "explanationImage" : "QuestionImages/Tutorial-001-2-card",
+    "limitType" : 1
+}

@@ -34,6 +34,10 @@ public class QuizIntroduction : MonoBehaviour {
         if (soundEffect != null && audioSource != null) {
             audioSource.PlayOneShot(soundEffect);
         }
+        canvasGroup = gameObject.GetComponent<CanvasGroup>();
+        if (canvasGroup == null) {
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
         StartCoroutine(FadeInCanvasGroup());
     }
 

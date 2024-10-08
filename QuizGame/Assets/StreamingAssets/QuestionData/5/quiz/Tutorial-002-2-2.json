@@ -1,0 +1,51 @@
+{
+  "correct": {
+    "src": "QuestionImages/Tutorial-002-2-2-correct",
+    "rect": {
+      "x": -592.0,
+      "y": 135.0,
+      "z": 0.0,
+      "width": 555.77,
+      "height": 497.94
+    }
+  },
+  "incorrect": {
+    "src": "QuestionImages/Tutorial-002-2-2-incorrect",
+    "rect": {
+      "x": 184.0,
+      "y": -28.0,
+      "z": 0.0,
+      "width": 857.92,
+      "height": 820.03
+    },
+    "points": [
+      {
+        "x": 261.96,
+        "y": 94.99,
+        "width": 114.799995,
+        "height": 91.59
+      },
+      {
+        "x": 19.32,
+        "y": 75.68,
+        "width": 66.3264,
+        "height": 76.2201462
+      },
+      {
+        "x": 199.0,
+        "y": -123.0,
+        "width": 100.0,
+        "height": 100.0
+      }
+    ]
+  },
+  "backgroundImage": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
+  "bgm": "Audios/mizu no doukutu",
+  "explanation": "間違いは３か所だ。１つ目は、恵方巻を美味しそうに食べている猫の口の形。２つ目は、女の子のほっぺたの色。３つ目は、後ろのふすまの模様の高さが違うね。",
+  "explanationImage": "QuestionImages/Tutorial-002-2-2-ans",
+  "hints": [
+    "恵方巻を美味しそうに食べてるねぇ。あれ、猫って恵方巻食べるのかな？なんか口の形が変？",
+    "女の子の頬っぺたに注目してみよう。ちょっと気づきにくいかな...？",
+    "これはかなり見つけづらいところにあるね。イラスト全体を良く比較して、何か気づくことはないかな？。そういえば、後ろから何かが覗いているような...？"
+  ]
+}

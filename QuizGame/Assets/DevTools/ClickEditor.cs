@@ -130,7 +130,10 @@ public class ClickEditor : QuestionEditor {
                 }
             },
             backgroundImage = base.GetResourcePath(base.backgroundImage),
-            bgm = base.GetResourcePath(BGM)
+            bgm = base.GetResourcePath(BGM),
+            hints = Hints,
+            explanation = Explanation,
+            explanationImage = base.GetResourcePath(ExplanationSprite)
         };
 
         // JSONにシリアライズ

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace PlayType4Interface
 {
     [System.Serializable]
-    public class Question
+    public class Question : IQuestion
     {
         public List<Card> cards;  // カードのリスト
         public string questionId; // 問題ID
@@ -16,6 +16,14 @@ namespace PlayType4Interface
         public string backgroundImage;  // 背景画像
         public float margin; // カード間のマージン
         public int pairSize; // 必要なペアの枚数（単一のカードをクリックしてクリアの場合は１）
+        public string explanation;  // 解答解説
+        public string explanationImage;  // 解答解説の画像
+        public string[] hints; // ヒント(最大3つ)
+
+        // IQuestionインターフェースを実装
+        string IQuestion.explanation => explanation;
+        string IQuestion.explanationImage => explanationImage;
+        string[] IQuestion.hints => hints;
     }
 
     [System.Serializable]

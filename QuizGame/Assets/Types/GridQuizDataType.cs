@@ -7,7 +7,7 @@ using UnityEngine;
 */
 namespace PlayType1Interface {
     [Serializable]
-    public class Question
+    public class Question : IQuestion 
     {
         public List<List<Cell>> grids; // 2次元リストでグリッド構造を保持
         public float cellMargin; // セル間のマージン
@@ -18,6 +18,14 @@ namespace PlayType1Interface {
         public string bgm; // BGM
         public string backgroundImage; //TODO:各タイプの共通問題部分の定義をつくり継承する
         public QuestionImage questionImage; // タイプ３用　問題画像
+        public string explanation;  // 解答解説
+        public string explanationImage;  // 解答解説の画像
+        public string[] hints; // ヒント(最大3つ)
+
+        // IQuestionインターフェースを実装
+        string IQuestion.explanation => explanation;
+        string IQuestion.explanationImage => explanationImage;
+        string[] IQuestion.hints => hints;
     }
 
     [Serializable]

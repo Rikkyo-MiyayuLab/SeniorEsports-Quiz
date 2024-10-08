@@ -41,7 +41,10 @@ public abstract class Viewer : MonoBehaviour {
         TransitionManager = TransitionManager.Instance();
         AudioPlayer = GetComponent<AudioSource>();
         AudioPlayer.volume = 0.5f;
-        QuizModalCanvas.gameObject.SetActive(false);
+        if(QuizModalCanvas != null) {
+            QuizModalCanvas.gameObject.SetActive(false);
+        }
+        
     }
 
 

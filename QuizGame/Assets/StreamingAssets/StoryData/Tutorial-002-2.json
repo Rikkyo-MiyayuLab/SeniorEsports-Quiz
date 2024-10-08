@@ -1,0 +1,190 @@
+{
+  "StoryId": "Tutorial-002-2",
+  "quiz": "QuestionData/5/7f2e93df-e1f2-4c3e-bcdc-b73cc8e49a0a.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/City_Ambi-Street02-1",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "エリザとアルフレッドが街を歩き、街中のご老人に古地図を見せながら情報を集めている。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/City_Ambi-Street02-1",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "先生！。今度はあの人に声をかけて見ましょう！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/City_Ambi-Street02-1",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "こんにちは、この古地図について何かご存知ですか？この地図について、昔からの話を聞かせてもらえると助かります。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/City_Ambi-Street02-1",
+      "Characters": [
+        {
+          "Name": "",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ご婦人",
+          "ImageSrc": "Charactors/20200716_elder-female",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "あら、なにかしら？これはまた随分と古い地図じゃない。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/City_Ambi-Street02-1",
+      "Characters": [
+        {
+          "Name": "",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "",
+          "ImageSrc": "Charactors/20200716_elder-female",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "もしよければ、詳しく教えてもらえませんか？私たちは昔の話を知りたいのです。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/City_Ambi-Street02-1",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ご婦人",
+          "ImageSrc": "Charactors/20200716_elder-female",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "あら、そうなのね。昔の事を話すのは構わないけど、その前に私の趣味に付き合ってくれるかしら？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/City_Ambi-Street02-1",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ご婦人",
+          "ImageSrc": "Charactors/20200716_elder-female",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ええ...!！あの、僕たちいそいでいるのですが...."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/City_Ambi-Street02-1",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ご婦人",
+          "ImageSrc": "Charactors/20200716_elder-female",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "なぁに、簡単な間違い探しよ。話してあげるかわりに、ちょっと付き合いなさいな。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ]
+}

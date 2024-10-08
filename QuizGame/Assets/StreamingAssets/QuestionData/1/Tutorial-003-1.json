@@ -1,0 +1,14 @@
+{
+    "title": "酒場のなぞなぞ！？。",
+    "description": "酒場の店主から、なぞなぞの問題だ。火事になっている店に、取り残された鯛（たい）が何か叫んでいる。さて、なんと叫んでいるかな？。",
+    "limits": 40,
+    "limitType": 0,
+    "difficulty": 2,
+    "type": 1,
+    "quiz": {
+        "questions": [
+            "QuestionData/1/quiz\\Tutorial-003-1.json"
+        ]
+    },
+    "endStory": "Tutorial-003-1-End"
+}
