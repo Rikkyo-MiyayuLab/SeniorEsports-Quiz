@@ -27,28 +27,37 @@ public class QuestionExplanation : MonoBehaviour {
         var NextStoryId = PlayerPrefs.GetString("NextStoryId");
         var BeforeViewer = PlayerPrefs.GetString("CurrentViewer");
         var RemainQuestionSize = PlayerPrefs.GetInt("RemainQuestionSize");
+        var CurrentQuestionIdx = PlayerPrefs.GetInt("CurrentQuestionIdx");
         Debug.Log("RemainQuestionSize: " + RemainQuestionSize);
+        PlayerPrefs.Save();
         audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(TypeText(explanation));
         ExplanationImage.sprite = Resources.Load<Sprite>(imagePath);
-        // まだ小問がある場合は、次の小問を表示するように
-        if(RemainQuestionSize > 0) {
-            NextSceneButton.onClick.AddListener(() => {
-                audioSource.PlayOneShot(BtnSE);
-                transitionManager.Transition(BeforeViewer, transition, transitionDuration);
-            });
-        } else {
-            if(isCorrectExplanation) {
+        if(isCorrectExplanation) {
+
+            if(RemainQuestionSize > 0) {
                 NextSceneButton.onClick.AddListener(() => {
                     audioSource.PlayOneShot(BtnSE);
-                    // SceneManager.LoadScene("StoryViewer");
-                    PlayerPrefs.SetString("StoryId", NextStoryId);
-                    transitionManager.Transition("StoryViewer", transition, transitionDuration);
+                    CurrentQuestionIdx++;
+                    PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIdx);
+                    transitionManager.Transition(BeforeViewer, transition, transitionDuration);
                 });
-            } else {
-                NextSceneButton.GetComponent<BackSceneButton>().beforeSceneName = BeforeViewer;
+                return;
             }
+            NextSceneButton.onClick.AddListener(() => {
+                audioSource.PlayOneShot(BtnSE);
+                // SceneManager.LoadScene("StoryViewer");
+                PlayerPrefs.SetString("StoryId", NextStoryId);
+                transitionManager.Transition("StoryViewer", transition, transitionDuration);
+            });
+
+        } else {
+            NextSceneButton.onClick.AddListener(() => {
+                audioSource.PlayOneShot(BtnSE);
+                Debug.Log("不正解なので、前の画面に戻ります。");
+                transitionManager.Transition(BeforeViewer, transition, transitionDuration);
+            });
         }
 
     }

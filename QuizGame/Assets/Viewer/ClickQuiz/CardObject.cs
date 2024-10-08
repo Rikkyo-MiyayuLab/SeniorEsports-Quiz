@@ -9,7 +9,7 @@ public class CardObject : MonoBehaviour {
     public Sprite frontImg;  // 表面画像
     public Sprite backImg;   // 裏面画像
     private SpriteRenderer spriteRenderer;  // カードの画像表示コンポーネント
-    private bool isFlipped = false;  // カードが裏返されたかどうか
+    public bool isFlipped = false;  // カードが裏返されたかどうか
     private bool isAnimating = false;  // アニメーション中かどうか
 
     void Start() {
@@ -39,7 +39,7 @@ public class CardObject : MonoBehaviour {
             yield return null;
         }
 
-        // 回転が90度に達したら画像を裏面に変更
+        // 回転が90度に達したら画像を裏面（すでに裏面の場合は表面）に変更
         spriteRenderer.sprite = isFlipped ? frontImg : backImg;
         isFlipped = !isFlipped;  // 裏返し状態を反転
 

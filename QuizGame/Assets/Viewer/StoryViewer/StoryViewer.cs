@@ -117,6 +117,7 @@ public class StoryViewer : Viewer {
     private void MoveQuizViewer(int ViewerType) {
         // 大問パスを保存
         PlayerPrefs.SetString("QuizPath", data.quiz);
+        PlayerPrefs.SetInt("CurrentQuestionIdx", 0);
         switch (ViewerType) {
             case 1:
             case 2:

@@ -16,10 +16,12 @@ public class EyeCatchManager : MonoBehaviour {
     private CanvasGroup canvasGroup;   // CanvasGroupで透明度を制御
     private AudioSource audioSource;   // 効果音を再生するためのAudioSource
     private TransitionManager transitionManager;
+    private bool useThinkingScene = true;
 
 
     void Start() {
         FinishImage.gameObject.SetActive(false);
+        useThinkingScene = PlayerPrefs.GetInt("UseThinkingScene") == 1;
         transitionManager = TransitionManager.Instance();
         // CanvasGroupがアタッチされていない場合は追加
         canvasGroup = targetImage.GetComponent<CanvasGroup>();
@@ -34,7 +36,14 @@ public class EyeCatchManager : MonoBehaviour {
         }
 
         // 点滅を開始
-        StartCoroutine(Blink());
+        if(useThinkingScene) {
+            StartCoroutine(Blink());
+        } else {
+            PlaySound(FinishSound);
+            targetImage.gameObject.SetActive(false);
+            FinishImage.gameObject.SetActive(true);
+            transitionManager.Transition(NextSceneName, transition, transitionDuration);
+        }
     }
 
     // 緩やかに点滅させるコルーチン
@@ -48,7 +57,6 @@ public class EyeCatchManager : MonoBehaviour {
             yield return StartCoroutine(Fade(1f, 0f, blinkInterval));
         }
 
-        // 点滅終了時少ししてからに表示を切り替える
         PlaySound(FinishSound);
         yield return new WaitForSeconds(0.2f);
         targetImage.gameObject.SetActive(false);

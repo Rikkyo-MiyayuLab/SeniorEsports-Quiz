@@ -82,7 +82,7 @@ public class AreaButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void MoveScene() {
          // ストーリーIDをシーン遷移前に渡す
         PlayerPrefs.SetString("StoryId", storyId);
-        PlayerPrefs.SetString("CurrentArea", SceneManager.GetActiveScene().name);
+        //PlayerPrefs.SetString("CurrentArea", SceneManager.GetActiveScene().name);
         transitionManager.Transition("StoryViewer", transition, transitionDuration);
     }
 

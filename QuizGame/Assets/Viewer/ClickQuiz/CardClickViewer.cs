@@ -49,11 +49,13 @@ public class CardClickViewer : QuestionViewer<Question> {
     private GameObject prefab;
     [SerializeField]
     private GameObject CardArea;
+    [SerializeField]
+    private List<GameObject> SelectedCards;
 
     void Start() {
         base.Start();
         SEAudioSource = gameObject.GetComponent<AudioSource>();
-
+        SelectedCards = new List<GameObject>();
         Init();
     }
 
@@ -143,24 +145,35 @@ public class CardClickViewer : QuestionViewer<Question> {
     }
 
     /// <summary>
-    /// TODO : カードクリック時の効果音、エフェクトの実装
+    /// TODO : 正解となる同じカードを2回裏返すと正解になってしまうのでこれを修正する。
     /// </summary>
     public void CardClickListener(GameObject cardObj) {
         var card = cardObj.GetComponent<CardObject>();
-        card.FlipCard();  // カードを裏返す
+        // 既に裏返されているカードの場合は、表にもどして、回数を１増やす。
+        if(card.isFlipped) {
+            // 選択済みカードのリストに含まれている場合は、リストから削除
+            if (SelectedCards.Contains(cardObj)) {
+                SelectedCards.Remove(cardObj);
+                correctness.Remove(card.isCorrect);
+            }
+            card.FlipCard();
+            return;
+        }
         SEAudioSource.PlayOneShot(card.audioSrc);  // 効果音再生
-
+        card.FlipCard();  // カードを裏返す
         base.ClickCount++;
+        SelectedCards.Add(cardObj);
 
         if (card.isCorrect) {
             Debug.Log("正解");
             cardObj.GetComponent<SpriteRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            
             correctness.Add(true);
         } else {
             Debug.Log("不正解");
             correctness.Add(false);
         }
-        cardObj.GetComponent<EventTrigger>().enabled = false;
+        // cardObj.GetComponent<EventTrigger>().enabled = false;
 
         //小問の正解、不正解の判定
         if (correctness.Count(b => b == true) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == true)) {

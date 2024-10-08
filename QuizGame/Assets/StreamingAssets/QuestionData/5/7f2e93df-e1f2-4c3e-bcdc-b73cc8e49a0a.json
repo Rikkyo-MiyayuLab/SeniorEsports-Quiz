@@ -1,1 +1,15 @@
-{"title":"老婦人からの挑戦状！","description":"手掛かりになる古地図のことを知っている人を見つけたエリザ達。しかし、老婦人はただでは教えてくれなさそうだ。老婦人からの間違い探しに答えよう。左右の画像を比較して、違う部分を見つけてクリックしてみよう。","limits":60,"limitType":0,"difficulty":2,"type":5,"quiz":{"questions":["QuestionData/5/quiz\\Tutorial-002-2-1.json","QuestionData/5/quiz\\Tutorial-002-2-2.json"]},"endStory":"Tutorial-002-2-End"}
+{
+    "title": "老婦人からの挑戦状！",
+    "description": "手掛かりになる古地図のことを知っている人を見つけたエリザ達。しかし、老婦人はただでは教えてくれなさそうだ。老婦人からの間違い探しに答えよう。左右の画像を比較して、違う部分を見つけてクリックしてみよう。",
+    "limits": 60,
+    "limitType": 0,
+    "difficulty": 2,
+    "type": 5,
+    "quiz": {
+        "questions": [
+            "QuestionData/5/quiz\\Tutorial-002-2-1.json",
+            "QuestionData/5/quiz\\Tutorial-002-2-2.json"
+        ]
+    },
+    "endStory": "Tutorial-002-2-End"
+}
