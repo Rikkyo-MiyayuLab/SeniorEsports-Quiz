@@ -17,7 +17,7 @@ public class BackSceneButton : MonoBehaviour {
                     Destroy(obj);
                 }
             }
-
+            Debug.Log("シーンを戻ります。");
             UnityEngine.SceneManagement.SceneManager.LoadScene(beforeSceneName);
         });
     }

@@ -68,7 +68,7 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
 
         base.correctness.Clear();
 
-        base.ResultModal.gameObject.SetActive(false);
+        //base.ResultModal.gameObject.SetActive(false);
         RemainCount = 0;
         RemainCountText.text = RemainCount.ToString();
     }
@@ -105,11 +105,18 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
 
         foreach(var point in inCorrectImgData.points) {
             GameObject pointObj = Instantiate(pointPrefab, incorrectImageObj.transform);
+            // 透明にする。
+            SpriteRenderer renderer = pointObj.GetComponent<SpriteRenderer>();
+            renderer.color = new Color(0, 0, 0, 0); // 透明にする
             pointObj.transform.localPosition = new Vector2(point.x, point.y);
             pointObj.transform.localScale = new Vector3(point.width, point.height, 1);
 
             pointObj.AddComponent<AreaClickHandler>().Setup(() => {
                 base.AudioPlayer.PlayOneShot(correctSE);
+
+                //透明度を戻す（薄いピンク色）
+                SpriteRenderer renderer = pointObj.GetComponent<SpriteRenderer>();
+                renderer.color = new Color(1, 0, 0, 0.5f);
 
                 Outline outline = pointObj.AddComponent<Outline>();
                 outline.effectColor = Color.red;
@@ -124,11 +131,8 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
 
 
                 if(RemainCount == 0) {
-                    base.ResultModal.gameObject.SetActive(true);
-                    base.RetryButton.gameObject.SetActive(false);
-                    base.NextQuestionButton.gameObject.SetActive(true);
-                    base.ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/correctbg");
                     base.timer.PauseTimer();
+                    base.QuestionAnswered(true);
                 }
             });
 

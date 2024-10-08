@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "？",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "一進一退",
+            "correct": true
+          },
+          {
+            "text": "一喜一憂",
+            "correct": false
+          },
+          {
+            "text": "一朝一夕",
+            "correct": false
+          },
+          {
+            "text": "一心不乱",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    5.31,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-002-2-1",
+  "bgm": "Audios/mizu no doukutu",
+  "backgroundImage": "Backgrounds/DALL·E-2024-09-28-20.38",
+  "questionImage": {
+    "src": "QuestionImages/Tutorial-002-1-1",
+    "pos": [
+      2.89238143,
+      2.48325562,
+      0.0
+    ],
+    "scale": [
+      2.005657,
+      1.9572376,
+      1.0
+    ]
+  },
+  "explanation": "真ん中だけが、丸く見えている文字だね。右上から順番に見ると「一、進、一、退」となる。なので、答えは「一進一退」だ。",
+  "explanationImage": null,
+  "hints": [
+    "右上から読んでみよう。",
+    "右上から順に読んでみると、一、進... さぁ後はなんだろう。",
+    "進んだりあともどりしたりすること。また、よくなったり悪くなったりすること。"
+  ]
+}

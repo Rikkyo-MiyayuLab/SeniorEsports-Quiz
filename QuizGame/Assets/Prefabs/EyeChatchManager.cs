@@ -1,53 +1,85 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using EasyTransition;
 
-public class UIPanelBlink : MonoBehaviour
-{
-    public CanvasGroup targetPanel;        // 点滅させたいパネル
-    public CanvasGroup nextPanel;          // 点滅後に表示させる別のパネル
-    public int blinkCount = 3;             // 点滅させる回数
-    public float fadeDuration = 1.0f;      // 透明度が変化する時間
-    public AudioClip blinkSE;              // 点滅時に再生するSE
-    public AudioSource audioSource;        // SEを再生するためのAudioSource
+public class EyeCatchManager : MonoBehaviour {
+    public Image targetImage;          // 点滅させたいImage要素
+    public Image FinishImage;          // すべての点滅終了時に表示するImage要素
+    public float blinkInterval = 0.5f; // 点滅間隔（秒）
+    public int blinkCount = 3;         // 点滅回数
+    public AudioClip blinkSound;       // 点滅時の効果音
+    public AudioClip FinishSound; // 点滅終了時の効果音
+    public TransitionSettings transition;
+    public float transitionDuration = 0.2f;
+    public string NextSceneName = "QuestionExplanation";
+    private CanvasGroup canvasGroup;   // CanvasGroupで透明度を制御
+    private AudioSource audioSource;   // 効果音を再生するためのAudioSource
+    private TransitionManager transitionManager;
+    private bool useThinkingScene = true;
 
-    private void Start() {
-        // 次のパネルは初期状態では非表示に設定
-        nextPanel.alpha = 0;
-        nextPanel.gameObject.SetActive(false);
 
-        // 点滅を開始する
-        StartCoroutine(BlinkPanel());
-    }
-
-    private IEnumerator BlinkPanel() {
-        // 指定された回数分、パネルを点滅させる
-        for (int i = 0; i < blinkCount; i++) {
-            // 透明度を0から1まで上げる
-            yield return StartCoroutine(FadeCanvasGroup(targetPanel, 0f, 1f, fadeDuration));
-            
-            // SEを再生
-            if (blinkSE != null && audioSource != null) {
-                audioSource.PlayOneShot(blinkSE);
-            }
-
-            // 透明度を1から0まで下げる
-            yield return StartCoroutine(FadeCanvasGroup(targetPanel, 1f, 0f, fadeDuration));
+    void Start() {
+        FinishImage.gameObject.SetActive(false);
+        useThinkingScene = PlayerPrefs.GetInt("UseThinkingScene") == 1;
+        transitionManager = TransitionManager.Instance();
+        // CanvasGroupがアタッチされていない場合は追加
+        canvasGroup = targetImage.GetComponent<CanvasGroup>();
+        if (canvasGroup == null) {
+            canvasGroup = targetImage.gameObject.AddComponent<CanvasGroup>();
         }
 
-        // 点滅が終了したら次のパネルを表示
-        nextPanel.gameObject.SetActive(true);
-        yield return StartCoroutine(FadeCanvasGroup(nextPanel, 0f, 1f, fadeDuration));
+        // AudioSourceを設定（存在しない場合は追加）
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null) {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // 点滅を開始
+        if(useThinkingScene) {
+            StartCoroutine(Blink());
+        } else {
+            PlaySound(FinishSound);
+            targetImage.gameObject.SetActive(false);
+            FinishImage.gameObject.SetActive(true);
+            transitionManager.Transition(NextSceneName, transition, transitionDuration);
+        }
     }
 
-    // CanvasGroupの透明度を徐々に変化させるコルーチン
-    private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float startAlpha, float endAlpha, float duration) {
+    // 緩やかに点滅させるコルーチン
+    private IEnumerator Blink() {
+        for (int i = 0; i < blinkCount; i++) {
+            // 透明度を0から1まで徐々に上げる
+            PlaySound(blinkSound);
+            yield return StartCoroutine(Fade(0f, 1f, blinkInterval));
+
+            // 透明度を1から0まで徐々に下げる
+            yield return StartCoroutine(Fade(1f, 0f, blinkInterval));
+        }
+
+        PlaySound(FinishSound);
+        yield return new WaitForSeconds(0.2f);
+        targetImage.gameObject.SetActive(false);
+        FinishImage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        transitionManager.Transition(NextSceneName, transition, transitionDuration);
+    }
+
+    // 透明度を徐々に変化させるコルーチン
+    private IEnumerator Fade(float startAlpha, float endAlpha, float duration) {
         float time = 0f;
         while (time < duration) {
             time += Time.deltaTime;
             canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, time / duration);
-            yield return null;
+            yield return null; // 次のフレームまで待機
         }
-        canvasGroup.alpha = endAlpha;
+        canvasGroup.alpha = endAlpha; // 最終的に確実に目的の透明度に設定
+    }
+
+    // 効果音を再生するメソッド
+    private void PlaySound(AudioClip soundClip) {
+        if (blinkSound != null && audioSource != null) {
+            audioSource.PlayOneShot(soundClip);
+        }
     }
 }

@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "？",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "油断大敵",
+            "correct": true
+          },
+          {
+            "text": "用意周到",
+            "correct": false
+          },
+          {
+            "text": "臨機応変",
+            "correct": false
+          },
+          {
+            "text": "敵前逃亡",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    5.31,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-002-1-2",
+  "bgm": "Audios/mizu no doukutu",
+  "backgroundImage": "Backgrounds/DALL·E-2024-09-28-20.38",
+  "questionImage": {
+    "src": "QuestionImages/Tutorial-002-1-2",
+    "pos": [
+      2.89238143,
+      2.48325562,
+      0.0
+    ],
+    "scale": [
+      2.005657,
+      1.9572376,
+      1.0
+    ]
+  },
+  "explanation": "今回は少し複雑な見え方だね。何かの動物の足跡のようにも見えるかな...？。注意深く読んでみると「油断大敵」という文字が浮かび上がってくるはずだ。",
+  "explanationImage": null,
+  "hints": [
+    "右上から読んでみよう。",
+    "右上から順に読んでみると、油、断... さぁ後はなんだろう。",
+    "「1日くらい忘れても大丈夫」と注意を怠ったが最後、その灯火はいとも簡単に消えてしまうぞ。"
+  ]
+}

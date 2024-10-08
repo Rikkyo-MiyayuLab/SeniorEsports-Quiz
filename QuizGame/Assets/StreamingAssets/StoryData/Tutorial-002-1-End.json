@@ -1,0 +1,121 @@
+{
+  "StoryId": "Tutorial-002-1-End",
+  "quiz": "QuestionData/1/Tutorial-002-1",
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "先生、やりました！。かすれ見えなかった地名も分かるようになりましたね！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ふむ、古い場所の名前がわかったのはいい手がかりだよ。だが、まだこの地図全体が示していることを完全に理解するには、さらに情報が必要だね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "そうですね。特に、この地図に記されている場所について詳しい話を知っている人がいれば…。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "その通りだ。あと、ジェラルド・ホワイトについても何か掴みたい。彼がこの地図のことを知っている可能性もある。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "二人で街へ出て聞き込みをしよう。古地図のことなら昔からこの街に住んでいる人々に聞いてみるのが一番だからね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "はい！。先生！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": "はい！。先生！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "こうして、エリザとアルフレッドは古地図と謎の人物ジェラルド・ホワイトの手掛かりを探しに街へ向かった。",
+      "NarrationDisplayMode": 0
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 2
+}

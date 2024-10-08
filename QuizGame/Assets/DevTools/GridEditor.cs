@@ -168,7 +168,10 @@ public class GridEditor : QuestionEditor {
                 src = base.GetResourcePath(questionImage),
                 pos = new float[] { questionImageObject.transform.position.x, questionImageObject.transform.position.y, questionImageObject.transform.position.z },
                 scale = new float[] { questionImageObject.transform.localScale.x, questionImageObject.transform.localScale.y, questionImageObject.transform.localScale.z }
-            }
+            },
+            hints = Hints,
+            explanation = Explanation,
+            explanationImage = base.GetResourcePath(ExplanationSprite)
         };
 
         // JSONにシリアライズ

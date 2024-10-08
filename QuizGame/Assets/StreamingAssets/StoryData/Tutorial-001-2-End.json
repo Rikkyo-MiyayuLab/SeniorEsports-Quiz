@@ -99,5 +99,7 @@
       "Narration": "",
       "NarrationDisplayMode": 2
     }
-  ]
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 1
 }

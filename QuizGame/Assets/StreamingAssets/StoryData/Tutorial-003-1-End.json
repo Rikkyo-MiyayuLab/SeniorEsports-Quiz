@@ -1,0 +1,429 @@
+{
+  "StoryId": "Tutorial-003-1-End",
+  "quiz": "QuestionData/1/Tutorial-003-1-End",
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ほぉ。さすが探偵さんなだけはあるねぇ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "さぁ、ジェラルド・ホワイトという人物の話をしていただけますか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ああ、ジェラルドか。あいつはよく『感覚の街』や『記憶の館』についてつぶやいていたよ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "何かを探していたみたいだが…結局、見つけたかどうかは知らないね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "彼が何か特別な情報を話していたことはありませんか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "そうだな…『記憶の扉』という言葉をよく口にしていたな。それがどこにあるのかは教えてくれなかったが、きっとこの地図に何か関係があるんだろう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "ありがとうございます。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "ありがとうございます。その”記憶の扉”とは、どの場所にあるかご存じありませんか？"
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "それらが、どんな場所にあるのかは知らないが、街の真ん中にある貴族の家の人にでも聞いてみるといいんじゃないかな。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "ありがとうございます。その”記憶の扉”とは、どの場所にあるかご存じありませんか？"
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "そこの貴族は、ヴァルフォート家と呼ばれていて、地域の歴史や古い伝承にも精通しているそうだ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "ありがとうございます。その”記憶の扉”とは、どの場所にあるかご存じありませんか？"
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "きっと君たちが探しているものは、そのヴァルフォート家の者が知っていると思うよ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "先生！。これで次に逝く場所が決まりましたね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "ああ。そうだねエリザ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "ありがとうございました。では、我々はこれで。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+      "audio": "Audios/調査開始",
+      "Characters": [
+        {
+          "Name": "酒場の店主",
+          "ImageSrc": "Charactors/20171217_concierge",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "こうして、エリザ達はヴァルフォート家へと赴くことになった。",
+      "NarrationDisplayMode": 0
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 4
+}

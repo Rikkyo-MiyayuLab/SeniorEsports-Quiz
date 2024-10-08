@@ -171,6 +171,9 @@ public class CardEditor : QuestionEditor {
             margin = margin,
             pairSize = pairCount,
             bgm = base.GetResourcePath(BGM),
+            hints = base.Hints,
+            explanation = base.Explanation,
+            explanationImage = base.GetResourcePath(ExplanationSprite)
         };
 
         foreach (CardObject cardData in cards) {

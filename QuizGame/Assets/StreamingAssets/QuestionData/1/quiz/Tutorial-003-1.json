@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "たいやきー！",
+            "correct": false
+          },
+          {
+            "text": "けむたいー！",
+            "correct": true
+          },
+          {
+            "text": "たすけたい！",
+            "correct": false
+          },
+          {
+            "text": "あついたいー！",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    4.36,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-003-1",
+  "bgm": "Audios/調査開始",
+  "backgroundImage": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
+  "questionImage": {
+    "src": "QuestionImages/DALL·E-2024-10-09-03.18",
+    "pos": [
+      2.12238145,
+      2.45325565,
+      0.0
+    ],
+    "scale": [
+      0.392731875,
+      0.360695481,
+      1.0
+    ]
+  },
+  "explanation": "火事になっている店に存在しているものを考えてみよう。火事になっている建物には、たくさんの煙がある。煙は「けむたい」よね。煙と鯛、あれ...けむたいー！",
+  "explanationImage": "QuestionImages/DALL·E-2024-10-09-03.18",
+  "hints": [
+    "火事の時は、火となにが、たくさんあるかな？",
+    "煙を吸うときに、なんていうだろう？",
+    "鯛が叫んでいるときに、何を叫ぶかな？...けむ○○！！"
+  ]
+}

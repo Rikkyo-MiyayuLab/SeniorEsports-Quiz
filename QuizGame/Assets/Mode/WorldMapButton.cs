@@ -34,6 +34,7 @@ public class WorldMapButton : MonoBehaviour {
 
     }
     public void OnPointerEnter(PointerEventData eventData) {
+        Debug.Log("OnPointerEnter");
         AreaNameDisplayer.text = AreaName;
         // 既存のコルーチンが動いている場合は停止
         if (typingCoroutine != null) {
@@ -54,6 +55,11 @@ public class WorldMapButton : MonoBehaviour {
     }
 
     public void OnPointerExit(PointerEventData eventData) {
+        Debug.Log("OnPointerExit");
+        // コールーチンを停止
+        if (typingCoroutine != null) {
+            StopCoroutine(typingCoroutine);
+        }
         AreaNameDisplayer.text = "せかいちず";
         AreaDescriptionDisplayer.text = "";
     }
