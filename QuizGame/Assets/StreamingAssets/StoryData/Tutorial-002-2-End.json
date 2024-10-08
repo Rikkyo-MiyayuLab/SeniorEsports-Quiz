@@ -333,5 +333,7 @@
       "Narration": "エリザたちはさらに調査するため、街中にある酒場へ向かった。",
       "NarrationDisplayMode": 0
     }
-  ]
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 3
 }

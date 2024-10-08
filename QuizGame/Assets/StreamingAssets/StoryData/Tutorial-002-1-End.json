@@ -115,5 +115,7 @@
       "Narration": "こうして、エリザとアルフレッドは古地図と謎の人物ジェラルド・ホワイトの手掛かりを探しに街へ向かった。",
       "NarrationDisplayMode": 0
     }
-  ]
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 2
 }
