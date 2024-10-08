@@ -175,7 +175,7 @@ public class CardClickViewer : QuestionViewer<Question> {
 
 
     public override void Dispose() {
-        ResultModal.gameObject.SetActive(false);
+        //ResultModal.gameObject.SetActive(false);
         foreach (var cardObj in CardObjs) {
             Destroy(cardObj);
         }

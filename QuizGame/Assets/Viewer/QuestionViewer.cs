@@ -30,12 +30,6 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     public Image ResultModalImage;
     public Button NextQuestionButton;
     public GameObject Timer;
-    public Canvas QuizStaticsModal;
-    public TextMeshProUGUI TotalCorrectCounter;
-    public TextMeshProUGUI TotalTime;
-    public TextMeshProUGUI ScoreText;
-    public Button MoveEndStoryButton;
-    public TransitionSettings AnswerEyeCatchTransition;
     public GameObject ClickRemainCounterPanel;
     public TextMeshProUGUI ClickRemainCounter;
     public TextMeshProUGUI QuestionDescription;
@@ -62,9 +56,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         GetData();
         Render();
         //timer.StopTimer();
-        timer.seconds = QuizData.limits;
-        timer.ResumeTimer();
-        timer.StartTimer();
+        this.InitHintModal();
     }
     public abstract void Dispose();
     public abstract void GetData();
@@ -75,8 +67,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         base.Start();
         string quizPath = PlayerPrefs.GetString("QuizPath");
         QuizData = LoadJSON<QuestionData>($"{Application.streamingAssetsPath}/{quizPath}");
-        QuizStaticsModal.gameObject.SetActive(false);
-        ResultModal.gameObject.SetActive(false);
+        // ResultModal.gameObject.SetActive(false);
         StartUIPanel.SetActive(false);
         timer = Timer.GetComponent<Timer>();
         timer.PauseTimer();
@@ -87,7 +78,9 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             StartUIPanel.GetComponent<Button>().onClick.AddListener(() => {
                 StartUIPanel.SetActive(false);
                  if(base.QuizData.limitType == LimitType.time) {
+                    timer.seconds = QuizData.limits;
                     timer.ResumeTimer();
+                    timer.StartTimer();
                  }
             });
         };
@@ -97,18 +90,21 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         if(base.QuizData.limitType == LimitType.time) {
             ClickRemainCounterPanel.SetActive(false);
             timer.onTimerEnd.AddListener(() => {
+                // TODO:不正解用プレビュー画面を表示させる
                 base.AudioPlayer.PlayOneShot(GameOverSE);
+                /*
                 ResultModal.gameObject.SetActive(true);
                 ResultModalImage.sprite = Resources.Load<Sprite>("Backgrounds/incorrectbg");
                 NextQuestionButton.gameObject.SetActive(false);
                 RetryButton.gameObject.SetActive(true);
+                */
             });
         } else {
             ClickRemainCounterPanel.SetActive(true);
             timer.gameObject.SetActive(false);
         }
 
-
+        /*
         NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "閉じる";
         NextButton.onClick.AddListener(() => {
             timer.ResumeTimer();
@@ -143,12 +139,17 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
                 PlayerPrefs.SetInt("CurrentAreaIdx", currentAreaIdx + 1);
             }   
         });
-
+         */
+        /*
         MoveEndStoryButton.onClick.AddListener(() => {
             PlayerPrefs.SetString("StoryId", QuizData.endStory);
             TransitionManager.Transition("StoryViewer", Transition, TransitionDuration);
         });
+        */
+    }
 
+
+    protected void InitHintModal() {
         // ヒントモーダルの初期化
         HintUIModal.SetActive(false);
         var HintViewer = HintUIModal.GetComponent<HintViewer>();
@@ -156,7 +157,6 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         HintModalOpenButton.onClick.AddListener(() => {
             HintUIModal.gameObject.SetActive(true);
         });
-
     }
 
     /// <summary>
@@ -169,11 +169,14 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.explanation);
             PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
             PlayerPrefs.SetString("NextStoryId", QuizData.endStory);
+            PlayerPrefs.SetString("CurrentViewer", SceneManager.GetActiveScene().name);
+            PlayerPrefs.SetInt("RemainQuestionSize", QuizData.quiz.questions.Count - CurrentQuestionIndex+1);
             SceneManager.LoadScene("AnswerPreview-Correct");
         } else {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.hints[0]);
             PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
             PlayerPrefs.SetString("CurrentViewer", SceneManager.GetActiveScene().name);
+            PlayerPrefs.SetInt("RemainQuestionSize", QuizData.quiz.questions.Count - CurrentQuestionIndex+1);
             SceneManager.LoadScene("AnswerPreview-Incorrect");
         }
     }
@@ -186,7 +189,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
 
         // ゲーム終了条件の監視
         if(base.QuizData.limitType == LimitType.click && ClickCount > base.QuizData.limits) {
-            timer.PauseTimer();
+            //timer.PauseTimer();
             QuestionAnswered(false);
             return;
         } else if(base.QuizData.limitType == LimitType.time && timer.GetRemainingSeconds() <= 0) {

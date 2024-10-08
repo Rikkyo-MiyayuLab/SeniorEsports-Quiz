@@ -24,10 +24,6 @@ public class AreaMap : MonoBehaviour
 
         CurrentWorldIdx = playerData.CurrentWorld;
         CurrentAreaIdx = playerData.CurrentArea;
-        
-        // PlayerPrefsから現在のエリアインデックスを取得、デフォルト値は0
-        PlayerPrefs.SetInt("CurrentAreaIdx", 0); //NOTE: 開発用にデフォルト値を設定しているが、本来はエリア選択画面で選択したエリアのインデックスを保存する
-        CurrentAreaIdx = PlayerPrefs.GetInt("CurrentAreaIdx", 0);
 
         for (int i = 0; i < AreaButtons.Length; i++) {
             var areaButton = AreaButtons[i];

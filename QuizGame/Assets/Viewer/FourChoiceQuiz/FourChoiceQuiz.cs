@@ -140,7 +140,7 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
 
 
     public override void Dispose() {
-        ResultModal.gameObject.SetActive(false);
+        // ResultModal.gameObject.SetActive(false);
         foreach (var gridObjects in GridObjects) {
             foreach (var gridObject in gridObjects) {
                 Destroy(gridObject);

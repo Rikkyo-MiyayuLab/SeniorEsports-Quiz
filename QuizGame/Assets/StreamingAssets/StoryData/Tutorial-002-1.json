@@ -1,0 +1,111 @@
+{
+  "StoryId": "Tutorial-002-1",
+  "quiz": "QuestionData/1/f94bde74-3761-4485-9d5e-f589eb6ce967.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "手掛かりになりそうな古地図を見つけたエリザ。アルフレッドにそのことを伝えに行く。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "System/ドアを開ける3",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "先生！倉庫の中で見つけた古い地図と、少し破れた日記の切れ端を持ってきました。ほら、これです。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "よくやった、エリザ。見せてくれ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "System/紙を広げる1",
+      "Characters": [
+        {
+          "Name": "",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "（アルフレッドが古地図を広げ、日記の切れ端を手に取る。）",
+      "NarrationDisplayMode": 1
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "この地図はずいぶん古いな…だが、地名の一部がかすれていて読めない部分があるようだ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ええ、ところどころ読めない部分がありますね。でも、このかすれた地名、なんとかして解読できれば手がかりになるかもしれません。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
+      "audio": "Audios/mizu no doukutu",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": "そうだね。残っている文字から地名を推測できそうだ。ちょっとやってみよう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ]
+}

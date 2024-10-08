@@ -23,15 +23,17 @@ public class HintViewer : MonoBehaviour {
         HintDatas = hints;
         HintAvailable = new bool[HintDatas.Length];
         for (int i = 0; i < hints.Length; i++) {
-            HintButtons[i].onClick.AddListener(() => ShowHint(i));
+            int index = i; // ローカル変数にiの値を保存
+            HintButtons[i].onClick.AddListener(() => ShowHint(index));
             HintAvailable[i] = true;
-            // 鍵アイコンを非表示
-            HintButtons[i].gameObject.GetComponentInChildren<Image>().enabled = false;
+            // 子要素の鍵アイコンを非表示
+            HintButtons[i].transform.GetChild(1).gameObject.SetActive(false);
         }
         CloseButton.onClick.AddListener(() => CloseHint());
     }
 
     private void ShowHint(int index) {
+        Debug.Log("Show hint" + index);
         if(HintAvailable[index]) {
             Hint.text = HintDatas[index];
             Title.text = $"ヒント その{index + 1}";

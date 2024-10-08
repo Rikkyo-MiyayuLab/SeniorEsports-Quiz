@@ -55,6 +55,12 @@
   "row": 2,
   "column": 4,
   "backgroundImage": "Backgrounds/DALL·E-2024-09-29-20.20",
-  "margin": 2.0,
-  "pairSize": 2
+  "margin": 1.0,
+  "pairSize": 2,
+  "explanation" : "今回は音の神経衰弱だ。同じ音のする２枚のカードの組は見つかっただろうか...",
+  "explanationImage" : null,
+  "hints": [
+    "音の神経衰弱だ。同じ音のする２枚のカードの組を見つけよう。",
+    "カードをクリックすると、カードが裏返しになって選択した状態になる。"
+  ]
 }

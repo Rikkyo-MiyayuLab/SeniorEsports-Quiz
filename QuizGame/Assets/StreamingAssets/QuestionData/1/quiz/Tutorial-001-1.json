@@ -38,7 +38,7 @@
   "rows": 1,
   "gridsPos": [
     3.36,
-    3.27
+    8.27
   ],
   "gridsScale": [
     14.312,
@@ -50,7 +50,7 @@
   "questionImage": {
     "src": "QuestionImages/Tutorial-001-1",
     "pos": [
-      -0.0776186,
+      4.0776186,
       2.59325552,
       0.0
     ],

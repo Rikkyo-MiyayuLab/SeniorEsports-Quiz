@@ -10,6 +10,8 @@ using TMPro;
 using Newtonsoft.Json;
 using StoryDataInterface;
 using QuestionDataInterface;
+using SaveDataInterface;
+using MapDefs;
 using EasyTransition;
 
 public class StoryViewer : Viewer {
@@ -152,7 +154,19 @@ public class StoryViewer : Viewer {
                 });
             } else if (storyType == StoryType.Explanation) {
                 // エリア画面へ戻る
-                string area = PlayerPrefs.GetString("CurrentArea");
+                // ここのストーリモードの時は、問題正解後の解説、つまり正解後のエリア遷移を行うので、セーブデータを更新する
+                string playerUUID = PlayerPrefs.GetString("PlayerUUID");
+                var playerData = SaveDataManager.LoadPlayerData(playerUUID);
+                // プレイヤー位置を更新
+                if(playerData.CurrentWorld <= data.NextWorldIdx) {
+                    playerData.CurrentWorld = data.NextWorldIdx;
+                    if(playerData.CurrentArea <= data.NextAreaIdx) {
+                        playerData.CurrentArea = data.NextAreaIdx;
+                        playerData.LastStoryId = data.StoryId;
+                    }
+                }
+                SaveDataManager.SavePlayerData(playerUUID, playerData);
+                string area = Area.SceneNames[playerData.CurrentWorld];
                 base.TransitionManager.Transition(area, Transition, TransitionDuration);
             }
         }

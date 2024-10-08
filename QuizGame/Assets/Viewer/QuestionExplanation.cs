@@ -26,22 +26,31 @@ public class QuestionExplanation : MonoBehaviour {
         var imagePath = PlayerPrefs.GetString("ExplanationImage");
         var NextStoryId = PlayerPrefs.GetString("NextStoryId");
         var BeforeViewer = PlayerPrefs.GetString("CurrentViewer");
+        var RemainQuestionSize = PlayerPrefs.GetInt("RemainQuestionSize");
+        Debug.Log("RemainQuestionSize: " + RemainQuestionSize);
         audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(TypeText(explanation));
         ExplanationImage.sprite = Resources.Load<Sprite>(imagePath);
-        // TODO : まだ小問がある場合は、次の小問を表示するように
-        if(isCorrectExplanation) {
+        // まだ小問がある場合は、次の小問を表示するように
+        if(RemainQuestionSize > 0) {
             NextSceneButton.onClick.AddListener(() => {
                 audioSource.PlayOneShot(BtnSE);
-                // SceneManager.LoadScene("StoryViewer");
-                PlayerPrefs.SetString("StoryId", NextStoryId);
-                transitionManager.Transition("StoryViewer", transition, transitionDuration);
-
+                transitionManager.Transition(BeforeViewer, transition, transitionDuration);
             });
         } else {
-            NextSceneButton.GetComponent<BackSceneButton>().beforeSceneName = BeforeViewer;
+            if(isCorrectExplanation) {
+                NextSceneButton.onClick.AddListener(() => {
+                    audioSource.PlayOneShot(BtnSE);
+                    // SceneManager.LoadScene("StoryViewer");
+                    PlayerPrefs.SetString("StoryId", NextStoryId);
+                    transitionManager.Transition("StoryViewer", transition, transitionDuration);
+                });
+            } else {
+                NextSceneButton.GetComponent<BackSceneButton>().beforeSceneName = BeforeViewer;
+            }
         }
+
     }
 
 
