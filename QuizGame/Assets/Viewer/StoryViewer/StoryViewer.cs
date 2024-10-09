@@ -92,7 +92,12 @@ public class StoryViewer : Viewer {
         data = LoadJSON<StoryData>(storyFile);
         storyType = data.StoryType;
 
-        isTutorialMode = PlayerPrefs.GetInt("EnableTutorial", 0) == 1;
+        if(storyID == "Tutorial-001") {
+            isTutorialMode = true;
+        } else {
+            isTutorialMode = false;
+        }
+        
         TutorialCanvas.gameObject.SetActive(false);
         NextTutorialButton.onClick.AddListener(() => {
             TutorialCanvas.gameObject.SetActive(false);
@@ -148,7 +153,7 @@ public class StoryViewer : Viewer {
             TutorialBackPanel.SetActive(true);
             TutorialTextPanel.SetActive(true);
             TutorialNextIconPanel.SetActive(false);
-            TutorialQuizInfoPanel.SetActive(false);
+            //TutorialQuizInfoPanel.SetActive(false);
 
             // シーン1の設定と表示
         } else if (currentSceneIndex == 1) {
@@ -156,10 +161,10 @@ public class StoryViewer : Viewer {
             TutorialBackPanel.SetActive(true);
             TutorialTextPanel.SetActive(false);
             TutorialNextIconPanel.SetActive(true);
-            TutorialQuizInfoPanel.SetActive(false);
+            //TutorialQuizInfoPanel.SetActive(false);
             EnterTextIcon.GetComponent<SpriteRenderer>().sortingOrder = 5;
         }
-
+        /*
         if(displayQuizInfo) {
             TutorialCanvas.gameObject.SetActive(true);
             TutorialQuizInfoPanel.SetActive(true);
@@ -167,6 +172,7 @@ public class StoryViewer : Viewer {
             TutorialTextPanel.SetActive(false);
             TutorialNextIconPanel.SetActive(false);
         }
+        */
         // コルーチンの終了を記録
         tutorialCoroutine = null;
     }
