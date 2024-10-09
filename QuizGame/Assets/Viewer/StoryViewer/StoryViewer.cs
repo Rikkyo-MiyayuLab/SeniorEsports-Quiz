@@ -43,6 +43,15 @@ public class StoryViewer : Viewer {
     public Action onTextComplete;
     public Action onSceneEnd;
     public GameObject EnterTextIcon;
+    [Header("チュートリアル用部品")]
+    public Canvas TutorialCanvas;
+    public GameObject TutorialBackPanel;
+    public GameObject TutorialTextPanel;
+    public GameObject TutorialNextIconPanel;
+    public GameObject TutorialQuizInfoPanel;
+    public bool nowTutorial = false; //チュートリアル表示中かどうか
+    public bool isTutorialMode = false; // チュートリアルを実行するか否かのフラグ
+    public Button NextTutorialButton;
 
     [Header("Editor Settings")]
     [SerializeField]
@@ -60,6 +69,8 @@ public class StoryViewer : Viewer {
     private StoryData data;
     [SerializeField]
     private int currentSceneIndex = 0;
+    private Coroutine tutorialCoroutine;
+    private bool displayQuizInfo = false;
     private StoryDataInterface.Scene currentScene;
     private AudioSource TypingSEPlayer;
     private bool isWaitingForClick = false;
@@ -80,6 +91,14 @@ public class StoryViewer : Viewer {
         storyFile = $"{Application.streamingAssetsPath}/StoryData/{storyID}.json";
         data = LoadJSON<StoryData>(storyFile);
         storyType = data.StoryType;
+
+        isTutorialMode = PlayerPrefs.GetInt("EnableTutorial", 0) == 1;
+        TutorialCanvas.gameObject.SetActive(false);
+        NextTutorialButton.onClick.AddListener(() => {
+            TutorialCanvas.gameObject.SetActive(false);
+            nowTutorial = false;
+            EnterTextIcon.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        });
         
         if(storyType == StoryType.Quiz) {
             base.QuizData = LoadJSON<QuestionData>($"{Application.streamingAssetsPath}/{data.quiz}");
@@ -111,6 +130,45 @@ public class StoryViewer : Viewer {
                 GoToNextScene();
             }
         }
+
+        if(isTutorialMode) {
+            if(tutorialCoroutine == null) {
+                tutorialCoroutine = StartCoroutine(ShowTutorialSequence());
+            }
+        }
+    }
+
+
+    private IEnumerator ShowTutorialSequence() {
+        nowTutorial = true;
+        yield return new WaitForSeconds(1.5f);
+        // シーン0の設定と表示
+        if (currentSceneIndex == 0) {
+            TutorialCanvas.gameObject.SetActive(true);
+            TutorialBackPanel.SetActive(true);
+            TutorialTextPanel.SetActive(true);
+            TutorialNextIconPanel.SetActive(false);
+            TutorialQuizInfoPanel.SetActive(false);
+
+            // シーン1の設定と表示
+        } else if (currentSceneIndex == 1) {
+            TutorialCanvas.gameObject.SetActive(true);
+            TutorialBackPanel.SetActive(true);
+            TutorialTextPanel.SetActive(false);
+            TutorialNextIconPanel.SetActive(true);
+            TutorialQuizInfoPanel.SetActive(false);
+            EnterTextIcon.GetComponent<SpriteRenderer>().sortingOrder = 5;
+        }
+
+        if(displayQuizInfo) {
+            TutorialCanvas.gameObject.SetActive(true);
+            TutorialQuizInfoPanel.SetActive(true);
+            TutorialBackPanel.SetActive(false);
+            TutorialTextPanel.SetActive(false);
+            TutorialNextIconPanel.SetActive(false);
+        }
+        // コルーチンの終了を記録
+        tutorialCoroutine = null;
     }
 
 
@@ -149,7 +207,9 @@ public class StoryViewer : Viewer {
             if (storyType == StoryType.Quiz) {
                 // 問題モーダルを表示
                 base.QuizModalCanvas.gameObject.SetActive(true);
+                displayQuizInfo = true;
                 base.AudioPlayer.PlayOneShot(base.ModalDisplaySE);
+                
                 base.NextButton.onClick.AddListener(() => {
                     MoveQuizViewer(base.QuizData.type);
                 });
