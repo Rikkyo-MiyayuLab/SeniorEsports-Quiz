@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "みかん",
+            "correct": false
+          },
+          {
+            "text": "かき",
+            "correct": false
+          },
+          {
+            "text": "いちご",
+            "correct": true
+          },
+          {
+            "text": "さくらんぼ",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    6.02,
+    2.09
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-005-1-2",
+  "bgm": "Audios/musou",
+  "backgroundImage": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+  "questionImage": {
+    "src": "QuestionImages/022157",
+    "pos": [
+      3.38238144,
+      2.43325567,
+      0.0
+    ],
+    "scale": [
+      0.9758602,
+      0.9415324,
+      1.0
+    ]
+  },
+  "explanation": "かき、みかん、さくらんぼ、りんごは木になる果物だが、いちごは木にはならない。これは知識の問題だね。。",
+  "explanationImage": "QuestionImages/022157",
+  "hints": [
+    "これらの果物はどんな風に育つだろうか？",
+    "「かき」や「みかん」はいずれも”木”になる果物だね。じゃああとは...?",
+    "さるも木から落ちる！！"
+  ]
+}

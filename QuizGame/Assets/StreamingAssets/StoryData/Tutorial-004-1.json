@@ -1,0 +1,164 @@
+{
+  "StoryId": "Tutorial-004-1",
+  "quiz": "QuestionData/1/4e288e93-7b3e-4bf9-950e-b205b2570416.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/City_Ambi-Street02-1",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "酒場の店主から情報を得た、エリザとアルフレッドは、街の中心に建つヴァルフォート家へ向かう。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/MusMus-BGM-146",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "先生、ヴァルフォート家に向かうなんて少し緊張しますね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/MusMus-BGM-146",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "町を治める名家だって聞きましたが、あのリチャード・ヴァルフォート氏はどんな人なんでしょう？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/MusMus-BGM-146",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "リチャード・ヴァルフォートは、昔から街の歴史を守り続けている人物だ。だが、彼が持つ情報をそう簡単に明かしてくれるとは思えない。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/MusMus-BGM-146",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ジェラルドとも昔からの知り合いだが、その関係には何か複雑なものがあるようだ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/MusMus-BGM-146",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "そうですね…でも、ジェラルド・ホワイトの手がかりを掴むには、彼の協力がどうしても必要みたいですし..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/MusMus-BGM-146",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "その通りだ、エリザ。『記憶の館』にまつわる真実に迫るためにも、彼の話を聞かなくてはならない。我々の推理を試されることになるだろう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/MusMus-BGM-146",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "その前に、こんな謎解きはどうかな？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}

@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "酒",
+            "correct": false
+          },
+          {
+            "text": "キス",
+            "correct": false
+          },
+          {
+            "text": "英",
+            "correct": false
+          },
+          {
+            "text": "笛",
+            "correct": true
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    5.6,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-005-1-1",
+  "bgm": "Audios/musou",
+  "backgroundImage": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+  "questionImage": {
+    "src": "QuestionImages/bt_q73_img",
+    "pos": [
+      3.38238144,
+      2.43325567,
+      0.0
+    ],
+    "scale": [
+      0.9758602,
+      0.9415324,
+      1.0
+    ]
+  },
+  "explanation": "他の選択肢はすべて魚の名前と同じ音を持つ。   酒 = 鮭（サケ） キス = 鱚（キス） 英 = エイ（鱝）これらは、魚の名前と一致する音を持っている。一方で、「 笛」には魚の名前と一致する音が含まれていないため、仲間はずれとなる。",
+  "explanationImage": "QuestionImages/bt_q73_img",
+  "hints": [
+    "それぞれの言葉を声に出してみると、魚の名前が連想できるかもしれない。",
+    "言葉に含まれる「音」と魚の名前の「音」が一致しているかどうかを確認してみると良い。",
+    "魚の名前と一致しない音の言葉が1つだけ含まれている。"
+  ]
+}

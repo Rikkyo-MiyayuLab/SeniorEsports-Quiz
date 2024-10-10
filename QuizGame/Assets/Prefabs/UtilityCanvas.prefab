@@ -797,8 +797,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000030994, y: -91}
-  m_SizeDelta: {x: 775.1602, y: 224.9335}
+  m_AnchoredPosition: {x: -4.2293, y: -7.4058}
+  m_SizeDelta: {x: 783.6188, y: 273.6997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &552227476830211199
 CanvasRenderer:
@@ -1775,9 +1775,9 @@ MonoBehaviour:
   useAsClock: 0
   daysDisplay: 0
   hoursDisplay: 0
-  minutesDisplay: 0
+  minutesDisplay: 1
   secondsDisplay: 1
-  millisecondsDisplay: 1
+  millisecondsDisplay: 0
   adaptiveDisplay: 0
   removeLeadingZeros: 0
   percentageDisplay: 0
