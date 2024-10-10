@@ -202,11 +202,12 @@ public class CardClickViewer : QuestionViewer<Question> {
 
 
     public void Judgement() {
+        Debug.Log("Judgement");
         if (correctness.Count(b => b == true) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == true)) {
             PlayerPrefs.SetInt("UseThinkingScene", 1);
             base.QuestionAnswered(true);
             base.timer.PauseTimer();
-        } else if (correctness.Count(b => b == false) == CardObjs.Count(c => c.GetComponent<CardObject>().isCorrect == false)) {
+        } else {
             base.TotalIncorrectCount++;
             base.timer.PauseTimer();
             PlayerPrefs.SetInt("UseThinkingScene", 1);

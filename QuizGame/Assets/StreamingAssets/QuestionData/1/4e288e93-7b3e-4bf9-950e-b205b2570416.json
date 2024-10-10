@@ -1,0 +1,14 @@
+{
+    "title": "消えた時刻",
+    "description": "とある古い時計は、1時に1回、2時に2回、3時に3回...と、時間ごとに鐘がなります。しかし、この時計はある理由から12時だけは10回しか鐘が鳴りません。ある日、あなたは合計で34回の鐘の音を聞きました。それは何時から何時までの間に鳴ったものでしょうか？",
+    "limits": 90,
+    "limitType": 0,
+    "difficulty": 3,
+    "type": 1,
+    "quiz": {
+        "questions": [
+            "QuestionData/1/quiz\\Tutorial-004-1-1.json"
+        ]
+    },
+    "endStory": "Tutorial-004-2"
+}

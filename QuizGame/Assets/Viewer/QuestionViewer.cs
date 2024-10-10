@@ -78,7 +78,10 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             StartUIPanel.GetComponent<Button>().onClick.AddListener(() => {
                 StartUIPanel.SetActive(false);
                  if(base.QuizData.limitType == LimitType.time) {
-                    timer.seconds = QuizData.limits;
+                    int[] MMSS = ConvertSecToMMSS(base.QuizData.limits);
+                    Debug.Log(MMSS);
+                    timer.seconds = MMSS[1];
+                    timer.minutes = MMSS[0];
                     timer.ResumeTimer();
                     timer.StartTimer();
                  }
@@ -154,6 +157,12 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         */
     }
 
+    private int[] ConvertSecToMMSS(float sec) {
+        int minute = (int)Math.Floor(sec / 60.0f);
+        int second = (int)Math.Floor(sec % 60.0f);
+        return new int[] { minute, second };
+    }
+
 
     protected void InitHintModal() {
         // ヒントモーダルの初期化
@@ -182,7 +191,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             SceneManager.LoadScene("AnswerPreview-Correct");
         } else {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.hints[0]);
-            PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
+            PlayerPrefs.SetString("ExplanationImage", null);
             PlayerPrefs.SetString("CurrentViewer", SceneManager.GetActiveScene().name);
             PlayerPrefs.SetInt("RemainQuestionSize", QuizData.quiz.questions.Count - CurrentQuestionIndex+1);
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);

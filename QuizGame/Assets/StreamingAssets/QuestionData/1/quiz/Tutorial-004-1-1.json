@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "11時から2時",
+            "correct": true
+          },
+          {
+            "text": "10時から1時",
+            "correct": false
+          },
+          {
+            "text": "12時から3時",
+            "correct": false
+          },
+          {
+            "text": "8時から11時",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    5.29,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-004-1-1",
+  "bgm": "Audios/MusMus-BGM-146",
+  "backgroundImage": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+  "questionImage": {
+    "src": "QuestionImages/29dc0efa-6acc-4622-8f7a-522a2e9afbc7",
+    "pos": [
+      2.96238136,
+      2.38325572,
+      0.0
+    ],
+    "scale": [
+      0.397914439,
+      0.329399526,
+      1.0
+    ]
+  },
+  "explanation": "選択肢の中で、合計24回の鐘が鳴るのは、11時から2時までの間です。11時に11回 12時に10回 1時に1回 2時に2回 これらを足すと、11 + 10 + 1 + 2 = 24回 になります。このように、11時から2時の間に鳴る鐘の音をすべて合計すると、24回となります。",
+  "explanationImage": null,
+  "hints": [
+    "12時に鳴る鐘の音は、通常の12回ではなく、10回しか鳴らない。この違いを考慮しながら、何時から何時までの範囲で合計24回になるかを計算してみよう。",
+    "例えば、1時から6時までの間に鳴る鐘の音を数えてみよう。  1時：1回 2時：2回 3時：3回 4時：4回 5時：5回 6時：6回 合計で21回だ。このように、いくつかの時間帯で鐘の音の合計を試してみると良いだろう。",
+    "合計24回になるのは、12時の10回を含めて考える必要がある。10回鳴る12時の前後で、合計が24回になる範囲を探してみよう。"
+  ]
+}

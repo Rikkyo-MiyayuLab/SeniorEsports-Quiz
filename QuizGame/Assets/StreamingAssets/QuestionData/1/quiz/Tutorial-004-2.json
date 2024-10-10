@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "6枚",
+            "correct": true
+          },
+          {
+            "text": "7枚",
+            "correct": false
+          },
+          {
+            "text": "8枚",
+            "correct": false
+          },
+          {
+            "text": "9枚",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    5.35,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-004-2",
+  "bgm": "Audios/MusMus-BGM-146",
+  "backgroundImage": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+  "questionImage": {
+    "src": "QuestionImages/DALL·E-2024-10-10-17.55",
+    "pos": [
+      2.90238142,
+      2.48325562,
+      0.0
+    ],
+    "scale": [
+      0.383369833,
+      0.3739352,
+      1.0
+    ]
+  },
+  "explanation": "他の3人がそれぞれ6枚ずつ受け取ると、合計は6 × 3 = 18枚。 3枚多く受け取る友達は、7 + 3 = 10枚。 合計は18 + 10 = 28枚となり、条件に一致するね。",
+  "explanationImage": "QuestionImages/DALL·E-2024-10-10-17.55",
+  "hints": [
+    "まずは、28枚のクッキーを4人均等に分けた時を考えよう。",
+    "均等に分けたクッキーを3人から1枚づつ預かると....",
+    "3人の「x」と1人の「x + 3」を足して、合計が28枚になるように考えてみましょう。"
+  ]
+}

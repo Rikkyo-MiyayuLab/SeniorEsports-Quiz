@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "長短",
+            "correct": false
+          },
+          {
+            "text": "南北",
+            "correct": true
+          },
+          {
+            "text": "世代",
+            "correct": false
+          },
+          {
+            "text": "朝夕",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    6.02,
+    2.09
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-005-1-3",
+  "bgm": "Audios/musou",
+  "backgroundImage": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+  "questionImage": {
+    "src": "QuestionImages/bt_a61_img",
+    "pos": [
+      3.38238144,
+      2.43325567,
+      0.0
+    ],
+    "scale": [
+      0.9758602,
+      0.9415324,
+      1.0
+    ]
+  },
+  "explanation": "の選択肢の言葉は、「一」を前と間に挟むことで四字熟語が成立する。  長短 → 「一長一短」 朝夕 → 「一朝一夕」 世代 → 「一世一代」。しかし、南北に「一」を挟んでも「一南一北」という四字熟語は存在しない。",
+  "explanationImage": "QuestionImages/bt_a61_img",
+  "hints": [
+    "各言葉の前と間に「一」を入れてみよう。「一〇一〇」の形で四字熟語ができるか考えると良い。",
+    "四字熟語として成立する組み合わせを探すと、1つだけ成立しないものが見えてくるはずだ。",
+    " 「南北」という言葉に「一」を入れても、一般的な四字熟語にならないことに気づけるかがポイントだ。"
+  ]
+}

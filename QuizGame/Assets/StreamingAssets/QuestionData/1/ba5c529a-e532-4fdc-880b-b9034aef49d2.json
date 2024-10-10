@@ -1,0 +1,16 @@
+{
+    "title": "仲間外れを探せ！",
+    "description": "並んだ言葉にはある共通点がある。しかし、1つだけ「仲間はずれ」が隠れている。 それはどれだ？",
+    "limits": 180,
+    "limitType": 0,
+    "difficulty": 4,
+    "type": 1,
+    "quiz": {
+        "questions": [
+            "QuestionData/1/quiz\\Tutorial-006-1-1.json",
+            "QuestionData/1/quiz\\Tutorial-006-1-2.json",
+            "QuestionData/1/quiz\\Tutorial-006-1-3.json"
+        ]
+    },
+    "endStory": "Tutorial-005-2-End"
+}

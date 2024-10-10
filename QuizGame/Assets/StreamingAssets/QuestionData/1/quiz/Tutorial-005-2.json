@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "？",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "25",
+            "correct": false
+          },
+          {
+            "text": "41",
+            "correct": false
+          },
+          {
+            "text": "50",
+            "correct": false
+          },
+          {
+            "text": "55",
+            "correct": true
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    5.28,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-005-2",
+  "bgm": "Audios/The Dark Eternal Night",
+  "backgroundImage": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+  "questionImage": {
+    "src": "QuestionImages/014941",
+    "pos": [
+      2.81238127,
+      2.43205571,
+      0.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "explanation": "1×1の正方形: グリッドに25個, 2×2の正方形: 4×4の範囲に16個、3×3の正方形: 3×3の範囲に9個、4×4の正方形: 2×2の範囲に4個、5×5の正方形: 全体に1個存在する。 これらをすべて合計すると、55個となる。",
+  "explanationImage": "QuestionImages/015644-Ans",
+  "hints": [
+    "各サイズの正方形を順番に数えてみよう。1×1、2×2、3×3など、全ての正方形を見逃さずに！",
+    "正方形のサイズが大きくなると、それを配置できる場所の数が少なくなる。グリッドの中でどこに配置できるかを考えてみて。",
+    "最後に全体の5×5の正方形も数に含めるのを忘れないようにしよう。"
+  ]
+}

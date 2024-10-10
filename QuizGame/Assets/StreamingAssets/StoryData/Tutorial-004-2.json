@@ -1,0 +1,48 @@
+{
+  "StoryId": "Tutorial-004-2",
+  "quiz": "QuestionData/1/e44c944b-51a8-4fe2-aab5-10a6936c0e4a.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/MusMus-BGM-146",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "やった！解けましたよ先生！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-16.48.06-An-anime-style-illustration-of-a-vintage-town-street",
+      "audio": "Audios/MusMus-BGM-146",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "さすがだね。では、この謎解きはどうかな？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}
