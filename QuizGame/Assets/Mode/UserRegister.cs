@@ -76,6 +76,9 @@ public class UserRegister : MonoBehaviour {
         PlayerPrefs.SetInt("FirstTime", 1);
         // ユーザー登録完了メッセージを表示
         Debug.Log("ユーザー登録が完了しました");
+
+        PlayerPrefs.SetInt("isFirstUser", 1);
+        PlayerPrefs.SetString("StoryId", "Tutorial-001");
         TransitionManager.Transition(NextSceneName, Transition, TransitionDuration);
         
     }

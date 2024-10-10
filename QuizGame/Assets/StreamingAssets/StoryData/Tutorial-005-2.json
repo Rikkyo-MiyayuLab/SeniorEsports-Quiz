@@ -1,0 +1,549 @@
+{
+  "StoryId": "Tutorial-005-2",
+  "quiz": "QuestionData/1/ba5c529a-e532-4fdc-880b-b9034aef49d2.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "執事に案内され、2人はヴァルフォート家の屋敷内に足を踏み入れる。古い肖像画や豪華な調度品が並び、重厚な雰囲気が漂っている。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "さすが貴族の家ですね…でも、ちょっと緊張します。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "さすが貴族の家ですね…でも、ちょっと緊張します。"
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "ふむ、だがここで得られる情報が、我々にとって大きな意味を持つはずだ。ジェラルドが追い求めた『記憶の館』についての手がかりも、ここにあるかもしれない。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "廊下を進むと、奥の応接室でリチャード・ヴァルフォートが二人を待っている。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "やあ、君たちがアンジェリーナからの依頼を受けた探偵たちだな。アルフレッド・モンタギュー氏、そして…エリザ・ドイルさんだったか。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "（私たちの事を知っている様子だ...）"
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "お招き頂きありがとうございます。私は探偵のアルフレッド、こちらは助手のエリザです。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "実は、ある女性からの依頼で、”記憶の館”と\"ジェラルド・ホワイト\"という人物について調べています。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ああ、そのことについては知っているよ。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "...！！。あの、どうして僕たちのことを..."
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "依頼書を送ったアンジェリーナとは古くからの友人だ。彼女が自分の過去についてあれほど苦しんでいるとは、私も心を痛めている。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "彼女が『記憶の館』を探していると知ったとき、彼女が探偵に助けを求めるだろうと予想はしていたのだ。そこで、私が君たちに送る手紙をしたためたというわけだ。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "しかし、私がこうして君たちを迎えたのは、それだけではない。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "なるほど。リチャードさん、あなたはアンジェリーナのために私たちを導こうと考えているのですか？"
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "それもある。だが、君たち自身にも興味がある。私の友人であるアンジェリーナが、どのような探偵を選んだのかを知りたいのだ。君たちが本当に彼女を助けられるかどうか…"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "…私たちを試しているということですね。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "探偵という職業は、人の心や過去に触れるもの。知識と洞察力、そして鋭い推理が求められる。君たちがその資質を備えているのか、確認してみたくてね。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "”記憶の館”についての話はその後で...どうかな？"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}

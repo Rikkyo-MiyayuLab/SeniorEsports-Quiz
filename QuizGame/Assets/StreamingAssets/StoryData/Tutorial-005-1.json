@@ -1,0 +1,312 @@
+{
+  "StoryId": "Tutorial-005-1",
+  "quiz": "QuestionData/1/ba79f7d5-bc4d-4919-b9cd-c609d2d45a19.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "エリザとアルフレッドがヴァルフォート家の門の前に立つ。重厚な鉄の門が、邸宅を外界から隔てている。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "うわぁ、立派なお屋敷ですね…まるで時代が止まったかのような雰囲気です。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ヴァルフォート家は、代々この街を見守ってきた一族だ。中に入れば、古い伝承や歴史が詰まっているはずだ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "でも…リチャードさんが私たちに協力してくれるでしょうか。なんだか少し心配です。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "心配はいらない。私たちが真実を求めていることを示せば、きっと心を開いてくれるだろう。さあ、行こう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "お待ちしておりました、アルフレッド様、エリザ様。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "...！。えっ…どうして私たちのことを？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "そうか、私たちが来ることを知っていたとは。ヴァルフォード氏に何かを伝えられていたのか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "お二人が訪れることは、すでにリチャード様より承知しております。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "しかし、ヴァルフォート家は由緒正しき家柄。誰であろうと、簡単にお屋敷にお通しするわけには参りません。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "でも、私たちはジェラルド・ホワイトさんについて話を聞きたいだけなんです。リチャードさんも…"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-22.32.00-An-anime-style-illustration-of-the-exterior-of-the-Valford-family-manor",
+      "audio": "Audios/The Dark Eternal Night",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "ベック",
+          "ImageSrc": "Charactors/20160223_steward-300",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "規則は規則です。お二人に謁見を許すかどうかは、この試練にかかっております。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}

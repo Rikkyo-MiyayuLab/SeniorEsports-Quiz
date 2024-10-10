@@ -1,0 +1,219 @@
+{
+  "StoryId": "Tutorial-005-2-End",
+  "quiz": "QuizData/quiz.json",
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "なるほど…見事だ。どうやら、アンジェリーナが君たちを選んだ理由がわかった気がするよ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "やりましたね！。リチャードさんの信頼を得ることができたみたいですよ！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "ありがとうございます。リチャードさん。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "それでは、”記憶の館”について教えて頂けますか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "あぁ、その事とアンジェリーナに何があったのかについて話そう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ついてきてくれたまえ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-10-23.02.00-An-anime-style-illustration-of-the-interior-of-a-grand_-vintage-manor",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "ついてきてくれたまえ。"
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "2人はリチャード氏に連れられて、邸の応接室へ案内された。",
+      "NarrationDisplayMode": 0
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 7
+}
