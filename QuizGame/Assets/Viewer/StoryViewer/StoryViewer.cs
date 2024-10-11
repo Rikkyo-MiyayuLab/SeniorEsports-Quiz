@@ -125,7 +125,7 @@ public class StoryViewer : Viewer {
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0) && currentTutorialIdx > 1) {
+        if (Input.GetMouseButtonDown(0)) {
             if (isTextRendering) {
                 // テキストを一括表示して、レンダリングを終了
                 StopCoroutine(textCoroutine); // コルーチンを停止
@@ -137,12 +137,12 @@ public class StoryViewer : Viewer {
                 GoToNextScene();
             }
         }
-
+        /*
         if(isTutorialMode) {
             if(tutorialCoroutine == null) {
                 tutorialCoroutine = StartCoroutine(ShowTutorialSequence());
             }
-        }
+        }*/
     }
 
 
