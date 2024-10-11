@@ -10,6 +10,8 @@ public class TutorialViewer : MonoBehaviour {
 
     public int CurrentTutorialIndex = 0;
 
+    public Button[] inactivateButtons;
+
     void Start() {
 
         Parent.gameObject.SetActive(false);
@@ -28,6 +30,9 @@ public class TutorialViewer : MonoBehaviour {
         if (isFirstUser) {
             Parent.gameObject.SetActive(true);
             StartCoroutine(ShowTutorial(CurrentTutorialIndex));
+            foreach(Button btn in inactivateButtons) {
+                btn.interactable = false;
+            }
         } else {
             Parent.gameObject.SetActive(false);
         }
@@ -41,7 +46,11 @@ public class TutorialViewer : MonoBehaviour {
             TutorialPanels[index].gameObject.SetActive(false);
             if (index < TutorialPanels.Length - 1) {
                 StartCoroutine(ShowTutorial(index + 1));
+                Debug.Log("Tutorial");
             } else {
+                foreach(Button btn in inactivateButtons) {
+                    btn.interactable = true;
+                }
                 Parent.gameObject.SetActive(false);
             }
         });

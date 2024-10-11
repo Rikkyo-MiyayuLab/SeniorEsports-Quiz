@@ -84,7 +84,13 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
                     timer.minutes = MMSS[0];
                     timer.ResumeTimer();
                     timer.StartTimer();
-                 }
+                }
+                TutorialViewer tutorialViewer = GetComponent<TutorialViewer>();
+                if(tutorialViewer != null) {
+                    foreach(Button btn in tutorialViewer.inactivateButtons) {
+                        btn.interactable = true;
+                    }
+                } 
             });
         };
         StartCoroutine(TypeText(QuizData.description));
