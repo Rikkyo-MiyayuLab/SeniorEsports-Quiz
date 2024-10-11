@@ -13,12 +13,17 @@ public class WorlddMapTutorial : MonoBehaviour {
     public GameObject ButtonTutorialPanel;
     public GameObject MapTutorialPanel;
 
+    public Button[] inactivateButtons;
+
     void Start() {
 
         // 初回ユーザーか否かを判定
         bool isFirstUser = PlayerPrefs.GetInt("isFirstUser", 0) == 1; // ユーザー登録画面から渡される変数値
         if (isFirstUser) {
             StartCoroutine(ShowFirstTutorial());
+            foreach(Button btn in inactivateButtons) {
+                btn.interactable = false;
+            }
         } else {
             Parent.gameObject.SetActive(false);
         }
@@ -50,7 +55,9 @@ public class WorlddMapTutorial : MonoBehaviour {
 
             ButtonTutorialPanel.gameObject.SetActive(false);
             Parent.gameObject.SetActive(false);
-
+            foreach(Button btn in inactivateButtons) {
+                btn.interactable = true;
+            }
         });
 
     }
