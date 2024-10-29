@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 using EasyTransition;
 
@@ -11,7 +12,7 @@ using UnityEditor;
 
 
 public class Title : MonoBehaviour {
-
+    public TextMeshProUGUI VersionText;
     public Button OnePlayerBtn;
     public Button MultiPlayerBtn;
     [Header("One PlayerMode Button")]
@@ -40,7 +41,6 @@ public class Title : MonoBehaviour {
     #endif
 
 
-
     void Start(){
         ContinueFromSave.gameObject.SetActive(false);
         StartFromBegin.gameObject.SetActive(false);
@@ -48,6 +48,7 @@ public class Title : MonoBehaviour {
         seAudioListener = gameObject.AddComponent<AudioSource>();
         seAudioListener.volume = 1.0f;
         transitionManager = TransitionManager.Instance();
+        VersionText.text = $"ver {Application.version}";
 
         OnePlayerBtn.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);
