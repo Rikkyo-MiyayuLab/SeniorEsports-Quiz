@@ -46,6 +46,7 @@ namespace SaveDataInterface {
         CurrentArea,
         LastStoryId,
         UserAge,
+        PlayerUUID,
     }
 }
 

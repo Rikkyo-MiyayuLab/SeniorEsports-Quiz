@@ -91,7 +91,7 @@ public class SaveSlotManager : MonoBehaviour {
 
     private void OnMoveNext() {
         // 選択されたスロットのPlayerUUIDを取得
-        var playerUUID = selectedSlot.GetComponent<SlotData>().data.PlayerUUID;
+        var playerUUID = selectedSlot.GetComponent<SlotData>().data.PlayerUUID; //FIXME ; UUIDがNull
         // PlayerPrefsにPlayerUUIDを保存
         PlayerPrefs.SetString("PlayerUUID", playerUUID);
         // ワールドマップシーンに遷移

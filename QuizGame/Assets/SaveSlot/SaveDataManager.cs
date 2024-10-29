@@ -39,6 +39,7 @@ public class SaveDataManager : MonoBehaviour {
     /// <param name="playerUUID"></param>
     public static PlayerData LoadPlayerData(string playerUUID) {
         PlayerData playerData = new PlayerData();
+        playerData.PlayerUUID = playerUUID;
         playerData.PlayerName = PlayerPrefs.GetString(playerUUID + PlayerPrefKeys.PlayerName.ToString());
         playerData.TotalPlayTime = PlayerPrefs.GetFloat(playerUUID + PlayerPrefKeys.TotalPlayTime.ToString());
         playerData.TotalResolvedCount = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.TotalResolvedCount.ToString());
@@ -56,6 +57,7 @@ public class SaveDataManager : MonoBehaviour {
     /// <param name="playerData"></param>
     /// <returns></returns>
     public static bool SavePlayerData(string playerUUID, PlayerData playerData) {
+        PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.PlayerUUID.ToString(), playerData.PlayerUUID);
         PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.PlayerName.ToString(), playerData.PlayerName);
         PlayerPrefs.SetFloat(playerUUID + PlayerPrefKeys.TotalPlayTime.ToString(), playerData.TotalPlayTime);
         PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.TotalResolvedCount.ToString(), playerData.TotalResolvedCount);
