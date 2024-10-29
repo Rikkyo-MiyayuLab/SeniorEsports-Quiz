@@ -40,6 +40,8 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
     void Start() {
         base.Start();
         base.Init();
+        // 解答するボタンは間違い探しでは不要
+        base.AnswerButton.gameObject.SetActive(false);
     }
 
     public override void GetData() {
