@@ -18,6 +18,7 @@ public class Title : MonoBehaviour {
     [Header("One PlayerMode Button")]
     public Button ContinueFromSave;
     public Button StartFromBegin;
+    public Button StaffCredit;
     public AudioClip ClickSE;
     public TransitionSettings transition;
     public float transitionDuration = 1.0f;
@@ -54,6 +55,11 @@ public class Title : MonoBehaviour {
         EndButton.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);
             Application.Quit();
+        });
+
+        StaffCredit.onClick.AddListener(() => {
+            seAudioListener.PlayOneShot(ClickSE);
+            transitionManager.Transition("StaffCredit", transition, transitionDuration);
         });
 
         OnePlayerBtn.onClick.AddListener(() => {
