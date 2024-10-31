@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 using EasyTransition;
 
@@ -11,15 +12,19 @@ using UnityEditor;
 
 
 public class Title : MonoBehaviour {
-
+    public TextMeshProUGUI VersionText;
     public Button OnePlayerBtn;
     public Button MultiPlayerBtn;
     [Header("One PlayerMode Button")]
     public Button ContinueFromSave;
     public Button StartFromBegin;
+    public Button StaffCredit;
     public AudioClip ClickSE;
     public TransitionSettings transition;
     public float transitionDuration = 1.0f;
+    public Button EndButton;
+    public GameObject BetaPanel;
+    public Button BetaPanelCloseButton;
     private TransitionManager transitionManager;
 
 
@@ -40,7 +45,6 @@ public class Title : MonoBehaviour {
     #endif
 
 
-
     void Start(){
         ContinueFromSave.gameObject.SetActive(false);
         StartFromBegin.gameObject.SetActive(false);
@@ -48,6 +52,25 @@ public class Title : MonoBehaviour {
         seAudioListener = gameObject.AddComponent<AudioSource>();
         seAudioListener.volume = 1.0f;
         transitionManager = TransitionManager.Instance();
+        VersionText.text = $"ver {Application.version}";
+        BetaPanel.SetActive(false);
+        // DontDestroyOnChangeが残っている場合は削除する。
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("DontDestroyOnSceneChange");
+        foreach (var obj in objs) {
+            if (obj!= this.gameObject) {
+                Destroy(obj);
+            }
+        }
+
+        EndButton.onClick.AddListener(() => {
+            seAudioListener.PlayOneShot(ClickSE);
+            Application.Quit();
+        });
+
+        StaffCredit.onClick.AddListener(() => {
+            seAudioListener.PlayOneShot(ClickSE);
+            transitionManager.Transition("StaffCredit", transition, transitionDuration);
+        });
 
         OnePlayerBtn.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);
@@ -61,7 +84,12 @@ public class Title : MonoBehaviour {
 
         MultiPlayerBtn.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);
-            SceneManager.LoadScene(MultiPlayerSceneName);
+            BetaPanel.SetActive(true);
+            //SceneManager.LoadScene(MultiPlayerSceneName);
+        });
+        BetaPanelCloseButton.onClick.AddListener(() => {
+            seAudioListener.PlayOneShot(ClickSE);
+            BetaPanel.SetActive(false);
         });
 
         ContinueFromSave.onClick.AddListener(() => {

@@ -1,0 +1,14 @@
+{
+    "title": "消えたろうそく",
+    "description": "部屋の中のろうそくが8本燃えている。窓を開けると風が吹いて、ろうそくが３本消えてしまった。また後で見に来ると、さらに2本消えていた。風に当たらないように窓を閉め、残りのろうそくは消えないようにした。それからは残りの1本も消えなかったとして、最後まで残ったろうそくは何本か。",
+    "limits": 300,
+    "limitType": 0,
+    "difficulty": 3,
+    "type": 1,
+    "quiz": {
+        "questions": [
+            "QuestionData/1/quiz\\Tutorial-007-1.json"
+        ]
+    },
+    "endStory": "Tutorial-007-1-End"
+}

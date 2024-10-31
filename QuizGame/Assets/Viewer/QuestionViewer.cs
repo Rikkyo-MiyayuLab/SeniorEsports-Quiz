@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using TMPro;
 using QuestionDataInterface;
 using EasyTransition;
+using SaveDataInterface;
 
 public interface IQuestion {
     string explanation { get;}
@@ -84,7 +85,13 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
                     timer.minutes = MMSS[0];
                     timer.ResumeTimer();
                     timer.StartTimer();
-                 }
+                }
+                TutorialViewer tutorialViewer = GetComponent<TutorialViewer>();
+                if(tutorialViewer != null) {
+                    foreach(Button btn in tutorialViewer.inactivateButtons) {
+                        btn.interactable = true;
+                    }
+                } 
             });
         };
         StartCoroutine(TypeText(QuizData.description));
@@ -157,6 +164,10 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         */
     }
 
+    protected virtual void OnDestroy() {
+        base.OnDestroy();
+    }
+
     private int[] ConvertSecToMMSS(float sec) {
         int minute = (int)Math.Floor(sec / 60.0f);
         int second = (int)Math.Floor(sec % 60.0f);
@@ -179,6 +190,9 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     /// </summary>
     /// <param name="isCorrect"></param>
     protected void QuestionAnswered(bool isCorrect) {
+        // セーブデータに正解数を加算
+        var uuid = PlayerPrefs.GetString("PlayerUUID");
+        var playerData = SaveDataManager.LoadPlayerData(uuid);
         // 正解用アイキャッチシーンを表示
         if(isCorrect) {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.explanation);
@@ -189,6 +203,8 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetInt("RemainQuestionSize", RemainQuestionSize);
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
             SceneManager.LoadScene("AnswerPreview-Correct");
+            playerData.TotalResolvedCount++;
+            SaveDataManager.SavePlayerData(uuid, playerData);
         } else {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.hints[0]);
             PlayerPrefs.SetString("ExplanationImage", null);
@@ -200,7 +216,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     }
 
     protected void Update() {
-
+        base.Update();
         if(base.QuizData.limitType == LimitType.click) {
             ClickRemainCounter.text = (base.QuizData.limits - ClickCount).ToString() + " 回";
         }

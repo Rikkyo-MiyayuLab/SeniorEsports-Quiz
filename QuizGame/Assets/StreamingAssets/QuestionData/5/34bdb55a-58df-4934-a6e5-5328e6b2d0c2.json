@@ -1,0 +1,14 @@
+{
+    "title": "失くした地図",
+    "description": "エリザが地図を失くしてしまった！。イラストの中に隠れている、見本と同じ地図を探そう！。",
+    "limits": 300,
+    "limitType": 0,
+    "difficulty": 3,
+    "type": 5,
+    "quiz": {
+        "questions": [
+            "QuestionData/5/quiz\\Tutorial-002-1.json"
+        ]
+    },
+    "endStory": "Tutorial-007-2"
+}

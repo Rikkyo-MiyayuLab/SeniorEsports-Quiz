@@ -28,6 +28,7 @@ public class QuestionExplanation : MonoBehaviour {
         var BeforeViewer = PlayerPrefs.GetString("CurrentViewer");
         var RemainQuestionSize = PlayerPrefs.GetInt("RemainQuestionSize");
         var CurrentQuestionIdx = PlayerPrefs.GetInt("CurrentQuestionIdx");
+        var NextQuestionIdx = CurrentQuestionIdx + 1; // NOTE : issue-#78 : リスナーが２回実行されるので,次問遷移後のインデックスが狂う問題の対処。
         Debug.Log("RemainQuestionSize: " + RemainQuestionSize);
         PlayerPrefs.Save();
         audioSource = GetComponent<AudioSource>();
@@ -45,8 +46,8 @@ public class QuestionExplanation : MonoBehaviour {
             if(RemainQuestionSize > 0) {
                 NextSceneButton.onClick.AddListener(() => {
                     audioSource.PlayOneShot(BtnSE);
-                    CurrentQuestionIdx++;
-                    PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIdx);
+                    //CurrentQuestionIdx++;
+                    PlayerPrefs.SetInt("CurrentQuestionIdx", NextQuestionIdx);
                     transitionManager.Transition(BeforeViewer, transition, transitionDuration);
                 });
                 return;

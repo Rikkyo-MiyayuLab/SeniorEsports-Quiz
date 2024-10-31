@@ -14,8 +14,8 @@ using UnityEditor;
 public class UserRegister : MonoBehaviour {
    public Button RegisterButton;
 
-   public TextMeshProUGUI UserNameField;
-   public TextMeshProUGUI UserAgeField;
+   public TMP_InputField UserNameField;
+   public TMP_InputField UserAgeField;
    public TextMeshProUGUI AgeInputFieldWarnings;
    public TextMeshProUGUI UserNameFieldWarnings;
    [SerializeField]
@@ -45,23 +45,20 @@ public class UserRegister : MonoBehaviour {
             return;
         }
 
-        // 年齢が入力されているか、0以上の整数かチェック
+        // 年齢が入力されているかチェック
         if(string.IsNullOrEmpty(UserAgeField.text)) {
             Debug.LogError("年齢が入力されていません");
             AgeInputFieldWarnings.gameObject.SetActive(true);
             return;
         }
-        /* issue-#72 なぜか整数値への変換が上手くいかない。デバッガーで確認したところ、しっかりと"20"のような整数文字列が入っていてもだめ。
-        try {
 
-            int age = int.Parse(UserAgeField.text); // FIXME: "Input string was not in a correct format."
-
-        } catch (FormatException e) {
-            Debug.LogError("年齢が入力されていません");
+        // 年が0以上の整数かチェック（テキスト先頭に "-" が含まれていたら負数判定）
+        if(UserAgeField.text.StartsWith("-")) { // NOTE :  int.TryParse(UserAgeField.text, out int age); ← 何故か ageが常に 0
+            Debug.LogError("年は0以上の整数で入力してください");
             AgeInputFieldWarnings.gameObject.SetActive(true);
             return;
         }
-        */
+        
         // ユーザー登録処理
         PlayerData playerData = new PlayerData();
         playerData.PlayerName = UserNameField.text;

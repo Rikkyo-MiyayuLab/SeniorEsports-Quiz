@@ -50,6 +50,7 @@ public class StoryViewer : Viewer {
     public GameObject TutorialNextIconPanel;
     public GameObject TutorialQuizInfoPanel;
     public bool nowTutorial = false; //チュートリアル表示中かどうか
+    public int currentTutorialIdx = 0;
     public bool isTutorialMode = false; // チュートリアルを実行するか否かのフラグ
     public Button NextTutorialButton;
 
@@ -100,6 +101,7 @@ public class StoryViewer : Viewer {
         
         TutorialCanvas.gameObject.SetActive(false);
         NextTutorialButton.onClick.AddListener(() => {
+            currentTutorialIdx++;
             TutorialCanvas.gameObject.SetActive(false);
             nowTutorial = false;
             EnterTextIcon.GetComponent<SpriteRenderer>().sortingOrder = 2;
@@ -123,6 +125,7 @@ public class StoryViewer : Viewer {
     }
 
     private void Update() {
+        base.Update();
         if (Input.GetMouseButtonDown(0)) {
             if (isTextRendering) {
                 // テキストを一括表示して、レンダリングを終了
@@ -135,12 +138,16 @@ public class StoryViewer : Viewer {
                 GoToNextScene();
             }
         }
-
+        /*
         if(isTutorialMode) {
             if(tutorialCoroutine == null) {
                 tutorialCoroutine = StartCoroutine(ShowTutorialSequence());
             }
-        }
+        }*/
+    }
+
+    void OnDestroy() {
+        base.OnDestroy();
     }
 
 
@@ -148,7 +155,7 @@ public class StoryViewer : Viewer {
         nowTutorial = true;
         yield return new WaitForSeconds(1.5f);
         // シーン0の設定と表示
-        if (currentSceneIndex == 0) {
+        if (currentTutorialIdx == 0) {
             TutorialCanvas.gameObject.SetActive(true);
             TutorialBackPanel.SetActive(true);
             TutorialTextPanel.SetActive(true);
@@ -156,7 +163,7 @@ public class StoryViewer : Viewer {
             //TutorialQuizInfoPanel.SetActive(false);
 
             // シーン1の設定と表示
-        } else if (currentSceneIndex == 1) {
+        } else if (currentTutorialIdx == 1) {
             TutorialCanvas.gameObject.SetActive(true);
             TutorialBackPanel.SetActive(true);
             TutorialTextPanel.SetActive(false);
@@ -225,12 +232,16 @@ public class StoryViewer : Viewer {
                 string playerUUID = PlayerPrefs.GetString("PlayerUUID");
                 var playerData = SaveDataManager.LoadPlayerData(playerUUID);
                 // プレイヤー位置を更新
-                if(playerData.CurrentWorld <= data.NextWorldIdx) {
+                if(playerData.CurrentWorld == data.NextWorldIdx) {
                     playerData.CurrentWorld = data.NextWorldIdx;
                     if(playerData.CurrentArea <= data.NextAreaIdx) {
                         playerData.CurrentArea = data.NextAreaIdx;
                         playerData.LastStoryId = data.StoryId;
                     }
+                } else if(playerData.CurrentWorld < data.NextWorldIdx) { //次のワールドに進む場合
+                    playerData.CurrentWorld = data.NextWorldIdx;
+                    playerData.CurrentArea = data.NextAreaIdx;
+                    playerData.LastStoryId = data.StoryId;
                 }
                 SaveDataManager.SavePlayerData(playerUUID, playerData);
                 string area = Area.SceneNames[playerData.CurrentWorld];
