@@ -73,6 +73,14 @@ public class CardClickViewer : QuestionViewer<Question> {
         });
     }
 
+    void Update() {
+        base.Update();
+    }
+
+    void OnDestroy() {
+        base.OnDestroy();
+    }
+
 
     public override void GetData() {
         base.CurrentQuestionData = LoadJSON<Question>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");

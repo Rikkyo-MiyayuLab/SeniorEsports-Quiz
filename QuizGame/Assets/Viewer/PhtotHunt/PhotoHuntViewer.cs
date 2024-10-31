@@ -53,6 +53,9 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
         base.CurrentBGM = Resources.Load<AudioClip>(base.CurrentQuestionData.bgm);
     }
 
+    void OnDestroy() {
+        base.OnDestroy();
+    }
 
     public override void Dispose() {
         // 画像の削除
@@ -144,6 +147,7 @@ public class PhotoHuntViewer : QuestionViewer<Question>{
 
 
     void Update() {
+        base.Update();
         // マウスクリックが発生した場合
         if (Input.GetMouseButtonDown(0) && RemainCount > 0) {
             // マウスのスクリーン座標を取得

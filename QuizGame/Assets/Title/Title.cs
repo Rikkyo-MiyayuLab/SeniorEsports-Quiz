@@ -21,6 +21,7 @@ public class Title : MonoBehaviour {
     public AudioClip ClickSE;
     public TransitionSettings transition;
     public float transitionDuration = 1.0f;
+    public Button EndButton;
     private TransitionManager transitionManager;
 
 
@@ -49,6 +50,11 @@ public class Title : MonoBehaviour {
         seAudioListener.volume = 1.0f;
         transitionManager = TransitionManager.Instance();
         VersionText.text = $"ver {Application.version}";
+
+        EndButton.onClick.AddListener(() => {
+            seAudioListener.PlayOneShot(ClickSE);
+            Application.Quit();
+        });
 
         OnePlayerBtn.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);

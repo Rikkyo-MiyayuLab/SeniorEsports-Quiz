@@ -163,6 +163,10 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         */
     }
 
+    protected virtual void OnDestroy() {
+        base.OnDestroy();
+    }
+
     private int[] ConvertSecToMMSS(float sec) {
         int minute = (int)Math.Floor(sec / 60.0f);
         int second = (int)Math.Floor(sec % 60.0f);
@@ -206,7 +210,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     }
 
     protected void Update() {
-
+        base.Update();
         if(base.QuizData.limitType == LimitType.click) {
             ClickRemainCounter.text = (base.QuizData.limits - ClickCount).ToString() + " 回";
         }

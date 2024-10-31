@@ -8,10 +8,10 @@ using SaveDataInterface;
 
 public class WorldMap : MonoBehaviour {
    
-   public GameObject[] Areas;
-   public PlayerData playerData;
+    public GameObject[] Areas;
+    public PlayerData playerData;
 
-   private Sprite statusIconCurrent;
+    private Sprite statusIconCurrent;
     private Sprite statusIconLocked;
 
    void Start() {

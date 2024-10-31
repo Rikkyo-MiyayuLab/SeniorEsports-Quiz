@@ -10,6 +10,7 @@ using TMPro;
 using Newtonsoft.Json;
 using EasyTransition;
 using QuestionDataInterface;
+using SaveDataInterface;
 
 /// <summary>
 /// 各ビューアの基底クラス.
@@ -36,6 +37,9 @@ public abstract class Viewer : MonoBehaviour {
     protected TransitionManager TransitionManager;
     protected QuestionData QuizData; //大問データ
 
+    private float playTime = 0; // seconds
+    private 
+
 
     protected virtual void Start() {
         TransitionManager = TransitionManager.Instance();
@@ -44,9 +48,22 @@ public abstract class Viewer : MonoBehaviour {
         if(QuizModalCanvas != null) {
             QuizModalCanvas.gameObject.SetActive(false);
         }
-        
     }
 
+    protected virtual void Update() {
+        playTime += Time.deltaTime;
+    }
+
+    protected virtual void OnDestroy() {
+        // ユーザーデータの読み込み
+        var uuid = PlayerPrefs.GetString("PlayerUUID");
+        PlayerData playerData = SaveDataManager.LoadPlayerData(uuid);
+        // タイマーを停止し、ユーザーデータに保存
+        playerData.TotalPlayTime += playTime;
+        string currentDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        playerData.LastPlayDate = currentDate;
+        SaveDataManager.SavePlayerData(playerData.PlayerUUID, playerData);
+    }
 
 
     /// <summary>

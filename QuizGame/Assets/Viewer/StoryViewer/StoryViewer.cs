@@ -125,6 +125,7 @@ public class StoryViewer : Viewer {
     }
 
     private void Update() {
+        base.Update();
         if (Input.GetMouseButtonDown(0)) {
             if (isTextRendering) {
                 // テキストを一括表示して、レンダリングを終了
@@ -143,6 +144,10 @@ public class StoryViewer : Viewer {
                 tutorialCoroutine = StartCoroutine(ShowTutorialSequence());
             }
         }*/
+    }
+
+    void OnDestroy() {
+        base.OnDestroy();
     }
 
 

@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using SaveDataInterface;
+using Newtonsoft.Json;
 using EasyTransition;
+using MapDictionary;
 
 public class SaveSlotManager : MonoBehaviour {
 
@@ -18,6 +20,8 @@ public class SaveSlotManager : MonoBehaviour {
     public float TransitionDuration;
     private TransitionManager TransitionManager;
     private GameObject selectedSlot; // 現在選択されているスロットを保持する変数
+    private string MapDefFilename = "MapDictionary";
+    private List<AreaData> MapData;
     
     void Start() {
         LoadButton.gameObject.SetActive(false);
@@ -25,6 +29,7 @@ public class SaveSlotManager : MonoBehaviour {
         LoadButton.onClick.AddListener(() => OnMoveNext());
         TransitionManager = TransitionManager.Instance();
         PlayerDatas = new List<PlayerData>();
+        MapData = LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
         LoadAllPlayers();
         RenderSaveSlots();
     }
@@ -58,8 +63,11 @@ public class SaveSlotManager : MonoBehaviour {
             int[] timeParts = ConvertSecToDDHHMMSS(playerData.TotalPlayTime);
             slot.transform.Find("TotalPlayTime").GetComponent<TextMeshProUGUI>().text = $"{timeParts[0]}日{timeParts[1]}時間{timeParts[2]}分{timeParts[3]}秒";
             slot.transform.Find("TotalResolved").GetComponent<TextMeshProUGUI>().text = $"{playerData.TotalResolvedCount} 問";
-            // TODO : ワールドマップ、エリアマップのデータ定義を作りそこから、地名を取得するようにする。
-            slot.transform.Find("CurrentArea").GetComponent<TextMeshProUGUI>().text = playerData.CurrentArea.ToString();
+            // ワールドマップ、エリアマップのデータ定義から、地名を取得する。
+            int worldIdx = slotData.data.CurrentWorld;
+            int areaIdx = slotData.data.CurrentArea;
+            string areaName = MapData[worldIdx].Areas[areaIdx];
+            slot.transform.Find("CurrentArea").GetComponent<TextMeshProUGUI>().text = areaName;
             slot.GetComponent<Button>().onClick.AddListener(() => OnSlotSelected(slot));
         }
     }
@@ -119,5 +127,18 @@ public class SaveSlotManager : MonoBehaviour {
         timeParts[3] = (int)sec;
 
         return timeParts;
+    }
+
+    /// <summary>
+    /// JSONデータを任意のクラスにデシリアライズして返す
+    /// </summary>
+    /// <typeparam name="T">デシリアライズしたいクラスの型</typeparam>
+    /// <param name="path">jsonまでのパス</param>
+    /// <returns>指定された型のオブジェクト</returns>
+    protected static T LoadJSON<T>(string path) {
+        using (StreamReader r = new StreamReader(path)) {
+            string json = r.ReadToEnd();
+            return JsonConvert.DeserializeObject<T>(json);
+        }
     }
 }

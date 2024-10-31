@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Rikkyo Senior Esports Research Team
-  productName: "\u8B0E\u89E3\u304D\u8133\u30C8\u30ECRPG v1.0.0-beta4"
+  productName: "\u8B0E\u89E3\u304D\u8133\u30C8\u30ECRPG"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
