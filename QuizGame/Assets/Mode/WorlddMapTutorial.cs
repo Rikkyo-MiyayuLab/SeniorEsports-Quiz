@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SaveDataInterface;
 
 /// <summary>
 /// このコンポーネントは、ワールドマップのチュートリアルを管理するコンポーネント．
@@ -18,7 +19,10 @@ public class WorlddMapTutorial : MonoBehaviour {
     void Start() {
 
         // 初回ユーザーか否かを判定
-        bool isFirstUser = PlayerPrefs.GetInt("isFirstUser", 0) == 1; // ユーザー登録画面から渡される変数値
+        var uuid = PlayerPrefs.GetString("PlayerUUID");
+        var playerData = SaveDataManager.LoadPlayerData(uuid);
+        // ワールドマップが0 && エリアマップが0の場合は初回ユーザーとみなす
+        bool isFirstUser = playerData.CurrentWorld == 0 && playerData.CurrentArea == 0;
         if (isFirstUser) {
             StartCoroutine(ShowFirstTutorial());
             foreach(Button btn in inactivateButtons) {

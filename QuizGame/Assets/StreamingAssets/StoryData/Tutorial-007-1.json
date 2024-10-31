@@ -1,0 +1,132 @@
+{
+  "StoryId": "Tutorial-007-1",
+  "quiz": "QuestionData/1/50f50654-d595-41b2-be2e-3339c3ccb0e6.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "エリザ達は、リチャード氏に連れられて、邸の応接室へ案内された。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "わぁ...。流石に貴族の部屋は雰囲気が違いますね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "いやいや。我々の邸はこの国の貴族の中では小さい方だよ。"
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "さて、今日は天気がいい。部屋の窓を開けて、そよ風を感じながら話すとしよう。"
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "あわわ... なんか緊張してきなたなぁ..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "では、緊張をほぐすために、こんな謎解きはどうかな？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}

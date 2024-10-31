@@ -4,6 +4,7 @@ namespace MapDefs {
 
         public static string[] SceneNames = new string[] {
             "Tutorial",
+            "Area2",
         };
         public enum AreaMapIdxs {
             Tutorial,

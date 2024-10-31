@@ -19,13 +19,11 @@ public class TutorialViewer : MonoBehaviour {
             child.gameObject.SetActive(false);
         }
 
-        bool isFirstUser = PlayerPrefs.GetInt("isFirstUser", 0) == 1; // ユーザー登録画面から渡される変数値
-        string storyID = PlayerPrefs.GetString("StoryId");
-        if(storyID == "Tutorial-001") {
-            // なにもしない
-        } else {
-            return;
-        }
+        // 初回ユーザーか否かを判定
+        var uuid = PlayerPrefs.GetString("PlayerUUID");
+        var playerData = SaveDataManager.LoadPlayerData(uuid);
+        // ワールドマップが0 && エリアマップが0の場合は初回ユーザーとみなす
+        bool isFirstUser = playerData.CurrentWorld == 0 && playerData.CurrentArea == 0;
 
         if (isFirstUser) {
             Parent.gameObject.SetActive(true);
@@ -46,7 +44,6 @@ public class TutorialViewer : MonoBehaviour {
             TutorialPanels[index].gameObject.SetActive(false);
             if (index < TutorialPanels.Length - 1) {
                 StartCoroutine(ShowTutorial(index + 1));
-                Debug.Log("Tutorial");
             } else {
                 foreach(Button btn in inactivateButtons) {
                     btn.interactable = true;

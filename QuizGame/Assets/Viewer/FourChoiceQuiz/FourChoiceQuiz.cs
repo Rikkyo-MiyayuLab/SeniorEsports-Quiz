@@ -101,6 +101,15 @@ public class FourChoiceQuiz : QuestionViewer<Question> {
         OnAnswered += AnswerQuestionHandler;
     }
 
+    void Update() {
+        base.Update();
+    }
+
+    void OnDestroy() {
+        base.OnDestroy();
+    }
+
+
     public override void GetData() {
         base.CurrentQuestionData = LoadJSON<Question>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
         

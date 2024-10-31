@@ -125,6 +125,7 @@ public class StoryViewer : Viewer {
     }
 
     private void Update() {
+        base.Update();
         if (Input.GetMouseButtonDown(0)) {
             if (isTextRendering) {
                 // テキストを一括表示して、レンダリングを終了
@@ -143,6 +144,10 @@ public class StoryViewer : Viewer {
                 tutorialCoroutine = StartCoroutine(ShowTutorialSequence());
             }
         }*/
+    }
+
+    void OnDestroy() {
+        base.OnDestroy();
     }
 
 
@@ -227,12 +232,16 @@ public class StoryViewer : Viewer {
                 string playerUUID = PlayerPrefs.GetString("PlayerUUID");
                 var playerData = SaveDataManager.LoadPlayerData(playerUUID);
                 // プレイヤー位置を更新
-                if(playerData.CurrentWorld <= data.NextWorldIdx) {
+                if(playerData.CurrentWorld == data.NextWorldIdx) {
                     playerData.CurrentWorld = data.NextWorldIdx;
                     if(playerData.CurrentArea <= data.NextAreaIdx) {
                         playerData.CurrentArea = data.NextAreaIdx;
                         playerData.LastStoryId = data.StoryId;
                     }
+                } else if(playerData.CurrentWorld < data.NextWorldIdx) { //次のワールドに進む場合
+                    playerData.CurrentWorld = data.NextWorldIdx;
+                    playerData.CurrentArea = data.NextAreaIdx;
+                    playerData.LastStoryId = data.StoryId;
                 }
                 SaveDataManager.SavePlayerData(playerUUID, playerData);
                 string area = Area.SceneNames[playerData.CurrentWorld];

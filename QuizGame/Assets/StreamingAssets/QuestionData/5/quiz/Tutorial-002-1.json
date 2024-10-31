@@ -1,0 +1,38 @@
+{
+  "correct": {
+    "src": "Backgrounds/worldMap",
+    "rect": {
+      "x": -630.0,
+      "y": 187.0,
+      "z": 0.0,
+      "width": 496.35,
+      "height": 486.05
+    }
+  },
+  "incorrect": {
+    "src": "QuestionImages/032039",
+    "rect": {
+      "x": 155.0,
+      "y": -3.8147E-06,
+      "z": 0.0,
+      "width": 943.56,
+      "height": 893.25
+    },
+    "points": [
+      {
+        "x": 273.04,
+        "y": -345.88,
+        "width": 140.0,
+        "height": 134.0
+      }
+    ]
+  },
+  "backgroundImage": "Backgrounds/DALL·E-2024-10-31-23.12",
+  "bgm": "Audios/musou",
+  "explanation": "良く見つけた！。エリザは地図を取り出そうとして、テーブルの下に落としてしまっていたようだ。",
+  "explanationImage": "QuestionImages/032807",
+  "hints": [
+    "物を落とすときは、必ず下に落ちるはずだ。",
+    "テーブルの下は良く探したかな？"
+  ]
+}

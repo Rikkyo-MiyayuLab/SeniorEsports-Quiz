@@ -8,10 +8,10 @@ using SaveDataInterface;
 
 public class WorldMap : MonoBehaviour {
    
-   public GameObject[] Areas;
-   public PlayerData playerData;
+    public GameObject[] Areas;
+    public PlayerData playerData;
 
-   private Sprite statusIconCurrent;
+    private Sprite statusIconCurrent;
     private Sprite statusIconLocked;
 
    void Start() {
@@ -20,7 +20,6 @@ public class WorldMap : MonoBehaviour {
 
         // ユーザーデータをロード
         var uuid = PlayerPrefs.GetString("PlayerUUID");
-        bool isFirstTime = PlayerPrefs.GetInt("FirstTime") != 0;
         playerData = SaveDataManager.LoadPlayerData(uuid);
 
         //Areas = GameObject.FindGameObjectsWithTag("AreaButton");
