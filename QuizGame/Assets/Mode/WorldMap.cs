@@ -20,7 +20,6 @@ public class WorldMap : MonoBehaviour {
 
         // ユーザーデータをロード
         var uuid = PlayerPrefs.GetString("PlayerUUID");
-        bool isFirstTime = PlayerPrefs.GetInt("FirstTime") != 0;
         playerData = SaveDataManager.LoadPlayerData(uuid);
 
         //Areas = GameObject.FindGameObjectsWithTag("AreaButton");

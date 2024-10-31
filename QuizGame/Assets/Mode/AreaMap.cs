@@ -10,8 +10,6 @@ public class AreaMap : MonoBehaviour
     public int WorldIdx;
     public TransitionSettings TransitionSetting;
     public float TransitionDuration = 0.5f;
-
-
     public GameObject BetaNotice;
     public Button BetaNoticeCloseButton;
     private int CurrentAreaIdx;
@@ -45,6 +43,7 @@ public class AreaMap : MonoBehaviour
                 // 現在地のボタンは点滅し、ステータスアイコンを変更
                 areaButton.GetComponent<ButtonBlink>().StartBlinking();
                 statusIcon.sprite = statusIconCurrent;  // 現在地のアイコンに変更
+                
                 if(i < CurrentAreaIdx) {
                     areaButton.GetComponent<ButtonBlink>().StopBlinking();
                 }
@@ -71,7 +70,7 @@ public class AreaMap : MonoBehaviour
 
 
         // 実装中のエリアすべてを終えてしまった場合、お知らせを表示。
-        if(CurrentAreaIdx == 7 && WorldIdx == 0) {
+        if(CurrentAreaIdx == 0 && WorldIdx == 1) {
             BetaNotice.gameObject.SetActive(true);
             BetaNoticeCloseButton.onClick.AddListener(() => {
                 // トップ画面に戻る

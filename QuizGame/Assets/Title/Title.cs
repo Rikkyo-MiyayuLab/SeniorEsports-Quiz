@@ -23,6 +23,8 @@ public class Title : MonoBehaviour {
     public TransitionSettings transition;
     public float transitionDuration = 1.0f;
     public Button EndButton;
+    public GameObject BetaPanel;
+    public Button BetaPanelCloseButton;
     private TransitionManager transitionManager;
 
 
@@ -51,6 +53,14 @@ public class Title : MonoBehaviour {
         seAudioListener.volume = 1.0f;
         transitionManager = TransitionManager.Instance();
         VersionText.text = $"ver {Application.version}";
+        BetaPanel.SetActive(false);
+        // DontDestroyOnChangeが残っている場合は削除する。
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("DontDestroyOnSceneChange");
+        foreach (var obj in objs) {
+            if (obj!= this.gameObject) {
+                Destroy(obj);
+            }
+        }
 
         EndButton.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);
@@ -74,7 +84,12 @@ public class Title : MonoBehaviour {
 
         MultiPlayerBtn.onClick.AddListener(() => {
             seAudioListener.PlayOneShot(ClickSE);
-            SceneManager.LoadScene(MultiPlayerSceneName);
+            BetaPanel.SetActive(true);
+            //SceneManager.LoadScene(MultiPlayerSceneName);
+        });
+        BetaPanelCloseButton.onClick.AddListener(() => {
+            seAudioListener.PlayOneShot(ClickSE);
+            BetaPanel.SetActive(false);
         });
 
         ContinueFromSave.onClick.AddListener(() => {

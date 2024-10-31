@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Areas/Area2.unity
     guid: d06d6efa41aa2f7449792a5f26bfa1ef
+  - enabled: 1
+    path: Assets/Scenes/StaffCredit.unity
+    guid: a19175460d5dbf84899ee82e98c21694
   m_configObjects: {}
