@@ -1,0 +1,129 @@
+{
+  "StoryId": "Tutorial-007-2",
+  "quiz": "QuestionData/5/34bdb55a-58df-4934-a6e5-5328e6b2d0c2.json",
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ほっ...。よかったー見つかりました！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ほっ...。よかったー見つかりました！。"
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "よかったね。それでは、リチャードさん。アンジェリーナさんのもとへ行ってきます。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ほっ...。よかったー見つかりました！。"
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ああ。よろしく頼む。君たちを腕の良い探偵だと思っている。必ず”記憶の館”の場所を突き止めてくれ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": "ほっ...。よかったー見つかりました！。"
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "ああ。よろしく頼む。君たちを腕の良い探偵だと思っている。必ず”記憶の館”の場所を突き止めてくれ。"
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "エリザとアルフレッドは、ヴァルフォード邸を後にした。",
+      "NarrationDisplayMode": 0
+    }
+  ],
+  "NextWorldIdx": 1,
+  "NextAreaIdx": 0
+}

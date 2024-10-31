@@ -1,0 +1,369 @@
+{
+  "StoryId": "Tutorial-007-1-End",
+  "quiz": "QuestionData/5/34bdb55a-58df-4934-a6e5-5328e6b2d0c2.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ちょっと難しかったですけど、解けました！。なんだか落ち着いて話が得d切る気がします。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "アンジェリーナと私は若い頃、\"記憶の館\"について調べたことがある。\"記憶の館\"とは、失われた記憶や過去の痛みを封じ込める場所とされている。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "アンジェリーナは、その頃からか、自分の家族に関する記憶を失くしてしまったようなんだ..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "そうですか。つまり、リチャードさんは失った記憶は”記憶の館”の中にあると考えておられるのですね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "そうだ。君たちを今日ここに呼んだのは、これまでの経緯を知っておいてほしかったからだ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "では、次にアンジェリーナさんに話を聞く必要がありそうですね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "彼女は今、街の外れにある”知恵の里”というところに身をひそめていると聞いた。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "まずは、そこへ行ってみるといいだろう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "”知恵の里”か...忘れないように地図に書いて...."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "...."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "あれ！？。地図がない！。邸の中で落としてしまったかなぁ..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-10-31-23.12",
+      "audio": "Audios/musou",
+      "Characters": [
+        {
+          "Name": "リチャード",
+          "ImageSrc": "Charactors/20210206_nobleman (1)",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": "きっとこの部屋の中にあるはずだ。探してみよう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}

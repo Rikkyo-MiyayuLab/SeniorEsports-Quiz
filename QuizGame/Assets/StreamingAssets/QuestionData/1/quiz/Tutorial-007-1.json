@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "?",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "4本",
+            "correct": false
+          },
+          {
+            "text": "3本",
+            "correct": false
+          },
+          {
+            "text": "5本",
+            "correct": true
+          },
+          {
+            "text": "2本",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    5.76,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Tutorial-007-1",
+  "bgm": "Audios/musou",
+  "backgroundImage": "Backgrounds/DALL·E-2024-10-31-23.12",
+  "questionImage": {
+    "src": "QuestionImages/DALL·E-2024-10-31-23.22",
+    "pos": [
+      3.52898145,
+      2.62535572,
+      0.0
+    ],
+    "scale": [
+      0.4908487,
+      0.3552259,
+      1.0
+    ]
+  },
+  "explanation": "火が消えてしまった5本のろうそくは、消えずに残る。反対に消えなかったろうそくは、最後まで燃えて無くなってしまう。”ろうそくとして残っているのは”5本のはずだ。",
+  "explanationImage": "QuestionImages/ade88e8709f8c7cd1367ffcf361c0a6a_t",
+  "hints": [
+    "簡単そうに見える問題だが、もちろんワナがある。 問題文を再点検しよう。  答えるのは、「最後まで残った」ろうそくの本数である。",
+    "火が消えていないろうそくは、燃え続けている。 そのまま置いておけばどうなるか。",
+    "まず3本のろうそくが消え、その後に、もう2本消えている。 つまり火が消えたろうそくは何本か。"
+  ]
+}
