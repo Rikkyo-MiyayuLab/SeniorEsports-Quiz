@@ -92,13 +92,12 @@ public class UserRegister : MonoBehaviour {
 
     private void ShowKeyboard(string text) {
         // Check if a physical keyboard is connected
-        if (IsSoftwareKeyboardAvailable()) {
+        if (IsSoftwareKeyboardAvailable() && Input.touchSupported) {
             StartOnScreenKeyboard();
         }
     }
 
     /*
-
     private bool IsPhysicalKeyboardConnected() {
         bool isConnected = false;
         using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Keyboard")) {
@@ -108,7 +107,8 @@ public class UserRegister : MonoBehaviour {
             }
         }
         return isConnected;
-    }*/
+    }
+    */
 
     private bool IsSoftwareKeyboardAvailable() {
         // Assume software keyboard is available (modify as needed if availability check is required)
