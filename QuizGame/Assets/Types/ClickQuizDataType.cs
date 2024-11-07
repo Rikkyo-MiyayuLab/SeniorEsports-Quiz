@@ -18,6 +18,7 @@ namespace PlayType5Interface
         string IQuestion.explanation => explanation;
         string IQuestion.explanationImage => explanationImage;
         string[] IQuestion.hints => hints;
+        string IQuestion.questionId => questionId;
     }
 
     [System.Serializable]
