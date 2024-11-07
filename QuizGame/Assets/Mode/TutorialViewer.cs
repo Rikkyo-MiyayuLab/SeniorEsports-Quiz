@@ -11,6 +11,7 @@ public class TutorialViewer : MonoBehaviour {
     public int CurrentTutorialIndex = 0;
 
     public Button[] inactivateButtons;
+    //public string[] TutorialQuestionIds; //チュートリアルを表示する小問題のID
 
     void Start() {
 
@@ -24,7 +25,7 @@ public class TutorialViewer : MonoBehaviour {
         var playerData = SaveDataManager.LoadPlayerData(uuid);
         // ワールドマップが0 && エリアマップが0の場合は初回ユーザーとみなす
         bool isFirstUser = playerData.CurrentWorld == 0 && playerData.CurrentArea == 0;
-
+        //string current
         if (isFirstUser) {
             Parent.gameObject.SetActive(true);
             StartCoroutine(ShowTutorial(CurrentTutorialIndex));
