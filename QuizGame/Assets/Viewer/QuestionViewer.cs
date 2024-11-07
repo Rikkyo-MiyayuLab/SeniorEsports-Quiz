@@ -57,6 +57,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     private Button AllowSkipQuestionBtn;
     [SerializeField]
     private Button CloseSkipQuestionPanelBtn;
+    private int NextQuestionIdx;
 
     public void Init() {
         Dispose();
@@ -73,9 +74,11 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         base.Start();
         string quizPath = PlayerPrefs.GetString("QuizPath");
         CurrentQuestionIndex = PlayerPrefs.GetInt("CurrentQuestionIdx");
+        NextQuestionIdx = CurrentQuestionIndex + 1;
         QuizData = LoadJSON<QuestionData>($"{Application.streamingAssetsPath}/{quizPath}");
         // ResultModal.gameObject.SetActive(false);
         StartUIPanel.SetActive(false);
+        SkipButton.gameObject.SetActive(false);
         SkipQuestionPanel.SetActive(false);
         timer = Timer.GetComponent<Timer>();
 
@@ -84,7 +87,8 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             // 画面クリックでStartUIPanelを非表示にする
             StartUIPanel.GetComponent<Button>().onClick.AddListener(() => {
                 StartUIPanel.SetActive(false);
-                 if(base.QuizData.limitType == LimitType.time) {
+                SkipButton.gameObject.SetActive(true);
+                if(base.QuizData.limitType == LimitType.time) {
                     int[] MMSS = ConvertSecToMMSS(base.QuizData.limits);
                     Debug.Log(MMSS);
                     timer.seconds = MMSS[1];
@@ -131,14 +135,29 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         SkipButton.onClick.AddListener(() => {
            // TODO: 注意書きモーダルの表示
             SkipQuestionPanel.SetActive(true);
+            base.AudioPlayer.PlayOneShot(base.BtnClickSE);
         });
+
         AllowSkipQuestionBtn.onClick.AddListener(() => {
             SkipQuestionProcess();
             SkipQuestionPanel.SetActive(false);
             //NextQuestion(); トランジションで次問題に遷移させる
+            // まだ問題が残っている場合は、次の問題に遷移する
+            int remainQuestionSize = base.QuizData.quiz.questions.Count - (CurrentQuestionIndex+1);
+            if(remainQuestionSize > 0) {
+                PlayerPrefs.SetInt("CurrentQuestionIdx", NextQuestionIdx);
+                string currentQuizViewerName = SceneManager.GetActiveScene().name;
+                base.TransitionManager.Transition(currentQuizViewerName, base.Transition, base.TransitionDuration);
+            } else {
+                // 問題が残っていない場合は次のストーリーに遷移する
+                PlayerPrefs.SetString("StoryId", base.QuizData.endStory);
+                base.TransitionManager.Transition("StoryViewer", base.Transition, base.TransitionDuration);
+            }
+            base.AudioPlayer.PlayOneShot(base.BtnClickSE);
         });
         CloseSkipQuestionPanelBtn.onClick.AddListener(() => {
             SkipQuestionPanel.SetActive(false);
+            base.AudioPlayer.PlayOneShot(base.BtnClickSE);
         });
     }
 
