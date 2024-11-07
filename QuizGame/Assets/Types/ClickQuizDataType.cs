@@ -5,6 +5,7 @@ namespace PlayType5Interface
     [System.Serializable]
     public class Question : IQuestion
     {
+        public string questionId;  // 問題ID
         public CorrectImage correct;  // 正しい画像情報
         public IncorrectImage incorrect;  // 不正解の画像情報
         public string backgroundImage;

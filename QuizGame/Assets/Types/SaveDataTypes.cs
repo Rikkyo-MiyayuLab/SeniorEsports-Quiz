@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace SaveDataInterface {
 
@@ -47,6 +48,20 @@ namespace SaveDataInterface {
         LastStoryId,
         UserAge,
         PlayerUUID,
+    }
+
+    [Serializable]
+    public class SkipQuizDataType {
+        public string PlayerUUID { get; set; }
+        public List<SkipQuestion> SkipQuestions { get; set; }
+    }
+
+    [Serializable]
+    public class SkipQuestion
+    {
+        public string QuizId { get; set; }
+        public string QuestionId { get; set; }
+        public int QuestionIdx { get; set; }
     }
 }
 
