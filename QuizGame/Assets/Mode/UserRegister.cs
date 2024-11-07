@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using TMPro;
 using SaveDataInterface;
 using EasyTransition;
+using System.Diagnostics;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -32,6 +34,10 @@ public class UserRegister : MonoBehaviour {
         TransitionManager = TransitionManager.Instance();
         AgeInputFieldWarnings.gameObject.SetActive(false);
         UserNameFieldWarnings.gameObject.SetActive(true);
+
+        UserNameField.onSelect.AddListener(ShowKeyboard);
+        UserAgeField.onSelect.AddListener(ShowKeyboard);
+
         RegisterButton.onClick.AddListener(() => {
             RegisterUser();
         });
@@ -40,21 +46,18 @@ public class UserRegister : MonoBehaviour {
     private void RegisterUser() {
         // ユーザー名が入力されているかチェック
         if (string.IsNullOrEmpty(UserNameField.text)) {
-            Debug.LogError("ユーザー名が入力されていません");
             UserNameFieldWarnings.gameObject.SetActive(true);
             return;
         }
 
         // 年齢が入力されているかチェック
         if(string.IsNullOrEmpty(UserAgeField.text)) {
-            Debug.LogError("年齢が入力されていません");
             AgeInputFieldWarnings.gameObject.SetActive(true);
             return;
         }
 
         // 年が0以上の整数かチェック（テキスト先頭に "-" が含まれていたら負数判定）
         if(UserAgeField.text.StartsWith("-")) { // NOTE :  int.TryParse(UserAgeField.text, out int age); ← 何故か ageが常に 0
-            Debug.LogError("年は0以上の整数で入力してください");
             AgeInputFieldWarnings.gameObject.SetActive(true);
             return;
         }
@@ -71,8 +74,6 @@ public class UserRegister : MonoBehaviour {
         // 初回はワールドマップ遷移時にUUIDを伝達させる。
         PlayerPrefs.SetString("PlayerUUID", playerData.PlayerUUID);
         PlayerPrefs.SetInt("FirstTime", 1);
-        // ユーザー登録完了メッセージを表示
-        Debug.Log("ユーザー登録が完了しました");
 
         PlayerPrefs.SetInt("isFirstUser", 1);
         PlayerPrefs.SetString("StoryId", "Tutorial-001");
@@ -86,5 +87,40 @@ public class UserRegister : MonoBehaviour {
             NextSceneName = NextScene.name;
         }
         #endif
+    }
+
+
+    private void ShowKeyboard(string text) {
+        // Check if a physical keyboard is connected
+        if (IsSoftwareKeyboardAvailable() && Input.touchSupported) {
+            StartOnScreenKeyboard();
+        }
+    }
+
+    /*
+    private bool IsPhysicalKeyboardConnected() {
+        bool isConnected = false;
+        using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Keyboard")) {
+            foreach (var device in searcher.Get()) {
+                isConnected = true;
+                break;
+            }
+        }
+        return isConnected;
+    }
+    */
+
+    private bool IsSoftwareKeyboardAvailable() {
+        // Assume software keyboard is available (modify as needed if availability check is required)
+        return true;
+    }
+
+    private void StartOnScreenKeyboard() {
+        Process.Start("osk.exe");
+    }
+
+    private void OnDestroy() {
+        UserNameField.onSelect.RemoveListener(ShowKeyboard);
+        UserAgeField.onSelect.RemoveListener(ShowKeyboard);
     }
 }

@@ -15,6 +15,7 @@ using EasyTransition;
 using SaveDataInterface;
 
 public interface IQuestion {
+    string questionId { get;}
     string explanation { get;}
     string explanationImage { get;}
     string[] hints { get;}
@@ -48,8 +49,15 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     protected Action OnTimeOut;
     protected Action OnLimitClick;
     protected int ClickCount = 0;
-    
-    private float totalPlaySec = 0.0f;
+    [SerializeField] 
+    private Button SkipButton;   
+    [SerializeField]
+    private GameObject SkipQuestionPanel;
+    [SerializeField]
+    private Button AllowSkipQuestionBtn;
+    [SerializeField]
+    private Button CloseSkipQuestionPanelBtn;
+    private int NextQuestionIdx;
 
     public void Init() {
         Dispose();
@@ -62,15 +70,16 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     public abstract void GetData();
     public abstract void Render();
     
-    
     protected virtual void Start() {
         base.Start();
-        totalPlaySec = PlayerPrefs.GetFloat("TotalPlaySec", 0.0f);
         string quizPath = PlayerPrefs.GetString("QuizPath");
         CurrentQuestionIndex = PlayerPrefs.GetInt("CurrentQuestionIdx");
+        NextQuestionIdx = CurrentQuestionIndex + 1;
         QuizData = LoadJSON<QuestionData>($"{Application.streamingAssetsPath}/{quizPath}");
         // ResultModal.gameObject.SetActive(false);
         StartUIPanel.SetActive(false);
+        SkipButton.gameObject.SetActive(false);
+        SkipQuestionPanel.SetActive(false);
         timer = Timer.GetComponent<Timer>();
 
         OnCompleteRenderDescription += () => {
@@ -78,7 +87,8 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             // 画面クリックでStartUIPanelを非表示にする
             StartUIPanel.GetComponent<Button>().onClick.AddListener(() => {
                 StartUIPanel.SetActive(false);
-                 if(base.QuizData.limitType == LimitType.time) {
+                SkipButton.gameObject.SetActive(true);
+                if(base.QuizData.limitType == LimitType.time) {
                     int[] MMSS = ConvertSecToMMSS(base.QuizData.limits);
                     Debug.Log(MMSS);
                     timer.seconds = MMSS[1];
@@ -120,48 +130,35 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             };
         }
 
-        /*
-        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "閉じる";
-        NextButton.onClick.AddListener(() => {
-            timer.ResumeTimer();
-            QuizModalCanvas.gameObject.SetActive(false);
+        // あとで解くボタンクリック時の処理
+        // 
+        SkipButton.onClick.AddListener(() => {
+           // TODO: 注意書きモーダルの表示
+            SkipQuestionPanel.SetActive(true);
+            base.AudioPlayer.PlayOneShot(base.BtnClickSE);
         });
 
-
-        RetryButton.onClick.AddListener(() => {
-            ResultModal.gameObject.SetActive(false);
-            Init();
+        AllowSkipQuestionBtn.onClick.AddListener(() => {
+            SkipQuestionProcess();
+            SkipQuestionPanel.SetActive(false);
+            //NextQuestion(); トランジションで次問題に遷移させる
+            // まだ問題が残っている場合は、次の問題に遷移する
+            int remainQuestionSize = base.QuizData.quiz.questions.Count - (CurrentQuestionIndex+1);
+            if(remainQuestionSize > 0) {
+                PlayerPrefs.SetInt("CurrentQuestionIdx", NextQuestionIdx);
+                string currentQuizViewerName = SceneManager.GetActiveScene().name;
+                base.TransitionManager.Transition(currentQuizViewerName, base.Transition, base.TransitionDuration);
+            } else {
+                // 問題が残っていない場合は次のストーリーに遷移する
+                PlayerPrefs.SetString("StoryId", base.QuizData.endStory);
+                base.TransitionManager.Transition("StoryViewer", base.Transition, base.TransitionDuration);
+            }
+            base.AudioPlayer.PlayOneShot(base.BtnClickSE);
         });
-
-        NextQuestionButton.onClick.AddListener(() => {
-            ResultModal.gameObject.SetActive(false);
-            // 経過時間を加算
-            
-            TotalElapsedSec += QuizData.limits - timer.GetRemainingSeconds();
-            TotalCorrectCount++;
-            Debug.Log("CurrentTotalElapsedSec: " + TotalElapsedSec);
-
-            if(CurrentQuestionIndex < QuizData.quiz.questions.Count - 1) { // 次問遷移
-                NextQuestion();
-            } else { // 大問終了
-                //結果統計モーダル表示
-                QuizStaticsModal.gameObject.SetActive(true);
-                // IncorrectCounter.text = TotalIncorrectCount.ToString();
-                TotalCorrectCounter.text = TotalCorrectCount.ToString();
-                TotalTime.text = timer.DisplayFormattedTime(TotalElapsedSec);
-                // TODO:スコア計算
-                // カレントエリアを１進める。
-                var currentAreaIdx = PlayerPrefs.GetInt("CurrentAreaIdx", 0);
-                PlayerPrefs.SetInt("CurrentAreaIdx", currentAreaIdx + 1);
-            }   
+        CloseSkipQuestionPanelBtn.onClick.AddListener(() => {
+            SkipQuestionPanel.SetActive(false);
+            base.AudioPlayer.PlayOneShot(base.BtnClickSE);
         });
-         */
-        /*
-        MoveEndStoryButton.onClick.AddListener(() => {
-            PlayerPrefs.SetString("StoryId", QuizData.endStory);
-            TransitionManager.Transition("StoryViewer", Transition, TransitionDuration);
-        });
-        */
     }
 
     protected virtual void OnDestroy() {
@@ -172,6 +169,15 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         int minute = (int)Math.Floor(sec / 60.0f);
         int second = (int)Math.Floor(sec % 60.0f);
         return new int[] { minute, second };
+    }
+
+    private bool SkipQuestionProcess() {
+        // カレントの小問indexと大問IDを保存し、あとから再開できるようにする
+        var uuid = PlayerPrefs.GetString("PlayerUUID");
+        var quizId = PlayerPrefs.GetString("QuizPath");
+        var questionId = CurrentQuestionData.questionId;
+        var qiestionIdx = CurrentQuestionIndex;
+        return SaveDataManager.SaveSkipQuestionData(uuid, quizId, questionId, qiestionIdx);
     }
 
 

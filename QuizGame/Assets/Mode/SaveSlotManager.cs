@@ -115,7 +115,7 @@ public class SaveSlotManager : MonoBehaviour {
     }
     
       
-    private static int[] ConvertSecToHHMMSS(double sec) {
+    public static int[] ConvertSecToHHMMSS(double sec) {
         // HHMMSS format initialization (all set to 0)
         int[] timeParts = new int[3] { 0, 0, 0 };
 
@@ -140,7 +140,7 @@ public class SaveSlotManager : MonoBehaviour {
     /// <typeparam name="T">デシリアライズしたいクラスの型</typeparam>
     /// <param name="path">jsonまでのパス</param>
     /// <returns>指定された型のオブジェクト</returns>
-    protected static T LoadJSON<T>(string path) {
+    public static T LoadJSON<T>(string path) {
         using (StreamReader r = new StreamReader(path)) {
             string json = r.ReadToEnd();
             return JsonConvert.DeserializeObject<T>(json);
