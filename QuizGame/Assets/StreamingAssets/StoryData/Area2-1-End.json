@@ -1,0 +1,129 @@
+{
+  "StoryId": "Area2-1-End",
+  "quiz": "QuizData/quiz.json",
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 2,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "門番はリエリザ達の答えを聞き、満足げに頷く。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 2,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ほう、見事だ。君たちがただの探偵ではないことがよくわかった。ならば、この里に入ることを許そう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 2,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ありがとうございます！これでアンジェリーナさんに会うことができますね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 2,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": "だが気をつけるがいい。この里には君たちを待つさらなる試練があるかもしれん。知恵を尽くして、道を切り開くことだな。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 1,
+  "NextAreaIdx": 1
+}

@@ -46,12 +46,15 @@ public class WorldMap : MonoBehaviour {
             } else {
                 Icon.sprite = null;
                 button.interactable = true;
+                StatusIcon.gameObject.SetActive(false);
+                /*
                 //OutLineコンポーネントを追加
                 var outline = area.AddComponent<Outline>();
                 // 茶色のアウトラインを設定
                 outline.effectColor = new Color(0.5f, 0.3f, 0.1f);
                 // アウトラインの太さを設定
                 outline.effectDistance = new Vector2(10, 10);
+                */
             }
 
             button.onClick.AddListener(() => {

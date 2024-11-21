@@ -8,6 +8,7 @@ namespace MapDefs {
         };
         public enum AreaMapIdxs {
             Tutorial,
+            Area2,
         }
     }
     

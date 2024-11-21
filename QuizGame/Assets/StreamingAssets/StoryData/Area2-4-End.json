@@ -1,0 +1,129 @@
+{
+  "StoryId": "Area2-4-End",
+  "quiz": "QuizData/quiz.json",
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "おおー！。良く分かったのぉ！。その通り。２つ目の合言葉は「知恵」じゃ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "おおー！。良く分かったのぉ！。その通り。２つ目の合言葉は「知恵」じゃ。"
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "やった！。これで残りは１つです！"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "最後の合言葉は、この里にいる若い学者の男が教えてくれるじゃろう。そいつの元へいってみるといい。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "最後の合言葉は、この里にいる若い学者の男が教えてくれるじゃろう。そいつの元へいってみるといい。"
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "こうして、エリザとアルフレッドは里に住むという学者の元へと向かう。",
+      "NarrationDisplayMode": 0
+    }
+  ],
+  "NextWorldIdx": 1,
+  "NextAreaIdx": 4
+}
