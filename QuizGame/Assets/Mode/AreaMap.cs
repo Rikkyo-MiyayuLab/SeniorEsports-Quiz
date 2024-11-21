@@ -46,13 +46,13 @@ public class AreaMap : MonoBehaviour
             // 子要素から StatusIcon を取得
             Image statusIcon = charactorImg.transform.GetChild(0).gameObject.GetComponent<Image>();
 
-            if (i <= CurrentAreaIdx && WorldIdx <= CurrentWorldIdx) {
+            if (WorldIdx <= CurrentWorldIdx) {
                 // 現在地のボタンは点滅し、ステータスアイコンを変更
-                areaButton.GetComponent<ButtonBlink>().StartBlinking();
+                areaButton.GetComponent<ButtonBlink>().StopBlinking();
                 statusIcon.sprite = statusIconCurrent;  // 現在地のアイコンに変更
                 
-                if(i < CurrentAreaIdx) {
-                    areaButton.GetComponent<ButtonBlink>().StopBlinking();
+                if(i == CurrentAreaIdx && WorldIdx == CurrentWorldIdx) { //最新のエリアの場合、点滅を開始（ワールドも計算）
+                    areaButton.GetComponent<ButtonBlink>().StartBlinking();
                 }
 
                 areaButton.GetComponent<Button>().onClick.AddListener(() => { 
