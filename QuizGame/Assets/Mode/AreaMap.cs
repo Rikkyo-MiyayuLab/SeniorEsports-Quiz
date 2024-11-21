@@ -50,6 +50,10 @@ public class AreaMap : MonoBehaviour
                 // 現在地のボタンは点滅し、ステータスアイコンを変更
                 areaButton.GetComponent<ButtonBlink>().StopBlinking();
                 statusIcon.sprite = statusIconCurrent;  // 現在地のアイコンに変更
+                if(CurrentAreaIdx < i && WorldIdx == CurrentWorldIdx) {
+                    statusIcon.sprite = statusIconLocked;  // ロック状態のアイコンに変更
+                    areaButton.interactable = false; // ��タンをクリック不可にする
+                }
                 
                 if(i == CurrentAreaIdx && WorldIdx == CurrentWorldIdx) { //最新のエリアの場合、点滅を開始（ワールドも計算）
                     areaButton.GetComponent<ButtonBlink>().StartBlinking();
