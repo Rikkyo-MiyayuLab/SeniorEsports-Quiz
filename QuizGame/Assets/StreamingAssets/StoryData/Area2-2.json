@@ -1,6 +1,6 @@
 {
   "StoryId": "Area2-2",
-  "quiz": "QuizData/quiz.json",
+  "quiz": "QuestionData/1/89f9fc35-d4c4-48d9-8623-84ecdb5ff937.json",
   "StoryType": 0,
   "Scenes": [
     {
@@ -269,7 +269,7 @@
           "ImageSrc": "Charactors/20170522_man-sunglass-off",
           "ImageGUID": "",
           "Position": 1,
-          "Dialogue": "おっと待ちな！。その教会に入るには、里の者だけが知る合言葉を集めなきゃならねぇ。"
+          "Dialogue": "おっと待ちな！。その教会に入るには、里の者だけが知る合言葉を3つ集めなきゃならねぇ。"
         }
       ],
       "TextDisplayMode": 0,

@@ -1,0 +1,14 @@
+{
+    "title": "法則発見パズル！",
+    "description": "ある法則で、漢字が左から順に並んでいます。 その法則を見つけ出してください。 さて、？マークのところには、4つの内どの漢字が入るでしょう？",
+    "limits": 400,
+    "limitType": 0,
+    "difficulty": 4,
+    "type": 1,
+    "quiz": {
+        "questions": [
+            "QuestionData/1/quiz\\Area2-1-1.json"
+        ]
+    },
+    "endStory": "Area2-1-End"
+}

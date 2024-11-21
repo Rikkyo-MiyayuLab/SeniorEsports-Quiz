@@ -60,6 +60,7 @@ public class SaveSlotManager : MonoBehaviour {
             slotData.data.LastPlayDate = playerData.LastPlayDate;
             slotData.data.TotalPlayTime = playerData.TotalPlayTime;
             slotData.data.TotalResolvedCount = playerData.TotalResolvedCount;
+            slotData.data.CurrentWorld = playerData.CurrentWorld;
             slotData.data.CurrentArea = playerData.CurrentArea;
             // 各Text要素を取得し、PlayerDataの情報を表示
             slot.transform.Find("UserName").GetComponent<TextMeshProUGUI>().text = playerData.PlayerName;
@@ -102,7 +103,14 @@ public class SaveSlotManager : MonoBehaviour {
         LoadButton.gameObject.SetActive(true);
 
         // ワールドマップでの位置を表示
+        Debug.Log("worldIdx: " + worldIdx);
         MapPins[worldIdx].SetActive(true);
+        //それ以外のピンを非表示にする
+        for (int i = 0; i < MapPins.Count; i++) {
+            if (i != worldIdx) {
+                MapPins[i].SetActive(false);
+            }
+        }
     }
 
     private void OnMoveNext() {

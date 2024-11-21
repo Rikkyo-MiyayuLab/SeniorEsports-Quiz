@@ -1,0 +1,206 @@
+{
+  "StoryId": "Area2-5",
+  "quiz": "QuestionData/1/d0594062-6646-4b85-bb3a-1f27d855e720.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-02.13",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "里の長老から、最後の合言葉を知る人物を聞いたエリザ達は、学者の家へと向かった。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-02.13",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ごめんくださいー。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-02.13",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "若い学者",
+          "ImageSrc": "Charactors/20171112_writer",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "なんだい？どちら様かな？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-02.13",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "若い学者",
+          "ImageSrc": "Charactors/20171112_writer",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "突然すみません。長老さんから、あなたが教会へ入るための最後の合言葉を知っていると聞いて参ったのですが..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-02.13",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "若い学者",
+          "ImageSrc": "Charactors/20171112_writer",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ああ！。そのことか。先に２つの合言葉は集めているかな？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-02.13",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "若い学者",
+          "ImageSrc": "Charactors/20171112_writer",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "はい！。「真実」と「知恵」...ですよね？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-02.13",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "若い学者",
+          "ImageSrc": "Charactors/20171112_writer",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "ザッツ・ライト！。その通りさ。じゃあほんとに最後の合言葉を知りに来たってわけだ！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-02.13",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "若い学者",
+          "ImageSrc": "Charactors/20171112_writer",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "それじゃあ、この謎に正解できたらお教えしましょう！"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}

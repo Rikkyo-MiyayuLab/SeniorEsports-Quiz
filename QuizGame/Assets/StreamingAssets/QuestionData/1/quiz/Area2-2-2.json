@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "？",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "立",
+            "correct": false
+          },
+          {
+            "text": "見",
+            "correct": false
+          },
+          {
+            "text": "訳",
+            "correct": true
+          },
+          {
+            "text": "動",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    2.54,
+    1.64
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Area2-2-2",
+  "bgm": "Audios/maou_bgm_acoustic36",
+  "backgroundImage": "Backgrounds/DALL·E-2024-11-21-21.09",
+  "questionImage": {
+    "src": "QuestionImages/bt_q69_img_2",
+    "pos": [
+      3.58848143,
+      2.43205571,
+      0.0
+    ],
+    "scale": [
+      2.80108547,
+      2.92510939,
+      1.0
+    ]
+  },
+  "explanation": "空欄に共通して入る字は「訳」だ。意訳の反対の意味は直訳のはずだ。",
+  "explanationImage": "QuestionImages/bt_a69_img_2",
+  "hints": [
+    "空欄に当てはめて単語が成立するのはどれだろう",
+    "１つは原文の語句の一つ一つにこだわらず、全体の意味に重点をおいて訳すこと。",
+    "もう１つは、原文の一語一語をたどるようにして訳すこと。"
+  ]
+}

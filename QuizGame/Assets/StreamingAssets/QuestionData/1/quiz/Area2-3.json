@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "？",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "10",
+            "correct": false
+          },
+          {
+            "text": "9",
+            "correct": false
+          },
+          {
+            "text": "8",
+            "correct": true
+          },
+          {
+            "text": "7",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    5.39,
+    3.27
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Area2-3",
+  "bgm": "Audios/maou_bgm_ethnic18",
+  "backgroundImage": "Backgrounds/DALL·E-2024-11-22-00.10",
+  "questionImage": {
+    "src": "QuestionImages/medicine_capsule_blue",
+    "pos": [
+      3.4223814,
+      2.52325559,
+      0.0
+    ],
+    "scale": [
+      0.5151428,
+      0.4138521,
+      1.0
+    ]
+  },
+  "explanation": "答えは８だ。今日からのむ分を飲んでから印を付けば、印は１つ減る。最後の２つはどちらか一方に印をつけるだけで判別できる。",
+  "explanationImage": "QuestionImages/2024-11-22 040340",
+  "hints": [
+    "カプセルは10個あるのだから10個の数字を書けばいいはずだ。 確かにそうだが、必要な数はそれよりも少なくできる。 ",
+    "ふたつのものを見分けるためには、ふたつともに違う印をつけなくてもどちらか一方に印をつけるだけでよい。",
+    "今日から、のみはじめるということも重要だ。 目の前にあるカプセル剤を1つのむのである。  それに数字を書く必要があるだろうか。"
+  ]
+}

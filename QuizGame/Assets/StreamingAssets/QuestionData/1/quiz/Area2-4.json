@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "？",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "知識",
+            "correct": false
+          },
+          {
+            "text": "知恵",
+            "correct": true
+          },
+          {
+            "text": "雑巾",
+            "correct": false
+          },
+          {
+            "text": "釣鐘",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    9.43,
+    2.25
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Area2-4",
+  "bgm": "Audios/maou_bgm_ethnic18",
+  "backgroundImage": "Backgrounds/DALL·E-2024-11-22-00.10",
+  "questionImage": {
+    "src": "QuestionImages/2024-11-22 041455-q",
+    "pos": [
+      3.65238142,
+      2.52325559,
+      0.0
+    ],
+    "scale": [
+      0.8671944,
+      0.937265933,
+      1.0
+    ]
+  },
+  "explanation": "答えは「知恵」だ。選択肢の中で唯一意味が成立し、ことわざになる。",
+  "explanationImage": "QuestionImages/2024-11-22 042019_ans",
+  "hints": [
+    "1つ目の文は、人々が知恵を持つようになると、それを悪用して重大な偽りが生じることを意味する",
+    "2つ目の文は、一人で考えても思いつかないのに、集って相談すれば素晴らしい知恵が出るというたとえ",
+    "3つ目の文は、あれこれと一所懸命考えるという意味だ。さて、この里の名前はなんだっけ。"
+  ]
+}
