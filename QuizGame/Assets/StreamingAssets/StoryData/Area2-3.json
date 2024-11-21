@@ -1,0 +1,222 @@
+{
+  "StoryId": "Area2-3",
+  "quiz": "QuestionData/1/c273b069-2c99-46c2-aaca-5eaf7fda9754.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "教会に入るための合言葉を聞きに、エリザ達は図書館を訪れた。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "図書館に次の合言葉を知る人物がいるって言ってましたけど、一体どの人なんでしょうか..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "広場で合った人は「物知りな爺ちゃん」と言っていたね。だから年配の男性を見つければいいという事だろう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "年配の男性かー... あっ、まずはあの人に聞いてみましょうか！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "すみませんー！。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "すみませんー！。"
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "なんじゃー？、わしに何か用かね。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "この里の教会に入るための合言葉を集めています。あなたがお持ちのものを教えていただけませんか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "君たち、里の者ではないようだが... ならば簡単に教えられん事は知っているじゃろう..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "教会はこの里にとって大事な場所じゃ。君達が信用に足る人物かどうか...試させてもらおうかのぉ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}

@@ -1,0 +1,372 @@
+{
+  "StoryId": "Area2-2",
+  "quiz": "QuestionData/1/89f9fc35-d4c4-48d9-8623-84ecdb5ff937.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "里に入ったエリザ達は、アンジェリーナを探すため里の中心部へと向かう。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "先生、あの広場にいる人達に話を聞いてみましょう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "すみませんー！。ここにアンジェリーナさんという女性の方がいると聞いたのですが..."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "よぉ！。なんだい坊主。人探しかい？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "はい。実は私たちは探偵で、ある依頼でアンジェリーナという女性を探しています。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "彼女がここにいると聞いたのですが、何か知りませんか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "アンジェリーナああ、その名前なら聞いたことがあるぜ。えらく暗い感じの女だって噂だ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "どこにいったか知りませんか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "この里の中にある教会があるんだが、そこによく暗い感じの女が来てるって聞いたぞ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ありがとうございます！。じゃあ早速その教会に...."
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "おっと待ちな！。その教会に入るには、里の者だけが知る合言葉を3つ集めなきゃならねぇ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "そして当然、よそ者に簡単に教えるわけにはいかねぇ！"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": "（門番の男が言っていた試練とはこのことか...）"
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "ここは知恵の里だ。知恵をしぼって俺の出す謎に答えてみろ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}

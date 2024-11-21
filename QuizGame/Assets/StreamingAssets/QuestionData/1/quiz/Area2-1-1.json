@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "？",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "前",
+            "correct": false
+          },
+          {
+            "text": "架",
+            "correct": true
+          },
+          {
+            "text": "気",
+            "correct": false
+          },
+          {
+            "text": "開",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    2.72,
+    3.36
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Area2-1-1",
+  "bgm": "Audios/maou_bgm_ethnic30",
+  "backgroundImage": "Backgrounds/DALL·E-2024-11-21-20.24",
+  "questionImage": {
+    "src": "QuestionImages/bt_q85_img",
+    "pos": [
+      3.73238134,
+      2.60325575,
+      0.0
+    ],
+    "scale": [
+      1.26247442,
+      1.53957355,
+      1.0
+    ]
+  },
+  "explanation": "漢字の部首をしりとりしている。 畑の田→男の力→架の木→栓の王→琴。",
+  "explanationImage": "QuestionImages/bt_a85_img",
+  "hints": [
+    "連続する漢字同士をよく見比べてみよう。",
+    "例えば「畑→男」は、畑の部首「田」が男の部首に利用されているね。なにか法則がありそうだ。",
+    "最後の「栓→琴」は、栓の部首「王」が琴の部首に利用されている。選択肢の中で、男の部首を利用している字はどれだろう。"
+  ]
+}

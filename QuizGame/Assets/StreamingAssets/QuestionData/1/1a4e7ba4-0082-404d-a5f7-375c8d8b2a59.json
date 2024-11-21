@@ -1,0 +1,12 @@
+{
+    "title": "33333！",
+    "description": "1から9までの数字を1回ずつ使って、○○○○○－○○○○＝33333になるようにするには、どの数字をどこにいれたらよいか。",
+    "limits": 450,
+    "limitType": 0,
+    "difficulty": 5,
+    "type": 1,
+    "quiz": {
+        "questions": []
+    },
+    "endStory": "Area2-5-End"
+}

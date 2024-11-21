@@ -1,0 +1,159 @@
+{
+  "StoryId": "Area2-2-End",
+  "quiz": "QuizData/quiz.json",
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "なるほど、よく分かったな。じゃ、約束通り合言葉を教えてやる。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "俺が知っている合言葉は....「真実」だ。忘れんじゃねぇぞ"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "次の合言葉を知る人をご存知ですか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "さぁな。だが里の図書館に物知りな爺ちゃんがいる。そいつに聞いてみりゃ何か分かるだろうよ。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-21.09",
+      "audio": "Audios/maou_bgm_acoustic36",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の男",
+          "ImageSrc": "Charactors/20170522_man-sunglass-off",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": "さぁな。だが里の図書館に物知りな爺ちゃんがいる。そいつに聞いてみりゃ何か分かるだろうよ。"
+        }
+      ],
+      "TextDisplayMode": 1,
+      "Narration": "次の合言葉を探しに、エリザ達は里の図書館へ向かう。",
+      "NarrationDisplayMode": 0
+    }
+  ],
+  "NextWorldIdx": 1,
+  "NextAreaIdx": 2
+}

@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "？",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "1人",
+            "correct": true
+          },
+          {
+            "text": "2人",
+            "correct": false
+          },
+          {
+            "text": "3人",
+            "correct": false
+          },
+          {
+            "text": "4人",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    5.63,
+    1.62
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "area2-5",
+  "bgm": "Audios/maou_bgm_ethnic18",
+  "backgroundImage": "Backgrounds/DALL·E-2024-11-22-02.13",
+  "questionImage": {
+    "src": "QuestionImages/2024-11-22 043911",
+    "pos": [
+      3.95478153,
+      2.7618556,
+      0.0
+    ],
+    "scale": [
+      0.5680366,
+      0.6454792,
+      1.0
+    ]
+  },
+  "explanation": "答えは「1人」だ。本当の事を言っている人数で場合分けして考えよう。真実を言っているのはDの1人だけだ。",
+  "explanationImage": "QuestionImages/DALL·E-2024-11-22-04.49",
+  "hints": [
+    "ややこしそうだが、実はそうでもない。たとえば、全員がウソをついているとすると、Eは本当のことを言っていることになり矛盾する。 Eはウソつきだ。",
+    "Aが本当なら、5人のうち3人はAと同じことを言うはず。Aはウソつきだ。Bでも同じで、あと2人はBと同じことを言うはず。 Bもウソつきだ。",
+    "AもBもEもウソつきだ。 残る2人の可能性を考えよう。3人がウソをついているのなら、2人は同じことを言うはず。 しかし、5人とも違うことを言っている。 4人がウソをついているのなら…"
+  ]
+}

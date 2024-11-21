@@ -1,0 +1,70 @@
+{
+  "grids": [
+    [
+      {
+        "answerGrid": true,
+        "text": "？",
+        "fontSize": 7.0,
+        "options": [
+          {
+            "text": "字",
+            "correct": true
+          },
+          {
+            "text": "運",
+            "correct": false
+          },
+          {
+            "text": "糖",
+            "correct": false
+          },
+          {
+            "text": "石",
+            "correct": false
+          }
+        ],
+        "useRandomOption": false,
+        "randomOptionType": "",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "prefabName": "SampleCell",
+        "prefabGUID": "b2f807463c00d4058b3da405b805d331"
+      }
+    ]
+  ],
+  "cellMargin": 1.5,
+  "rows": 1,
+  "gridsPos": [
+    2.54,
+    1.64
+  ],
+  "gridsScale": [
+    14.312,
+    4.2102
+  ],
+  "questionId": "Area2-2-1",
+  "bgm": "Audios/maou_bgm_acoustic36",
+  "backgroundImage": "Backgrounds/DALL·E-2024-11-21-21.09",
+  "questionImage": {
+    "src": "QuestionImages/bt_q69_img_1",
+    "pos": [
+      3.58848143,
+      2.43205571,
+      0.0
+    ],
+    "scale": [
+      2.80108547,
+      2.92510939,
+      1.0
+    ]
+  },
+  "explanation": "空欄に共通して入る字は「字」だ。黒字の反対の意味は赤字のはずだ。",
+  "explanationImage": "QuestionImages/bt_a69_img_1",
+  "hints": [
+    "空欄に当てはめて単語が成立するのはどれだろう",
+    "👈１つは収入が支出を上回って剰余が生じた状態を示す熟語だ。",
+    "もう１つは、支出が収入より多いことを示す熟語だ。"
+  ]
+}

@@ -22,6 +22,13 @@ public class AreaMap : MonoBehaviour
     private PlayerData playerData;
 
     void Start() {
+        // DontDestroyOnChangeが残っている場合は削除する。
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("DontDestroyOnSceneChange");
+        foreach (var obj in objs) {
+            if (obj!= this.gameObject) {
+                Destroy(obj);
+            }
+        }
         BetaNotice.gameObject.SetActive(false);
         TransitionManager = TransitionManager.Instance();
         // スプライトを事前にキャッシュしておく
@@ -39,13 +46,17 @@ public class AreaMap : MonoBehaviour
             // 子要素から StatusIcon を取得
             Image statusIcon = charactorImg.transform.GetChild(0).gameObject.GetComponent<Image>();
 
-            if (i <= CurrentAreaIdx && WorldIdx <= CurrentWorldIdx) {
+            if (WorldIdx <= CurrentWorldIdx) {
                 // 現在地のボタンは点滅し、ステータスアイコンを変更
-                areaButton.GetComponent<ButtonBlink>().StartBlinking();
+                areaButton.GetComponent<ButtonBlink>().StopBlinking();
                 statusIcon.sprite = statusIconCurrent;  // 現在地のアイコンに変更
+                if(CurrentAreaIdx < i && WorldIdx == CurrentWorldIdx) {
+                    statusIcon.sprite = statusIconLocked;  // ロック状態のアイコンに変更
+                    areaButton.interactable = false; // ��タンをクリック不可にする
+                }
                 
-                if(i < CurrentAreaIdx) {
-                    areaButton.GetComponent<ButtonBlink>().StopBlinking();
+                if(i == CurrentAreaIdx && WorldIdx == CurrentWorldIdx) { //最新のエリアの場合、点滅を開始（ワールドも計算）
+                    areaButton.GetComponent<ButtonBlink>().StartBlinking();
                 }
 
                 areaButton.GetComponent<Button>().onClick.AddListener(() => { 
@@ -70,7 +81,7 @@ public class AreaMap : MonoBehaviour
 
 
         // 実装中のエリアすべてを終えてしまった場合、お知らせを表示。
-        if(CurrentAreaIdx == 0 && WorldIdx == 1) {
+        if(CurrentAreaIdx == 5 && WorldIdx == 1) {
             BetaNotice.gameObject.SetActive(true);
             BetaNoticeCloseButton.onClick.AddListener(() => {
                 // トップ画面に戻る

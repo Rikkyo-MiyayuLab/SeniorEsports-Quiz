@@ -1,0 +1,189 @@
+{
+  "StoryId": "Area2-3-End",
+  "quiz": "QuizData/quiz.json",
+  "StoryType": 1,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "さぁ！約束通り合言葉を教えてください！。"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "うむ...合言葉は..."
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "合言葉....."
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "...."
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "はて... 一体何だったかのぉ...思い出せんわい"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-22-00.10",
+      "audio": "Audios/maou_bgm_ethnic18",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 3,
+          "Dialogue": ""
+        },
+        {
+          "Name": "里の長老",
+          "ImageSrc": "Charactors/20211230_elder",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "えー！！そんなー！！"
+        }
+      ],
+      "TextDisplayMode": null,
+      "Narration": "",
+      "NarrationDisplayMode": null
+    }
+  ],
+  "NextWorldIdx": 1,
+  "NextAreaIdx": 3
+}
