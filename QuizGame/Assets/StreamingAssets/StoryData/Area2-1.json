@@ -1,0 +1,289 @@
+{
+  "StoryId": "Area2-1",
+  "quiz": "QuizData/quiz.json",
+  "StoryType": 0,
+  "Scenes": [
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [],
+      "TextDisplayMode": 1,
+      "Narration": "エリザとアルフレッドが森を抜け、古びた門の前にたどり着く。その前に門番が立っている。",
+      "NarrationDisplayMode": 0
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "おや、こんな辺鄙な場所に客人とは珍しい。君たちは何者だ？この里に何の用だね？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "こんにちは。私たちは探偵で、この里でアンジェリーナ・デュヴァルさんという方を探しているんです。彼女がこちらに来たという情報を得て…"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "アンジェリーナ・デュヴァル…確かにその名の女性が里を訪れたが、里の奥にいるかどうかまでは知らん。ところで、君たち探偵だと言ったな？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 2,
+          "Dialogue": "その通り。我々は彼女が探している記憶に関する手がかりを追っています。彼女に会うため、この里に入る許可をいただきたいのだが。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 2,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "ふむ…知恵の里は、ただの者が容易に入れる場所ではない。我々はこの里を守り続けてきた。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 2,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "見知らぬ顔の君たちが本当に信頼に足る者か、確かめさせてもらわねばならん。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 2,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": "信頼ですか…私たちは依頼人を助けるために来たんです！どうすれば、信じてもらえますか？"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 2,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": "知恵の里では、知恵ある者のみが歓迎される。つまり、この門をくぐるには、我々の出す謎を解かなければならない。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": "",
+          "Position": 0,
+          "Dialogue": ""
+        },
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": "",
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": "",
+          "Position": 2,
+          "Dialogue": "なるほど、君たちの試練を通過する必要があるわけだな。いいだろう、試してみるとしよう。"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    },
+    {
+      "Background": "Backgrounds/DALL·E-2024-11-21-20.24",
+      "audio": "Audios/maou_bgm_ethnic30",
+      "Characters": [
+        {
+          "Name": "エリザ",
+          "ImageSrc": "Charactors/20200517_boy",
+          "ImageGUID": null,
+          "Position": 1,
+          "Dialogue": ""
+        },
+        {
+          "Name": "アルフレッド",
+          "ImageSrc": "Charactors/20181204_elder-male",
+          "ImageGUID": null,
+          "Position": 2,
+          "Dialogue": ""
+        },
+        {
+          "Name": "門番",
+          "ImageSrc": "Charactors/20220727_wanderer",
+          "ImageGUID": null,
+          "Position": 0,
+          "Dialogue": "そうこなくてはな。さて、これが謎だ——"
+        }
+      ],
+      "TextDisplayMode": 0,
+      "Narration": "",
+      "NarrationDisplayMode": 2
+    }
+  ],
+  "NextWorldIdx": 0,
+  "NextAreaIdx": 0
+}
