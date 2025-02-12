@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 using EasyTransition;
 
 #if UNITY_EDITOR
@@ -11,7 +8,7 @@ using UnityEditor;
 #endif
 
 
-public class Title : MonoBehaviour {
+public class TitleView : MonoBehaviour {
     public TextMeshProUGUI VersionText;
     public Button OnePlayerBtn;
     public Button MultiPlayerBtn;

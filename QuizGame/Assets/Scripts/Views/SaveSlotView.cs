@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -8,8 +7,9 @@ using SaveDataInterface;
 using Newtonsoft.Json;
 using EasyTransition;
 using MapDictionary;
+using UtilFuncs;
 
-public class SaveSlotManager : MonoBehaviour {
+public class SaveSlotView : MonoBehaviour {
 
     public GameObject SlotPrefab;
     public GameObject Placeholder;
@@ -30,7 +30,7 @@ public class SaveSlotManager : MonoBehaviour {
         LoadButton.onClick.AddListener(() => OnMoveNext());
         TransitionManager = TransitionManager.Instance();
         PlayerDatas = new List<PlayerData>();
-        MapData = LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
+        MapData = JSONLoader.LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
         LoadAllPlayers();
         RenderSaveSlots();
         // マップピンを非表示にする
@@ -66,7 +66,7 @@ public class SaveSlotManager : MonoBehaviour {
             slot.transform.Find("UserName").GetComponent<TextMeshProUGUI>().text = playerData.PlayerName;
             slot.transform.Find("LastPlayedDate").GetComponent<TextMeshProUGUI>().text = playerData.LastPlayDate;
             // TotalPlayTimeはsecなので、日時間分に変換
-            int[] timeParts = ConvertSecToHHMMSS(playerData.TotalPlayTime);
+            int[] timeParts = DateTimeUtils.ConvertSecToHHMMSS(playerData.TotalPlayTime);
             slot.transform.Find("TotalPlayTime").GetComponent<TextMeshProUGUI>().text = $"{timeParts[0]}時間{timeParts[1]}分{timeParts[2]}秒";
             slot.transform.Find("TotalResolved").GetComponent<TextMeshProUGUI>().text = $"{playerData.TotalResolvedCount} 問";
             // ワールドマップ、エリアマップのデータ定義から、地名を取得する。
@@ -114,44 +114,9 @@ public class SaveSlotManager : MonoBehaviour {
     }
 
     private void OnMoveNext() {
-        // 選択されたスロットのPlayerUUIDを取得
-        var playerUUID = selectedSlot.GetComponent<SlotData>().data.PlayerUUID; //FIXME ; UUIDがNull
-        // PlayerPrefsにPlayerUUIDを保存
-        PlayerPrefs.SetString("PlayerUUID", playerUUID);
-        // ワールドマップシーンに遷移
+        var playerUUID = selectedSlot.GetComponent<SlotData>().data.PlayerUUID;
+        GameStateManager.Instance.Player = SaveDataManager.LoadPlayerData(playerUUID);
+
         TransitionManager.Transition("WorldMap", Transition, TransitionDuration);
-    }
-    
-      
-    public static int[] ConvertSecToHHMMSS(double sec) {
-        // HHMMSS format initialization (all set to 0)
-        int[] timeParts = new int[3] { 0, 0, 0 };
-
-        // Calculate hours
-        timeParts[0] = (int)(sec / 3600); // 3600 seconds = 1 hour
-        sec %= 3600;
-
-        // Calculate minutes
-        timeParts[1] = (int)(sec / 60); // 60 seconds = 1 minute
-        sec %= 60;
-
-        // Calculate seconds
-        timeParts[2] = (int)sec;
-
-        return timeParts;
-    }
-
-
-    /// <summary>
-    /// JSONデータを任意のクラスにデシリアライズして返す
-    /// </summary>
-    /// <typeparam name="T">デシリアライズしたいクラスの型</typeparam>
-    /// <param name="path">jsonまでのパス</param>
-    /// <returns>指定された型のオブジェクト</returns>
-    public static T LoadJSON<T>(string path) {
-        using (StreamReader r = new StreamReader(path)) {
-            string json = r.ReadToEnd();
-            return JsonConvert.DeserializeObject<T>(json);
-        }
     }
 }

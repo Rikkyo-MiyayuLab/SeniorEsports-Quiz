@@ -19,7 +19,6 @@ public class AreaMap : MonoBehaviour
     // ステータスアイコンのスプライトを事前にキャッシュ
     private Sprite statusIconCurrent;
     private Sprite statusIconLocked;
-    private PlayerData playerData;
 
     void Start() {
         // DontDestroyOnChangeが残っている場合は削除する。
@@ -34,10 +33,10 @@ public class AreaMap : MonoBehaviour
         // スプライトを事前にキャッシュしておく
         statusIconCurrent = Resources.Load<Sprite>("System/nazo_icon");
         statusIconLocked = Resources.Load<Sprite>("System/lock_icon");
-        playerData = SaveDataManager.LoadPlayerData(PlayerPrefs.GetString("PlayerUUID"));
+        GameStateManager.Instance.Player = SaveDataManager.LoadPlayerData(PlayerPrefs.GetString("PlayerUUID"));
 
-        CurrentWorldIdx = playerData.CurrentWorld;
-        CurrentAreaIdx = playerData.CurrentArea;
+        CurrentWorldIdx = GameStateManager.Instance.Player.CurrentWorld;
+        CurrentAreaIdx = GameStateManager.Instance.Player.CurrentArea;
 
         for (int i = 0; i < AreaButtons.Length; i++) {
             var areaButton = AreaButtons[i];
@@ -62,10 +61,10 @@ public class AreaMap : MonoBehaviour
                 areaButton.GetComponent<Button>().onClick.AddListener(() => { 
                     // 進捗を保存
                     if(i == CurrentAreaIdx) {
-                        playerData.LastStoryId = areaButton.GetComponent<AreaButton>().storyId;
-                        playerData.CurrentArea = i;
-                        playerData.CurrentWorld = WorldIdx;
-                        SaveDataManager.SavePlayerData(playerData.PlayerUUID, playerData);
+                        GameStateManager.Instance.Player.LastStoryId = areaButton.GetComponent<AreaButton>().storyId;
+                        GameStateManager.Instance.Player.CurrentArea = i;
+                        GameStateManager.Instance.Player.CurrentWorld = WorldIdx;
+                        SaveDataManager.SavePlayerData(GameStateManager.Instance.Player.PlayerUUID, GameStateManager.Instance.Player);
                     }
                     areaButton.GetComponent<AreaButton>().MoveScene();   
                 });

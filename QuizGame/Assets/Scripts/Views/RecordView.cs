@@ -8,6 +8,7 @@ using QuizDataInterface;
 using EasyTransition;
 using Newtonsoft.Json;
 using MapDictionary;
+using UtilFuncs;
 
 public class RecordManager : MonoBehaviour {
     
@@ -30,10 +31,10 @@ public class RecordManager : MonoBehaviour {
         transitionManager = TransitionManager.Instance();
 
         TotalResolvedCount.text = playerData.TotalResolvedCount.ToString();
-        int[] timeParts = SaveSlotManager.ConvertSecToHHMMSS(playerData.TotalPlayTime);
+        int[] timeParts = DateTimeUtils.ConvertSecToHHMMSS(playerData.TotalPlayTime);
         TotalPlayedTimeCount.text = $"{timeParts[0]}時間{timeParts[1]}分{timeParts[2]}秒";
 
-        MapData = SaveSlotManager.LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
+        MapData = JSONLoader.LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
         int worldIdx = playerData.CurrentWorld;
         int areaIdx = playerData.CurrentArea;
         string areaName = MapData[worldIdx].Areas[areaIdx];
