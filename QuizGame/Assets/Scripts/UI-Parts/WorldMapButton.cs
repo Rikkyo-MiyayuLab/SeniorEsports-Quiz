@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 using TMPro;
 using SaveDataInterface;
 
+/// <summary>
+/// TODO ; 各メソッドをUtilFuncsに移管したものに切り替える
+/// </summary>
 public class WorldMapButton : MonoBehaviour {
     public string SceneName;
     public string AreaName;

@@ -31,6 +31,10 @@ namespace SaveDataInterface {
         /// 最後にプレイしたストーリーID
         /// </summary>
         public string LastStoryId;
+        /// <summary>
+        /// 最後に読み込んだストーリーシーンのインデックス
+        /// </summary>
+        public int LastSceneIdx;
         public int UserAge;
         /// <summary>
         /// さいごにプレイした日時
@@ -46,8 +50,11 @@ namespace SaveDataInterface {
         CurrentWorld,
         CurrentArea,
         LastStoryId,
+        LastSceneIdx,
         UserAge,
         PlayerUUID,
+        LastPlayDate
+
     }
 
     [Serializable]

@@ -7,6 +7,7 @@ using SaveDataInterface;
 /// <summary>
 /// このコンポーネントは、ワールドマップのチュートリアルを管理するコンポーネント．
 /// チュートリアル用要素にアタッチされる． 
+/// TODO : TutorialModalクラスを利用するように変更する 
 /// </summary>
 public class WorlddMapTutorial : MonoBehaviour {
     public GameObject Parent;

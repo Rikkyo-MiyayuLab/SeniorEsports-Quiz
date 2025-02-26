@@ -50,6 +50,10 @@ public abstract class Viewer : MonoBehaviour {
         playTime += Time.deltaTime;
     }
 
+    /// <summary>
+    /// アプリ終了時に呼ばれる処理
+    /// TODO : GameStateManagerを介した処理に換装すること
+    /// </summary>
     protected virtual void OnDestroy() {
         // ユーザーデータの読み込み
         var uuid = PlayerPrefs.GetString("PlayerUUID");

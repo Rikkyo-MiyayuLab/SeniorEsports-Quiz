@@ -89,7 +89,7 @@ public class StoryViewer : Viewer {
         data = DataLoaders.LoadJSON<StoryData>(storyFile);
         storyType = data.StoryType;
 
-        if(storyID == "Tutorial-001") {
+        if(storyID == "Tutorial-001") { // TODO : GameStateManagerを利用する
             isTutorialMode = true;
         } else {
             isTutorialMode = false;
@@ -174,7 +174,7 @@ public class StoryViewer : Viewer {
         tutorialCoroutine = null;
     }
 
-
+    // TODO : OCPスタイルに従い、抽象クラスを導入し共通項目をまとめる
     private void MoveQuizViewer(int ViewerType) {
         // 大問パスを保存
         PlayerPrefs.SetString("QuizPath", data.quiz);
@@ -200,6 +200,7 @@ public class StoryViewer : Viewer {
         base.AudioPlayer.Stop();
     }
 
+    // TODO : 次のストーリーシーン遷移と、Unityシーン切り替えがごっちゃになっているので、分離する
     private void GoToNextScene() {
         currentSceneIndex++;
         narrationArea.SetActive(false);
@@ -242,6 +243,7 @@ public class StoryViewer : Viewer {
 
     /// <summary>
     /// シーンを読み込み各変数にセットする
+    /// TODO : プロセス毎に子関数に分割する 
     /// </summary>
     /// <param name="scene"></param>
     private void LoadScene(StoryDataInterface.Scene scene) {
@@ -325,6 +327,7 @@ public class StoryViewer : Viewer {
 
     /// <summary>
     /// テキストを1文字ずつ表示するコルーチン
+    /// TODO : Util関数に移動する、統合する 
     /// </summary>
     /// <param name="text"></param>
     private void ProgressTextOneByOne(string text, Action onComplete = null) {
@@ -354,6 +357,7 @@ public class StoryViewer : Viewer {
 
     /// <summary>
     /// テキストレンダリング終了後の処理
+    /// TODO : イベント処理に替える
     /// </summary>
     private void EndTextRendering() {
         isTextRendering = false; // テキストレンダリング中フラグをOFF
