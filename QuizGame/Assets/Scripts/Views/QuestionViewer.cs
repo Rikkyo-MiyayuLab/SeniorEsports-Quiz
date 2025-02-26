@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using QuizDataInterface;
+using UtilFuncs;
 
 
 /// <summary>
@@ -64,7 +65,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         string quizPath = PlayerPrefs.GetString("QuizPath");
         CurrentQuestionIndex = PlayerPrefs.GetInt("CurrentQuestionIdx");
         NextQuestionIdx = CurrentQuestionIndex + 1;
-        QuizData = LoadJSON<QuizData>($"{Application.streamingAssetsPath}/{quizPath}");
+        QuizData = DataLoaders.LoadJSON<QuizData>($"{Application.streamingAssetsPath}/{quizPath}");
         // ResultModal.gameObject.SetActive(false);
         StartUIPanel.SetActive(false);
         SkipButton.gameObject.SetActive(false);

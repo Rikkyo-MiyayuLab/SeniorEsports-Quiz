@@ -30,7 +30,7 @@ public class SaveSlotView : MonoBehaviour {
         LoadButton.onClick.AddListener(() => OnMoveNext());
         TransitionManager = TransitionManager.Instance();
         PlayerDatas = new List<PlayerData>();
-        MapData = JSONLoader.LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
+        MapData = DataLoaders.LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
         LoadAllPlayers();
         RenderSaveSlots();
         // マップピンを非表示にする

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using QuizDataInterface.QuestionType;
+using UtilFuncs;
 
 /// <summary>
 /// カードクリック式解答画面のビューアを表すクラス
@@ -75,7 +76,7 @@ public class CardClickViewer : QuestionViewer<CardQuizQuestion> {
 
 
     public override void GetData() {
-        base.CurrentQuestionData = LoadJSON<CardQuizQuestion>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
+        base.CurrentQuestionData = DataLoaders.LoadJSON<CardQuizQuestion>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
         rowSize = base.CurrentQuestionData.row;
         columnSize = base.CurrentQuestionData.column;
         BackgroundImageObj.sprite = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);

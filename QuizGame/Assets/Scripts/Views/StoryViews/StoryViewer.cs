@@ -7,6 +7,7 @@ using TMPro;
 using StoryDataInterface;
 using QuizDataInterface;
 using MapDefs;
+using UtilFuncs;
 
 
 public class StoryViewer : Viewer {
@@ -85,7 +86,7 @@ public class StoryViewer : Viewer {
         // ストーリーデータの読み込み
         string storyID = PlayerPrefs.GetString("StoryId");
         storyFile = $"{Application.streamingAssetsPath}/StoryData/{storyID}.json";
-        data = LoadJSON<StoryData>(storyFile);
+        data = DataLoaders.LoadJSON<StoryData>(storyFile);
         storyType = data.StoryType;
 
         if(storyID == "Tutorial-001") {
@@ -103,7 +104,7 @@ public class StoryViewer : Viewer {
         });
         
         if(storyType == StoryType.Quiz) {
-            base.QuizData = LoadJSON<QuizData>($"{Application.streamingAssetsPath}/{data.quiz}");
+            base.QuizData = DataLoaders.LoadJSON<QuizData>($"{Application.streamingAssetsPath}/{data.quiz}");
             base.SetQuizInfo();
         }
 
@@ -133,12 +134,6 @@ public class StoryViewer : Viewer {
                 GoToNextScene();
             }
         }
-        /*
-        if(isTutorialMode) {
-            if(tutorialCoroutine == null) {
-                tutorialCoroutine = StartCoroutine(ShowTutorialSequence());
-            }
-        }*/
     }
 
     void OnDestroy() {

@@ -34,7 +34,7 @@ public class RecordManager : MonoBehaviour {
         int[] timeParts = DateTimeUtils.ConvertSecToHHMMSS(playerData.TotalPlayTime);
         TotalPlayedTimeCount.text = $"{timeParts[0]}時間{timeParts[1]}分{timeParts[2]}秒";
 
-        MapData = JSONLoader.LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
+        MapData = DataLoaders.LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
         int worldIdx = playerData.CurrentWorld;
         int areaIdx = playerData.CurrentArea;
         string areaName = MapData[worldIdx].Areas[areaIdx];

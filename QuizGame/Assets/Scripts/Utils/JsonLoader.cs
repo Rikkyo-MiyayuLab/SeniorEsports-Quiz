@@ -2,7 +2,7 @@ using System.IO;
 using Newtonsoft.Json;
 
 namespace UtilFuncs {
-    public static class JSONLoader {
+    public static class DataLoaders {
         /// <summary>
         /// JSONデータを任意のクラスにデシリアライズして返す
         /// </summary>

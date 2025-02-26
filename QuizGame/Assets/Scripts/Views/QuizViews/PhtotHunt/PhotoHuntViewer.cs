@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using QuizDataInterface.QuestionType;
-
+using UtilFuncs;
 public class PhotoHuntViewer : QuestionViewer<ClickQuizQuestion> {
     
     public Sprite correctImg; //比較用画像
@@ -38,7 +38,7 @@ public class PhotoHuntViewer : QuestionViewer<ClickQuizQuestion> {
 
     public override void GetData() {
 
-        base.CurrentQuestionData = Viewer.LoadJSON<ClickQuizQuestion>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
+        base.CurrentQuestionData = DataLoaders.LoadJSON<ClickQuizQuestion>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
 
         correctImgData = base.CurrentQuestionData.correct;
         inCorrectImgData = base.CurrentQuestionData.incorrect;

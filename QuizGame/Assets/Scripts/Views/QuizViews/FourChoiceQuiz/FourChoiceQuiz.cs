@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using QuizDataInterface.QuestionType;
+using UtilFuncs;
 
 /// <summary>
 /// 4択式の解答画面を表示するクラス 
@@ -104,7 +105,7 @@ public class FourChoiceQuiz : QuestionViewer<GridQuizQuestion> {
 
 
     public override void GetData() {
-        base.CurrentQuestionData = LoadJSON<GridQuizQuestion>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
+        base.CurrentQuestionData = DataLoaders.LoadJSON<GridQuizQuestion>($"{Application.streamingAssetsPath}/{QuizData.quiz.questions[CurrentQuestionIndex]}");
         
         base.CurrentBGM = Resources.Load<AudioClip>(base.CurrentQuestionData.bgm);
         base.CurrentBackground = Resources.Load<Sprite>(base.CurrentQuestionData.backgroundImage);
