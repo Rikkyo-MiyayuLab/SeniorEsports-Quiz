@@ -163,6 +163,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
 
     private bool SkipQuestionProcess() {
         // カレントの小問indexと大問IDを保存し、あとから再開できるようにする
+        // TODO : GameStateManagerを介した処理に換装すること
         var uuid = PlayerPrefs.GetString("PlayerUUID");
         var quizId = PlayerPrefs.GetString("QuizPath");
         var questionId = CurrentQuestionData.questionId;
@@ -187,6 +188,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     /// <param name="isCorrect"></param>
     protected void QuestionAnswered(bool isCorrect) {
         // セーブデータに正解数を加算
+        // TODO : GameStateManagerを介した処理に換装すること
         var uuid = PlayerPrefs.GetString("PlayerUUID");
         var playerData = SaveDataManager.LoadPlayerData(uuid);
         // 正解用アイキャッチシーンを表示

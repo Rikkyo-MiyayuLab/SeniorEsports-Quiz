@@ -26,6 +26,7 @@ public class RecordManager : MonoBehaviour {
     private string MapDefFilename = "MapDictionary";
 
     void Start() {
+        // TODO : GameStateManagerを介した処理に換装すること
         var uuid = PlayerPrefs.GetString("PlayerUUID");
         playerData = SaveDataManager.LoadPlayerData(uuid);
         transitionManager = TransitionManager.Instance();

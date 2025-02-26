@@ -72,6 +72,7 @@ public class UserRegister : MonoBehaviour {
         SaveDataManager.SavePlayerData(playerData.PlayerUUID, playerData);
         SaveDataManager.CreateUserSlot(playerData.PlayerUUID);
         // 初回はワールドマップ遷移時にUUIDを伝達させる。
+        // TODO : GameStateManagerを介した処理に換装すること
         PlayerPrefs.SetString("PlayerUUID", playerData.PlayerUUID);
         PlayerPrefs.SetInt("FirstTime", 1);
 
@@ -80,15 +81,6 @@ public class UserRegister : MonoBehaviour {
         TransitionManager.Transition(NextSceneName, Transition, TransitionDuration);
         
     }
-
-    private void Awake() {
-        #if UNITY_EDITOR
-        if (NextScene != null) {
-            NextSceneName = NextScene.name;
-        }
-        #endif
-    }
-
 
     private void ShowKeyboard(string text) {
         // Check if a physical keyboard is connected
