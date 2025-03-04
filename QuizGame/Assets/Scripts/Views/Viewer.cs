@@ -12,6 +12,7 @@ using QuizDataInterface;
 /// 各ビューアの基底クラス.
 /// 全ビューアに共通する機能、プロパティを管理する。
 /// Ex.) 背景情報、効果音、エフェクト、データ読み込み処理等々...  
+/// TODO : 各画面Viewで共通で使うもののみ残し、責任を単一かする（大改造...?）
 /// </summary>
 public abstract class Viewer : MonoBehaviour {
     
@@ -34,7 +35,6 @@ public abstract class Viewer : MonoBehaviour {
     protected QuizData QuizData; //大問データ
 
     private float playTime = 0; // seconds
-    private 
 
 
     protected virtual void Start() {
@@ -52,36 +52,19 @@ public abstract class Viewer : MonoBehaviour {
 
     /// <summary>
     /// アプリ終了時に呼ばれる処理
-    /// TODO : GameStateManagerを介した処理に換装すること
     /// </summary>
     protected virtual void OnDestroy() {
-        // ユーザーデータの読み込み
-        var uuid = PlayerPrefs.GetString("PlayerUUID");
-        PlayerData playerData = SaveDataManager.LoadPlayerData(uuid);
         // タイマーを停止し、ユーザーデータに保存
-        playerData.TotalPlayTime += playTime;
         string currentDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        playerData.LastPlayDate = currentDate;
-        SaveDataManager.SavePlayerData(playerData.PlayerUUID, playerData);
+        GameStateManager.Instance.Player.TotalPlayTime += playTime;
+        GameStateManager.Instance.Player.LastPlayDate = currentDate;
+        var uuid = GameStateManager.Instance.Player.PlayerUUID;
+        SaveDataManager.SavePlayerData(uuid, GameStateManager.Instance.Player);
     }
 
 
-    protected void SetQuizInfo() {
-        DeleteQuizInfo();
-        QuizTitle.text = QuizData.title;
-        QuizDescription.text = QuizData.description;
-        // 難易度表示パネルの星を設定
-        for (int i = 0; i < QuizData.difficulty; i++) {
-            DifficultyCounter.GetChild(i).gameObject.SetActive(true);
-        }
-    }
-
-    private void DeleteQuizInfo() {
-        QuizTitle.text = "";
-        QuizDescription.text = "";
-        foreach (Transform child in DifficultyCounter) {
-            child.gameObject.SetActive(false);
-        }
+    protected void ProgressTextOneByOne(string text, Action onComplete = null) {
+        
     }
 
 }

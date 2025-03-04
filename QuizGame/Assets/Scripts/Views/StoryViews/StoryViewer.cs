@@ -105,7 +105,7 @@ public class StoryViewer : Viewer {
         
         if(storyType == StoryType.Quiz) {
             base.QuizData = DataLoaders.LoadJSON<QuizData>($"{Application.streamingAssetsPath}/{data.quiz}");
-            base.SetQuizInfo();
+            SetQuizInfo();
         }
 
         scenes = data.Scenes;
@@ -140,39 +140,6 @@ public class StoryViewer : Viewer {
         base.OnDestroy();
     }
 
-
-    private IEnumerator ShowTutorialSequence() {
-        nowTutorial = true;
-        yield return new WaitForSeconds(1.5f);
-        // シーン0の設定と表示
-        if (currentTutorialIdx == 0) {
-            TutorialCanvas.gameObject.SetActive(true);
-            TutorialBackPanel.SetActive(true);
-            TutorialTextPanel.SetActive(true);
-            TutorialNextIconPanel.SetActive(false);
-            //TutorialQuizInfoPanel.SetActive(false);
-
-            // シーン1の設定と表示
-        } else if (currentTutorialIdx == 1) {
-            TutorialCanvas.gameObject.SetActive(true);
-            TutorialBackPanel.SetActive(true);
-            TutorialTextPanel.SetActive(false);
-            TutorialNextIconPanel.SetActive(true);
-            //TutorialQuizInfoPanel.SetActive(false);
-            EnterTextIcon.GetComponent<SpriteRenderer>().sortingOrder = 5;
-        }
-        /*
-        if(displayQuizInfo) {
-            TutorialCanvas.gameObject.SetActive(true);
-            TutorialQuizInfoPanel.SetActive(true);
-            TutorialBackPanel.SetActive(false);
-            TutorialTextPanel.SetActive(false);
-            TutorialNextIconPanel.SetActive(false);
-        }
-        */
-        // コルーチンの終了を記録
-        tutorialCoroutine = null;
-    }
 
     // TODO : OCPスタイルに従い、抽象クラスを導入し共通項目をまとめる
     private void MoveQuizViewer(int ViewerType) {
@@ -363,5 +330,24 @@ public class StoryViewer : Viewer {
         isTextRendering = false; // テキストレンダリング中フラグをOFF
         isWaitingForClick = true; // クリック待ち状態にする
         EnterTextIcon.SetActive(true); // 全テキスト表示後にクリック促進アイコンを表示
+    }
+
+
+    private void SetQuizInfo() {
+        DeleteQuizInfo();
+        base.QuizTitle.text = base.QuizData.title;
+        base.QuizDescription.text = base.QuizData.description;
+        // 難易度表示パネルの星を設定
+        for (int i = 0; i < QuizData.difficulty; i++) {
+            DifficultyCounter.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
+    private void DeleteQuizInfo() {
+        base.QuizTitle.text = "";
+        base.QuizDescription.text = "";
+        foreach (Transform child in DifficultyCounter) {
+            child.gameObject.SetActive(false);
+        }
     }
 }

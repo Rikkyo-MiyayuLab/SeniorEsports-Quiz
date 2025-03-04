@@ -93,12 +93,6 @@ namespace StoryDataInterface
         public int Position;
 
         /// <summary>
-        /// TODO:キャラクターのアニメーション状態 ("idle", "talk", "thinking" など)
-        /// TODO:将来的にはアニメーションの制御も行いたい
-        /// </summary>
-        // public string AnimationState;
-
-        /// <summary>
         /// キャラクターのセリフ
         /// </summary>
         public string Dialogue;
