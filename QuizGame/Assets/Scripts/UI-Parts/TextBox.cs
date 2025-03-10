@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using System;
 
 /// <summary>
 /// 説明文の表示や、セリフの表示などテキスト表示を行うUIにアタッチする。
@@ -28,7 +29,8 @@ public class TextBox : MonoBehaviour {
     /// </summary>
     /// <param name="text">表示するテキスト</param>
     /// <returns>コルーチン</returns>
-    private IEnumerator ProgressTextCoroutine(string text) {
+    private void ProgressTextCoroutine(string text) {
+        /* TODO ; 改修
         TextField.text = "";
         isTextRendering = true; // テキストレンダリング中フラグをON
         foreach (var c in text) {
@@ -41,5 +43,6 @@ public class TextBox : MonoBehaviour {
         isTextRendering = false; // テキストレンダリング中フラグをOFF
         
         OnRendered?.Invoke();
+        */
     }
 }
