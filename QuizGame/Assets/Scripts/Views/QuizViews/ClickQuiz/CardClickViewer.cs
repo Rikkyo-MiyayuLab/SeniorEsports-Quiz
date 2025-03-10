@@ -124,8 +124,7 @@ public class CardClickViewer : QuestionViewer<CardQuizQuestion> {
         }
         // 生成したカード情報をシャッフルしてランダムな位置にカードを配置できるようにする
         List<CardObjectData> shuffledCards = new List<CardObjectData>(generateCards);
-        System.Random rand = new System.Random();
-        shuffledCards.Sort((a, b) => rand.Next(-1, 2));
+        shuffledCards.OrderBy(a => System.Guid.NewGuid()).ToList(); //R07改修：カードをシャッフル
 
 
         foreach (CardObjectData cardData in shuffledCards) {

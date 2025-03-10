@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -135,6 +136,8 @@ public class FourChoiceQuiz : QuestionViewer<GridQuizQuestion> {
         GenerateGrids(base.CurrentQuestionData);
         // 解答用ボタンに選択肢を設定
         List<Option> options = AnswerOptions[currentAnswerCellIdx]; // currentAnswerCellIdx に該当するオプションのリストを取得
+        options.OrderBy(x => Guid.NewGuid()).ToList(); // R07改修：選択肢をシャッフル
+
         for (int i = 0; i < AnswerButtonObjects.Count; i++) {
             AnswerButtonObjects[i].GetComponentInChildren<TextMeshProUGUI>().text = options[i].text;
         }
