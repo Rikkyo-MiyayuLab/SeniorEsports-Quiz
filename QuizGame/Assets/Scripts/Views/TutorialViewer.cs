@@ -20,7 +20,7 @@ public class TutorialViewer : MonoBehaviour {
             child.gameObject.SetActive(false);
         }
 
-        // 初回ユーザーか否かを判定
+        // TODO : GameStateManagerから初回ユーザーか否かを判定
         var uuid = PlayerPrefs.GetString("PlayerUUID");
         var playerData = SaveDataManager.LoadPlayerData(uuid);
         // ワールドマップが0 && エリアマップが0の場合は初回ユーザーとみなす

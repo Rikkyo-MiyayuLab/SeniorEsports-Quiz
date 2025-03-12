@@ -61,10 +61,4 @@ public abstract class Viewer : MonoBehaviour {
         var uuid = GameStateManager.Instance.Player.PlayerUUID;
         SaveDataManager.SavePlayerData(uuid, GameStateManager.Instance.Player);
     }
-
-
-    protected void ProgressTextOneByOne(string text, Action onComplete = null) {
-        
-    }
-
 }

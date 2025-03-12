@@ -12,9 +12,7 @@ using UtilFuncs;
 
 public class StoryViewer : Viewer {
     [Tooltip("ストーリーの識別子 UUID")]
-    public string storyFile;
-    public AudioClip TypingSE;
-    
+    public string storyFile;    
     [Serializable]
     public class CharacterDef {
         public string Name;
@@ -30,25 +28,21 @@ public class StoryViewer : Viewer {
     public TextDisplayMode textDisplayMode;
     [Tooltip("テキストの表示速度。0に近いほど速い")]
     public float textSpeed = 0.1f;
-    [Tooltip("シーンの切り替え間隔")]
-    public float sceneInterval = 1.5f;
     [Tooltip("ナレーションの表示方法")]
     public NarrationDisplayMode narrationDisplayMode;
     [Tooltip("このストーリのシーン一覧")]
     public List<StoryDataInterface.Scene> scenes;
-    public Action onTextComplete;
-    public Action onSceneEnd;
     public GameObject EnterTextIcon;
     [Header("チュートリアル用部品")]
     public Canvas TutorialCanvas;
-    public GameObject TutorialBackPanel;
-    public GameObject TutorialTextPanel;
-    public GameObject TutorialNextIconPanel;
-    public GameObject TutorialQuizInfoPanel;
     public bool nowTutorial = false; //チュートリアル表示中かどうか
     public int currentTutorialIdx = 0;
     public bool isTutorialMode = false; // チュートリアルを実行するか否かのフラグ
     public Button NextTutorialButton;
+
+    [SerializeField]
+    private TextBox dialogueBox;
+    private TextBox narrationBox;
 
     [Header("Editor Settings")]
     [SerializeField]
@@ -56,29 +50,25 @@ public class StoryViewer : Viewer {
     [SerializeField]
     private TextMeshPro characterNameField;
     [SerializeField]
-    private TextMeshPro characterTextField;
-    [SerializeField]
+    /// <summary>
+    /// TODO : Modalコンポーネントに切り替え
+    /// </summary>
     private GameObject narrationArea;
     [SerializeField]
-    private TextMeshPro narrationField;
-
     private List<Character> characters;
     private StoryData data;
     [SerializeField]
     private int currentSceneIndex = 0;
-    private Coroutine tutorialCoroutine;
     private bool displayQuizInfo = false;
     private StoryDataInterface.Scene currentScene;
-    private AudioSource TypingSEPlayer;
     private bool isWaitingForClick = false;
     private StoryType storyType;
     private bool isTextRendering = false; // テキストがレンダリング中かどうかを管理
-    private string fullText = ""; // レンダリングするテキスト全体を保持
-    private Coroutine textCoroutine;
+    private string  fullDialogueText  = ""; // レンダリングするテキスト全体を保持
+    
     void Start() {
         base.Start();
-        TypingSEPlayer = gameObject.AddComponent<AudioSource>();
-        TypingSEPlayer.volume = 0.4f;
+        
         // BGMを廃棄
         GameObject TitleManager = GameObject.Find("TitleManager");
         Destroy(TitleManager);
@@ -117,17 +107,20 @@ public class StoryViewer : Viewer {
         base.AudioPlayer.clip = base.CurrentBGM;
         base.AudioPlayer.Play();
 
+        dialogueBox.RenderSoundPlayer.volume = 0.4f;
+        dialogueBox.OnRendered += RenderedDialogueHandler;
+        dialogueBox.OnStartRendering += StartDialogueHandler;
+
         LoadScene(currentScene);
     }
 
     private void Update() {
         base.Update();
+        /** クリックイベントハンドル */
         if (Input.GetMouseButtonDown(0)) {
-            if (isTextRendering) {
+            if (dialogueBox.isTextRendering) {
                 // テキストを一括表示して、レンダリングを終了
-                StopCoroutine(textCoroutine); // コルーチンを停止
-                characterTextField.text = fullText; // 残りのテキストを一括表示
-                EndTextRendering(); // レンダリング終了処理
+                dialogueBox.ForceRender(fullDialogueText);
             } else if (isWaitingForClick) {
                 isWaitingForClick = false;
                 EnterTextIcon.SetActive(false);
@@ -251,19 +244,16 @@ public class StoryViewer : Viewer {
                 dialogText = characterDef.Dialogue;
             }
         }
+        fullDialogueText = dialogText;
         narrationDisplayMode = scene.NarrationDisplayMode.HasValue ? scene.NarrationDisplayMode.Value : NarrationDisplayMode.None;
 
         if(narrationDisplayMode == NarrationDisplayMode.None) {
             // セリフの設定
             characterNameField.text = dialogName;
             if(textDisplayMode == TextDisplayMode.OneByOne) {
-                ProgressTextOneByOne(dialogText, () => {
-                    // テキスト表示が終わったら次のシーンへ
-                    onSceneEnd?.Invoke();
-                });
+                dialogueBox.Render(dialogText, textSpeed);
             } else if(textDisplayMode == TextDisplayMode.Instant) {
-                characterTextField.text = dialogText;
-                onSceneEnd?.Invoke();
+                dialogueBox.ForceRender(dialogText);
             }
         } else {
             // ナレーション設定  
@@ -271,65 +261,18 @@ public class StoryViewer : Viewer {
                 narrationArea.SetActive(false);
             } else if(narrationDisplayMode == NarrationDisplayMode.Modal) {
                 narrationArea.SetActive(true);
-                narrationField.text = scene.Narration;
-                onSceneEnd?.Invoke();
+                narrationBox.Render(scene.Narration, 0.0f);
                 isWaitingForClick = true;
             } else if(narrationDisplayMode == NarrationDisplayMode.Inline) {
                 narrationArea.SetActive(false);
                 if(textDisplayMode == TextDisplayMode.OneByOne) {
-                    ProgressTextOneByOne(scene.Narration, () => {
-                        // テキスト表示が終わったら次のシーンへ
-                        onSceneEnd?.Invoke();
-                    });
+                    dialogueBox.Render(scene.Narration, textSpeed);
                 } else if(textDisplayMode == TextDisplayMode.Instant) {
-                    characterTextField.text = scene.Narration;
-                    onSceneEnd?.Invoke();
+                    dialogueBox.ForceRender(scene.Narration);
                     isWaitingForClick = true;
                 }
             }
         }
-    }
-
-    
-
-    /// <summary>
-    /// テキストを1文字ずつ表示するコルーチン
-    /// TODO : Util関数に移動する、統合する 
-    /// </summary>
-    /// <param name="text"></param>
-    private void ProgressTextOneByOne(string text, Action onComplete = null) {
-        onTextComplete = onComplete;
-        fullText = text; // テキスト全体を保持
-        textCoroutine = StartCoroutine(ProgressTextCoroutine(text));
-    }
-
-    /// <summary>
-    /// テキストを1文字ずつ表示するコルーチン
-    /// </summary>
-    /// <param name="text">表示するテキスト</param>
-    /// <returns>コルーチン</returns>
-    private IEnumerator ProgressTextCoroutine(string text) {
-        characterTextField.text = "";
-        isTextRendering = true; // テキストレンダリング中フラグをON
-        EnterTextIcon.SetActive(false); // テキストが進行中の間はEnterTextIconを非表示
-        foreach (var c in text) {
-            characterTextField.text += c;
-            TypingSEPlayer.PlayOneShot(TypingSE);
-            yield return new WaitForSeconds(textSpeed);
-        }
-        // すべてのテキストが表示されたら、クリック待ち状態にしてEnterTextIconを表示
-        isWaitingForClick = true;
-        EndTextRendering();
-    }
-
-    /// <summary>
-    /// テキストレンダリング終了後の処理
-    /// TODO : イベント処理に替える
-    /// </summary>
-    private void EndTextRendering() {
-        isTextRendering = false; // テキストレンダリング中フラグをOFF
-        isWaitingForClick = true; // クリック待ち状態にする
-        EnterTextIcon.SetActive(true); // 全テキスト表示後にクリック促進アイコンを表示
     }
 
 
@@ -350,4 +293,19 @@ public class StoryViewer : Viewer {
             child.gameObject.SetActive(false);
         }
     }
+
+
+    private void StartDialogueHandler() {
+        dialogueBox.Delete();
+        isTextRendering = true; // テキストレンダリング中フラグをON
+        EnterTextIcon.SetActive(false); // テキストが進行中の間はEnterTextIconを非表示
+    }
+
+    private void RenderedDialogueHandler() {
+        Debug.Log("RenderedDialogueHandler");
+        isTextRendering = false; // テキストレンダリング中フラグをOFF
+        isWaitingForClick = true; // クリック待ち状態にする
+        EnterTextIcon.SetActive(true); // 全テキスト表示後にクリック促進アイコンを表示
+    }
+
 }
