@@ -119,6 +119,7 @@ public class SaveDataManager : MonoBehaviour {
     
     /// <summary>
     /// PlayerPrefから指定のUUIDのプレイヤーデータを読み込む
+    /// TODO;　項目が増えた場合は追加しなければならないのでリファクタすること
     /// </summary>
     /// <param name="playerUUID"></param>
     public static PlayerData LoadPlayerData(string playerUUID) {
@@ -136,6 +137,7 @@ public class SaveDataManager : MonoBehaviour {
 
     /// <summary>
     /// PlayerPrefに指定のUUIDのプレイヤーデータを保存する
+    /// TODO;　項目が増えた場合は追加しなければならないのでリファクタすること
     /// </summary>
     /// <param name="playerUUID"></param>
     /// <param name="playerData"></param>
@@ -150,5 +152,18 @@ public class SaveDataManager : MonoBehaviour {
         PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.LastStoryId.ToString(), playerData.LastStoryId);
         PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.UserAge.ToString(), playerData.UserAge);
         return true;
+    }
+
+    /// <summary>
+    /// マシンに登録されている全てのプレイヤーデータを取得する
+    /// </summary>
+    /// <returns></returns>
+    public static List<PlayerData> GetAllPlayers() {
+        List<PlayerData> playerDatas = new List<PlayerData>();
+        string[] playerUUIDs = File.ReadAllLines(filePath);
+        foreach (var playerUUID in playerUUIDs) {
+            playerDatas.Add(LoadPlayerData(playerUUID));
+        }
+        return playerDatas;
     }
 }

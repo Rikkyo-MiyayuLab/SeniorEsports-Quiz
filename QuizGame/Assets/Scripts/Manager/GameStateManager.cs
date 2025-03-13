@@ -28,9 +28,10 @@ public class GameStateManager : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// チュートリアルユーザーかどうか
-    /// </summary>
-    public bool IsTutorialUser = false;
     public PlayerData Player;
+
+    public void Save() {
+        var uuid = Player.PlayerUUID;
+        SaveDataManager.SavePlayerData(uuid, Player);
+    }
 }

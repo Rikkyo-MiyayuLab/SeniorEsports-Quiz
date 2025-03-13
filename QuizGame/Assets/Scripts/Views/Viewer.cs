@@ -59,8 +59,7 @@ public abstract class Viewer : MonoBehaviour {
         if(GameStateManager.Instance.Player != null) {
             GameStateManager.Instance.Player.TotalPlayTime += playTime;
             GameStateManager.Instance.Player.LastPlayDate = currentDate;
-            var uuid = GameStateManager.Instance.Player.PlayerUUID;
-            SaveDataManager.SavePlayerData(uuid, GameStateManager.Instance.Player);
+            GameStateManager.Instance.Save();
         }
     }
 }

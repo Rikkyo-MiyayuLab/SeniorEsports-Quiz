@@ -26,9 +26,6 @@ public class UserRegister : MonoBehaviour {
    private TransitionManager TransitionManager;
    private string NextSceneName = "WorldMap";
 
-   #if UNITY_EDITOR
-    public SceneAsset NextScene;
-   #endif
 
     void Start() {
         TransitionManager = TransitionManager.Instance();
@@ -44,13 +41,13 @@ public class UserRegister : MonoBehaviour {
     }
 
     private void RegisterUser() {
-        // ユーザー名が入力されているかチェック
-        if (string.IsNullOrEmpty(UserNameField.text)) {
+        // ユーザー名が入力されている & 既存のユーザー名と重複していないかチェック
+        if (string.IsNullOrEmpty(UserNameField.text) || IsDuplicateUserName(UserNameField.text)) {
             UserNameFieldWarnings.gameObject.SetActive(true);
             return;
         }
 
-        // 年齢が入力されているかチェック
+        // 年齢が入力されているかチェック（廃止or任意にしても良い？）
         if(string.IsNullOrEmpty(UserAgeField.text)) {
             AgeInputFieldWarnings.gameObject.SetActive(true);
             return;
@@ -114,5 +111,20 @@ public class UserRegister : MonoBehaviour {
     private void OnDestroy() {
         UserNameField.onSelect.RemoveListener(ShowKeyboard);
         UserAgeField.onSelect.RemoveListener(ShowKeyboard);
+    }
+
+    /// <summary>
+    /// マシンに登録されているユーザー名と重複しているかチェック
+    /// </summary>
+    /// <param name="userName"></param>
+    /// <returns></returns>
+    private bool IsDuplicateUserName(string userName) {
+        var allUsers = SaveDataManager.GetAllPlayers();
+        foreach (var user in allUsers) {
+            if (user.PlayerName == userName) {
+                return true;
+            }
+        }
+        return false;
     }
 }

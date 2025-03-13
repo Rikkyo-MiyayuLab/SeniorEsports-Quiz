@@ -20,19 +20,13 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     public GameObject Timer;
     public GameObject ClickRemainCounterPanel;
     public TextMeshProUGUI ClickRemainCounter;
-    public TextMeshProUGUI QuestionDescription;
-    public Action OnCompleteRenderDescription;
+    public TextBox QuestionSentenceBox;
     public GameObject StartUIPanel;
     public Button HintModalOpenButton;
     public GameObject HintUIModal;
-    public AudioClip ClearSE;
-    public AudioClip GameOverSE;
     protected int TotalIncorrectCount = 0;
-    protected int TotalCorrectCount = 0;
-    protected double TotalElapsedSec = 0.0;
     protected QuestionType CurrentQuestionData; //カレントの小問データ
     protected List<bool> correctness = new List<bool>();
-    protected double remainingSeconds;
     [SerializeField]
     protected Button AnswerButton;
     protected Timer timer;
@@ -72,29 +66,8 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         SkipQuestionPanel.SetActive(false);
         timer = Timer.GetComponent<Timer>();
 
-        OnCompleteRenderDescription += () => {
-            StartUIPanel.SetActive(true);
-            // 画面クリックでStartUIPanelを非表示にする
-            StartUIPanel.GetComponent<Button>().onClick.AddListener(() => {
-                StartUIPanel.SetActive(false);
-                SkipButton.gameObject.SetActive(true);
-                if(base.QuizData.limitType == LimitType.time) {
-                    int[] MMSS = ConvertSecToMMSS(base.QuizData.limits);
-                    Debug.Log(MMSS);
-                    timer.seconds = MMSS[1];
-                    timer.minutes = MMSS[0];
-                    timer.ResumeTimer();
-                    timer.StartTimer();
-                }
-                TutorialViewer tutorialViewer = GetComponent<TutorialViewer>();
-                if(tutorialViewer != null) {
-                    foreach(Button btn in tutorialViewer.inactivateButtons) {
-                        btn.interactable = true;
-                    }
-                } 
-            });
-        };
-        StartCoroutine(TypeText(QuizData.description));
+        QuestionSentenceBox.OnRendered += OnCompleteRenderDescription;
+        QuestionSentenceBox.Render(QuizData.description, 0.01f);
 
         
         if(base.QuizData.limitType == LimitType.time) {
@@ -171,6 +144,29 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         return SaveDataManager.SaveSkipQuestionData(uuid, quizId, questionId, qiestionIdx);
     }
 
+    private void OnCompleteRenderDescription() {
+        StartUIPanel.SetActive(true);
+        // 画面クリックでStartUIPanelを非表示にする
+        StartUIPanel.GetComponent<Button>().onClick.AddListener(() => {
+            StartUIPanel.SetActive(false);
+            SkipButton.gameObject.SetActive(true);
+            if(base.QuizData.limitType == LimitType.time) {
+                int[] MMSS = ConvertSecToMMSS(base.QuizData.limits);
+                Debug.Log(MMSS);
+                timer.seconds = MMSS[1];
+                timer.minutes = MMSS[0];
+                timer.ResumeTimer();
+                timer.StartTimer();
+            }
+            TutorialViewer tutorialViewer = GetComponent<TutorialViewer>();
+            if(tutorialViewer != null) {
+                foreach(Button btn in tutorialViewer.inactivateButtons) {
+                    btn.interactable = true;
+                }
+            } 
+        });
+    }
+
 
     protected void InitHintModal() {
         // ヒントモーダルの初期化
@@ -234,15 +230,4 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         CurrentQuestionIndex++;
         Init();
     }
-
-
-    protected IEnumerator TypeText(string text) {
-        QuestionDescription.text = "";  // 表示をクリア
-        foreach (char letter in text) {
-            QuestionDescription.text += letter;  // 1文字追加
-            yield return new WaitForSeconds(0.01f);  // 指定した時間待つ
-        }
-        OnCompleteRenderDescription?.Invoke();
-    }
-
 }

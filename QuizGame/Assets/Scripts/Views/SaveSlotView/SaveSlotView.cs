@@ -31,23 +31,15 @@ public class SaveSlotView : MonoBehaviour {
         TransitionManager = TransitionManager.Instance();
         PlayerDatas = new List<PlayerData>();
         MapData = DataLoaders.LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
-        LoadAllPlayers();
+        
+        PlayerDatas = SaveDataManager.GetAllPlayers();
+        Placeholder.SetActive(PlayerDatas.Count == 0);
+
         RenderSaveSlots();
         // マップピンを非表示にする
         foreach (var mapPin in MapPins) {
             mapPin.SetActive(false);
         }
-    }
-
-
-    public void LoadAllPlayers() {
-        //txtから保存されているUUIDを取得
-        var filePath = SaveDataManager.filePath;
-        string[] playerUUIDs = File.ReadAllLines(filePath);
-        foreach (var playerUUID in playerUUIDs) {
-            PlayerDatas.Add(SaveDataManager.LoadPlayerData(playerUUID));
-        }
-        Placeholder.SetActive(PlayerDatas.Count == 0);
     }
 
 
