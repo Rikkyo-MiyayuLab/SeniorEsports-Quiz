@@ -56,9 +56,11 @@ public abstract class Viewer : MonoBehaviour {
     protected virtual void OnDestroy() {
         // タイマーを停止し、ユーザーデータに保存
         string currentDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        GameStateManager.Instance.Player.TotalPlayTime += playTime;
-        GameStateManager.Instance.Player.LastPlayDate = currentDate;
-        var uuid = GameStateManager.Instance.Player.PlayerUUID;
-        SaveDataManager.SavePlayerData(uuid, GameStateManager.Instance.Player);
+        if(GameStateManager.Instance.Player != null) {
+            GameStateManager.Instance.Player.TotalPlayTime += playTime;
+            GameStateManager.Instance.Player.LastPlayDate = currentDate;
+            var uuid = GameStateManager.Instance.Player.PlayerUUID;
+            SaveDataManager.SavePlayerData(uuid, GameStateManager.Instance.Player);
+        }
     }
 }

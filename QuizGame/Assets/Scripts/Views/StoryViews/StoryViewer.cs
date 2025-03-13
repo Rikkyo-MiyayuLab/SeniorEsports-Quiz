@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -59,11 +58,9 @@ public class StoryViewer : Viewer {
     private StoryData data;
     [SerializeField]
     private int currentSceneIndex = 0;
-    private bool displayQuizInfo = false;
     private StoryDataInterface.Scene currentScene;
     private bool isWaitingForClick = false;
     private StoryType storyType;
-    private bool isTextRendering = false; // テキストがレンダリング中かどうかを管理
     private string  fullDialogueText  = ""; // レンダリングするテキスト全体を保持
     
     void Start() {
@@ -171,7 +168,6 @@ public class StoryViewer : Viewer {
             if (storyType == StoryType.Quiz) {
                 // 問題モーダルを表示
                 base.QuizModalCanvas.gameObject.SetActive(true);
-                displayQuizInfo = true;
                 base.AudioPlayer.PlayOneShot(base.ModalDisplaySE);
                 
                 base.NextButton.onClick.AddListener(() => {
@@ -296,14 +292,13 @@ public class StoryViewer : Viewer {
 
 
     private void StartDialogueHandler() {
+        Debug.Log("StartDialogueHandler");
         dialogueBox.Delete();
-        isTextRendering = true; // テキストレンダリング中フラグをON
         EnterTextIcon.SetActive(false); // テキストが進行中の間はEnterTextIconを非表示
     }
 
     private void RenderedDialogueHandler() {
         Debug.Log("RenderedDialogueHandler");
-        isTextRendering = false; // テキストレンダリング中フラグをOFF
         isWaitingForClick = true; // クリック待ち状態にする
         EnterTextIcon.SetActive(true); // 全テキスト表示後にクリック促進アイコンを表示
     }

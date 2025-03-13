@@ -47,9 +47,15 @@ public class TextBox : MonoBehaviour {
     }
 
     public void ForceRender(string text) {
+        OnStartRendering?.Invoke();
+        isTextRendering = true;
         StopCoroutine(renderingCoroutine);
+        
         Delete();
         TextField.text = text;
+
+        isTextRendering = false; // テキストレンダリング中フラグをOFF
+        OnRendered?.Invoke();
     }
 
     public void Delete() {
