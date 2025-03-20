@@ -3057,6 +3057,7 @@ GameObject:
   - component: {fileID: 3750234878096203488}
   - component: {fileID: 7631751591430880302}
   - component: {fileID: 6140628149334143964}
+  - component: {fileID: 5825002925508528644}
   m_Layer: 5
   m_Name: QuestionDescText
   m_TagString: Untagged
@@ -3180,6 +3181,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5825002925508528644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6442024296966880083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710ce44b5e6a4854ab7bff746f51fd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextField: {fileID: 0}
+  isTextRendering: 0
+  RenderingSoundSource: {fileID: 0}
+  RenderSoundPlayer: {fileID: 0}
 --- !u!1 &6594296250063003656
 GameObject:
   m_ObjectHideFlags: 0

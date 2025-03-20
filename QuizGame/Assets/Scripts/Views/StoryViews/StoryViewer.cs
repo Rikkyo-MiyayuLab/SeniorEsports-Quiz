@@ -41,6 +41,7 @@ public class StoryViewer : Viewer {
 
     [SerializeField]
     private TextBox dialogueBox;
+    [SerializeField]
     private TextBox narrationBox;
 
     [Header("Editor Settings")]

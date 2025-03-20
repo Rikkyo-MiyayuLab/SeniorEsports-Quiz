@@ -102,7 +102,7 @@ public class TitleView : MonoBehaviour {
             //BGMを破棄しないようにする。
             gameObject.tag = "DontDestroyOnSceneChange";
             DontDestroyOnLoad(audioAPI);
-            transitionManager.Transition("CreateUserData", transition, transitionDuration);
+            transitionManager.Transition(RegisterUserSceneName, transition, transitionDuration);
         });
 
     }

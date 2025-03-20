@@ -18,7 +18,6 @@ public class UserRegister : MonoBehaviour {
 
    public TMP_InputField UserNameField;
    public TMP_InputField UserAgeField;
-   public TextMeshProUGUI AgeInputFieldWarnings;
    public TextMeshProUGUI UserNameFieldWarnings;
    [SerializeField]
    public TransitionSettings Transition;
@@ -29,11 +28,9 @@ public class UserRegister : MonoBehaviour {
 
     void Start() {
         TransitionManager = TransitionManager.Instance();
-        AgeInputFieldWarnings.gameObject.SetActive(false);
         UserNameFieldWarnings.gameObject.SetActive(true);
 
         UserNameField.onSelect.AddListener(ShowKeyboard);
-        UserAgeField.onSelect.AddListener(ShowKeyboard);
 
         RegisterButton.onClick.AddListener(() => {
             RegisterUser();
@@ -44,18 +41,6 @@ public class UserRegister : MonoBehaviour {
         // ユーザー名が入力されている & 既存のユーザー名と重複していないかチェック
         if (string.IsNullOrEmpty(UserNameField.text) || IsDuplicateUserName(UserNameField.text)) {
             UserNameFieldWarnings.gameObject.SetActive(true);
-            return;
-        }
-
-        // 年齢が入力されているかチェック（廃止or任意にしても良い？）
-        if(string.IsNullOrEmpty(UserAgeField.text)) {
-            AgeInputFieldWarnings.gameObject.SetActive(true);
-            return;
-        }
-
-        // 年が0以上の整数かチェック（テキスト先頭に "-" が含まれていたら負数判定）
-        if(UserAgeField.text.StartsWith("-")) { // NOTE :  int.TryParse(UserAgeField.text, out int age); ← 何故か ageが常に 0
-            AgeInputFieldWarnings.gameObject.SetActive(true);
             return;
         }
         
@@ -70,7 +55,7 @@ public class UserRegister : MonoBehaviour {
         SaveDataManager.CreateUserSlot(playerData.PlayerUUID);
         // 初回はワールドマップ遷移時にUUIDを伝達させる。
         // TODO : GameStateManagerを介した処理に換装すること
-        PlayerPrefs.SetString("PlayerUUID", playerData.PlayerUUID);
+        GameStateManager.Instance.Player = playerData;
         PlayerPrefs.SetInt("FirstTime", 1);
 
         PlayerPrefs.SetInt("isFirstUser", 1);
