@@ -118,7 +118,7 @@ public class StoryViewer : Viewer {
         if (Input.GetMouseButtonDown(0)) {
             if (dialogueBox.isTextRendering) {
                 // テキストを一括表示して、レンダリングを終了
-                dialogueBox.ForceRender(fullDialogueText);
+                dialogueBox.ForceRender();
             } else if (isWaitingForClick) {
                 isWaitingForClick = false;
                 EnterTextIcon.SetActive(false);

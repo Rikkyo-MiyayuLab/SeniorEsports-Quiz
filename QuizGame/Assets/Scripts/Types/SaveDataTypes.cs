@@ -40,6 +40,7 @@ namespace SaveDataInterface {
         /// さいごにプレイした日時
         /// </summary>
         public string LastPlayDate;
+        public Dictionary<string, UserAnswerData> UserAnswerData;
     }
 
     [Serializable]
@@ -69,6 +70,18 @@ namespace SaveDataInterface {
         public string QuizId { get; set; }
         public string QuestionId { get; set; }
         public int QuestionIdx { get; set; }
+    }
+
+    [Serializable]
+    /// <summary>
+    /// 各小問の回答に関するデータを記録するクラス
+    /// </summary>
+    public class UserAnswerData
+    {
+        /// <summary>
+        /// 経過時間（秒）
+        /// </summary>
+        public float elapsedSec;
     }
 }
 

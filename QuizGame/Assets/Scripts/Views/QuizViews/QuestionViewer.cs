@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using QuizDataInterface;
 using UtilFuncs;
+using UnityEditor.Build.Content;
 
 
 /// <summary>
@@ -40,6 +41,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     [SerializeField]
     private Button CloseSkipQuestionPanelBtn;
     private int NextQuestionIdx;
+    private float elapsedSec = 0.0f;
 
     public void Init() {
         Dispose();
@@ -122,6 +124,25 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         });
     }
 
+    protected void Update() {
+        base.Update();
+        elapsedSec += Time.deltaTime;
+        if(base.QuizData.limitType == LimitType.click) {
+            ClickRemainCounter.text = (base.QuizData.limits - ClickCount).ToString() + " 回";
+        }
+
+        // ゲーム終了条件の監視
+        if(base.QuizData.limitType == LimitType.click && ClickCount == base.QuizData.limits) {
+            //timer.PauseTimer();
+            //QuestionAnswered(false);
+            OnLimitClick?.Invoke();
+        } else if(base.QuizData.limitType == LimitType.time && timer.GetRemainingSeconds() <= 0) {
+            timer.StopTimer();
+            OnTimeOut?.Invoke();
+        }
+    }
+
+
     protected virtual void OnDestroy() {
         base.OnDestroy();
     }
@@ -181,10 +202,11 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     /// </summary>
     /// <param name="isCorrect"></param>
     protected void QuestionAnswered(bool isCorrect) {
-        // セーブデータに正解数を加算
-        // TODO : GameStateManagerを介した処理に換装すること
-        var uuid = PlayerPrefs.GetString("PlayerUUID");
-        var playerData = SaveDataManager.LoadPlayerData(uuid);
+        var playerData = GameStateManager.Instance.Player;
+        //TODO : questionIDは問題識別もかねて手動設定値なため意図しない上書きが発生する可能性がある。UUIDを別途設定する必要がある。
+        // playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec = elapsedSec; 
+        // 一旦仮組みでPlayerPrefを介してデータを保存する
+        PlayerPrefs.SetFloat("ElapsedTimeSec", elapsedSec);
         // 正解用アイキャッチシーンを表示
         if(isCorrect) {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.explanation);
@@ -196,7 +218,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
             SceneManager.LoadScene("AnswerPreview-Correct");
             playerData.TotalResolvedCount++;
-            SaveDataManager.SavePlayerData(uuid, playerData);
+            GameStateManager.Instance.Save();
         } else {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.hints[0]);
             PlayerPrefs.SetString("ExplanationImage", null);
@@ -204,23 +226,6 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetInt("RemainQuestionSize", QuizData.quiz.questions.Count - CurrentQuestionIndex+1);
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
             SceneManager.LoadScene("AnswerPreview-Incorrect");
-        }
-    }
-
-    protected void Update() {
-        base.Update();
-        if(base.QuizData.limitType == LimitType.click) {
-            ClickRemainCounter.text = (base.QuizData.limits - ClickCount).ToString() + " 回";
-        }
-
-        // ゲーム終了条件の監視
-        if(base.QuizData.limitType == LimitType.click && ClickCount == base.QuizData.limits) {
-            //timer.PauseTimer();
-            //QuestionAnswered(false);
-            OnLimitClick?.Invoke();
-        } else if(base.QuizData.limitType == LimitType.time && timer.GetRemainingSeconds() <= 0) {
-            timer.StopTimer();
-            OnTimeOut?.Invoke();
         }
     }
 
