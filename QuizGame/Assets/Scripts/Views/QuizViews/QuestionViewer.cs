@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using QuizDataInterface;
 using UtilFuncs;
-using UnityEditor.Build.Content;
 
 
 /// <summary>
