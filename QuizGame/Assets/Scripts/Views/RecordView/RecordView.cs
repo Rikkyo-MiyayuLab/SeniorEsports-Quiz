@@ -1,14 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using SaveDataInterface;
-using QuizDataInterface;
 using EasyTransition;
-using Newtonsoft.Json;
 using MapDictionary;
 using UtilFuncs;
+using QuizDataInterface;
 
 public class RecordManager : MonoBehaviour {
     
@@ -25,6 +23,9 @@ public class RecordManager : MonoBehaviour {
     private List<AreaData> MapData;
     private string MapDefFilename = "MapDictionary";
 
+    /// <summary>
+    /// TODO : グラフへの部門別平均正解率の反映
+    /// </summary>
     void Start() {
         // TODO : GameStateManagerを介した処理に換装すること
         var uuid = PlayerPrefs.GetString("PlayerUUID");
@@ -53,6 +54,15 @@ public class RecordManager : MonoBehaviour {
             });
         }
 
+    }
+
+    private Dictionary<QuestionFieldType, float> GetFieldTypeCorrectionRates() {
+        var FieldCorrectionRates = new Dictionary<QuestionFieldType, float>();
+
+        // TODO : 小問毎の正解数を集計し、部門毎に平均正解率を算出する
+            
+
+        
     }
 
 }
