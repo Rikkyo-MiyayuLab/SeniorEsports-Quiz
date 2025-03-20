@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using EasyTransition;
-
+using UtilFuncs;
 /// <summary>
 /// 回答解説画面のビュー
 /// </summary>
@@ -36,8 +36,6 @@ public class QuestionExplanation : MonoBehaviour {
         var CurrentQuestionIdx = PlayerPrefs.GetInt("CurrentQuestionIdx");
         
         var NextQuestionIdx = CurrentQuestionIdx + 1; // NOTE : issue-#78 : リスナーが２回実行されるので,次問遷移後のインデックスが狂う問題の対処。
-        Debug.Log("RemainQuestionSize: " + RemainQuestionSize);
-        PlayerPrefs.Save();
         audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(TypeText(explanation));
@@ -52,9 +50,14 @@ public class QuestionExplanation : MonoBehaviour {
         if(isCorrectExplanation) {
              // #92 : 経過時間表示の対応
             var ElapsedTimeSec = PlayerPrefs.GetFloat("ElapsedTimeSec");
-            ElapsedTimeSec = Mathf.Round(ElapsedTimeSec * 10) / 10; // 小数点第一位まで表示
-            ElapsedTimeText.text = "経過時間: " + ElapsedTimeSec + "秒";
-            // TODO : 自己ベストタイムの表示
+            var times = DateTimeUtils.ConvertSecToHHMMSS(ElapsedTimeSec);
+            string text;
+            if(times[0] == 0) {
+                text = $"{times[1]}分{times[2]}秒";
+            } else {
+                text = $"{times[0]}時間{times[1]}分{times[2]}秒";
+            }
+            ElapsedTimeText.text = text;
             
             if(RemainQuestionSize > 0) {
                 NextSceneButton.onClick.AddListener(() => {
@@ -91,4 +94,6 @@ public class QuestionExplanation : MonoBehaviour {
             yield return new WaitForSeconds(typingSpeed);  // 指定した時間待つ
         }
     }
+
+
 }

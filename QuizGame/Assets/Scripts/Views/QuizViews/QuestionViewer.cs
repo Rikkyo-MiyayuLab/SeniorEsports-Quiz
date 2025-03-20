@@ -124,9 +124,24 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         });
     }
 
-    void UpDate() {
+    protected void Update() {
+        base.Update();
         elapsedSec += Time.deltaTime;
+        if(base.QuizData.limitType == LimitType.click) {
+            ClickRemainCounter.text = (base.QuizData.limits - ClickCount).ToString() + " 回";
+        }
+
+        // ゲーム終了条件の監視
+        if(base.QuizData.limitType == LimitType.click && ClickCount == base.QuizData.limits) {
+            //timer.PauseTimer();
+            //QuestionAnswered(false);
+            OnLimitClick?.Invoke();
+        } else if(base.QuizData.limitType == LimitType.time && timer.GetRemainingSeconds() <= 0) {
+            timer.StopTimer();
+            OnTimeOut?.Invoke();
+        }
     }
+
 
     protected virtual void OnDestroy() {
         base.OnDestroy();
@@ -188,9 +203,10 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     /// <param name="isCorrect"></param>
     protected void QuestionAnswered(bool isCorrect) {
         var playerData = GameStateManager.Instance.Player;
-        playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec = elapsedSec; //TODO : questionIDは問題識別もかねて手動設定値なため意図しない上書きが発生する可能性がある。UUIDを別途設定する必要がある。
+        //TODO : questionIDは問題識別もかねて手動設定値なため意図しない上書きが発生する可能性がある。UUIDを別途設定する必要がある。
+        // playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec = elapsedSec; 
         // 一旦仮組みでPlayerPrefを介してデータを保存する
-        PlayerPrefs.SetString("ElapsedTimeSec", elapsedSec.ToString());
+        PlayerPrefs.SetFloat("ElapsedTimeSec", elapsedSec);
         // 正解用アイキャッチシーンを表示
         if(isCorrect) {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.explanation);
@@ -210,23 +226,6 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetInt("RemainQuestionSize", QuizData.quiz.questions.Count - CurrentQuestionIndex+1);
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
             SceneManager.LoadScene("AnswerPreview-Incorrect");
-        }
-    }
-
-    protected void Update() {
-        base.Update();
-        if(base.QuizData.limitType == LimitType.click) {
-            ClickRemainCounter.text = (base.QuizData.limits - ClickCount).ToString() + " 回";
-        }
-
-        // ゲーム終了条件の監視
-        if(base.QuizData.limitType == LimitType.click && ClickCount == base.QuizData.limits) {
-            //timer.PauseTimer();
-            //QuestionAnswered(false);
-            OnLimitClick?.Invoke();
-        } else if(base.QuizData.limitType == LimitType.time && timer.GetRemainingSeconds() <= 0) {
-            timer.StopTimer();
-            OnTimeOut?.Invoke();
         }
     }
 
