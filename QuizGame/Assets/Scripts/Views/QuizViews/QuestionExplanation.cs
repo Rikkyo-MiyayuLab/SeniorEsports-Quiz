@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 using EasyTransition;
 
+/// <summary>
+/// 回答解説画面のビュー
+/// </summary>
+
 public class QuestionExplanation : MonoBehaviour {
     
     public TextMeshProUGUI ExplanationText;
@@ -16,6 +20,8 @@ public class QuestionExplanation : MonoBehaviour {
     public TransitionSettings transition;
     public float transitionDuration = 1.0f;
     public bool isCorrectExplanation = true;
+    public TextMeshProUGUI ElapsedTimeText;
+    public TextMeshProUGUI BestTimeText;
     private TransitionManager transitionManager;
     private AudioSource audioSource;
 
@@ -28,6 +34,7 @@ public class QuestionExplanation : MonoBehaviour {
         var BeforeViewer = PlayerPrefs.GetString("CurrentViewer");
         var RemainQuestionSize = PlayerPrefs.GetInt("RemainQuestionSize");
         var CurrentQuestionIdx = PlayerPrefs.GetInt("CurrentQuestionIdx");
+        
         var NextQuestionIdx = CurrentQuestionIdx + 1; // NOTE : issue-#78 : リスナーが２回実行されるので,次問遷移後のインデックスが狂う問題の対処。
         Debug.Log("RemainQuestionSize: " + RemainQuestionSize);
         PlayerPrefs.Save();
@@ -43,6 +50,12 @@ public class QuestionExplanation : MonoBehaviour {
         }
 
         if(isCorrectExplanation) {
+             // #92 : 経過時間表示の対応
+            var ElapsedTimeSec = PlayerPrefs.GetFloat("ElapsedTimeSec");
+            ElapsedTimeSec = Mathf.Round(ElapsedTimeSec * 10) / 10; // 小数点第一位まで表示
+            ElapsedTimeText.text = "経過時間: " + ElapsedTimeSec + "秒";
+            // TODO : 自己ベストタイムの表示
+            
             if(RemainQuestionSize > 0) {
                 NextSceneButton.onClick.AddListener(() => {
                     audioSource.PlayOneShot(BtnSE);

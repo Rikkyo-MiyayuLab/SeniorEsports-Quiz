@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using QuizDataInterface;
 using UtilFuncs;
+using UnityEditor.Build.Content;
 
 
 /// <summary>
@@ -40,6 +41,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     [SerializeField]
     private Button CloseSkipQuestionPanelBtn;
     private int NextQuestionIdx;
+    private float elapsedSec = 0.0f;
 
     public void Init() {
         Dispose();
@@ -122,6 +124,10 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         });
     }
 
+    void UpDate() {
+        elapsedSec += Time.deltaTime;
+    }
+
     protected virtual void OnDestroy() {
         base.OnDestroy();
     }
@@ -181,10 +187,10 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     /// </summary>
     /// <param name="isCorrect"></param>
     protected void QuestionAnswered(bool isCorrect) {
-        // セーブデータに正解数を加算
-        // TODO : GameStateManagerを介した処理に換装すること
-        var uuid = PlayerPrefs.GetString("PlayerUUID");
-        var playerData = SaveDataManager.LoadPlayerData(uuid);
+        var playerData = GameStateManager.Instance.Player;
+        playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec = elapsedSec; //TODO : questionIDは問題識別もかねて手動設定値なため意図しない上書きが発生する可能性がある。UUIDを別途設定する必要がある。
+        // 一旦仮組みでPlayerPrefを介してデータを保存する
+        PlayerPrefs.SetString("ElapsedTimeSec", elapsedSec.ToString());
         // 正解用アイキャッチシーンを表示
         if(isCorrect) {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.explanation);
@@ -196,7 +202,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
             SceneManager.LoadScene("AnswerPreview-Correct");
             playerData.TotalResolvedCount++;
-            SaveDataManager.SavePlayerData(uuid, playerData);
+            GameStateManager.Instance.Save();
         } else {
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.hints[0]);
             PlayerPrefs.SetString("ExplanationImage", null);
