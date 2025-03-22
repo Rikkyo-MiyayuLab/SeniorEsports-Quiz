@@ -56,19 +56,22 @@ public class UserRegister : MonoBehaviour {
         }
         
         // ユーザー登録処理
-        PlayerData playerData = new PlayerData();
+        var playerData = new PlayerData();
         playerData.PlayerName = UserNameField.text;
-        //playerData.UserAge = int.Parse(UserAgeField.text);
         playerData.PlayerUUID = Guid.NewGuid().ToString();
+        playerData.UserAnswerData = new Dictionary<string, UserAnswerData>();
+        playerData.LastPlayDate = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+        playerData.TotalPlayTime = 0;
+        playerData.TotalResolvedCount = 0;
+        playerData.CurrentWorld = 0;
+        playerData.CurrentArea = 0;
+        GameStateManager.Instance.Player = playerData;
 
         // ユーザーデータを保存
-        SaveDataManager.SavePlayerData(playerData.PlayerUUID, playerData);
         SaveDataManager.CreateUserSlot(playerData.PlayerUUID);
+        GameStateManager.Instance.Save();
         // 初回はワールドマップ遷移時にUUIDを伝達させる。
-        // TODO : GameStateManagerを介した処理に換装すること
-        GameStateManager.Instance.Player = playerData;
         PlayerPrefs.SetInt("FirstTime", 1);
-
         PlayerPrefs.SetInt("isFirstUser", 1);
         PlayerPrefs.SetString("StoryId", "Tutorial-001");
         TransitionManager.Transition(NextSceneName, Transition, TransitionDuration);
@@ -106,7 +109,6 @@ public class UserRegister : MonoBehaviour {
 
     private void OnDestroy() {
         UserNameField.onSelect.RemoveListener(ShowKeyboard);
-        UserAgeField.onSelect.RemoveListener(ShowKeyboard);
     }
 
     /// <summary>

@@ -76,6 +76,9 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         StartUIPanel.SetActive(false);
         SkipButton.gameObject.SetActive(false);
         SkipQuestionPanel.SetActive(false);
+        SaveQuitePanelDisplayBtn.gameObject.SetActive(false);
+        SaveQuitePanel.SetActive(false);
+
         timer = Timer.GetComponent<Timer>();
 
         QuestionSentenceBox.OnRendered += OnCompleteRenderDescription;
@@ -113,6 +116,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         });
 
         // #93 : カレントの問題を途中保存して終了する処理
+        SaveQuitePanel.SetActive(false);
         SaveQuitePanelDisplayBtn.onClick.AddListener(() => {
             SaveQuitePanel.SetActive(true);
             base.AudioPlayer.PlayOneShot(base.BtnClickSE);
@@ -196,6 +200,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         StartUIPanel.GetComponent<Button>().onClick.AddListener(() => {
             StartUIPanel.SetActive(false);
             SkipButton.gameObject.SetActive(true);
+            SaveQuitePanelDisplayBtn.gameObject.SetActive(true);
             if(base.QuizData.limitType == LimitType.time) {
                 int[] MMSS = ConvertSecToMMSS(base.QuizData.limits);
                 Debug.Log(MMSS);
@@ -230,13 +235,16 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     /// <param name="isCorrect"></param>
     protected void QuestionAnswered(bool isCorrect) {
         var playerData = GameStateManager.Instance.Player;
+        if(playerData.UserAnswerData == null) {
+            playerData.UserAnswerData = new Dictionary<string, UserAnswerData>();
+        }
     
         // 正解用アイキャッチシーンを表示
         if(isCorrect) {
             // 一旦仮組みでPlayerPrefを介してデータを保存する
             PlayerPrefs.SetFloat("ElapsedTimeSec", elapsedSec);
             //TODO : questionIDは問題識別もかねて手動設定値なため意図しない上書きが発生する可能性がある。UUIDを別途設定する必要がある。
-            if(playerData.UserAnswerData[CurrentQuestionData.questionId] == null) {
+            if(playerData.UserAnswerData.ContainsKey(CurrentQuestionData.questionId) == false) {
                 playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData {
                     elapsedSec=elapsedSec,
                 });

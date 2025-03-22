@@ -35,6 +35,47 @@ public class SaveDataManager : MonoBehaviour {
         return true;
     }
 
+    public static bool DeleteAllUserSlots() {
+        try {
+            if (!File.Exists(filePath)) {
+                return false;
+            }
+            File.Delete(filePath);
+
+            // 成功メッセージ
+            Debug.Log($"{filePath} を削除しました。");
+        } catch (Exception e) {
+            Debug.LogError(e.Message);
+        }
+
+        return true;
+    }
+
+    public static bool DeleteUserSlot(string playerUUID) {
+        try {
+            if (!File.Exists(filePath)) {
+                return false;
+            }
+
+            string[] playerUUIDs = File.ReadAllLines(filePath);
+            List<string> newPlayerUUIDs = new List<string>();
+            foreach (var uuid in playerUUIDs) {
+                if (uuid != playerUUID) {
+                    newPlayerUUIDs.Add(uuid);
+                }
+            }
+
+            File.WriteAllLines(filePath, newPlayerUUIDs);
+
+            // 成功メッセージ
+            Debug.Log($"UUID: {playerUUID} を {filePath} から削除しました。");
+        } catch (Exception e) {
+            Debug.LogError(e.Message);
+        }
+
+        return true;
+    }
+
     /// <summary>
     /// 「あとで解く」を選択した時の、設問位置情報を保存する
     /// </summary>
@@ -129,6 +170,7 @@ public class SaveDataManager : MonoBehaviour {
         foreach (var field in fields) {
             var key = playerUUID + field.Name;
             var fieldType = field.FieldType;
+            Debug.Log($"key: {key}, fieldType: {fieldType}");
 
             if (fieldType == typeof(int)) {
                 field.SetValue(playerData, PlayerPrefs.GetInt(key));
@@ -178,6 +220,19 @@ public class SaveDataManager : MonoBehaviour {
         return true;
     }
 
+    /// <summary>
+    /// 指定のプレイヤーデータを削除する
+    /// </summary>
+    public static void DeletePlayer(string playerUUID) {
+        var fields = typeof(PlayerData).GetFields();
+        foreach (var field in fields) {
+            var key = playerUUID + field.Name;
+            PlayerPrefs.DeleteKey(key);
+        }
+        PlayerPrefs.Save();
+        DeleteUserSlot(playerUUID);
+    }
+
 
     /// <summary>
     /// マシンに登録されている全てのプレイヤーデータを取得する
@@ -185,6 +240,9 @@ public class SaveDataManager : MonoBehaviour {
     /// <returns></returns>
     public static List<PlayerData> GetAllPlayers() {
         List<PlayerData> playerDatas = new List<PlayerData>();
+        if (!File.Exists(filePath)) {
+            return playerDatas;
+        }
         string[] playerUUIDs = File.ReadAllLines(filePath);
         foreach (var playerUUID in playerUUIDs) {
             playerDatas.Add(LoadPlayerData(playerUUID));
