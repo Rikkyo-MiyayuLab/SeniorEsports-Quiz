@@ -124,16 +124,30 @@ public class SaveDataManager : MonoBehaviour {
     /// <param name="playerUUID"></param>
     public static PlayerData LoadPlayerData(string playerUUID) {
         PlayerData playerData = new PlayerData();
-        playerData.PlayerUUID = playerUUID;
-        playerData.PlayerName = PlayerPrefs.GetString(playerUUID + PlayerPrefKeys.PlayerName.ToString());
-        playerData.TotalPlayTime = PlayerPrefs.GetFloat(playerUUID + PlayerPrefKeys.TotalPlayTime.ToString());
-        playerData.TotalResolvedCount = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.TotalResolvedCount.ToString());
-        playerData.CurrentWorld = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.CurrentWorld.ToString());
-        playerData.CurrentArea = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.CurrentArea.ToString());
-        playerData.LastStoryId = PlayerPrefs.GetString(playerUUID + PlayerPrefKeys.LastStoryId.ToString());
-        playerData.UserAge = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.UserAge.ToString());
+        var fields = typeof(PlayerData).GetFields();
+
+        foreach (var field in fields) {
+            var key = playerUUID + field.Name;
+            var fieldType = field.FieldType;
+
+            if (fieldType == typeof(int)) {
+                field.SetValue(playerData, PlayerPrefs.GetInt(key));
+            } else if (fieldType == typeof(float)) {
+                field.SetValue(playerData, PlayerPrefs.GetFloat(key));
+            } else if (fieldType == typeof(string)) {
+                field.SetValue(playerData, PlayerPrefs.GetString(key));
+            } else {
+                string json = PlayerPrefs.GetString(key);
+                if (!string.IsNullOrEmpty(json)) {
+                    object obj = JsonConvert.DeserializeObject(json, fieldType);
+                    field.SetValue(playerData, obj);
+                }
+            }
+        }
+
         return playerData;
     }
+
 
     /// <summary>
     /// PlayerPrefに指定のUUIDのプレイヤーデータを保存する
@@ -143,16 +157,27 @@ public class SaveDataManager : MonoBehaviour {
     /// <param name="playerData"></param>
     /// <returns></returns>
     public static bool SavePlayerData(string playerUUID, PlayerData playerData) {
-        PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.PlayerUUID.ToString(), playerData.PlayerUUID);
-        PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.PlayerName.ToString(), playerData.PlayerName);
-        PlayerPrefs.SetFloat(playerUUID + PlayerPrefKeys.TotalPlayTime.ToString(), playerData.TotalPlayTime);
-        PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.TotalResolvedCount.ToString(), playerData.TotalResolvedCount);
-        PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.CurrentArea.ToString(), playerData.CurrentArea);
-        PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.CurrentWorld.ToString(), playerData.CurrentWorld);
-        PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.LastStoryId.ToString(), playerData.LastStoryId);
-        PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.UserAge.ToString(), playerData.UserAge);
+        var fields = typeof(PlayerData).GetFields();
+        foreach (var field in fields) {
+            var key = playerUUID + field.Name;
+            var value = field.GetValue(playerData);
+
+            if (value is int intValue) {
+                PlayerPrefs.SetInt(key, intValue);
+            } else if (value is float floatValue) {
+                PlayerPrefs.SetFloat(key, floatValue);
+            } else if (value is string strValue) {
+                PlayerPrefs.SetString(key, strValue);
+            } else {
+                // Dictionaryなどの複雑な型はJSONとして保存
+                string json = JsonConvert.SerializeObject(value);
+                PlayerPrefs.SetString(key, json);
+            }
+        }
+        PlayerPrefs.Save();
         return true;
     }
+
 
     /// <summary>
     /// マシンに登録されている全てのプレイヤーデータを取得する
