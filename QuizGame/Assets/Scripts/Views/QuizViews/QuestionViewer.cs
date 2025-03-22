@@ -279,7 +279,8 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     /// 現在の問題IDを保存
     /// </summary>
     private void SaveCurrentQuestion() {
-        GameStateManager.Instance.Player.SaveQuestionId = CurrentQuestionData.questionId;
+        GameStateManager.Instance.Player.SaveQuizPath = PlayerPrefs.GetString("QuizPath");
+        GameStateManager.Instance.Player.SaveQuestionIdx = CurrentQuestionIndex;
         GameStateManager.Instance.Save();
     }
 }
