@@ -50,6 +50,7 @@ public class QuestionExplanation : MonoBehaviour {
         if(isCorrectExplanation) {
              // #92 : 経過時間表示の対応
             var ElapsedTimeSec = PlayerPrefs.GetFloat("ElapsedTimeSec");
+            var isBestTime = PlayerPrefs.GetInt("IsBestTime") != 0;
             var times = DateTimeUtils.ConvertSecToHHMMSS(ElapsedTimeSec);
             string text;
             if(times[0] == 0) {
@@ -58,6 +59,11 @@ public class QuestionExplanation : MonoBehaviour {
                 text = $"{times[0]}時間{times[1]}分{times[2]}秒";
             }
             ElapsedTimeText.text = text;
+            if(isBestTime) {
+                BestTimeText.gameObject.SetActive(true);
+            } else {
+                BestTimeText.gameObject.SetActive(false);
+            }
             
             if(RemainQuestionSize > 0) {
                 NextSceneButton.onClick.AddListener(() => {

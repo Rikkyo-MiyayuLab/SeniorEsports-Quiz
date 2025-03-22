@@ -19,6 +19,7 @@ public class UserRegister : MonoBehaviour {
    public TMP_InputField UserNameField;
    public TMP_InputField UserAgeField;
    public TextMeshProUGUI UserNameFieldWarnings;
+   public TextMeshProUGUI DupulicateWarnings;
    [SerializeField]
    public TransitionSettings Transition;
    public float TransitionDuration = 1.0f;
@@ -28,7 +29,8 @@ public class UserRegister : MonoBehaviour {
 
     void Start() {
         TransitionManager = TransitionManager.Instance();
-        UserNameFieldWarnings.gameObject.SetActive(true);
+        UserNameFieldWarnings.gameObject.SetActive(false);
+        DupulicateWarnings.gameObject.SetActive(false);
 
         UserNameField.onSelect.AddListener(ShowKeyboard);
 
@@ -39,9 +41,18 @@ public class UserRegister : MonoBehaviour {
 
     private void RegisterUser() {
         // ユーザー名が入力されている & 既存のユーザー名と重複していないかチェック
-        if (string.IsNullOrEmpty(UserNameField.text) || IsDuplicateUserName(UserNameField.text)) {
+        if (string.IsNullOrEmpty(UserNameField.text)) {
             UserNameFieldWarnings.gameObject.SetActive(true);
             return;
+        } else {
+            UserNameFieldWarnings.gameObject.SetActive(false);
+        }
+
+        if(IsDuplicateUserName(UserNameField.text)) {
+            DupulicateWarnings.gameObject.SetActive(true);
+            return;
+        } else {
+            DupulicateWarnings.gameObject.SetActive(false);
         }
         
         // ユーザー登録処理

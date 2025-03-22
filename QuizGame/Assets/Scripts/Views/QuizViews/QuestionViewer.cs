@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using QuizDataInterface;
 using UtilFuncs;
+using SaveDataInterface;
 
 
 /// <summary>
@@ -155,7 +156,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     private bool SkipQuestionProcess() {
         // カレントの小問indexと大問IDを保存し、あとから再開できるようにする
         // TODO : GameStateManagerを介した処理に換装すること
-        var uuid = PlayerPrefs.GetString("PlayerUUID");
+        var uuid = GameStateManager.Instance.Player.PlayerUUID;
         var quizId = PlayerPrefs.GetString("QuizPath");
         var questionId = CurrentQuestionData.questionId;
         var qiestionIdx = CurrentQuestionIndex;
@@ -202,12 +203,26 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     /// <param name="isCorrect"></param>
     protected void QuestionAnswered(bool isCorrect) {
         var playerData = GameStateManager.Instance.Player;
-        //TODO : questionIDは問題識別もかねて手動設定値なため意図しない上書きが発生する可能性がある。UUIDを別途設定する必要がある。
-        // playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec = elapsedSec; 
-        // 一旦仮組みでPlayerPrefを介してデータを保存する
-        PlayerPrefs.SetFloat("ElapsedTimeSec", elapsedSec);
+    
         // 正解用アイキャッチシーンを表示
         if(isCorrect) {
+            // 一旦仮組みでPlayerPrefを介してデータを保存する
+            PlayerPrefs.SetFloat("ElapsedTimeSec", elapsedSec);
+            //TODO : questionIDは問題識別もかねて手動設定値なため意図しない上書きが発生する可能性がある。UUIDを別途設定する必要がある。
+            if(playerData.UserAnswerData[CurrentQuestionData.questionId] == null) {
+                playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData {
+                    elapsedSec=elapsedSec,
+                });
+            } else {
+                // 前に解いたデータがある場合は比較してタイムを更新している場合はその旨を次のシーンへ通知する
+                if(playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec > elapsedSec) {
+                    playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec = elapsedSec;
+                    PlayerPrefs.SetInt("IsBestTime", 1);
+                } else {
+                    PlayerPrefs.SetInt("IsBestTime", 0);
+                }
+            }
+
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.explanation);
             PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
             PlayerPrefs.SetString("NextStoryId", QuizData.endStory);
