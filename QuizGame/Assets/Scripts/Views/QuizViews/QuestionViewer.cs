@@ -7,6 +7,7 @@ using TMPro;
 using QuizDataInterface;
 using UtilFuncs;
 using SaveDataInterface;
+using EasyTransition;
 
 
 /// <summary>
@@ -40,6 +41,16 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     private Button AllowSkipQuestionBtn;
     [SerializeField]
     private Button CloseSkipQuestionPanelBtn;
+    [SerializeField]
+    private Button SaveQuitePanelDisplayBtn; // 途中保存の確認モーダル表示ボタン
+    [SerializeField]
+    private GameObject SaveQuitePanel; // 途中保存の確認モーダル
+    [SerializeField]
+    private Button SaveQuiteButton; // 途中保存ボタン
+    [SerializeField]
+    private Button CloseSaveQuitePanelButton; // 途中保存モーダルを閉じるボタン
+    [SerializeField]
+    private TransitionSettings quiteTransition;
     private int NextQuestionIdx;
     private float elapsedSec = 0.0f;
 
@@ -60,6 +71,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         CurrentQuestionIndex = PlayerPrefs.GetInt("CurrentQuestionIdx");
         NextQuestionIdx = CurrentQuestionIndex + 1;
         QuizData = DataLoaders.LoadJSON<QuizData>($"{Application.streamingAssetsPath}/{quizPath}");
+
         // ResultModal.gameObject.SetActive(false);
         StartUIPanel.SetActive(false);
         SkipButton.gameObject.SetActive(false);
@@ -93,11 +105,26 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             };
         }
 
+        /** Set Button Event **/
         // あとで解くボタンクリック時の処理
-        // 
         SkipButton.onClick.AddListener(() => {
-           // TODO: 注意書きモーダルの表示
             SkipQuestionPanel.SetActive(true);
+            base.AudioPlayer.PlayOneShot(base.BtnClickSE);
+        });
+
+        // #93 : カレントの問題を途中保存して終了する処理
+        SaveQuitePanelDisplayBtn.onClick.AddListener(() => {
+            SaveQuitePanel.SetActive(true);
+            base.AudioPlayer.PlayOneShot(base.BtnClickSE);
+        });
+
+        SaveQuiteButton.onClick.AddListener(() => {
+            SaveCurrentQuestion();
+            base.AudioPlayer.PlayOneShot(base.BtnClickSE);
+            base.TransitionManager.Transition("Title", quiteTransition, base.TransitionDuration);
+        });
+        CloseSaveQuitePanelButton.onClick.AddListener(() => {
+            SaveQuitePanel.SetActive(false);
             base.AudioPlayer.PlayOneShot(base.BtnClickSE);
         });
 
@@ -246,5 +273,13 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     protected void NextQuestion() {
         CurrentQuestionIndex++;
         Init();
+    }
+
+    /// <summary>
+    /// 現在の問題IDを保存
+    /// </summary>
+    private void SaveCurrentQuestion() {
+        GameStateManager.Instance.Player.SaveQuestionId = CurrentQuestionData.questionId;
+        GameStateManager.Instance.Save();
     }
 }
