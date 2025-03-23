@@ -76,6 +76,13 @@ public class WorldMapView : MonoBehaviour {
    }
 
    private void MoveSavedQuestion(string quizPath, int questionIdx) {
+        
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("DontDestroyOnSceneChange");
+        foreach (var obj in objs) {
+            if (obj!= this.gameObject) {
+                Destroy(obj);
+            }
+        }
         PlayerPrefs.SetString("QuizPath", quizPath);
         PlayerPrefs.SetInt("CurrentQuestionIdx", questionIdx);
         var quizData = DataLoaders.LoadJSON<QuizData>($"{Application.streamingAssetsPath}/{quizPath}");

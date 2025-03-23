@@ -52,21 +52,6 @@ namespace SaveDataInterface {
     }
 
     [Serializable]
-    public enum PlayerPrefKeys {
-        PlayerName,
-        TotalPlayTime,
-        TotalResolvedCount,
-        CurrentWorld,
-        CurrentArea,
-        LastStoryId,
-        LastSceneIdx,
-        UserAge,
-        PlayerUUID,
-        LastPlayDate
-
-    }
-
-    [Serializable]
     public class SkipQuizDataType {
         public string PlayerUUID { get; set; }
         public List<SkipQuestion> SkipQuestions { get; set; }
