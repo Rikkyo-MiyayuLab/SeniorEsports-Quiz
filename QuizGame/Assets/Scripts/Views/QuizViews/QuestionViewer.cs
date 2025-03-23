@@ -249,6 +249,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
                     elapsedSec=elapsedSec,
                     correctCount= 1,
                     wrongCount= 0,
+                    fieldType= CurrentQuestionData.fieldType
                 });
             } else {
                 // 前に解いたデータがある場合は比較してタイムを更新している場合はその旨を次のシーンへ通知する
@@ -269,13 +270,13 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
             SceneManager.LoadScene("AnswerPreview-Correct");
             playerData.TotalResolvedCount++;
-            GameStateManager.Instance.Save();
         } else {
             if(playerData.UserAnswerData.ContainsKey(CurrentQuestionData.questionId) == false) {
                 playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData {
                     elapsedSec=elapsedSec,
                     correctCount= 0,
                     wrongCount= 1,
+                    fieldType= CurrentQuestionData.fieldType
                 });
             } else {
                 playerData.UserAnswerData[CurrentQuestionData.questionId].wrongCount++;

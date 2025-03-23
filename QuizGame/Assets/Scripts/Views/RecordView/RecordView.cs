@@ -46,6 +46,7 @@ public class RecordManager : MonoBehaviour {
         CureentAreaName.text = areaName;
 
         //あとでスキップした問題を表示する
+        /*
         SkipQuizDataType skipData = SaveDataManager.LoadSkipQuestionDatas(uuid);
         foreach (var data in skipData.SkipQuestions) {
             var btn = Instantiate(SkippedQuestionBtnPref, SkippedWrapper.transform);
@@ -56,6 +57,7 @@ public class RecordManager : MonoBehaviour {
                 //PlayerPrefs.SetString("QuestionId", data.QuestionId);
             });
         }
+        */
         RenderRaderChart();
     }
 
@@ -63,12 +65,12 @@ public class RecordManager : MonoBehaviour {
         var chart = RaderChartObj.GetComponent<RadarChart>();
         // QuestionFieldTypeの定義をもとにSeriesを作成
         var radarCoord = chart.GetChartComponent<RadarCoord>();
+        var avgCorrectRate = new Dictionary<QuestionFieldType, List<float>>();
         foreach (var fieldType in Enum.GetValues(typeof(QuestionFieldType))) {
             radarCoord.AddIndicator(fieldType.ToString(), 0, 100);
         }
         // 部門別平均正解率を計算
         var questionAnsDatas = playerData.UserAnswerData.Values;
-        var avgCorrectRate = new Dictionary<QuestionFieldType, List<float>>();
         foreach (var ansData in questionAnsDatas) {
             var questionFieldType = ansData.fieldType;
             var totalAnsCount = ansData.correctCount + ansData.wrongCount;
@@ -80,6 +82,14 @@ public class RecordManager : MonoBehaviour {
                 avgCorrectRate[questionFieldType] = new List<float> { correctRate };
             }
         }
+        // 統計の無い部門には0を追加
+        foreach (var fieldType in Enum.GetValues(typeof(QuestionFieldType))) {
+            if (!avgCorrectRate.ContainsKey((QuestionFieldType)fieldType)) {
+                avgCorrectRate[(QuestionFieldType)fieldType] = new List<float> { 0.0f };
+            }
+        }
+
+
         // 部門別平均正解率をグラフに反映
         foreach (var fieldType in avgCorrectRate.Keys) {
             var avgRate = avgCorrectRate[fieldType].Sum() / avgCorrectRate[fieldType].Count;

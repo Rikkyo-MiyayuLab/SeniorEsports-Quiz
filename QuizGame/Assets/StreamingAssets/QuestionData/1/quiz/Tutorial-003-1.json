@@ -45,6 +45,7 @@
     4.2102
   ],
   "questionId": "Tutorial-003-1",
+  "fieldType": 4,
   "bgm": "Audios/調査開始",
   "backgroundImage": "Backgrounds/21772bcd-67b3-44df-b779-23b624fcd41b",
   "questionImage": {
