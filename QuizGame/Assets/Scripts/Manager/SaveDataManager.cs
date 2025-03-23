@@ -35,6 +35,47 @@ public class SaveDataManager : MonoBehaviour {
         return true;
     }
 
+    public static bool DeleteAllUserSlots() {
+        try {
+            if (!File.Exists(filePath)) {
+                return false;
+            }
+            File.Delete(filePath);
+
+            // 成功メッセージ
+            Debug.Log($"{filePath} を削除しました。");
+        } catch (Exception e) {
+            Debug.LogError(e.Message);
+        }
+
+        return true;
+    }
+
+    public static bool DeleteUserSlot(string playerUUID) {
+        try {
+            if (!File.Exists(filePath)) {
+                return false;
+            }
+
+            string[] playerUUIDs = File.ReadAllLines(filePath);
+            List<string> newPlayerUUIDs = new List<string>();
+            foreach (var uuid in playerUUIDs) {
+                if (uuid != playerUUID) {
+                    newPlayerUUIDs.Add(uuid);
+                }
+            }
+
+            File.WriteAllLines(filePath, newPlayerUUIDs);
+
+            // 成功メッセージ
+            Debug.Log($"UUID: {playerUUID} を {filePath} から削除しました。");
+        } catch (Exception e) {
+            Debug.LogError(e.Message);
+        }
+
+        return true;
+    }
+
     /// <summary>
     /// 「あとで解く」を選択した時の、設問位置情報を保存する
     /// </summary>
@@ -124,16 +165,31 @@ public class SaveDataManager : MonoBehaviour {
     /// <param name="playerUUID"></param>
     public static PlayerData LoadPlayerData(string playerUUID) {
         PlayerData playerData = new PlayerData();
-        playerData.PlayerUUID = playerUUID;
-        playerData.PlayerName = PlayerPrefs.GetString(playerUUID + PlayerPrefKeys.PlayerName.ToString());
-        playerData.TotalPlayTime = PlayerPrefs.GetFloat(playerUUID + PlayerPrefKeys.TotalPlayTime.ToString());
-        playerData.TotalResolvedCount = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.TotalResolvedCount.ToString());
-        playerData.CurrentWorld = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.CurrentWorld.ToString());
-        playerData.CurrentArea = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.CurrentArea.ToString());
-        playerData.LastStoryId = PlayerPrefs.GetString(playerUUID + PlayerPrefKeys.LastStoryId.ToString());
-        playerData.UserAge = PlayerPrefs.GetInt(playerUUID + PlayerPrefKeys.UserAge.ToString());
+        var fields = typeof(PlayerData).GetFields();
+
+        foreach (var field in fields) {
+            var key = playerUUID + field.Name;
+            var fieldType = field.FieldType;
+            Debug.Log($"key: {key}, fieldType: {fieldType}");
+
+            if (fieldType == typeof(int)) {
+                field.SetValue(playerData, PlayerPrefs.GetInt(key));
+            } else if (fieldType == typeof(float)) {
+                field.SetValue(playerData, PlayerPrefs.GetFloat(key));
+            } else if (fieldType == typeof(string)) {
+                field.SetValue(playerData, PlayerPrefs.GetString(key));
+            } else {
+                string json = PlayerPrefs.GetString(key);
+                if (!string.IsNullOrEmpty(json)) {
+                    object obj = JsonConvert.DeserializeObject(json, fieldType);
+                    field.SetValue(playerData, obj);
+                }
+            }
+        }
+
         return playerData;
     }
+
 
     /// <summary>
     /// PlayerPrefに指定のUUIDのプレイヤーデータを保存する
@@ -143,16 +199,40 @@ public class SaveDataManager : MonoBehaviour {
     /// <param name="playerData"></param>
     /// <returns></returns>
     public static bool SavePlayerData(string playerUUID, PlayerData playerData) {
-        PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.PlayerUUID.ToString(), playerData.PlayerUUID);
-        PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.PlayerName.ToString(), playerData.PlayerName);
-        PlayerPrefs.SetFloat(playerUUID + PlayerPrefKeys.TotalPlayTime.ToString(), playerData.TotalPlayTime);
-        PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.TotalResolvedCount.ToString(), playerData.TotalResolvedCount);
-        PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.CurrentArea.ToString(), playerData.CurrentArea);
-        PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.CurrentWorld.ToString(), playerData.CurrentWorld);
-        PlayerPrefs.SetString(playerUUID + PlayerPrefKeys.LastStoryId.ToString(), playerData.LastStoryId);
-        PlayerPrefs.SetInt(playerUUID + PlayerPrefKeys.UserAge.ToString(), playerData.UserAge);
+        var fields = typeof(PlayerData).GetFields();
+        foreach (var field in fields) {
+            var key = playerUUID + field.Name;
+            var value = field.GetValue(playerData);
+
+            if (value is int intValue) {
+                PlayerPrefs.SetInt(key, intValue);
+            } else if (value is float floatValue) {
+                PlayerPrefs.SetFloat(key, floatValue);
+            } else if (value is string strValue) {
+                PlayerPrefs.SetString(key, strValue);
+            } else {
+                // Dictionaryなどの複雑な型はJSONとして保存
+                string json = JsonConvert.SerializeObject(value);
+                PlayerPrefs.SetString(key, json);
+            }
+        }
+        PlayerPrefs.Save();
         return true;
     }
+
+    /// <summary>
+    /// 指定のプレイヤーデータを削除する
+    /// </summary>
+    public static void DeletePlayer(string playerUUID) {
+        var fields = typeof(PlayerData).GetFields();
+        foreach (var field in fields) {
+            var key = playerUUID + field.Name;
+            PlayerPrefs.DeleteKey(key);
+        }
+        PlayerPrefs.Save();
+        DeleteUserSlot(playerUUID);
+    }
+
 
     /// <summary>
     /// マシンに登録されている全てのプレイヤーデータを取得する
@@ -160,6 +240,9 @@ public class SaveDataManager : MonoBehaviour {
     /// <returns></returns>
     public static List<PlayerData> GetAllPlayers() {
         List<PlayerData> playerDatas = new List<PlayerData>();
+        if (!File.Exists(filePath)) {
+            return playerDatas;
+        }
         string[] playerUUIDs = File.ReadAllLines(filePath);
         foreach (var playerUUID in playerUUIDs) {
             playerDatas.Add(LoadPlayerData(playerUUID));

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.IO;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -16,6 +16,7 @@ public class SaveSlotView : MonoBehaviour {
     public List<PlayerData> PlayerDatas;
     public Transform SlotContainer;
     public Button LoadButton;
+    public Button DeleteSlotButton;
     public TransitionSettings Transition;
     public float TransitionDuration;
     public List<GameObject> MapPins;
@@ -28,6 +29,7 @@ public class SaveSlotView : MonoBehaviour {
         LoadButton.gameObject.SetActive(false);
         LoadButton.interactable = false;
         LoadButton.onClick.AddListener(() => OnMoveNext());
+        DeleteSlotButton.onClick.AddListener(() => SaveDataManager.DeleteAllUserSlots());
         TransitionManager = TransitionManager.Instance();
         PlayerDatas = new List<PlayerData>();
         MapData = DataLoaders.LoadJSON<List<AreaData>>($"{Application.streamingAssetsPath}/{MapDefFilename}.json");
@@ -47,13 +49,13 @@ public class SaveSlotView : MonoBehaviour {
         foreach (var playerData in PlayerDatas) {
             var slot = Instantiate(SlotPrefab, SlotContainer);
             var slotData = slot.GetComponent<SlotData>();
-            slotData.data.PlayerUUID = playerData.PlayerUUID;
-            slotData.data.PlayerName = playerData.PlayerName;
-            slotData.data.LastPlayDate = playerData.LastPlayDate;
-            slotData.data.TotalPlayTime = playerData.TotalPlayTime;
-            slotData.data.TotalResolvedCount = playerData.TotalResolvedCount;
-            slotData.data.CurrentWorld = playerData.CurrentWorld;
-            slotData.data.CurrentArea = playerData.CurrentArea;
+
+            // リフレクションを使用してPlayerDataのプロパティを設定
+            var fields = typeof(PlayerData).GetFields();
+            foreach (var field in fields) {
+                field.SetValue(slotData.data, field.GetValue(playerData));
+            }
+            
             // 各Text要素を取得し、PlayerDataの情報を表示
             slot.transform.Find("UserName").GetComponent<TextMeshProUGUI>().text = playerData.PlayerName;
             slot.transform.Find("LastPlayedDate").GetComponent<TextMeshProUGUI>().text = playerData.LastPlayDate;
@@ -108,7 +110,17 @@ public class SaveSlotView : MonoBehaviour {
     private void OnMoveNext() {
         var playerUUID = selectedSlot.GetComponent<SlotData>().data.PlayerUUID;
         GameStateManager.Instance.Player = SaveDataManager.LoadPlayerData(playerUUID);
-
+        Debug.Log(GameStateManager.Instance.Player.SaveQuizPath);
         TransitionManager.Transition("WorldMap", Transition, TransitionDuration);
+    }
+
+    private void OnDeleteSlot() {
+        var playerUUID = selectedSlot.GetComponent<SlotData>().data.PlayerUUID;
+        Debug.Log("Delete Slot: " + playerUUID);
+        SaveDataManager.DeletePlayer(playerUUID);
+        Destroy(selectedSlot);
+        selectedSlot = null;
+        LoadButton.interactable = false;
+        LoadButton.gameObject.SetActive(false);
     }
 }

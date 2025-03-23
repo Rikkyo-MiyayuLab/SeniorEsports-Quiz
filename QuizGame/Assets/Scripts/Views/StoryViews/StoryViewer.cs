@@ -118,7 +118,7 @@ public class StoryViewer : Viewer {
         if (Input.GetMouseButtonDown(0)) {
             if (dialogueBox.isTextRendering) {
                 // テキストを一括表示して、レンダリングを終了
-                dialogueBox.ForceRender(fullDialogueText);
+                dialogueBox.ForceRender();
             } else if (isWaitingForClick) {
                 isWaitingForClick = false;
                 EnterTextIcon.SetActive(false);
@@ -177,8 +177,7 @@ public class StoryViewer : Viewer {
             } else if (storyType == StoryType.Explanation) {
                 // エリア画面へ戻る
                 // ここのストーリモードの時は、問題正解後の解説、つまり正解後のエリア遷移を行うので、セーブデータを更新する
-                string playerUUID = PlayerPrefs.GetString("PlayerUUID");
-                var playerData = SaveDataManager.LoadPlayerData(playerUUID);
+                var playerData = GameStateManager.Instance.Player;
                 // プレイヤー位置を更新
                 if(playerData.CurrentWorld == data.NextWorldIdx) {
                     playerData.CurrentWorld = data.NextWorldIdx;
@@ -191,7 +190,7 @@ public class StoryViewer : Viewer {
                     playerData.CurrentArea = data.NextAreaIdx;
                     playerData.LastStoryId = data.StoryId;
                 }
-                SaveDataManager.SavePlayerData(playerUUID, playerData);
+                GameStateManager.Instance.Save();
                 string area = Area.SceneNames[playerData.CurrentWorld];
                 base.TransitionManager.Transition(area, Transition, TransitionDuration);
             }

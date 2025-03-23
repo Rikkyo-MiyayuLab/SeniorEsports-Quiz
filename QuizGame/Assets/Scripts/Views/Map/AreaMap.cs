@@ -33,7 +33,6 @@ public class AreaMap : MonoBehaviour
         // スプライトを事前にキャッシュしておく
         statusIconCurrent = Resources.Load<Sprite>("System/nazo_icon");
         statusIconLocked = Resources.Load<Sprite>("System/lock_icon");
-        GameStateManager.Instance.Player = SaveDataManager.LoadPlayerData(PlayerPrefs.GetString("PlayerUUID"));
 
         CurrentWorldIdx = GameStateManager.Instance.Player.CurrentWorld;
         CurrentAreaIdx = GameStateManager.Instance.Player.CurrentArea;

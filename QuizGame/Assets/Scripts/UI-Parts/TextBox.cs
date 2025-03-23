@@ -27,6 +27,7 @@ public class TextBox : MonoBehaviour {
     [HideInInspector]
     public AudioSource RenderSoundPlayer;
     private Coroutine renderingCoroutine;
+    private string allText;
 
 
     private void Awake() {
@@ -43,10 +44,15 @@ public class TextBox : MonoBehaviour {
     /// <param name="text">表示したいテキスト全文</param>
     /// <param name="textSpeed">テキストの表示速度</param>
     public void Render(string text, float textSpeed) {
+        allText = text;
         renderingCoroutine = StartCoroutine(ProgressTextCoroutine(text, textSpeed));
     }
 
-    public void ForceRender(string text) {
+    public void ForceRender(string text=null) {
+        if(text == null) {
+            text = allText;
+        }
+        
         OnStartRendering?.Invoke();
         isTextRendering = true;
         StopCoroutine(renderingCoroutine);

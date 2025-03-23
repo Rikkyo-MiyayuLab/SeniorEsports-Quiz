@@ -41,6 +41,14 @@ namespace SaveDataInterface {
         /// </summary>
         public string LastPlayDate;
         public Dictionary<string, UserAnswerData> UserAnswerData;
+        /// <summary>
+        /// 途中保存した大問パス
+        /// </summary>
+        public string SaveQuizPath;
+        /// <summary>
+        /// 途中保存した小問インデックス
+        /// </summary>
+        public int SaveQuestionIdx;
     }
 
     [Serializable]

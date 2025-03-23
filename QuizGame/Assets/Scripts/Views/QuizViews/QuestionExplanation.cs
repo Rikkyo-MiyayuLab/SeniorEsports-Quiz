@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using EasyTransition;
+using UtilFuncs;
+/// <summary>
+/// 回答解説画面のビュー
+/// </summary>
 
 public class QuestionExplanation : MonoBehaviour {
     
@@ -16,6 +20,8 @@ public class QuestionExplanation : MonoBehaviour {
     public TransitionSettings transition;
     public float transitionDuration = 1.0f;
     public bool isCorrectExplanation = true;
+    public TextMeshProUGUI ElapsedTimeText;
+    public TextMeshProUGUI BestTimeText;
     private TransitionManager transitionManager;
     private AudioSource audioSource;
 
@@ -28,9 +34,8 @@ public class QuestionExplanation : MonoBehaviour {
         var BeforeViewer = PlayerPrefs.GetString("CurrentViewer");
         var RemainQuestionSize = PlayerPrefs.GetInt("RemainQuestionSize");
         var CurrentQuestionIdx = PlayerPrefs.GetInt("CurrentQuestionIdx");
+        
         var NextQuestionIdx = CurrentQuestionIdx + 1; // NOTE : issue-#78 : リスナーが２回実行されるので,次問遷移後のインデックスが狂う問題の対処。
-        Debug.Log("RemainQuestionSize: " + RemainQuestionSize);
-        PlayerPrefs.Save();
         audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(TypeText(explanation));
@@ -43,6 +48,23 @@ public class QuestionExplanation : MonoBehaviour {
         }
 
         if(isCorrectExplanation) {
+             // #92 : 経過時間表示の対応
+            var ElapsedTimeSec = PlayerPrefs.GetFloat("ElapsedTimeSec");
+            var isBestTime = PlayerPrefs.GetInt("IsBestTime") != 0;
+            var times = DateTimeUtils.ConvertSecToHHMMSS(ElapsedTimeSec);
+            string text;
+            if(times[0] == 0) {
+                text = $"{times[1]}分{times[2]}秒";
+            } else {
+                text = $"{times[0]}時間{times[1]}分{times[2]}秒";
+            }
+            ElapsedTimeText.text = text;
+            if(isBestTime) {
+                BestTimeText.gameObject.SetActive(true);
+            } else {
+                BestTimeText.gameObject.SetActive(false);
+            }
+            
             if(RemainQuestionSize > 0) {
                 NextSceneButton.onClick.AddListener(() => {
                     audioSource.PlayOneShot(BtnSE);
@@ -78,4 +100,6 @@ public class QuestionExplanation : MonoBehaviour {
             yield return new WaitForSeconds(typingSpeed);  // 指定した時間待つ
         }
     }
+
+
 }

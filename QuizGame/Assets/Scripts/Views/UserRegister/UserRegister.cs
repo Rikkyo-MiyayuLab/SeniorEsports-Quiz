@@ -19,6 +19,7 @@ public class UserRegister : MonoBehaviour {
    public TMP_InputField UserNameField;
    public TMP_InputField UserAgeField;
    public TextMeshProUGUI UserNameFieldWarnings;
+   public TextMeshProUGUI DupulicateWarnings;
    [SerializeField]
    public TransitionSettings Transition;
    public float TransitionDuration = 1.0f;
@@ -28,7 +29,8 @@ public class UserRegister : MonoBehaviour {
 
     void Start() {
         TransitionManager = TransitionManager.Instance();
-        UserNameFieldWarnings.gameObject.SetActive(true);
+        UserNameFieldWarnings.gameObject.SetActive(false);
+        DupulicateWarnings.gameObject.SetActive(false);
 
         UserNameField.onSelect.AddListener(ShowKeyboard);
 
@@ -39,25 +41,37 @@ public class UserRegister : MonoBehaviour {
 
     private void RegisterUser() {
         // ユーザー名が入力されている & 既存のユーザー名と重複していないかチェック
-        if (string.IsNullOrEmpty(UserNameField.text) || IsDuplicateUserName(UserNameField.text)) {
+        if (string.IsNullOrEmpty(UserNameField.text)) {
             UserNameFieldWarnings.gameObject.SetActive(true);
             return;
+        } else {
+            UserNameFieldWarnings.gameObject.SetActive(false);
+        }
+
+        if(IsDuplicateUserName(UserNameField.text)) {
+            DupulicateWarnings.gameObject.SetActive(true);
+            return;
+        } else {
+            DupulicateWarnings.gameObject.SetActive(false);
         }
         
         // ユーザー登録処理
-        PlayerData playerData = new PlayerData();
+        var playerData = new PlayerData();
         playerData.PlayerName = UserNameField.text;
-        //playerData.UserAge = int.Parse(UserAgeField.text);
         playerData.PlayerUUID = Guid.NewGuid().ToString();
+        playerData.UserAnswerData = new Dictionary<string, UserAnswerData>();
+        playerData.LastPlayDate = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+        playerData.TotalPlayTime = 0;
+        playerData.TotalResolvedCount = 0;
+        playerData.CurrentWorld = 0;
+        playerData.CurrentArea = 0;
+        GameStateManager.Instance.Player = playerData;
 
         // ユーザーデータを保存
-        SaveDataManager.SavePlayerData(playerData.PlayerUUID, playerData);
         SaveDataManager.CreateUserSlot(playerData.PlayerUUID);
+        GameStateManager.Instance.Save();
         // 初回はワールドマップ遷移時にUUIDを伝達させる。
-        // TODO : GameStateManagerを介した処理に換装すること
-        GameStateManager.Instance.Player = playerData;
         PlayerPrefs.SetInt("FirstTime", 1);
-
         PlayerPrefs.SetInt("isFirstUser", 1);
         PlayerPrefs.SetString("StoryId", "Tutorial-001");
         TransitionManager.Transition(NextSceneName, Transition, TransitionDuration);
@@ -95,7 +109,6 @@ public class UserRegister : MonoBehaviour {
 
     private void OnDestroy() {
         UserNameField.onSelect.RemoveListener(ShowKeyboard);
-        UserAgeField.onSelect.RemoveListener(ShowKeyboard);
     }
 
     /// <summary>
