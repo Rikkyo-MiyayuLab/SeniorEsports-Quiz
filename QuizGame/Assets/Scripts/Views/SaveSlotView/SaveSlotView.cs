@@ -60,7 +60,8 @@ public class SaveSlotView : MonoBehaviour {
             
             // 各Text要素を取得し、PlayerDataの情報を表示
             slot.transform.Find("UserName").GetComponent<TextMeshProUGUI>().text = playerData.PlayerName;
-            slot.transform.Find("LastPlayedDate").GetComponent<TextMeshProUGUI>().text = playerData.LastPlayDate;
+            // YY-MM-DD hh:mm:ss の形式のうち、YY-MM-DDの部分を取得して表示
+            slot.transform.Find("LastPlayedDate").GetComponent<TextMeshProUGUI>().text = playerData.LastPlayDate.Split(' ')[0];
             // TotalPlayTimeはsecなので、日時間分に変換
             int[] timeParts = DateTimeUtils.ConvertSecToHHMMSS(playerData.TotalPlayTime);
             slot.transform.Find("TotalPlayTime").GetComponent<TextMeshProUGUI>().text = $"{timeParts[0]}時間{timeParts[1]}分{timeParts[2]}秒";
