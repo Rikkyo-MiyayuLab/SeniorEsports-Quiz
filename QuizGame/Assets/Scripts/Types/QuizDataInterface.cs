@@ -38,6 +38,7 @@ namespace QuizDataInterface {
     public abstract class BaseQuestion : IQuestion
     {
         public string questionId; // 問題ID
+        public QuestionFieldType fieldType; // 問題の種類
         public string bgm; // BGM
         public string backgroundImage; // 背景画像
         public string explanation; // 解答解説
@@ -57,5 +58,31 @@ namespace QuizDataInterface {
         string ExplanationImage { get; }
         string[] Hints { get; }
         string QuestionId { get; }
+    }
+
+    /// <summary>
+    /// 小問の問題別領域タイプ
+    /// </summary>
+    public enum QuestionFieldType {
+        /// <summary>
+        /// 記憶力
+        /// </summary>
+        Memory,
+        /// <summary>
+        /// 注意力
+        /// </summary>
+        Attention,
+        /// <summary>
+        /// 計算力
+        /// </summary>
+        Calculation,
+        /// <summary>
+        /// 知識力
+        /// </summary>
+        Knowledge,
+        /// <summary>
+        /// 想像力
+        /// </summary>
+        Imagination
     }
 }

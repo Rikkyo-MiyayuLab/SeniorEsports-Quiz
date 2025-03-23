@@ -1,6 +1,6 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
+using QuizDataInterface;
 
 namespace SaveDataInterface {
 
@@ -52,21 +52,6 @@ namespace SaveDataInterface {
     }
 
     [Serializable]
-    public enum PlayerPrefKeys {
-        PlayerName,
-        TotalPlayTime,
-        TotalResolvedCount,
-        CurrentWorld,
-        CurrentArea,
-        LastStoryId,
-        LastSceneIdx,
-        UserAge,
-        PlayerUUID,
-        LastPlayDate
-
-    }
-
-    [Serializable]
     public class SkipQuizDataType {
         public string PlayerUUID { get; set; }
         public List<SkipQuestion> SkipQuestions { get; set; }
@@ -90,6 +75,19 @@ namespace SaveDataInterface {
         /// 経過時間（秒）
         /// </summary>
         public float elapsedSec;
+        /// <summary>
+        /// 全回答数の内、正解した回答数
+        /// </summary>
+        public int correctCount;
+        /// <summary>
+        /// 全回答数の内、不正解だった回答数
+        /// </summary>
+        public int wrongCount;
+        /// <summary>
+        /// 問題のタイプ（記憶力, 注意力, 想像力, 知識力,計算力）
+        /// </summary>
+        public QuestionFieldType fieldType;
+        
     }
 }
 

@@ -51,6 +51,7 @@
     }
   ],
   "questionId": "Tutorial-001-2",
+  "fieldType": 0,
   "bgm": "Audios/zanzou no hiyu",
   "row": 2,
   "column": 4,

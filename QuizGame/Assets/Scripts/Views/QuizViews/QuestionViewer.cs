@@ -247,9 +247,13 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             if(playerData.UserAnswerData.ContainsKey(CurrentQuestionData.questionId) == false) {
                 playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData {
                     elapsedSec=elapsedSec,
+                    correctCount= 1,
+                    wrongCount= 0,
+                    fieldType= CurrentQuestionData.fieldType
                 });
             } else {
                 // 前に解いたデータがある場合は比較してタイムを更新している場合はその旨を次のシーンへ通知する
+                playerData.UserAnswerData[CurrentQuestionData.questionId].correctCount++;
                 if(playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec > elapsedSec) {
                     playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec = elapsedSec;
                     PlayerPrefs.SetInt("IsBestTime", 1);
@@ -257,7 +261,6 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
                     PlayerPrefs.SetInt("IsBestTime", 0);
                 }
             }
-
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.explanation);
             PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
             PlayerPrefs.SetString("NextStoryId", QuizData.endStory);
@@ -267,8 +270,17 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
             SceneManager.LoadScene("AnswerPreview-Correct");
             playerData.TotalResolvedCount++;
-            GameStateManager.Instance.Save();
         } else {
+            if(playerData.UserAnswerData.ContainsKey(CurrentQuestionData.questionId) == false) {
+                playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData {
+                    elapsedSec=elapsedSec,
+                    correctCount= 0,
+                    wrongCount= 1,
+                    fieldType= CurrentQuestionData.fieldType
+                });
+            } else {
+                playerData.UserAnswerData[CurrentQuestionData.questionId].wrongCount++;
+            }
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.hints[0]);
             PlayerPrefs.SetString("ExplanationImage", null);
             PlayerPrefs.SetString("CurrentViewer", SceneManager.GetActiveScene().name);
@@ -276,6 +288,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
             SceneManager.LoadScene("AnswerPreview-Incorrect");
         }
+        GameStateManager.Instance.Save();
     }
 
     protected void NextQuestion() {

@@ -17,6 +17,7 @@ public class SaveSlotView : MonoBehaviour {
     public Transform SlotContainer;
     public Button LoadButton;
     public Button DeleteSlotButton;
+    public Button UserRecordButton;
     public TransitionSettings Transition;
     public float TransitionDuration;
     public List<GameObject> MapPins;
@@ -28,7 +29,8 @@ public class SaveSlotView : MonoBehaviour {
     void Start() {
         LoadButton.gameObject.SetActive(false);
         LoadButton.interactable = false;
-        LoadButton.onClick.AddListener(() => OnMoveNext());
+        LoadButton.onClick.AddListener(() => Move2WorldMap());
+        UserRecordButton.onClick.AddListener(() => Move2Scoreboard());
         DeleteSlotButton.onClick.AddListener(() => SaveDataManager.DeleteAllUserSlots());
         TransitionManager = TransitionManager.Instance();
         PlayerDatas = new List<PlayerData>();
@@ -107,11 +109,16 @@ public class SaveSlotView : MonoBehaviour {
         }
     }
 
-    private void OnMoveNext() {
+    private void Move2WorldMap() {
         var playerUUID = selectedSlot.GetComponent<SlotData>().data.PlayerUUID;
         GameStateManager.Instance.Player = SaveDataManager.LoadPlayerData(playerUUID);
-        Debug.Log(GameStateManager.Instance.Player.SaveQuizPath);
         TransitionManager.Transition("WorldMap", Transition, TransitionDuration);
+    }
+
+    private void Move2Scoreboard() {
+        var playerUUID = selectedSlot.GetComponent<SlotData>().data.PlayerUUID;
+        GameStateManager.Instance.Player = SaveDataManager.LoadPlayerData(playerUUID);
+        TransitionManager.Transition("RecordTable", Transition, TransitionDuration);
     }
 
     private void OnDeleteSlot() {
