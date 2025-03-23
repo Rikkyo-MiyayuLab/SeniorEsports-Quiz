@@ -12,23 +12,7 @@
           "ImageSrc": "Charactors/20200517_boy",
           "ImageGUID": "",
           "Position": 0,
-          "Dialogue": "先生！。新しい依頼が来てましたよ！。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "",
-      "Characters": [
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "ほぉ。どれどれ..."
+          "Dialogue": "先生、新しい依頼です！"
         }
       ],
       "TextDisplayMode": 0,
@@ -44,7 +28,7 @@
           "ImageSrc": "Charactors/20181204_elder-male",
           "ImageGUID": "",
           "Position": 0,
-          "Dialogue": "依頼主の名前は、アンジェリーナ・デュヴァルという女性か....。"
+          "Dialogue": "依頼主はアンジェリーナ・デュヴァル。失った記憶を取り戻したいらしい。"
         }
       ],
       "TextDisplayMode": 0,
@@ -60,23 +44,7 @@
           "ImageSrc": "Charactors/20181204_elder-male",
           "ImageGUID": "",
           "Position": 0,
-          "Dialogue": "彼女はどうやら、何か大切な記憶を失っているようで、その記憶を取り戻すための手伝いをしてほしいそうだね。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "Audios/mizu no doukutu",
-      "Characters": [
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "この”記憶の館”ってなんでしょうか...？"
+          "Dialogue": "“記憶の館”について、ジェラルド・ホワイトという男が知っているらしい。"
         }
       ],
       "TextDisplayMode": 0,
@@ -92,141 +60,13 @@
           "ImageSrc": "Charactors/20181204_elder-male",
           "ImageGUID": "",
           "Position": 0,
-          "Dialogue": "さぁ、私もこれまで数多くの謎を解いてきたが、\"記憶の館\"なんて聞いたことがないな..."
+          "Dialogue": "彼の記録を探すため、倉庫にある名簿を調べてくれ。扉にはクイズの仕掛けがあるから気をつけてな。"
         }
       ],
       "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "Audios/mizu no doukutu",
-      "Characters": [
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "”記憶の館”...名前からして不気味な感じがしますね。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "Audios/mizu no doukutu",
-      "Characters": [
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "この手紙によれば、ジェラルド・ホワイトという人物が”記憶の館”の事を知っているらしい。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "Audios/mizu no doukutu",
-      "Characters": [
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "まずは、その人物を探すことから始めようか。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "Audios/mizu no doukutu",
-      "Characters": [
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "探すって....一体どこから探し出すんですか？"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "Audios/mizu no doukutu",
-      "Characters": [
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "これまでの依頼の中に彼の名前が出てくるかもしれない。エリザ、すまないが倉庫から依頼名簿を撮ってきてくれないか？"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "Audios/mizu no doukutu",
-      "Characters": [
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "はい。分かりました先生。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "Audios/mizu no doukutu",
-      "Characters": [
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "倉庫には鍵がかかっていて、扉を開けるにはいくつかのクイズに正解しないといけない仕掛けになっているから、気を付けてくれ。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-09-28-20.38",
-      "audio": "Audios/mizu no doukutu",
-      "Characters": [
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "倉庫には鍵がかかっていて、扉を開けるにはいくつかのクイズに正解しないといけない仕掛けになっているから、気を付けてくれ。"
-        }
-      ],
-      "TextDisplayMode": 1,
-      "Narration": "エリザは、倉庫に過去の依頼内容を調べに向かった。",
+      "Narration": "こうして、エリザの最初の調査が始まった。",
       "NarrationDisplayMode": 0
-    },
+    }, 
     {
       "Background": "Backgrounds/DALL·E-2024-09-29-18.44.17-An-anime-style-illustration-of-a-detective-office-storage-room",
       "audio": "Audios/mizu no doukutu",
