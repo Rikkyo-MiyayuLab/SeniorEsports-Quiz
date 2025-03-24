@@ -21,11 +21,7 @@ public class TutorialViewer : MonoBehaviour {
         }
 
         var playerData = GameStateManager.Instance.Player;
-
-        // ワールドマップが0 && エリアマップが0の場合は初回ユーザーとみなす
-        bool isFirstUser = playerData.CurrentWorld == 0 && playerData.CurrentArea == 0 && !string.IsNullOrEmpty(playerData.SaveQuizPath);
-        //string current
-        if (isFirstUser) {
+        if (playerData.isFirstUser) {
             Parent.gameObject.SetActive(true);
             StartCoroutine(ShowTutorial(CurrentTutorialIndex));
             foreach(Button btn in inactivateButtons) {

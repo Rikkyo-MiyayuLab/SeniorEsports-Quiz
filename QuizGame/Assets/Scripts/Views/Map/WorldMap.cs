@@ -62,7 +62,7 @@ public class WorldMapView : MonoBehaviour {
         }
 
         // #93 : 途中保存した問題がある場合、途中から再開するか確認するモーダルを表示
-        var hasSaveQuestion = !string.IsNullOrEmpty(GameStateManager.Instance.Player.SaveQuizPath);
+        var hasSaveQuestion = GameStateManager.Instance.Player.SaveQuizPath != null;
         if (hasSaveQuestion) {
             SaveQuitePanel.SetActive(true);
         }

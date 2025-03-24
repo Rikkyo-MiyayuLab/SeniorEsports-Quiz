@@ -113,6 +113,8 @@ public class SaveSlotView : MonoBehaviour {
     private void Move2WorldMap() {
         var playerUUID = selectedSlot.GetComponent<SlotData>().data.PlayerUUID;
         GameStateManager.Instance.Player = SaveDataManager.LoadPlayerData(playerUUID);
+        GameStateManager.Instance.Player.isFirstUser = false;
+        GameStateManager.Instance.Player.SaveQuizPath = GameStateManager.Instance.Player.SaveQuizPath == "null" ? null : GameStateManager.Instance.Player.SaveQuizPath;
         TransitionManager.Transition("WorldMap", Transition, TransitionDuration);
     }
 

@@ -20,12 +20,8 @@ public class WorlddMapTutorial : MonoBehaviour {
 
     void Start() {
 
-        // 初回ユーザーか否かを判定
-        // TODO : GameStateManagerから初回ユーザーか否かを判定
         var playerData = GameStateManager.Instance.Player;
-        // ワールドマップが0 && エリアマップが0の場合は初回ユーザーとみなす
-        bool isFirstUser = playerData.CurrentWorld == 0 && playerData.CurrentArea == 0 && !string.IsNullOrEmpty(playerData.SaveQuizPath);
-        if (isFirstUser) {
+        if (playerData.isFirstUser) {
             SavedQuestionModal.SetActive(false);
             StartCoroutine(ShowFirstTutorial());
             foreach(Button btn in inactivateButtons) {

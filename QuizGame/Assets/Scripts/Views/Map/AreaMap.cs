@@ -12,6 +12,7 @@ public class AreaMap : MonoBehaviour
     public float TransitionDuration = 0.5f;
     public GameObject BetaNotice;
     public Button BetaNoticeCloseButton;
+    public Button BackBtn;
     private int CurrentAreaIdx;
     private int CurrentWorldIdx;
     private TransitionManager TransitionManager;
