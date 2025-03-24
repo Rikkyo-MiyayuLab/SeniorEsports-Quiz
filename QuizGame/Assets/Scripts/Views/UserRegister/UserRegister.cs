@@ -65,6 +65,7 @@ public class UserRegister : MonoBehaviour {
         playerData.TotalResolvedCount = 0;
         playerData.CurrentWorld = 0;
         playerData.CurrentArea = 0;
+        playerData.isFirstUser = true;
         GameStateManager.Instance.Player = playerData;
 
         // ユーザーデータを保存

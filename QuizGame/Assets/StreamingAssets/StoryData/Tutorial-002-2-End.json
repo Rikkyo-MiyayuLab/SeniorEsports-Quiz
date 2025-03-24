@@ -35,96 +35,6 @@
     },
     {
       "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
-      "audio": "Audios/City_Ambi-Street02-1",
-      "Characters": [
-        {
-          "Name": "ご婦人",
-          "ImageSrc": "Charactors/20200716_elder-female",
-          "ImageGUID": "",
-          "Position": 1,
-          "Dialogue": ""
-        },
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 3,
-          "Dialogue": ""
-        },
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "やっとかー。。。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
-      "audio": "Audios/City_Ambi-Street02-1",
-      "Characters": [
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": ""
-        },
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 3,
-          "Dialogue": ""
-        },
-        {
-          "Name": "ご婦人",
-          "ImageSrc": "Charactors/20200716_elder-female",
-          "ImageGUID": "",
-          "Position": 1,
-          "Dialogue": "昔、この街にはたくさんの秘密があったのよ。この地図に描かれた場所、全部が記憶に残っているわけじゃないけれど…いくつか見覚えがあるわ。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
-      "audio": "Audios/City_Ambi-Street02-1",
-      "Characters": [
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": ""
-        },
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 3,
-          "Dialogue": ""
-        },
-        {
-          "Name": "ご婦人",
-          "ImageSrc": "Charactors/20200716_elder-female",
-          "ImageGUID": "",
-          "Position": 1,
-          "Dialogue": "昔、この街には『感覚の街』と呼ばれる場所があったわね。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
       "audio": "Audios/Social Documentary05",
       "Characters": [
         {
@@ -146,7 +56,7 @@
           "ImageSrc": "Charactors/20200517_boy",
           "ImageGUID": "",
           "Position": 0,
-          "Dialogue": "『感覚の街』…どんな場所だったのですか？"
+          "Dialogue": "ありがとうございます！。この、『感覚の街』…どんな場所だったのですか？"
         }
       ],
       "TextDisplayMode": 0,
@@ -176,67 +86,7 @@
           "ImageSrc": "Charactors/20200716_elder-female",
           "ImageGUID": "",
           "Position": 1,
-          "Dialogue": "昔は、そこに行くと芸術家や音楽家が集まり、感性を研ぎ澄ます場所だったの。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
-      "audio": "Audios/Social Documentary05",
-      "Characters": [
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": ""
-        },
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 3,
-          "Dialogue": ""
-        },
-        {
-          "Name": "ご婦人",
-          "ImageSrc": "Charactors/20200716_elder-female",
-          "ImageGUID": "",
-          "Position": 1,
-          "Dialogue": "でも今は、その場所も静かになってしまったわ。『記憶の館』とつながっているという噂もあったけど…。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
-      "audio": "Audios/Social Documentary05",
-      "Characters": [
-        {
-          "Name": "ご婦人",
-          "ImageSrc": "Charactors/20200716_elder-female",
-          "ImageGUID": "",
-          "Position": 1,
-          "Dialogue": ""
-        },
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": ""
-        },
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 3,
-          "Dialogue": "『記憶の館』についてご存知でしたか？何か他にも手がかりになることがあれば、教えていただけませんか？"
+          "Dialogue": "どこかで聞いたことのある名前ね。『記憶の館』とつながっているという噂もあったけど…。"
         }
       ],
       "TextDisplayMode": 0,
@@ -252,6 +102,13 @@
           "ImageSrc": "Charactors/20181204_elder-male",
           "ImageGUID": "",
           "Position": 3,
+          "Dialogue": "街の酒場へ行けば、もっと情報が得られるかもしれない。エリザ行ってみよう。"
+        },
+        {
+          "Name": "ご婦人",
+          "ImageSrc": "Charactors/20200716_elder-female",
+          "ImageGUID": "",
+          "Position": 1,
           "Dialogue": ""
         },
         {
@@ -260,73 +117,6 @@
           "ImageGUID": "",
           "Position": 0,
           "Dialogue": ""
-        },
-        {
-          "Name": "ご婦人",
-          "ImageSrc": "Charactors/20200716_elder-female",
-          "ImageGUID": "",
-          "Position": 1,
-          "Dialogue": "詳しいことは知らないけれど、ある男性がそのことを調べていたって噂ね。最近はこの近くの酒場で彼をみたって懐かしく話している人がいたわ。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
-      "audio": "Audios/Social Documentary05",
-      "Characters": [
-        {
-          "Name": "ご婦人",
-          "ImageSrc": "Charactors/20200716_elder-female",
-          "ImageGUID": "",
-          "Position": 1,
-          "Dialogue": ""
-        },
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 3,
-          "Dialogue": ""
-        },
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "ありがとうございます！先生、次はその酒場に向かいましょう。"
-        }
-      ],
-      "TextDisplayMode": 0,
-      "Narration": "",
-      "NarrationDisplayMode": 2
-    },
-    {
-      "Background": "Backgrounds/DALL·E-2024-10-07-21.18.15-An-anime-style-illustration-of-a-vintage-town-street",
-      "audio": "Audios/Social Documentary05",
-      "Characters": [
-        {
-          "Name": "ご婦人",
-          "ImageSrc": "Charactors/20200716_elder-female",
-          "ImageGUID": "",
-          "Position": 1,
-          "Dialogue": ""
-        },
-        {
-          "Name": "アルフレッド",
-          "ImageSrc": "Charactors/20181204_elder-male",
-          "ImageGUID": "",
-          "Position": 3,
-          "Dialogue": ""
-        },
-        {
-          "Name": "エリザ",
-          "ImageSrc": "Charactors/20200517_boy",
-          "ImageGUID": "",
-          "Position": 0,
-          "Dialogue": "ありがとうございます！先生、次はその酒場に向かいましょう。"
         }
       ],
       "TextDisplayMode": 1,

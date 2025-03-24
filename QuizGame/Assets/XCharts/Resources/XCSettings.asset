@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3694d869548264b718bdfc6c8009dcf1, type: 3}
   m_Name: XCSettings
   m_EditorClassIdentifier: 
-  m_Lang: {fileID: 11400000, guid: 79b252423c47d4cf380e489ed55e05d4, type: 2}
+  m_Lang: {fileID: 11400000, guid: 4996b99ff33004e07b41190bf98eb8ad, type: 2}
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_FontSizeLv1: 24
   m_FontSizeLv2: 22
@@ -48,5 +48,5 @@ MonoBehaviour:
   m_CustomThemes:
   - {fileID: 11400000, guid: 289d2fc7f4ce24f73b9ed8ec52639f72, type: 2}
   - {fileID: 11400000, guid: e1dc23a10de1e4c5dbfbaf74c4dfd218, type: 2}
-  - {fileID: 11400000, guid: f917f38ce737f4563a377883dccaff8f, type: 2}
-  - {fileID: 11400000, guid: 376d15d5e9b694d75965c837a0fe1222, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}

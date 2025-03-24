@@ -13,19 +13,16 @@ public class WorlddMapTutorial : MonoBehaviour {
     public GameObject Parent;
     public GameObject WorldMap;
     public GameObject ButtonTutorialPanel;
+    public GameObject SavedQuestionModal;
     public GameObject MapTutorialPanel;
 
     public Button[] inactivateButtons;
 
     void Start() {
 
-        // 初回ユーザーか否かを判定
-        // TODO : GameStateManagerから初回ユーザーか否かを判定
-        var uuid = PlayerPrefs.GetString("PlayerUUID");
-        var playerData = SaveDataManager.LoadPlayerData(uuid);
-        // ワールドマップが0 && エリアマップが0の場合は初回ユーザーとみなす
-        bool isFirstUser = playerData.CurrentWorld == 0 && playerData.CurrentArea == 0;
-        if (isFirstUser) {
+        var playerData = GameStateManager.Instance.Player;
+        if (playerData.isFirstUser) {
+            SavedQuestionModal.SetActive(false);
             StartCoroutine(ShowFirstTutorial());
             foreach(Button btn in inactivateButtons) {
                 btn.interactable = false;

@@ -49,6 +49,7 @@ namespace SaveDataInterface {
         /// 途中保存した小問インデックス
         /// </summary>
         public int SaveQuestionIdx;
+        public bool isFirstUser = false;
     }
 
     [Serializable]

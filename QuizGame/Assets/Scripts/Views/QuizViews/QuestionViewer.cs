@@ -235,6 +235,12 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     /// <param name="isCorrect"></param>
     protected void QuestionAnswered(bool isCorrect) {
         var playerData = GameStateManager.Instance.Player;
+        playerData.isFirstUser = false;
+        if(playerData.SaveQuizPath != null) {
+            // 途中保存した問題がある場合、解答後に途中保存情報を削除する
+            playerData.SaveQuizPath = null;
+            playerData.SaveQuestionIdx = -1;
+        }
         if(playerData.UserAnswerData == null) {
             playerData.UserAnswerData = new Dictionary<string, UserAnswerData>();
         }

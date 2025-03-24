@@ -20,13 +20,8 @@ public class TutorialViewer : MonoBehaviour {
             child.gameObject.SetActive(false);
         }
 
-        // TODO : GameStateManagerから初回ユーザーか否かを判定
-        var uuid = PlayerPrefs.GetString("PlayerUUID");
-        var playerData = SaveDataManager.LoadPlayerData(uuid);
-        // ワールドマップが0 && エリアマップが0の場合は初回ユーザーとみなす
-        bool isFirstUser = playerData.CurrentWorld == 0 && playerData.CurrentArea == 0;
-        //string current
-        if (isFirstUser) {
+        var playerData = GameStateManager.Instance.Player;
+        if (playerData.isFirstUser) {
             Parent.gameObject.SetActive(true);
             StartCoroutine(ShowTutorial(CurrentTutorialIndex));
             foreach(Button btn in inactivateButtons) {
