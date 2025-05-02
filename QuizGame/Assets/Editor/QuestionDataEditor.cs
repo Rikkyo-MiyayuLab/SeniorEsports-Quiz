@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using System.IO;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement; // シーン遷移用
-using QuestionDataInterface;
+using QuizDataInterface;
 
 /// <summary>
 /// 問題制作ツールのエンドポイント
@@ -87,7 +85,7 @@ public class QuestionDataEditor : EditorWindow{
 
     private string SaveJSON() {
         // 大問データを構築
-        QuestionData data = new QuestionData {
+        var data = new QuizData {
             title = title,
             description = description,
             limits = limits,
