@@ -27,7 +27,6 @@ public class RecordManager : MonoBehaviour {
     private string MapDefFilename = "MapDictionary";
 
     /// <summary>
-    /// TODO : グラフへの部門別平均正解率の反映
     /// </summary>
     void Start() {
         // TODO : GameStateManagerを介した処理に換装すること
