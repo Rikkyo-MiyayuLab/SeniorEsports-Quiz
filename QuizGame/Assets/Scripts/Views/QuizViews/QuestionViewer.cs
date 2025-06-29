@@ -53,6 +53,7 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
     private TransitionSettings quiteTransition;
     private int NextQuestionIdx;
     private float elapsedSec = 0.0f;
+    protected List<QuizResultRecord> quizResultRecords = new List<QuizResultRecord>(); // クイズ履歴
 
     public void Init() {
         Dispose();
@@ -237,15 +238,13 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         var playerData = GameStateManager.Instance.Player;
         playerData.isFirstUser = false;
         if(playerData.SaveQuizPath != null) {
-            // 途中保存した問題がある場合、解答後に途中保存情報を削除する
             playerData.SaveQuizPath = null;
             playerData.SaveQuestionIdx = -1;
         }
         if(playerData.UserAnswerData == null) {
             playerData.UserAnswerData = new Dictionary<string, UserAnswerData>();
         }
-    
-        // 正解用アイキャッチシーンを表示
+        // --- ここから履歴記録 ---
         if(isCorrect) {
             // 一旦仮組みでPlayerPrefを介してデータを保存する
             PlayerPrefs.SetFloat("ElapsedTimeSec", elapsedSec);
@@ -276,6 +275,14 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
             SceneManager.LoadScene("AnswerPreview-Correct");
             playerData.TotalResolvedCount++;
+            // 履歴記録
+            quizResultRecords.Add(new QuizResultRecord {
+                AnsweredDate = DateTime.Now, // ④正答日時
+                TimeToCorrect = elapsedSec, // ⑤所用時間
+                AnswerCount = playerData.UserAnswerData[CurrentQuestionData.questionId].wrongCount + 1, // ⑥回答回数
+                AnswerHistory = PlayerPrefs.GetInt("CurrentQuestionIdx", 0) == CurrentQuestionIndex ? "順番" : "スキップ有", // ⑦履歴
+                HintUsedCount = GetHintUsedCount() // ⑧ヒント使用回数
+            });
         } else {
             if(playerData.UserAnswerData.ContainsKey(CurrentQuestionData.questionId) == false) {
                 playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData {
@@ -295,6 +302,30 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             SceneManager.LoadScene("AnswerPreview-Incorrect");
         }
         GameStateManager.Instance.Save();
+    }
+
+    /// <summary>
+    /// クイズ履歴をCSV出力する
+    /// </summary>
+    /// <param name="filePath">出力先ファイルパス</param>
+    public void ExportQuizResultsToCsv(string filePath)
+    {
+        CsvExporter.ExportToCsv(
+            quizResultRecords,
+            filePath,
+            "正答日時,所用時間(秒),回答回数,履歴,ヒント使用回数",
+            r => $"{r.AnsweredDate},{r.TimeToCorrect},{r.AnswerCount},\"{r.AnswerHistory}\",{r.HintUsedCount}"
+        );
+    }
+
+    /// <summary>
+    /// ヒント使用回数を取得（必要に応じて実装）
+    /// </summary>
+    /// <returns></returns>
+    protected virtual int GetHintUsedCount()
+    {
+        // 必要に応じて子クラスでオーバーライド
+        return 0;
     }
 
     protected void NextQuestion() {

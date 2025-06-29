@@ -10,7 +10,7 @@ using MapDictionary;
 using UtilFuncs;
 using XCharts.Runtime;
 using QuizDataInterface;
-public class RecordManager : MonoBehaviour {
+public class RecordView : MonoBehaviour {
     
     public TextMeshProUGUI TotalResolvedCount;
     public TextMeshProUGUI TotalPlayedTimeCount;
@@ -18,6 +18,10 @@ public class RecordManager : MonoBehaviour {
     public GameObject SkippedWrapper;
     public Button SkippedQuestionBtnPref;
     public Button BackBtn;
+    public Button CsvExportButton;
+    public GameObject CsvExportDialog;
+    public Button CloseDialogBtn;
+    public TextMeshProUGUI CsvExportDialogText;
     private PlayerData playerData;
     private TransitionManager transitionManager;
     public TransitionSettings transition;
@@ -44,6 +48,9 @@ public class RecordManager : MonoBehaviour {
         string areaName = MapData[worldIdx].Areas[areaIdx];
         CureentAreaName.text = areaName;
 
+        CsvExportDialog.SetActive(false);
+        CsvExportButton.onClick.AddListener(OnCsvExportButtonClicked);
+        CloseDialogBtn.onClick.AddListener(OnCloseDialogButtonClicked);
         //あとでスキップした問題を表示する
         /*
         SkipQuizDataType skipData = SaveDataManager.LoadSkipQuestionDatas(uuid);
@@ -96,6 +103,43 @@ public class RecordManager : MonoBehaviour {
         }
 
 
+    }
+
+    private void OnCsvExportButtonClicked()
+    {
+        var records = GameStateManager.Instance.Player.Records as List<QuizResultRecord>;
+        if (records == null || records.Count == 0)
+        {
+            ShowCsvExportDialog("出力するデータがありません。");
+            return;
+        }
+        // ユーザー名取得（なければUUID）
+        string userName = playerData.PlayerName;
+        if (string.IsNullOrEmpty(userName))
+        {
+            userName = playerData.PlayerUUID;
+        }
+        // 日付もファイル名に追加（重複防止）
+        string dateStr = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+        string fileName = $"QuizResultRecords_{userName}_{dateStr}.csv";
+        CsvExporter.ExportToCsv(
+            records,
+            fileName,
+            "正答日時,所用時間(秒),回答回数,履歴,ヒント使用回数",
+            r => $"{r.AnsweredDate},{r.TimeToCorrect},{r.AnswerCount},\"{r.AnswerHistory}\",{r.HintUsedCount}"
+        );
+        ShowCsvExportDialog($"CSV出力が完了しました\n{fileName}");
+    }
+
+    private void ShowCsvExportDialog(string message)
+    {
+        CsvExportDialog.SetActive(true);
+        CsvExportDialogText.text = message;
+    }
+
+    public void OnCloseDialogButtonClicked()
+    {
+        CsvExportDialog.SetActive(false);
     }
 
 }

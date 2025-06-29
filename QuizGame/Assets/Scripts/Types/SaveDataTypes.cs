@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using QuizDataInterface;
 
-namespace SaveDataInterface {
+namespace SaveDataInterface
+{
 
     [Serializable]
-    public class PlayerData {
+    public class PlayerData
+    {
         /// <summary>
         /// プレイヤーデータ識別用UUID
         /// </summary>
@@ -50,10 +52,12 @@ namespace SaveDataInterface {
         /// </summary>
         public int SaveQuestionIdx;
         public bool isFirstUser = false;
+        public List<QuizResultRecord> Records;
     }
 
     [Serializable]
-    public class SkipQuizDataType {
+    public class SkipQuizDataType
+    {
         public string PlayerUUID { get; set; }
         public List<SkipQuestion> SkipQuestions { get; set; }
     }
@@ -88,7 +92,21 @@ namespace SaveDataInterface {
         /// 問題のタイプ（記憶力, 注意力, 想像力, 知識力,計算力）
         /// </summary>
         public QuestionFieldType fieldType;
-        
+
+    }
+    
+
+    /// <summary>
+    /// クイズ結果データのCSV出力用
+    /// </summary>
+    public class QuizResultRecord
+    {
+        public string QuestionId { get; set; }    // 小問識別子
+        public DateTime AnsweredDate { get; set; } // ④正答した日時
+        public float TimeToCorrect { get; set; }   // ⑤正答までにかかった所用時間（秒）
+        public int AnswerCount { get; set; }       // ⑥正答にたどり着くまでの回答回数
+        public string AnswerHistory { get; set; }  // ⑦順番 or スキップ履歴
+        public int HintUsedCount { get; set; }     // ⑧ヒント使用回数
     }
 }
 
