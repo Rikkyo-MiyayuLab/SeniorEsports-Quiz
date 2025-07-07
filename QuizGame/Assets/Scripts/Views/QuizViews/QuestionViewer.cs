@@ -244,25 +244,39 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
         if(playerData.UserAnswerData == null) {
             playerData.UserAnswerData = new Dictionary<string, UserAnswerData>();
         }
+        if(playerData.Records == null) {
+            playerData.Records = new List<QuizResultRecord>();
+        }
+
+
+
         // --- ここから履歴記録 ---
-        if(isCorrect) {
+        if (isCorrect)
+        {
             // 一旦仮組みでPlayerPrefを介してデータを保存する
             PlayerPrefs.SetFloat("ElapsedTimeSec", elapsedSec);
             //TODO : questionIDは問題識別もかねて手動設定値なため意図しない上書きが発生する可能性がある。UUIDを別途設定する必要がある。
-            if(playerData.UserAnswerData.ContainsKey(CurrentQuestionData.questionId) == false) {
-                playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData {
-                    elapsedSec=elapsedSec,
-                    correctCount= 1,
-                    wrongCount= 0,
-                    fieldType= CurrentQuestionData.fieldType
+            if (playerData.UserAnswerData.ContainsKey(CurrentQuestionData.questionId) == false)
+            {
+                playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData
+                {
+                    elapsedSec = elapsedSec,
+                    correctCount = 1,
+                    wrongCount = 0,
+                    fieldType = CurrentQuestionData.fieldType
                 });
-            } else {
+            }
+            else
+            {
                 // 前に解いたデータがある場合は比較してタイムを更新している場合はその旨を次のシーンへ通知する
                 playerData.UserAnswerData[CurrentQuestionData.questionId].correctCount++;
-                if(playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec > elapsedSec) {
+                if (playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec > elapsedSec)
+                {
                     playerData.UserAnswerData[CurrentQuestionData.questionId].elapsedSec = elapsedSec;
                     PlayerPrefs.SetInt("IsBestTime", 1);
-                } else {
+                }
+                else
+                {
                     PlayerPrefs.SetInt("IsBestTime", 0);
                 }
             }
@@ -270,35 +284,45 @@ public abstract class QuestionViewer<QuestionType> : Viewer where QuestionType :
             PlayerPrefs.SetString("ExplanationImage", CurrentQuestionData.explanationImage);
             PlayerPrefs.SetString("NextStoryId", QuizData.endStory);
             PlayerPrefs.SetString("CurrentViewer", SceneManager.GetActiveScene().name);
-            int RemainQuestionSize = QuizData.quiz.questions.Count - (CurrentQuestionIndex+1);
+            int RemainQuestionSize = QuizData.quiz.questions.Count - (CurrentQuestionIndex + 1);
             PlayerPrefs.SetInt("RemainQuestionSize", RemainQuestionSize);
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
-            SceneManager.LoadScene("AnswerPreview-Correct");
+
             playerData.TotalResolvedCount++;
             // 履歴記録
-            quizResultRecords.Add(new QuizResultRecord {
+            playerData.Records.Add(new QuizResultRecord
+            { // FIXME:quizResultRecordsは小問毎に初期化されるので、最後の１問しか記録が残らない。
                 AnsweredDate = DateTime.Now, // ④正答日時
                 TimeToCorrect = elapsedSec, // ⑤所用時間
                 AnswerCount = playerData.UserAnswerData[CurrentQuestionData.questionId].wrongCount + 1, // ⑥回答回数
                 AnswerHistory = PlayerPrefs.GetInt("CurrentQuestionIdx", 0) == CurrentQuestionIndex ? "順番" : "スキップ有", // ⑦履歴
                 HintUsedCount = GetHintUsedCount() // ⑧ヒント使用回数
             });
-        } else {
-            if(playerData.UserAnswerData.ContainsKey(CurrentQuestionData.questionId) == false) {
-                playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData {
-                    elapsedSec=elapsedSec,
-                    correctCount= 0,
-                    wrongCount= 1,
-                    fieldType= CurrentQuestionData.fieldType
+
+            SceneManager.LoadScene("AnswerPreview-Correct");
+        }
+        else
+        {
+            if (playerData.UserAnswerData.ContainsKey(CurrentQuestionData.questionId) == false)
+            {
+                playerData.UserAnswerData.Add(CurrentQuestionData.questionId, new UserAnswerData
+                {
+                    elapsedSec = elapsedSec,
+                    correctCount = 0,
+                    wrongCount = 1,
+                    fieldType = CurrentQuestionData.fieldType
                 });
-            } else {
+            }
+            else
+            {
                 playerData.UserAnswerData[CurrentQuestionData.questionId].wrongCount++;
             }
             PlayerPrefs.SetString("Explanation", CurrentQuestionData.hints[0]);
             PlayerPrefs.SetString("ExplanationImage", null);
             PlayerPrefs.SetString("CurrentViewer", SceneManager.GetActiveScene().name);
-            PlayerPrefs.SetInt("RemainQuestionSize", QuizData.quiz.questions.Count - CurrentQuestionIndex+1);
+            PlayerPrefs.SetInt("RemainQuestionSize", QuizData.quiz.questions.Count - CurrentQuestionIndex + 1);
             PlayerPrefs.SetInt("CurrentQuestionIdx", CurrentQuestionIndex);
+
             SceneManager.LoadScene("AnswerPreview-Incorrect");
         }
         GameStateManager.Instance.Save();

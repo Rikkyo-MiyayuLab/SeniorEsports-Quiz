@@ -105,18 +105,15 @@ public class RecordView : MonoBehaviour {
 
     }
 
-    private void OnCsvExportButtonClicked()
-    {
+    private void OnCsvExportButtonClicked() {
         var records = GameStateManager.Instance.Player.Records as List<QuizResultRecord>;
-        if (records == null || records.Count == 0)
-        {
+        if (records == null || records.Count == 0) {
             ShowCsvExportDialog("出力するデータがありません。");
             return;
         }
         // ユーザー名取得（なければUUID）
         string userName = playerData.PlayerName;
-        if (string.IsNullOrEmpty(userName))
-        {
+        if (string.IsNullOrEmpty(userName)) {
             userName = playerData.PlayerUUID;
         }
         // 日付もファイル名に追加（重複防止）
